@@ -1,0 +1,280 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-image: url(img/Rectangle.png);
+    height: 840px;
+    width: 1920px;
+}
+
+.top {
+    display: flex;
+}
+
+.top-left {
+    width: 134px;
+    height: 66px;
+    padding-left: 405px;
+    padding-top: 30px;
+}
+
+.house {
+    font-family: Post No Bills Jaffna SemiBold;
+    font-size: 36px;
+    font-weight: 600px;
+    line-height: 54px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #FFFFFF;
+    height: 37px;
+    width: 134px;
+    text-align: center;
+}
+
+.residential {
+    font-family: 'Raleway';
+    font-weight: 400px;
+    font-size: 11px;
+    line-height: 14px;
+    letter-spacing: 0.12em;
+    color: #FFFFFF;
+    margin-top: 15px;
+    height: 14px;
+    width: 134px;
+    text-align: center;
+}
+
+.top-right {
+    display: flex;
+    height: 16px;
+    width: 550px;
+    margin-top: 55px;
+    margin-left: 435px;
+    font-family: 'Raleway';
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.05em;
+
+}
+
+.district {
+    margin-left: 40px;
+}
+
+.catalog {
+    margin-left: 40px;
+}
+
+.ipoteka {
+    margin-left: 40px;
+}
+
+.contacts {
+    margin-left: 40px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.bottom {
+    width: 582px;
+    height: 470px;
+    margin-top: 200px;
+    margin-left: 656px;
+}
+
+.bottom-top {
+    padding-left: 26px;
+    font-family: 'Playfair Display';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 64px;
+    text-align: center;
+    color: #D4C17F;
+}
+
+.bottom-center-vector {
+    margin-top: 100px;
+    padding-left: 292.2px;
+}
+
+.bottom-bottom {
+    display: flex;
+    font-family: 'Raleway';
+    color: #FFFFFF;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    padding-top: 177px;
+}
+
+.fontan {
+    margin-left: 18.15px;
+}
+
+.phone {
+    margin-left: 100px;
+}
+
+.num {
+    margin-left: 15px;
+}
+
+.footer {
+    background-color: #2D343C;
+    height: 272px;
+    width: 1920px;
+    display: flex;
+}
+
+.footer-left {
+    margin-left: 595px;
+    margin-top: 60px;
+}
+
+.footer-center {
+    height: 140px;
+    width: 125px;
+    margin-top: 72px;
+    margin-left: 166px;
+    font-family: 'Raleway';
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.05em;
+}
+
+.footer-right {
+    height: 149px;
+    width: 245px;
+    margin-top: 72px;
+    margin-left: 166px;
+    font-family: 'Raleway';
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.05em;
+}
+
+.content-map {
+    height: 1080px;
+    width: 1920px;
+    background-color: #2D343C;
+
+}
+
+.map {
+    font-family: 'Playfair Display';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 48px;
+    color: #D4C17F;
+    margin-left: 405px;
+    padding-top: 40px;
+}
+
+.map-bottom {
+    margin-left: 405px;
+    margin-top: 100px;
+
+}
+
+.content-question {
+    margin-left: 400px;
+    margin-top: 100px;
+    height: 136px;
+    width: 1115px;
+    background-color: #2D343C;
+}
+
+.question {
+    font-family: 'Playfair Display';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 48px;
+    color: #D4C17F;
+}
+
+.second-line {
+    display: flex;
+}
+
+.second-line-one {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    color: #E7E7E7;
+    margin-left: 400px;
+    Width: 255px;
+    Height: 28px;
+}
+
+.second-line-two {
+    width: 255px;
+    height: 50px;
+    background-color: #D4C17F;
+    margin-left: 35px;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 27px;
+}
+
+.text {
+    color: rgb(255, 255, 255);
+    position: absolute;
+    margin-top: 12px;
+    margin-left: 86px;
+}
+
+.text2 {
+    color: rgb(255, 255, 255);
+    position: absolute;
+    margin-top: 12px;
+    margin-left: 54px;
+}
+
+.text3 {
+    margin-top: 10px;
+}
+
+.second-line-tree {
+    width: 255px;
+    height: 50px;
+    background-color: #D4C17F;
+    margin-left: 30px;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 27px;
+}
+
+.second-line-four {
+    width: 255px;
+    height: 50px;
+    background-color: #D4C17F;
+    margin-left: 30px;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 27px;
+}
