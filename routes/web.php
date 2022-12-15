@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\Admin\UserController as AdminUserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::name('admin.')->prefix('admin')->group(function(){
+    Route::resource('users', AdminUserController::class);
+});
