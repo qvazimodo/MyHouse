@@ -17,10 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Добавляет CRUD для маршрутов регистрации, аутентификации и сброса пароля
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::name('admin.')->prefix('admin')->group(function(){
+//middleware будут выполняться в той последовательности, в которой они перечислены в массиве.
+Route::name('admin.')->prefix('admin')->middleware(['auth', 'is_admin'])
+    ->group(function(){
     Route::resource('users', AdminUserController::class);
 });
