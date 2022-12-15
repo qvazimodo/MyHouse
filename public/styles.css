@@ -278,3 +278,86 @@ a {
     font-size: 14px;
     line-height: 27px;
 }
+
+/* Секция "Хотите посмотреть" */
+
+.watching-section {
+    background: url('img/watching-bg.png') center / cover no-repeat;
+    padding: 180px 0;
+    box-sizing: border-box;
+}
+.container {
+    width: 1100px;
+    margin: 0 auto;
+}
+.title-2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.33;
+    color: #D4C17F;
+    margin-bottom: 50px;
+}
+.watching-section_wrp {
+    display: flex;
+    font-family: 'Raleway', sans-serif;
+}
+.watching-section_text {
+    flex: 1;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #FFFFFF;
+}
+.watching-section_form {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 35px 30px;
+}
+
+.section-input {
+    font-family: 'Raleway', sans-serif;
+    height: 50px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.9;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #BEBEBE;
+    outline: none;
+}
+
+.watching-section_form p {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.23;
+    text-align: center;
+    color: #E7E7E7;
+}
+
+.section-btn {
+    border: none;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #FFFFFF;
+    background: #D4C17F;
+    padding: 11px 0;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+/* Секция видео */
+
+.video-section {
+    background: #242B33;
+}
+.video-block {
+    width: 719px;
+    height: 650px;
+    background: url('img/video.png') center / cover no-repeat;
+    margin: 0 auto;
+}

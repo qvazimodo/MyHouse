@@ -35,6 +35,26 @@
             </div>
         </div>
     </div>
+    <div class="watching-section">
+        <div class="container">
+            <h2 class="title-2">Хотите посмотреть?</h2>
+            <div class="watching-section_wrp">
+                <p class="watching-section_text">Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. </p>
+                <div class="watching-section_form">
+                    <input type="text" value="Ваше имя" class="section-input">
+                    <input type="text" value="Ваш телефон" class="section-input">
+                    <p>*Мы никому не передаем ваши данные.
+                        И не сохраняем ваш номер в базу.</p>
+                    <button class="section-btn">Посмотреть район</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="video-section">
+        <div class="video-block"></div>
+    </div>
+
     <div class="content-map">
         <div class="map">Район на карте</div>
         <div class="map-bottom">
