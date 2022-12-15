@@ -26,3 +26,7 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'is_admin'])
     ->group(function(){
     Route::resource('users', AdminUserController::class);
 });
+
+Route::get('/landing', function (){
+    return view('landing');
+});
