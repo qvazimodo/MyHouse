@@ -68,7 +68,7 @@
             </div>
         @endif
 
-
+        @yield('flats')
         @yield('content')
     </main>
 

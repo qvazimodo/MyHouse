@@ -365,3 +365,66 @@ a {
     background: url('/storage/app/public/images/video.png') center / cover no-repeat;
     margin: 0 auto;
 }
+
+//Секция Наши квартиры
+
+
+.menu-flats {
+    max-width: 1920px;
+    width: 100%;
+    //margin: 0 auto;
+    background: #242B33;
+    padding: 120px 0 0 0;
+}
+
+.flats-position-text {
+    margin: 0 auto 100px;
+    max-width: 1100px;
+    width: 100%;
+}
+
+.flats-txt {
+    color: #D4C17F;
+    font-family: 'Playfair Display';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 48px;
+}
+
+.flats-items {
+    max-width: 1100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    align-content: space-around;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.flats-item {
+    width: 535px;
+    height: 320px;
+    margin: 0 0 20px;
+}
+
+.flats-photo {
+    width: 535px;
+    height: 320px;
+    position: absolute;
+}
+
+.flats-text {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    color: #FFFFFF;
+    position: relative;
+    top: 248px;
+    left: 20px;
+}

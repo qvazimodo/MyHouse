@@ -6,6 +6,10 @@
     @include('header')
 @endsection
 
+@section('flats')
+    @include('flats')
+@endsection
+
 @section('content')
 
     <div class="watching-section">
