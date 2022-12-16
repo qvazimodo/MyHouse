@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Admin\UserController as AdminUserController;
+use \App\Http\Controllers\ClientController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,3 +31,5 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'is_admin'])
 Route::get('/landing', function (){
     return view('landing');
 });
+
+Route::resource('client', ClientController::class);
