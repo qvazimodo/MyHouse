@@ -4,7 +4,7 @@
 }
 
 .header {
-    background-image: url('img/Rectangle.png');
+    background-image: url("/storage/app/public/images/Rectangle.png");
     height: 840px;
     width: 1920px;
 }
@@ -107,6 +107,7 @@ a {
 
 .bottom-bottom {
     display: flex;
+    justify-content: space-between;
     font-family: 'Raleway';
     color: #FFFFFF;
     font-style: normal;
@@ -121,8 +122,11 @@ a {
     margin-left: 18.15px;
 }
 
+.sticker{
+    display: flex;
+}
 .phone {
-    margin-left: 100px;
+    display: flex;
 }
 
 .num {
@@ -282,7 +286,7 @@ a {
 /* Секция "Хотите посмотреть" */
 
 .watching-section {
-    background: url('img/watching-bg.png') center / cover no-repeat;
+    background: url('/storage/app/public/images/watching-bg.png') center / cover no-repeat;
     padding: 180px 0;
     box-sizing: border-box;
 }
@@ -358,6 +362,6 @@ a {
 .video-block {
     width: 719px;
     height: 650px;
-    background: url('img/video.png') center / cover no-repeat;
+    background: url('/storage/app/public/images/video.png') center / cover no-repeat;
     margin: 0 auto;
 }

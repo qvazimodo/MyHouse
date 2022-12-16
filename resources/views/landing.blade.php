@@ -21,25 +21,30 @@
             <div class="bottom-top">Жилой комплекс<br> в историческом центре</div>
             <div class="bottom-center-vector"><img src="{{asset('storage/images/Vector.png')}}"></div>
             <div class="bottom-bottom">
-                <div class="sticker"><img src="{{asset('storage/images/sticker.png')}}"></div>
-                <div class="fontan">Наб. реки Фонтанки 10-15</div>
+                <div class="sticker">
+                    <img src="{{asset('storage/images/sticker.png')}}">
+                    <div class="fontan">Наб. реки Фонтанки 10-15</div>
+                </div>
+
                 <div class="phone">
                     <img src="{{asset('storage/images/phone.png')}}">
-                <div class="num"> 8 (812) 123-45-67</div>
+                    <div class="num"> 8 (812) 123-45-67</div>
+                </div>
             </div>
         </div>
-    </div>
-@endsection
+        @endsection
 
-@section('content')
+        @section('content')
 
-
-    <div class="watching-section">
-        <div class="container">
-            <h2 class="title-2">Хотите посмотреть?</h2>
-            <div class="watching-section_wrp">
-                <p class="watching-section_text">Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. </p>
-                <div class="watching-section_form">
+            <div class="watching-section">
+                <div class="container">
+                    <h2 class="title-2">Хотите посмотреть?</h2>
+                    <div class="watching-section_wrp">
+                        <p class="watching-section_text">Lorem Ipsum - это текст-"рыба", часто используемый в печати и
+                            вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI
+                            века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов,
+                            используя Lorem Ipsum для распечатки образцов. </p>
+                        <div class="watching-section_form">
                     <input type="text" value="Ваше имя" class="section-input">
                     <input type="text" value="Ваш телефон" class="section-input">
                     <p>*Мы никому не передаем ваши данные.
