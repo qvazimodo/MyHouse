@@ -1,15 +1,8 @@
-//Использует в качестве основы файл resources/views/layouts/landing_layout.blade.php
 @extends('layouts.landing_layout')
 
 @section('title', 'My House Управляющая компания')
 
 @section('header')
-    //подключение меню нашего landing из файла resources/views/landing_header.blade.php, который необходимо создать
-{{--    @include('landing_header')--}}
-@endsection
-
-@section('content')
-
     <div class="header">
         <div class="top">
             <div class="top-left">
@@ -26,15 +19,21 @@
         </div>
         <div class="bottom">
             <div class="bottom-top">Жилой комплекс<br> в историческом центре</div>
-            <div class="bottom-center-vector"><img src="img/Vector.png"></div>
+            <div class="bottom-center-vector"><img src="{{asset('storage/images/Vector.png')}}"></div>
             <div class="bottom-bottom">
-                <div class="sticker"><img src="img/sticker.png"></div>
+                <div class="sticker"><img src="{{asset('storage/images/sticker.png')}}"></div>
                 <div class="fontan">Наб. реки Фонтанки 10-15</div>
-                <div class="phone"><img src="img/phone.png"></div>
-                <div class="num">8 (812) 123-45-67</div>
+                <div class="phone">
+                    <img src="{{asset('storage/images/phone.png')}}">
+                <div class="num"> 8 (812) 123-45-67</div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('content')
+
+
     <div class="watching-section">
         <div class="container">
             <h2 class="title-2">Хотите посмотреть?</h2>
@@ -77,7 +76,12 @@
             <div class="second-line-four"><div class="text2">Посмотреть район</div> </div>
         </div>
     </div>
-    <div class="footer">
+
+
+@endsection
+
+@section('footer')
+    <footer class="footer">
         <div class="footer-left">
             <div class="house">MyHouse</div>
             <div class="residential">ЖИЛОЙ КОМПЛЕКС</div>
@@ -96,11 +100,5 @@
             <a href="#">E-mail: vip@housevip.ru</a><br><br>
 
         </div>
-    </div>
-
-@endsection
-
-@section('footer')
-    //подключение footer из файла resources/views/landing_footer.blade.php, который необходимо создать
-{{--    @include('landing_footer')--}}
+    </footer>
 @endsection

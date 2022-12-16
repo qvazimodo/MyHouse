@@ -14,7 +14,7 @@ use \App\Http\Controllers\Admin\UserController as AdminUserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
 
 //Добавляет CRUD для маршрутов регистрации, аутентификации и сброса пароля
