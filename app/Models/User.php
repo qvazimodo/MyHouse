@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+//use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Client extends Authenticatable
+class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -18,13 +18,13 @@ class Client extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id',
-        'street',
-        'house_number',
-        'entrance',
-        'floor',
-        'apartment_number',
-        'residents_number',
+        'name',
+        'patronymic',
+        'last_name',
+        'is_employee',
+        'is_client',
+        'email',
+        'password',
     ];
 
     /**
@@ -33,7 +33,8 @@ class Client extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -45,8 +46,13 @@ class Client extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function user()
+    public function client()
     {
-        return $this->hasOne(User::class,'user_id')->get();
+        return $this->hasOne(Client::class,'user_id')->first();
+    }
+
+    public function employee()
+    {
+        return $this->hasOne(Employee::class,'user_id')->first();
     }
 }
