@@ -174,7 +174,7 @@ a {
 .content-map {
     height: 1080px;
     width: 1920px;
-    background-color: #2D343C;
+    background-color: #242B33;
 
 }
 
@@ -200,7 +200,7 @@ a {
     margin-top: 100px;
     height: 136px;
     width: 1115px;
-    background-color: #2D343C;
+    background-color: #242B33;
 }
 
 .question {
@@ -364,6 +364,34 @@ a {
     height: 650px;
     background: url('/storage/app/public/images/video.png') center / cover no-repeat;
     margin: 0 auto;
+}
+
+/* Секция отзывы */
+
+.reviews {
+    background: #242B33;
+    padding: 60px 0;
+    box-sizing: border-box;
+}
+.review-block {
+    margin-bottom: 40px;
+}
+.review-block:last-child {
+    margin-bottom: 0;
+}
+.review-txt {
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #FFFFFF;
+}
+.review-author {
+    font-family: "Raleway", sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #FFFFFF;
 }
 
 //Секция Наши квартиры
