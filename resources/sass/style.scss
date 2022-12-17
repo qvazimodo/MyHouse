@@ -428,3 +428,155 @@ a {
     top: 248px;
     left: 20px;
 }
+
+
+
+/* Адаптив */
+
+@media (max-width: 768px) {
+
+    .header {
+        width: 768px;
+    }
+
+    .top-left {
+        padding-left: 50px;
+    }
+
+    .top-right {
+        display: flex;
+        flex-direction: column;
+        height: 16px;
+        width: 550px;
+        margin-top: 40px;
+        margin-left: 358px;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 30px;
+        letter-spacing: 0.05em;
+    }
+
+    .district {
+        margin-left: 0px;
+    }
+
+    .catalog {
+        margin-left: 0px;
+    }
+
+    .ipoteka {
+        margin-left: 0px;
+    }
+
+    .contacts {
+        margin-left: 0px;
+    }
+
+    .bottom {
+        margin-left: 77px;
+        margin-top: 174px;
+    }
+
+    .bottom-center-vector {
+        margin-top: 25px;
+        padding-left: 278.2px;
+    }
+
+    .bottom-bottom {
+        display: flex;
+        flex-direction: column;
+        font-family: 'Raleway';
+        color: #FFFFFF;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 21px;
+        line-height: 32px;
+        text-align: center;
+        padding-top: 54px;
+    }
+
+    .phone {
+        margin-left: 8px;
+    }
+
+    .content-map {
+        width: 768px;
+    }
+
+    .map {
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 48px;
+        color: #D4C17F;
+        margin-left: 153px;
+        padding-top: 24px;
+    }
+
+    .map-bottom {
+        margin-left: 18px;
+        margin-top: 39px;
+        height: 100%;
+    }
+
+    .content-question {
+        margin-left: 159px;
+        margin-top: -522px;
+
+    }
+
+    .second-line {
+        flex-direction: column;
+
+    }
+
+    .text3 {
+        margin-top: -48px;
+        margin-left: -324px;
+    }
+
+    .second-line-two {
+        margin-left: 161px;
+        margin-top: -21px;
+    }
+
+    .second-line-tree {
+        margin-left: 161px;
+        margin-top: 10px;
+    }
+
+    .second-line-four {
+        margin-left: 161px;
+        margin-top: 10px;
+    }
+
+    .footer {
+        width: 768px;
+    }
+
+    .footer-left {
+        margin-left: 13px;
+        margin-top: 60px;
+    }
+
+    .footer-center {
+        height: 159px;
+        width: 223px;
+        margin-top: 72px;
+        margin-left: 49px;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 16px;
+        letter-spacing: 0.05em;
+    }
+
+    .footer-right {
+        height: 149px;
+        width: 245px;
+        margin-top: 72px;
+        margin-left: 39px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        letter-spacing: 0.05em;
+    }
+}
