@@ -15,7 +15,7 @@
     <div class="bottom">
         <div class="bottom-top">Ваше доверие - <br> наш профессионализм</div>
         <div class="bottom-center-vector"><img src="{{asset('storage/images/Vector.png')}}"></div>
-        <div class="bottom-bottom">
+        <div class="bottom-contacts">
             <div class="sticker">
                 <img src="{{asset('storage/images/sticker.png')}}">
                 <div class="fontan">Наб. реки Фонтанки 10-15</div>
@@ -28,3 +28,4 @@
         </div>
     </div>
 </div>
+

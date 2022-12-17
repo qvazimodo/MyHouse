@@ -3,21 +3,37 @@
     padding: 0;
 }
 
+.app {
+    background: #242B33;
+}
+
+.app-wrapper {
+    max-width: 1920px;
+    width: 100%;
+    margin: 0 auto;
+}
+
 .header {
     background-image: url("/storage/app/public/images/Rectangle.png");
-    height: 840px;
-    width: 1920px;
+    max-width: 1920px;
+    width: 100%;
+    background-position: 50% 50%;
 }
 
 .top {
     display: flex;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 0 0 0;
 }
 
 .top-left {
     width: 134px;
-    height: 66px;
-    padding-left: 405px;
-    padding-top: 30px;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .house {
@@ -28,53 +44,31 @@
     letter-spacing: 0em;
     text-align: left;
     color: #FFFFFF;
-    height: 37px;
-    width: 134px;
+    width: 100%;
     text-align: center;
 }
 
 .residential {
     font-family: 'Raleway';
-    font-weight: 400px;
     font-size: 11px;
     line-height: 14px;
     letter-spacing: 0.12em;
     color: #FFFFFF;
-    margin-top: 15px;
-    height: 14px;
-    width: 134px;
+    width: 100%;
     text-align: center;
 }
 
 .top-right {
     display: flex;
-    height: 16px;
-    width: 550px;
-    margin-top: 55px;
-    margin-left: 435px;
+    justify-content: space-between;
+    max-width: 541px;
+    width: 100%;
     font-family: 'Raleway';
     color: #FFFFFF;
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
     letter-spacing: 0.05em;
-
-}
-
-.district {
-    margin-left: 40px;
-}
-
-.catalog {
-    margin-left: 40px;
-}
-
-.ipoteka {
-    margin-left: 40px;
-}
-
-.contacts {
-    margin-left: 40px;
 }
 
 a {
@@ -85,12 +79,11 @@ a {
 .bottom {
     width: 582px;
     height: 470px;
-    margin-top: 200px;
-    margin-left: 656px;
+    margin: 200px auto 0;
 }
 
 .bottom-top {
-    padding-left: 26px;
+    padding-left: 15px;
     font-family: 'Playfair Display';
     font-style: normal;
     font-weight: 700;
@@ -101,11 +94,11 @@ a {
 }
 
 .bottom-center-vector {
-    margin-top: 100px;
-    padding-left: 292.2px;
+    margin: 100px 0 130px 0;
+    padding-left: 50%;
 }
 
-.bottom-bottom {
+.bottom-contacts {
     display: flex;
     justify-content: space-between;
     font-family: 'Raleway';
@@ -115,16 +108,16 @@ a {
     font-size: 18px;
     line-height: 21px;
     text-align: center;
-    padding-top: 177px;
 }
 
 .fontan {
     margin-left: 18.15px;
 }
 
-.sticker{
+.sticker {
     display: flex;
 }
+
 .phone {
     display: flex;
 }
@@ -135,14 +128,21 @@ a {
 
 .footer {
     background-color: #2D343C;
-    height: 272px;
-    width: 1920px;
+    height: auto;
+    width: auto;
+    display:block;
+}
+
+.footer-wrapper {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
     display: flex;
+    justify-content: space-between;
 }
 
 .footer-left {
-    margin-left: 595px;
-    margin-top: 60px;
+    margin: 60px 0 0 0;
 }
 
 .footer-center {
@@ -172,10 +172,11 @@ a {
 }
 
 .content-map {
-    height: 1080px;
-    width: 1920px;
     background-color: #242B33;
-
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto 180px;
+    height: auto;
 }
 
 .map {
@@ -185,19 +186,17 @@ a {
     font-size: 36px;
     line-height: 48px;
     color: #D4C17F;
-    margin-left: 405px;
     padding-top: 40px;
+    margin: 0;
 }
 
 .map-bottom {
-    margin-left: 405px;
-    margin-top: 100px;
+    margin: 100px 0 0 0;
 
 }
 
 .content-question {
-    margin-left: 400px;
-    margin-top: 100px;
+    margin: 100px 0 0 0;
     height: 136px;
     width: 1115px;
     background-color: #242B33;
@@ -224,9 +223,8 @@ a {
     line-height: 16px;
     text-align: center;
     color: #E7E7E7;
-    margin-left: 400px;
-    Width: 255px;
-    Height: 28px;
+    width: 255px;
+margin: 0;
 }
 
 .second-line-two {
@@ -290,10 +288,12 @@ a {
     padding: 180px 0;
     box-sizing: border-box;
 }
+
 .container {
     width: 1100px;
     margin: 0 auto;
 }
+
 .title-2 {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
@@ -302,10 +302,12 @@ a {
     color: #D4C17F;
     margin-bottom: 50px;
 }
+
 .watching-section_wrp {
     display: flex;
     font-family: 'Raleway', sans-serif;
 }
+
 .watching-section_text {
     flex: 1;
     font-weight: 400;
@@ -313,6 +315,7 @@ a {
     line-height: 1.5;
     color: #FFFFFF;
 }
+
 .watching-section_form {
     flex: 1;
     display: grid;
@@ -359,6 +362,7 @@ a {
 .video-section {
     background: #242B33;
 }
+
 .video-block {
     width: 719px;
     height: 650px;
@@ -373,12 +377,15 @@ a {
     padding: 60px 0;
     box-sizing: border-box;
 }
+
 .review-block {
     margin-bottom: 40px;
 }
+
 .review-block:last-child {
     margin-bottom: 0;
 }
+
 .review-txt {
     font-family: "Raleway", sans-serif;
     font-weight: 400;
@@ -386,6 +393,7 @@ a {
     line-height: 1.5;
     color: #FFFFFF;
 }
+
 .review-author {
     font-family: "Raleway", sans-serif;
     font-weight: 800;
@@ -394,13 +402,13 @@ a {
     color: #FFFFFF;
 }
 
-//Секция Наши квартиры
+/* //Секция Наши квартиры */
 
 
 .menu-flats {
     max-width: 1920px;
     width: 100%;
-    //margin: 0 auto;
+    margin: 0 auto;
     background: #242B33;
     padding: 120px 0 0 0;
 }
@@ -485,19 +493,19 @@ a {
     }
 
     .district {
-        margin-left: 0px;
+        margin-left: 0;
     }
 
     .catalog {
-        margin-left: 0px;
+        margin-left: 0;
     }
 
     .ipoteka {
-        margin-left: 0px;
+        margin-left: 0;
     }
 
     .contacts {
-        margin-left: 0px;
+        margin-left: 0;
     }
 
     .bottom {
@@ -510,7 +518,7 @@ a {
         padding-left: 278.2px;
     }
 
-    .bottom-bottom {
+    .bottom-contacts {
         display: flex;
         flex-direction: column;
         font-family: 'Raleway';
@@ -547,7 +555,6 @@ a {
     }
 
     .content-question {
-        margin-left: 159px;
         margin-top: -522px;
 
     }
