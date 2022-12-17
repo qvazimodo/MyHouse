@@ -3,19 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\User;
 use Illuminate\View\View;
 
 class ClientController extends Controller
 {
     public function index():View
     {
-        $clients = Client::orderBy('updated_at', 'desc')->paginate(20);
+       // $clients = Client::orderBy('updated_at', 'desc')->paginate(20);
+
+        //$clients = User::query()->where('is_client', '=','1')->client();
+        $clients = User::query()->where('is_client', '=','1')->orderBy('updated_at', 'desc')->paginate(20);
+
         return view('client.index')->with('clients', $clients);
     }
 
     public function show($id):View
     {
-        $client = Client::query()->where('id', $id)->first();;
+        //$client = Client::query()->where('id', $id)->first();
+        $client = User::query()->where('id', $id)->first();
         return view('client.show')->with('client', $client);
     }
 

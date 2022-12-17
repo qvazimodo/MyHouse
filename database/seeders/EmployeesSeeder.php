@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Faker;
 
 class EmployeesSeeder extends Seeder
 {
@@ -17,23 +18,20 @@ class EmployeesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert($this->getData());
+        DB::table('employees')->insert($this->getData());
+
     }
 
     private function getData()
     {
+        //$faker = Faker\Factory::create('ru_Ru');
         $data = [];
         $data[] = [
-            'name' => 'Admin',
-            'email' => 'admin@admin.ru',
-            'is_admin'=> true,
-            'email_verified_at' => now(),
-            'password' =>  Hash::make('123'), // password
-            'remember_token' => Str::random(10),
-            'created_at'=>now(),
-            'updated_at'=>now(),
+            'user_id' => 101,
+            'profession' => 'admin',
             ];
-        for ($i = 0; $i < 10; $i++){
+
+        /*for ($i = 0; $i < 10; $i++){
             $data[]=[
                 'name' => fake('ru_RU')->name(),
                 'email' => fake()->unique()->safeEmail(),
@@ -44,7 +42,7 @@ class EmployeesSeeder extends Seeder
                 'created_at'=>now(),
                 'updated_at'=>now(),
             ];
-        }
+        }*/
         return $data;
     }
 }
