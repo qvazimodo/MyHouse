@@ -1,6 +1,6 @@
 <div class="menu-flats">
     <div class="flats-position-text">
-        <h2 class="flats-txt">Наши квартиры</h2>
+        <h2 class="flats-txt">Дома у нас на обслуживании</h2>
     </div>
     <ul class="flats-items">
         <li class="flats-item">

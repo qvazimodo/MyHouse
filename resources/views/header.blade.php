@@ -2,18 +2,18 @@
     <div class="top">
         <div class="top-left">
             <div class="house">MyHouse</div>
-            <div class="residential">ЖИЛОЙ КОМПЛЕКС</div>
+            <div class="residential">Управляющая Компания</div>
         </div>
         <div class="top-right">
-            <div class="complex"><a href="#">О комплексе</a></div>
-            <div class="district"><a href="#">Район</a></div>
-            <div class="catalog"><a href="#">Каталог квартир</a></div>
+            <div class="complex"><a href="#">О нас</a></div>
+            <div class="district"><a href="#">Дома</a></div>
+            <div class="catalog"><a href="#">Тарифы и услуги</a></div>
             <div class="ipoteka"><a href="#">Регистрация</a></div>
             <div class="contacts"><a href="{{route('login')}}">Вход</a></div>
         </div>
     </div>
     <div class="bottom">
-        <div class="bottom-top">Жилой комплекс<br> в историческом центре</div>
+        <div class="bottom-top">Ваше доверие - <br> наш профессионализм</div>
         <div class="bottom-center-vector"><img src="{{asset('storage/images/Vector.png')}}"></div>
         <div class="bottom-bottom">
             <div class="sticker">
