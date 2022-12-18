@@ -77,7 +77,8 @@ a {
 }
 
 .bottom {
-    width: 582px;
+    max-width: 582px;
+    width: 100%;
     height: 470px;
     margin: 200px auto 0;
 }
@@ -128,9 +129,9 @@ a {
 
 .footer {
     background-color: #2D343C;
-    height: auto;
     width: auto;
-    display:block;
+    height: auto;
+    display: block;
 }
 
 .footer-wrapper {
@@ -142,7 +143,7 @@ a {
 }
 
 .footer-left {
-    margin: 60px 0 0 0;
+    margin-top: 60px;
 }
 
 .footer-center {
@@ -176,7 +177,7 @@ a {
     max-width: 1100px;
     width: 100%;
     margin: 0 auto 180px;
-    height: auto;
+
 }
 
 .map {
@@ -187,18 +188,18 @@ a {
     line-height: 48px;
     color: #D4C17F;
     padding-top: 40px;
-    margin: 0;
 }
 
 .map-bottom {
+    max-width: 1100px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 2%;
     margin: 100px 0 0 0;
-
 }
 
 .content-question {
-    margin: 100px 0 0 0;
-    height: 136px;
-    width: 1115px;
+    margin: 100px 0 60px;
     background-color: #242B33;
 }
 
@@ -224,7 +225,7 @@ a {
     text-align: center;
     color: #E7E7E7;
     width: 255px;
-margin: 0;
+    height: 28px;
 }
 
 .second-line-two {
@@ -237,20 +238,17 @@ margin: 0;
     font-weight: 400;
     font-size: 14px;
     line-height: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .text {
     color: rgb(255, 255, 255);
-    position: absolute;
-    margin-top: 12px;
-    margin-left: 86px;
 }
 
 .text2 {
     color: rgb(255, 255, 255);
-    position: absolute;
-    margin-top: 12px;
-    margin-left: 54px;
 }
 
 .text3 {
@@ -267,6 +265,9 @@ margin: 0;
     font-weight: 400;
     font-size: 14px;
     line-height: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .second-line-four {
@@ -279,6 +280,9 @@ margin: 0;
     font-weight: 400;
     font-size: 14px;
     line-height: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Секция "Хотите посмотреть" */
@@ -290,7 +294,8 @@ margin: 0;
 }
 
 .container {
-    width: 1100px;
+    max-width: 1100px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -433,7 +438,6 @@ margin: 0;
     width: 100%;
     display: flex;
     align-items: center;
-    align-content: space-around;
     justify-content: space-between;
     flex-wrap: wrap;
     list-style-type: none;
@@ -444,7 +448,7 @@ margin: 0;
 .flats-item {
     width: 535px;
     height: 320px;
-    margin: 0 0 20px;
+    margin: 0 0 30px;
 }
 
 .flats-photo {
@@ -469,10 +473,117 @@ margin: 0;
 
 /* Адаптив */
 
+@media(max-width:1150px) {
+
+    .menu-flats {
+        max-width: 1920px;
+        width: 100%;
+        margin: 0 auto;
+        background: #242B33;
+        padding: 120px 0 0 0;
+    }
+
+    .flats-txt {
+        font-size: 42px;
+        text-align: center;
+    }
+
+    .title-2 {
+        text-align: center;
+    }
+
+    .watching-section_wrp {
+        display: block;
+    }
+
+    .watching-section_text {
+        text-align: center;
+        margin: 0 0 50px;
+    }
+
+    .watching-section_form {
+        width: 100%;
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 0 2%;
+        box-sizing: border-box;
+    }
+
+    .section-input {
+        max-width: 335px;
+        width: 100%;
+    }
+
+    .section-btn {
+        max-width: 335px;
+        width: 100%;
+    }
+
+    .watching-section_form p {
+        max-width: 335px;
+        width: 100%;
+    }
+
+    .flats-items {
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        list-style-type: none;
+        padding: 0;
+        margin: 0 auto;
+    }
+
+    .container {
+        padding: 0 2%;
+        box-sizing: border-box;
+    }
+
+    .flats-item {
+        width: 555px;
+    }
+
+    .second-line-one {
+        max-width: 255px;
+        width: 100%;
+    }
+
+    .second-line-two {
+        max-width: 255px;
+        width: 100%;
+    }
+
+    .second-line-tree {
+        max-width: 255px;
+        width: 100%;
+    }
+
+    .second-line-four {
+        max-width: 255px;
+        width: 100%;
+    }
+
+    .second-line {
+        box-sizing: border-box;
+        padding: 0 2%;
+    }
+
+}
+
+@media (max-width:1100px) {
+    .top {
+        padding: 30px 2% 0;
+        box-sizing: border-box;
+    }
+
+    .map {
+        padding: 40px 0 0 2%;
+    }
+}
+
 @media (max-width: 768px) {
 
     .header {
-        width: 768px;
+        max-width: 768px;
     }
 
     .top-left {
@@ -481,36 +592,41 @@ margin: 0;
 
     .top-right {
         display: flex;
+        text-align: right;
         flex-direction: column;
-        height: 16px;
-        width: 550px;
-        margin-top: 40px;
-        margin-left: 358px;
+        max-width: 541px;
+        width: 100%;
+        font-family: 'Raleway';
+        color: #FFFFFF;
         font-weight: 400;
-        font-size: 20px;
-        line-height: 30px;
+        font-size: 14px;
+        line-height: 16px;
         letter-spacing: 0.05em;
     }
 
     .district {
-        margin-left: 0;
+        margin-left: 0px;
     }
 
     .catalog {
-        margin-left: 0;
+        margin-left: 0px;
     }
 
     .ipoteka {
-        margin-left: 0;
+        margin-left: 0px;
     }
 
     .contacts {
-        margin-left: 0;
+        margin-left: 0px;
     }
 
     .bottom {
-        margin-left: 77px;
-        margin-top: 174px;
+        margin: 200px auto 0;
+    }
+
+    .bottom-top {
+        font-size: 40px;
+        padding: 0;
     }
 
     .bottom-center-vector {
@@ -519,16 +635,8 @@ margin: 0;
     }
 
     .bottom-contacts {
-        display: flex;
-        flex-direction: column;
-        font-family: 'Raleway';
-        color: #FFFFFF;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 21px;
-        line-height: 32px;
-        text-align: center;
-        padding-top: 54px;
+        max-width: 800px;
+        width: 100%;
     }
 
     .phone {
@@ -536,7 +644,14 @@ margin: 0;
     }
 
     .content-map {
-        width: 768px;
+        max-width: 768px;
+        margin: 0 auto 90px;
+    }
+
+    .video-block {
+        height: 500px;
+        max-width: 500px;
+        width: 100%;
     }
 
     .map {
@@ -548,44 +663,42 @@ margin: 0;
         padding-top: 24px;
     }
 
-    .map-bottom {
-        margin-left: 18px;
-        margin-top: 39px;
-        height: 100%;
+    .question {
+        text-align: center;
     }
 
     .content-question {
-        margin-top: -522px;
-
+        margin: 100px 0 60px;
     }
 
     .second-line {
         flex-direction: column;
+        align-items: center;
 
     }
 
     .text3 {
-        margin-top: -48px;
-        margin-left: -324px;
+        margin: 0;
+    }
+
+    .second-line-one {
+        margin: 0 0 40px 0;
     }
 
     .second-line-two {
-        margin-left: 161px;
-        margin-top: -21px;
+        margin: 0;
     }
 
     .second-line-tree {
-        margin-left: 161px;
-        margin-top: 10px;
+        margin: 40px 0;
     }
 
     .second-line-four {
-        margin-left: 161px;
-        margin-top: 10px;
+        margin: 0;
     }
 
     .footer {
-        width: 768px;
+        max-width: 768px;
     }
 
     .footer-left {
@@ -613,5 +726,40 @@ margin: 0;
         font-size: 14px;
         line-height: 16px;
         letter-spacing: 0.05em;
+    }
+}
+
+@media (max-width:650px) {
+    .flats-item {
+        max-width: 360px;
+        width: 100%;
+        height: 230px;
+
+    }
+
+    .flats-photo {
+        max-width: 360px;
+        width: 100%;
+        height: 230px;
+    }
+
+    .flats-text {
+        top: 153px;
+        left: 52px;
+        font-size: 19px;
+    }
+
+    .watching-section {
+        padding: 50px 0;
+    }
+}
+
+@media (max-width:600px) {
+    .bottom-center-vector {
+        display: none;
+    }
+
+    .bottom-top {
+        margin: 0 0 180px 0;
     }
 }
