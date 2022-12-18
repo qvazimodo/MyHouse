@@ -24,8 +24,16 @@ class ClientController extends Controller
     public function show($id):View
     {
         //$client = Client::query()->where('id', $id)->first();
+        /*dd(User::query()
+        ->find($id)
+        ->client()->where('user_id', $id)->get());*/
         $client = Client::query()->where('user_id', $id)->first();
-        return view('client.show')->with('client', $client);
+        $user = User::query()
+            ->where('id', $id)->first();
+        return view('client.show')->with([
+            'client' => $client,
+            'user' => $user
+        ]);
     }
 
     public function create()

@@ -1,4 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.landing_layout')
+
+@section('title', 'My House Управляющая компания')
+
+@section('header')
+    @include('header')
+@endsection
 
 @section('content')
 <div class="login-form">
@@ -62,4 +68,8 @@
     </div>
 </div>
 
+@endsection
+
+@section('footer')
+    @include('footer')
 @endsection

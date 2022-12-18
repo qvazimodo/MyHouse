@@ -7,31 +7,30 @@
 @endsection
 
 @section('content')
-    <div class="card container-lg d-flex align-items-center justify-content-center py-5">
-        <div class="card text-center col-md-8">
-            <div class="card-header">
+    <div class="card container-lg d-flex align-items-center justify-content-center py-5 client">
+        <div class="card text-center col-md-8 client ">
+            <div class="card-header title-2">
                 Профиль пользователя
             </div>
 
             @if($client)
-                <div class="card-body py-5">
-                    <p class="card-title">{{ $client->name }}</p>
-                    <p class="card-title">{{ $client->patronymic }}</p>
-                    <p class="card-title">{{ $client->last_name }}</p>
+                <div class="card-body py-5 ">
+                    <p class="card-title title-2">{{ $user->name }} {{ $user->patronymic }} {{ $user->last_name }}</p>
+
                     <div class="card-text">
-                        <h3>Адрес</h3>
-                        <p class="fs-4">Улица {{ $client->street }}</p>
-                        <p class="fs-4">Дом № {{ $client->house_number }} {{$client->letter ? $client->letter : ''}}</p>
-                        <p class="fs-4">Подъезд № {{ $client->entrance }}</p>
-                        <p class="fs-4">Этаж № {{ $client->floor }}</p>
-                        <p class="fs-4">Квартира № {{ $client->apartment_number }}</p>
-                        <p class="fs-4">Количество проживающих {{ $client->residents_number }}</p>
-                        <p class="fs-4">Адрес электронной почты {{ $client->email }}</p>
+                        <h3 class = "title-2">Адрес</h3>
+                        <p class="fs-4 title-2" >Улица {{ $client->street }}</p>
+                        <p class="fs-4 title-2">Дом № {{ $client->house_number }} {{$client->letter ? $client->letter : ''}}</p>
+                        <p class="fs-4 title-2">Подъезд № {{ $client->entrance }}</p>
+                        <p class="fs-4 title-2">Этаж № {{ $client->floor }}</p>
+                        <p class="fs-4 title-2">Квартира № {{ $client->apartment_number }}</p>
+                        <p class="fs-4 title-2">Количество проживающих {{ $client->residents_number }}</p>
+                        <p class="fs-4 title-2">Адрес электронной почты {{ $client->email }}</p>
                     </div>
                 </div>
             @else
                 <div class="card-body py-5">
-                    <div class="card-text fs-3">
+                    <div class="card-text fs-3 title-2">
                         <p>Не существует клиента с таким id!</p>
                     </div>
                 </div>

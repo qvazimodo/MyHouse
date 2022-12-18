@@ -48,7 +48,7 @@ class User extends Authenticatable
 
     public function client()
     {
-        return $this->hasOne(Client::class,'user_id')->first();
+        return $this->hasOne(Client::class,'user_id');
     }
 
     public function employee()
