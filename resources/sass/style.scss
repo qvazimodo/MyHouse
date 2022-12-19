@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+.weather {
+    margin-top: 75px;
+}
+
 .app {
     background: #242B33;
 }
@@ -839,6 +843,12 @@ a {
 
     .flats-items {
         width: 94%;
+    }
+
+    .weather {
+        margin-top: 0px;
+        margin-left: 80px;
+        margin-bottom: 50px;
     }
 
 
