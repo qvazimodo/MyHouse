@@ -760,6 +760,30 @@ a {
     }
 
     .bottom-top {
-        margin: 0 0 180px 0;
+        margin:-136px 0 86px 1px;
+        font-size: 33px;
     }
+
+    .phone {
+        height: 20px;
+    }
+
+    .sticker {
+        height: 20px;
+        margin-left: 10px;
+    }
+    .bottom-contacts {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .flats-txt {
+        font-size: 38px;
+        text-align: center;
+    }
+
+    .top-left {
+        padding-left: 16px;
+    }
+
 }
