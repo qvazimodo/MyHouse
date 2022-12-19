@@ -9,6 +9,7 @@
             <div class="district"><a href="#">Дома</a></div>
             <div class="catalog"><a href="#">Тарифы и услуги</a></div>
             <div class="ipoteka"><a href="{{ route('register') }}">Регистрация</a></div>
+
             <div class="contacts"><a href="{{route('login')}}">Вход</a></div>
         </div>
     </div>

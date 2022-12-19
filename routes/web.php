@@ -23,6 +23,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 //middleware будут выполняться в той последовательности, в которой они перечислены в массиве.
 Route::name('admin.')->prefix('admin')->middleware(['auth', 'is_admin'])
     ->group(function(){
@@ -31,6 +32,10 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'is_admin'])
 
 Route::get('/landing', function (){
     return view('landing');
+});
+
+Route::get('/reg', function (){
+    return view('reg');
 });
 
 Route::resource('client', ClientController::class);
