@@ -2,7 +2,7 @@
     <div class="footer-wrapper">
     <div class="footer-left">
         <div class="house">MyHouse</div>
-        <div class="residential">Управляющая Компания</div>
+
     </div>
     <div class="footer-center">
         <a href="#">О нас</a><br><br>

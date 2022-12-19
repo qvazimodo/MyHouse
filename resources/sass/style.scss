@@ -19,6 +19,10 @@
     width: 100%;
     background-position: 50% 50%;
 }
+.bottom-center-vector {
+    margin: 100px 0 130px -90px;
+    padding-left: 50%;
+}
 
 .top {
     display: flex;
@@ -31,7 +35,7 @@
 }
 
 .top-left {
-    width: 134px;
+    width: 164px;
     padding: 0;
     box-sizing: border-box;
 }
@@ -50,11 +54,14 @@
 
 .residential {
     font-family: 'Raleway';
+    font-weight: 400px;
     font-size: 11px;
     line-height: 14px;
     letter-spacing: 0.12em;
     color: #FFFFFF;
-    width: 100%;
+    margin-top: 15px;
+    height: 14px;
+    width: 167px;
     text-align: center;
 }
 
@@ -94,11 +101,6 @@ a {
     color: #D4C17F;
 }
 
-.bottom-center-vector {
-    margin: 100px 0 130px 0;
-    padding-left: 50%;
-}
-
 .bottom-contacts {
     display: flex;
     justify-content: space-between;
@@ -109,6 +111,7 @@ a {
     font-size: 18px;
     line-height: 21px;
     text-align: center;
+    margin-top: 89px;
 }
 
 .fontan {
@@ -756,7 +759,7 @@ a {
 
 @media (max-width:600px) {
     .bottom-center-vector {
-        display: none;
+        padding-left: 167.2px;
     }
 
     .bottom-top {
@@ -784,6 +787,7 @@ a {
 
     .top-left {
         padding-left: 16px;
+        margin-top: -87px;
     }
 
     .top-right {
@@ -791,12 +795,14 @@ a {
     }
 
     .house {
-        font-size: 20px;
+        font-size: 34px;
     }
 
     .residential {
         font-size: 8px;
         line-height: 10px;
+        margin-left: -8px;
+        margin-top: -3px;
     }
 
     .footer-wrapper {

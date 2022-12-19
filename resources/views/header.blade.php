@@ -1,7 +1,7 @@
 <div class="header">
     <div class="top">
         <div class="top-left">
-            <div class="house">MyHouse</div>
+            <div class="house"><a href="landing">MyHouse</a></div>
             <div class="residential">Управляющая Компания</div>
         </div>
         <div class="top-right">
@@ -9,13 +9,11 @@
             <div class="district"><a href="#">Дома</a></div>
             <div class="catalog"><a href="#">Тарифы и услуги</a></div>
             <div class="ipoteka"><a href="{{ route('register') }}">Регистрация</a></div>
-
             <div class="contacts"><a href="{{route('login')}}">Вход</a></div>
         </div>
     </div>
     <div class="bottom">
         <div class="bottom-top">Ваше доверие - <br> наш профессионализм</div>
-        <div class="bottom-center-vector"><img src="{{asset('storage/images/Vector.png')}}"></div>
         <div class="bottom-contacts">
             <div class="sticker">
                 <img src="{{asset('storage/images/sticker.png')}}">

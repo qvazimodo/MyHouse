@@ -34,8 +34,4 @@ Route::get('/landing', function (){
     return view('landing');
 });
 
-Route::get('/reg', function (){
-    return view('reg');
-});
-
 Route::resource('client', ClientController::class);
