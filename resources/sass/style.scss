@@ -786,4 +786,54 @@ a {
         padding-left: 16px;
     }
 
+    .top-right {
+        line-height: 25px;
+    }
+
+    .house {
+        font-size: 20px;
+    }
+
+    .residential {
+        font-size: 8px;
+        line-height: 10px;
+    }
+
+    .footer-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-left {
+        margin-left: 1px;
+        margin-top: 21px;
+    }
+
+    .footer-center {
+        margin-top: 53px;
+    }
+
+    .footer-right {
+        margin-top: 17px;
+    }
+
+    .map {
+        margin-left: 21px;
+        padding-top: 0px;
+    }
+
+    .video-block {
+        height: 255px;
+        width: 90%;
+    }
+
+    .flats-photo {
+         width: 94%;
+    }
+
+    .flats-items {
+        width: 94%;
+    }
+
+
 }
