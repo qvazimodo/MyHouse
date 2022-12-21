@@ -15,7 +15,7 @@ class UserController extends Controller
     {
         //Получаем всех пользователей, исключая текущего, чтобы случайно не лишить его прав администратора
         $users = User::query()->where('id', '!=', Auth::id())->orderBy('updated_at', 'DESC')->paginate(5);
-        return view('admin.users.index', ['users' => $users]);
+        return view('admin.users', ['users' => $users]);
     }
 
     public function toggleAdminRights(User $user)
