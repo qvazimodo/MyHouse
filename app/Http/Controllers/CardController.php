@@ -11,7 +11,10 @@ class CardController extends Controller
 
     public function index(): JsonResponse
     {
-        $cards = Card::all();
+        $cards = Card::query()
+            ->join('users', 'users.id', '=', 'cards.user_id')
+            ->get();
+
         return response()->json($cards);
     }
 

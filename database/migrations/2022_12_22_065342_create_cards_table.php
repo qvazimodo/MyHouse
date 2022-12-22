@@ -21,6 +21,11 @@ return new class extends Migration
             $table->biginteger('user_id')->unsigned()->default(1);
             $table->timestamps();
         });
+
+        Schema::table('cards', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        });
+
     }
 
     /**
@@ -31,5 +36,9 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('cards');
+
+        Schema::table('cards', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+        });
     }
 };
