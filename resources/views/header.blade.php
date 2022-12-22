@@ -30,7 +30,7 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form> </li>
-                        <li><a class="dropdown-item" href="#">Мой профиль</a></li>
+                        <li><a class="dropdown-item" href="{{ route('userProfile') }}">Мой профиль</a></li>
                     </ul>
                 </li>
             @endguest

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Admin\UserController as AdminUserController;
@@ -35,3 +36,6 @@ Route::get('/landing', function (){
 });
 
 Route::resource('client', ClientController::class);
+
+Route::match(['get', 'post'], '/userprofile', [UserProfileController::class, 'index'])->name('userProfile')->middleware('auth');
+
