@@ -4,8 +4,6 @@
 
 .footer {
     background-color: #2D343C;
-    width: auto;
-    height: auto;
     display: block;
 }
 
@@ -22,10 +20,9 @@
 }
 
 .footer-center {
-    height: 140px;
-    width: 125px;
+    max-width: 125px;
+    width: 100%;
     margin-top: 72px;
-    margin-left: 166px;
     font-family: 'Raleway', sans-serif;
     color: #FFFFFF;
     font-weight: 400;
@@ -35,10 +32,9 @@
 }
 
 .footer-right {
-    height: 149px;
-    width: 245px;
+    max-width: 245px;
+    width: 100%;
     margin-top: 72px;
-    margin-left: 166px;
     font-family: 'Raleway', sans-serif;
     color: #FFFFFF;
     font-weight: 400;
