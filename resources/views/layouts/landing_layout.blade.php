@@ -24,7 +24,8 @@
 
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss','resources/js/app.js'])
+    @viteReactRefresh
+    @vite(['resources/sass/app.scss','resources/js/app.jsx'])
 </head>
 
 <body>
