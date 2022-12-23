@@ -1,4 +1,4 @@
-@media (max-width:320px) {
+@media (max-width:500px) {
     .app-wrapper {
         max-width: 100%;
         width: 100%;
@@ -19,7 +19,7 @@
     }
 
     .top-left {
-        width: 320px;
+        width: 100%;
     }
 
     .top-right {

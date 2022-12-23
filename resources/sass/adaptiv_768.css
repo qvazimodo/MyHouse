@@ -1,0 +1,32 @@
+@media (max-width:768px) {
+    .app-wrapper {
+        max-width: 100%;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .header {
+        max-width: 100%;
+        width: 100%;
+        background-position: 50% 50%;
+    }
+
+    .top {
+        display: flex;
+        margin: 0 auto;
+        padding: 33px 0 0 26px;
+    }
+
+    .top-right {
+        display: block;
+        margin-left: 380px;
+        line-height: 23px;
+    }
+
+    .flats-position-text {
+        margin: 0 auto 100px;
+        max-width: 100%;
+        width: 100%;
+        padding-left: 50px;
+    }
+}
