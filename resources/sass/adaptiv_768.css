@@ -1,12 +1,12 @@
 @media (min-width: 321px) and (max-width: 768px) {
     .app-wrapper {
-        max-width: 100%;
+        max-width: 768px;
         width: 100%;
         margin: 0 auto;
     }
 
     .header {
-        max-width: 100%;
+        max-width: 768px;
         width: 100%;
         background-position: 50% 50%;
     }
@@ -44,6 +44,11 @@
 
     .title-2 {
         font-size: 34px;
+    }
 
+    .container {
+        max-width: 768px;
+        width: 100%;
+        margin: 0 auto;
     }
 }
