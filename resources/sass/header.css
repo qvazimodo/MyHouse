@@ -8,6 +8,10 @@ a {
     text-decoration: none;
 }
 
+li {
+    list-style-type: none;
+}
+
 .app {
     background: #242B33;
 }
