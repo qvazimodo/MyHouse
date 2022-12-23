@@ -8,11 +8,18 @@
 @import 'bootstrap/scss/bootstrap';
 
 //Стили
-@import 'style';
+@import 'header';
+@import "landing";
+@import 'footer';
 
+<<<<<<< Updated upstream
 @import 'login';
 @import 'register';
+=======
+@import "adaptiv_320";
+>>>>>>> Stashed changes
 
+@import 'login';
 @import 'client';
 
 

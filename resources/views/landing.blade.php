@@ -34,25 +34,38 @@
 
     <div class="reviews">
         <div class="container">
+
             <h2 class="title-2">Отзывы наших клиентов</h2>
             <div class="review-block">
+                <img class="img-review" src="{{asset('storage/images/woman.jpeg')}}" alt="photo">
+                <div class="block-review-text">
+                <p class="review-author">Елена, жилец многоквартирного дома №7</p>
                 <p class="review-txt">
                     Лучшая управляющая компания, которая по-настоящему заботится о своих жильцах. Сейчас в дни снегопада, дворники вручную лопатами расчищают снег на парковке. Всегда порядок, охрана следит и пресекает нарушения. Чувствуешь себя в безопасности. Сотрудники Очень быстро реагируют на любое обращение! Просто восторг и благодарность!
                 </p>
-                <p class="review-author">Жильцы многоквартирного дома №67</p>
+                </div>
             </div>
+
             <div class="review-block">
-                <p class="review-txt">
-                    Заказывала сантехника, оформила заявку на сайте, потек кран, всё сделал пришёл, аккуратный, вежливый, дополнительно оплату не взял, приятно отношение со стороны управляющей компании.
-                </p>
-                <p class="review-author">Ирина, жилец многоквартирного дома №7</p>
+                <img class="img-review2" src="{{asset('storage/images/woman2.jpg')}}" alt="photo">
+                <div class="block-review-text">
+                    <p class="review-author">Ирина, жилец многоквартирного дома №7</p>
+                    <p class="review-txt">
+                        Заказывала сантехника, оформила заявку на сайте, потек кран, всё сделал пришёл, аккуратный, вежливый, дополнительно оплату не взял, приятно отношение со стороны управляющей компании.
+                    </p>
+                </div>
             </div>
+
             <div class="review-block">
-                <p class="review-txt">
-                    Благодарим за качественную работу. Очень довольны таким отношением к своим обязанностям работниками УК.
-                </p>
-                <p class="review-author">Жильцы многоквартирного дома №53</p>
+                <img class="img-review3" src="{{asset('storage/images/man.jpeg')}}" alt="photo">
+                <div class="block-review-text">
+                    <p class="review-author">Игорь, жилец многоквартирного дома №53</p>
+                    <p class="review-txt">
+                        Благодарю за качественную работу. Очень доволен таким отношением к своим обязанностям работниками УК.
+                    </p>
+                </div>
             </div>
+
         </div>
     </div>
 
@@ -74,8 +87,12 @@
             <div class="second-line-two">
                 <div class="text">Ваше имя</div>
             </div>
-            <div class="second-line-tree"><div class="text">Ваш телефон</div> </div>
-            <div class="second-line-four"><div class="text2">Заказать звонок</div> </div>
+            <div class="second-line-tree">
+                <div class="text">Ваш телефон</div>
+            </div>
+            <div class="second-line-four">
+                <div class="text2">Заказать звонок</div>
+            </div>
         </div>
     </div>
 @endsection
