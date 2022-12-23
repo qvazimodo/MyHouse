@@ -39,3 +39,6 @@ Route::resource('client', ClientController::class);
 
 Route::match(['get', 'post'], '/userprofile', [UserProfileController::class, 'index'])->name('userProfile')->middleware('auth');
 
+Route::get('/about', function () {
+    return view('about');
+});

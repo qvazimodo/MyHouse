@@ -5,7 +5,7 @@
             <div class="residential">Управляющая Компания</div>
         </div>
         <div class="top-right">
-            <div class="complex"><a href="#">О нас</a></div>
+            <div class="complex"><a href="about">О нас</a></div>
             <div class="district"><a href="#">Дома</a></div>
             <div class="catalog"><a href="#">Тарифы и услуги</a></div>
             @guest
