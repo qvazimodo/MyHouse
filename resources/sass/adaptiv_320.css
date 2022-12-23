@@ -236,6 +236,15 @@
         margin-right: 80px;
     }
 
+    .about-title {
+        margin-left: 30px;
+    }
+
+    .about-text {
+        margin-left: 30px;
+        margin-right: 30px;
+
+    }
 
 
 }

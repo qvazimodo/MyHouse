@@ -43,6 +43,7 @@
     width: 535px;
     height: 320px;
     position: absolute;
+    border-radius: 10px;
 }
 
 .flats-text {
@@ -107,6 +108,7 @@
     text-align: center;
     background: rgba(255, 255, 255, 0.2);
     border: none;
+    border-radius: 10px;
     color: #BEBEBE;
     outline: none;
 }
@@ -121,6 +123,7 @@
 
 .section-btn {
     border: none;
+    border-radius: 10px;
     font-family: 'Raleway', sans-serif;
     font-weight: 700;
     font-size: 16px;
@@ -141,6 +144,7 @@
     height: 650px;
     background: url('/storage/app/public/images/video.png') center / cover no-repeat;
     margin: 0 auto;
+    border-radius: 10px;
 }
 
 .reviews {
@@ -196,6 +200,7 @@
     box-sizing: border-box;
     padding: 0 2%;
     margin: 100px 0 0 0;
+
 }
 
 .content-question {
@@ -241,6 +246,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
 }
 
 .text {
@@ -268,6 +274,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
 }
 
 .second-line-four {
@@ -283,6 +290,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
 }
 
 .img-review {

@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="bottom">
-        <div class="bottom-top">Ваше доверие - <br> наш профессионализм</div>
+        <div class="bottom-top">Ваше доверие - <br>наш профессионализм</div>
         <div class="bottom-contacts">
             <div class="sticker">
                 <img src="{{asset('storage/images/sticker.png')}}">

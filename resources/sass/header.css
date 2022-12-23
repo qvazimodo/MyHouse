@@ -113,10 +113,7 @@ a {
     margin-left: 18.15px;
 }
 
-.sticker {
-    display: flex;
-}
-
+.sticker,
 .phone {
     display: flex;
 }
