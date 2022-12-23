@@ -1,4 +1,4 @@
-@media (max-width:768px) {
+@media (min-width: 321px) and (max-width: 768px) {
     .app-wrapper {
         max-width: 100%;
         width: 100%;
@@ -28,5 +28,22 @@
         max-width: 100%;
         width: 100%;
         padding-left: 50px;
+    }
+
+    .flats-item {
+        width: 535px;
+        height: 320px;
+        margin: -20px 0 30px 30px;
+    }
+
+    .flats-photo {
+        width: 700px;
+        height: 358px;
+        position: absolute;
+    }
+
+    .title-2 {
+        font-size: 34px;
+
     }
 }
