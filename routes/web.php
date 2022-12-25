@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\Admin\UserController as AdminUserController;
-use \App\Http\Controllers\ClientController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,14 +29,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //middleware будут выполняться в той последовательности, в которой они перечислены в массиве.
 Route::name('admin.')->prefix('admin')->middleware(['auth', 'is_admin'])
     ->group(function(){
-    Route::resource('users', AdminUserController::class);
+        Route::resource('users', AdminUserController::class);
+        Route::resource('clients', ClientController::class);
 });
 
 Route::get('/landing', function (){
     return view('landing');
 });
 
-Route::resource('client', ClientController::class);
 
 Route::match(['get', 'post'], '/userprofile', [UserProfileController::class, 'index'])->name('userProfile')->middleware('auth');
 
