@@ -47,6 +47,6 @@ class Client extends Authenticatable
 
     public function user()
     {
-        return $this->hasOne(User::class,'user_id')->get();
+        return $this->belongsTo(User::class);
     }
 }
