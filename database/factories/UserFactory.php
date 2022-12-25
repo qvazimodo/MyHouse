@@ -28,8 +28,6 @@ class UserFactory extends Factory
             'name' => $faker->firstName('male'),
             'patronymic' => $patronymic[array_rand($patronymic)],
             'last_name' => $faker->lastName('male'),
-            'is_employee' => '0',
-            'is_client' => '1',
             'is_admin' => '0',
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),

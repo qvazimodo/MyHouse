@@ -28,8 +28,6 @@ class UserSeeder extends Seeder
             'patronymic' => 'admin',
             'last_name' => 'admin',
             'email' => 'admin@admin',
-            'is_employee' => '1',
-            'is_client' => '0',
             'is_admin' => '1',
             'email_verified_at' => '2022-12-06 18:20:59',
             'password' =>  Hash::make('123'),// password

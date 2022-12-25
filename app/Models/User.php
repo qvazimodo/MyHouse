@@ -21,8 +21,6 @@ class User extends Authenticatable
         'name',
         'patronymic',
         'last_name',
-        'is_employee',
-        'is_client',
         'email',
         'password',
     ];
@@ -48,7 +46,7 @@ class User extends Authenticatable
 
     public function client()
     {
-        return $this->hasOne(Client::class,'user_id');
+        return $this->hasOne(Client::class,'user_id')->first();
     }
 
     public function employee()

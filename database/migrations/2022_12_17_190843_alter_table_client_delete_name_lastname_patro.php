@@ -21,8 +21,6 @@ return new class extends Migration
             $table->dropColumn(['email_verified_at']);
             $table->dropColumn(['password']);
             $table->dropColumn(['remember_token']);
-            $table->dropColumn(['created_at']);
-            $table->dropColumn(['updated_at']);
         });
     }
 

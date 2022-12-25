@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,16 @@ class EmployeeFactory extends Factory
      */
     public function definition()
     {
-        return [
-            //
+        $profession = [
+            'директор', 'бухгалтер', 'мастер', 'электрик', 'сантехник', 'дворник', 'уборщица'
         ];
+
+        return [
+            'user_id' => User::factory()->create(),
+            'profession' => $profession[array_rand($profession)],
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+
     }
 }
