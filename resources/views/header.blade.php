@@ -18,7 +18,17 @@
 
             @else
                 @if (Auth::user()->is_admin )
-                    <div class="ipoteka"><a href="{{route('admin.users.index')}}">Панель администратора</a></div>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                            Панель администратора</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('admin.clients.index') }}"> Клиенты</a></li>
+{{--                            <li><a class="dropdown-item" href="{{ route('admin.employees.index') }}"> Клиенты</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Все пользователи</a></li>--}}
+                        </ul>
+                    </li>
+
                 @endif
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">

@@ -15,7 +15,7 @@
                     @forelse($clients as $client)
                         <a class="d-flex align-items-center justify-content-between px-3 list-group-item
                         list-group-item-action my-2 py-2 col-9 client-content"
-                           href="{{ route('client.show', $client) }}">
+                           href="{{ route('admin.clients.show', $client) }}">
 {{--                            <img class="d-block col-2 rounded-3" src="{{ $client->image_path }}" alt="{{ $client->title }}">--}}
                             <h5 class="col-md-auto client-txt title-3" >{{ $client->user->name }} {{
                             $client->user->patronymic }} {{ $client->user->last_name }}</h5>
