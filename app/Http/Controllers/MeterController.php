@@ -40,7 +40,10 @@ class MeterController extends Controller
      */
     public function store(Request $request)
     {
-        $meter = Meter::create($request->all());
+        $meter_request = $request->all();
+        $meter = new Meter();
+        $meter->fill($meter_request);
+        $meter->save();
 
         return response()->json($meter, 201);
     }

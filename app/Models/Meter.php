@@ -14,7 +14,8 @@ class Meter extends Model
         'previous_record_number',
         'value',
         'date',
-        'user_id'
+        'user_id',
+        'type'
     ];
 
     public $timestamps = false;
