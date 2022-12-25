@@ -29,5 +29,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ColdWaterMeterSeeder::class);
         $this->call(GasMeterSeeder::class);
         $this->call(PowerMeterSeeder::class);
+        $this->call(MeterSeeder::class);
     }
 }

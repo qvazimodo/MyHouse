@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,16 @@ Route::get('cards/{card}', 'App\Http\Controllers\CardController@show');
 Route::post('cards', 'App\Http\Controllers\CardController@store');
 Route::put('cards/{card}','App\Http\Controllers\CardController@update');
 Route::delete('cards/{card}', 'App\Http\Controllers\CardController@delete');
+
+
+Route::resource('meters',App\Http\Controllers\MeterController::class)->except(['create', 'edit']);
+
+Route::get('auth_user', function(){
+    $user = Auth::user();
+    return  $user;
+})->middleware('auth');
+
+/*
 //API роутов по счетчикам горячей воды
 Route::get('hot_meters', 'App\Http\Controllers\HotWaterMeterController@index');
 Route::get('hot_meters/{hot_meter}', 'App\Http\Controllers\HotWaterMeterController@show');
@@ -46,5 +57,5 @@ Route::get('power_meters', 'App\Http\Controllers\PowerMeterController@index');
 Route::get('power_meters/{power_meter}', 'App\Http\Controllers\PowerMeterController@show');
 Route::post('power_meters', 'App\Http\Controllers\PowerMeterController@store');
 Route::put('power_meters/{power_meter}','App\Http\Controllers\PowerMeterController@update');
-Route::delete('power_meters/{power_meter}', 'App\Http\Controllers\PowerMeterController@delete');
+Route::delete('power_meters/{power_meter}', 'App\Http\Controllers\PowerMeterController@delete');*/
 
