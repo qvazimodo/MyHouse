@@ -12,22 +12,7 @@
 
 @section('content')
 
-    <div class="watching-section">
-        <div class="container">
-            <h2 class="title-2">Хотите присоединить свой дом к нашей УК?</h2>
-            <div class="watching-section_wrp">
-                <p class="watching-section_text">Наша компания предлагает программу предоставления полного спектра услуг по профессиональному управлению и техническому обслуживанию жилищного фонда. </p>
-                        <div class="watching-section_form">
-                    <input type="text" value="Ваше имя" class="section-input">
-                    <input type="text" value="Ваш телефон" class="section-input">
-                    <p>*Мы никому не передаем ваши данные.
-                        И не сохраняем ваш номер в базу.</p>
-                    <button class="section-btn">Отправить заявку</button>
-
-                </div>
-            </div>
-        </div>
-    </div>
+    <div id="watch"></div>
 
     <div class="video-section">
         <div class="video-block"></div>

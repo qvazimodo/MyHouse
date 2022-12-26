@@ -18,6 +18,7 @@ import RequestForEmployee from './components/RequestForEmployee';
 import MetersForm from "./components/MetersForm";
 import Questions from "./components/Questions";
 import Reviews from "./components/Reviews";
+import Watch from "./components/Watch";
 
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
@@ -39,8 +40,13 @@ if (document.getElementById('meters')) {
 if (document.getElementById('reviews')) {
     const root = createRoot(document.getElementById('reviews'));
     root.render(<Reviews />);
-
 }
+
+if (document.getElementById('watch')) {
+    const root = createRoot(document.getElementById('watch'));
+    root.render(<Watch />);
+}
+
 
 
 
