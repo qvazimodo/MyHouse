@@ -26,7 +26,7 @@ Route::put('cards/{card}','App\Http\Controllers\CardController@update');
 Route::delete('cards/{card}', 'App\Http\Controllers\CardController@delete');
 Route::post('uploading-photo-api', 'App\Http\Controllers\CardController@uploadPhoto');
 
-Route::resource('meters',App\Http\Controllers\Meter\MeterController::class)->except(['create', 'edit']);
+Route::resource('meters',App\Http\Controllers\Meters\MeterController::class)->except(['create', 'edit']);
 
 Route::get('auth_user', function(){
     $user = Auth::user();
