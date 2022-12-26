@@ -50,25 +50,26 @@ class CardController extends Controller
     public function uploadPhoto(Request $request): JsonResponse
     {
         $validated = Validator::make($request->all(), [
-            'image' => 'required|mimes:png,jpg,jpeg,gif|max:1500',
+            'image*' => 'required|mimes:png,jpg,jpeg,gif,array|max:50000',
         ]);
         if ($validated->fails()) {
             return response()->json($validated->errors());
         } else {
-            $photo = $request->file('image');
-            $path = $photo->store('public/upload');
-            $name = $photo->getClientOriginalName();
+            $names = [];
+            foreach ($request->file('image') as $photo) {
+                $path = $photo->store('public/upload');
+                $name = $photo->getClientOriginalName();
 
-
-            $save = new Photo();
-            $save->name = $name;
-            $save->path = $path;
-            $save->save();
-
+                $save = new Photo();
+                $save->name = $name;
+                $save->path = $path;
+                $save->save();
+                $names[] = $name;
+            }
             return response()->json([
                 "success" => true,
-                "message" => "Photo successfully uploaded",
-                "name" => $name
+                "message" => "Photos successfully uploaded",
+                "names" => $names
             ]);
         }
     }
