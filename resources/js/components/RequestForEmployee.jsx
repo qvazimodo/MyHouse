@@ -1,9 +1,18 @@
 import React from 'react';
+import { Collapse } from 'antd';
 
 function RequestForEmployee() {
+
+    const { Panel } = Collapse;
+
     return (
         <div className="container">
-            <p className="cabinet-txt"> Здесь будет функционал оформления заявки вызова сотрудника </p>
+            <Collapse accordion>
+                <Panel header="Оформить заявку на вызов сотрудника" key="1" className="cabinet-txt">
+                    <p>Здесь будет форма</p>
+                </Panel>
+            </Collapse>
+
         </div>
     );
 }

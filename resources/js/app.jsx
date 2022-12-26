@@ -13,11 +13,23 @@ import './bootstrap';
  */
 import React from "react";
 import ReactDom from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import RequestForEmployee from './components/RequestForEmployee';
+import MetersForm from "./components/MetersForm";
 
 
 
 
 if (document.getElementById('request')) {
-    ReactDom.render(<RequestForEmployee />, document.getElementById('request'));
+    const root = createRoot(document.getElementById('request'));
+    root.render(<RequestForEmployee />);
+    // ReactDom.render(<RequestForEmployee />, document.getElementById('request'));
 }
+
+if (document.getElementById('meters')) {
+    const root = createRoot(document.getElementById('meters'));
+    root.render(<MetersForm />);
+   //  ReactDom.render(<MetersForm />, document.getElementById('meters'));
+}
+
+
