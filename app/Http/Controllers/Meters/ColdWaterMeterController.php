@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Meters;
 
-use App\Models\PowerMeter;
+use App\Http\Controllers\Controller;
+use App\Models\ColdWaterMeter;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class PowerMeterController extends Controller
+class ColdWaterMeterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class PowerMeterController extends Controller
      */
     public function index(): JsonResponse
     {
-        $power_meters = PowerMeter::query()
-            ->select('power_meters.id as meter_id',
+        $cold_meters = ColdWaterMeter::query()
+            ->select('cold_water_meters.id as meter_id',
                 'number_of_meter',
                 'data_meter_last',
                 'data_meter_now',
@@ -25,10 +26,10 @@ class PowerMeterController extends Controller
                 'patronymic',
                 'last_name',
                 'email')
-            ->join('users', 'users.id', '=', 'power_meters.user_id')
+            ->join('users', 'users.id', '=', 'cold_water_meters.user_id')
             ->get();
 
-        return response()->json($power_meters);
+        return response()->json($cold_meters);
     }
 
     /**
@@ -49,20 +50,20 @@ class PowerMeterController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        $power_meter = PowerMeter::create($request->all());
+        $cold_meter = ColdWaterMeter::create($request->all());
 
-        return response()->json($power_meter, 201);
+        return response()->json($cold_meter, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param PowerMeter $power_meter
-     * @return PowerMeter
+     * @param ColdWaterMeter $cold_meter
+     * @return ColdWaterMeter
      */
-    public function show(PowerMeter $power_meter): PowerMeter
+    public function show(ColdWaterMeter $cold_meter): ColdWaterMeter
     {
-        return $power_meter;
+        return $cold_meter;
     }
 
 
@@ -70,24 +71,24 @@ class PowerMeterController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param PowerMeter $power_meter
+     * @param ColdWaterMeter $cold_meter
      * @return JsonResponse
      */
-    public function update(Request $request, PowerMeter $power_meter): JsonResponse
+    public function update(Request $request, ColdWaterMeter $cold_meter): JsonResponse
     {
-        $power_meter->update($request->all());
-        return response()->json($power_meter, 200);
+        $cold_meter->update($request->all());
+        return response()->json($cold_meter, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param PowerMeter $power_meter
+     * @param ColdWaterMeter $cold_meter
      * @return JsonResponse
      */
-    public function delete(PowerMeter $power_meter): JsonResponse
+    public function delete(ColdWaterMeter $cold_meter): JsonResponse
     {
-        $power_meter->delete();
+        $cold_meter->delete();
         return response()->json(null, 204);
     }
 }

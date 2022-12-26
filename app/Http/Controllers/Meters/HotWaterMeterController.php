@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Meters;
 
-use App\Models\Card;
+use App\Http\Controllers\Controller;
 use App\Models\HotWaterMeter;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Meters;
 
+use App\Http\Controllers\Controller;
 use App\Models\Meter;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
