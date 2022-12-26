@@ -13,6 +13,9 @@
 
     <div id="request"></div>
 
+    <div id="meters"></div>
+
+    <div class="end-cabinet"></div>
 @endsection
 
 
