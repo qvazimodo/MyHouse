@@ -249,14 +249,6 @@
     border-radius: 10px;
 }
 
-.text {
-    color: rgb(255, 255, 255);
-}
-
-.text2 {
-    color: rgb(255, 255, 255);
-}
-
 .text3 {
     margin-top: 10px;
 }
@@ -266,13 +258,11 @@
     height: 50px;
     background-color: #D4C17F;
     margin-left: 30px;
-    font-family: 'Raleway', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 27px;
     display: flex;
-    align-items: center;
     justify-content: center;
     border-radius: 10px;
 }
@@ -280,7 +270,7 @@
 .second-line-four {
     width: 255px;
     height: 50px;
-    background-color: #D4C17F;
+    background-color: White;
     margin-left: 30px;
     font-family: 'Raleway', sans-serif;
     font-style: normal;

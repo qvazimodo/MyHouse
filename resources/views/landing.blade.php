@@ -23,6 +23,7 @@
                     <p>*Мы никому не передаем ваши данные.
                         И не сохраняем ваш номер в базу.</p>
                     <button class="section-btn">Отправить заявку</button>
+
                 </div>
             </div>
         </div>
@@ -77,24 +78,13 @@
                 max-width="1300" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <div class="content-question">
-            <div class="question">Есть вопросы?</div>
-        </div>
-        <div class="second-line">
-            <div class="second-line-one">
-                <div class="text3">*Мы никому не передаем ваши данные.
-                    И не сохраняем ваш номер в базу.</div></div>
-            <div class="second-line-two">
-                <div class="text">Ваше имя</div>
-            </div>
-            <div class="second-line-tree">
-                <div class="text">Ваш телефон</div>
-            </div>
-            <div class="second-line-four">
-                <div class="text2">Заказать звонок</div>
-            </div>
-        </div>
+
+
+        <div id="questions"></div>
+
+
     </div>
+
 @endsection
 
 @section('footer')

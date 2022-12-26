@@ -16,9 +16,12 @@ import ReactDom from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import RequestForEmployee from './components/RequestForEmployee';
 import MetersForm from "./components/MetersForm";
+import Questions from "./components/Questions";
 
-
-
+if (document.getElementById('questions')) {
+    const root = createRoot(document.getElementById('questions'));
+    root.render(<Questions/>);
+}
 
 if (document.getElementById('request')) {
     const root = createRoot(document.getElementById('request'));
