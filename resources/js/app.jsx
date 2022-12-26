@@ -17,6 +17,7 @@ import { createRoot } from 'react-dom/client';
 import RequestForEmployee from './components/RequestForEmployee';
 import MetersForm from "./components/MetersForm";
 import Questions from "./components/Questions";
+import Reviews from "./components/Reviews";
 
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
@@ -34,5 +35,12 @@ if (document.getElementById('meters')) {
     root.render(<MetersForm />);
    //  ReactDom.render(<MetersForm />, document.getElementById('meters'));
 }
+
+if (document.getElementById('reviews')) {
+    const root = createRoot(document.getElementById('reviews'));
+    root.render(<Reviews />);
+
+}
+
 
 

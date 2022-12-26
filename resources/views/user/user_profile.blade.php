@@ -12,8 +12,6 @@
 
     </div>
 
-
-
     <div id="request"></div>
 
     <div id="meters"></div>

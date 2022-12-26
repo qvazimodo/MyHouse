@@ -35,7 +35,7 @@ const Questions = () => (
                         style={{ background: "White",
                                  borderColor: "White",
                                  color: "black",
-                                 alignItems: "left" }}>
+                                 }}>
                                  Заказать звонок
                 </Button>
             </div>
