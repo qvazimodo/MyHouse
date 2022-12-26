@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Meter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,14 @@ Route::delete('cards/{card}', 'App\Http\Controllers\CardController@delete');
 Route::post('uploading-photos', 'App\Http\Controllers\CardController@uploadPhoto');
 
 Route::resource('meters',App\Http\Controllers\Meters\MeterController::class)->except(['create', 'edit']);
+
+//api вывода всех счетчиков по текущему пользователю
+Route::get('auth_meters',function(){
+        $meters = Meter::query()
+        ->where('user_id', '=', Auth::id())
+        ->get();
+    return response()->json($meters);
+})->middleware('auth');
 
 Route::get('auth_user', function(){
     $user = Auth::user();
