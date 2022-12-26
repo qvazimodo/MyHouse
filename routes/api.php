@@ -24,7 +24,7 @@ Route::get('cards/{card}', 'App\Http\Controllers\CardController@show');
 Route::post('cards', 'App\Http\Controllers\CardController@store');
 Route::put('cards/{card}','App\Http\Controllers\CardController@update');
 Route::delete('cards/{card}', 'App\Http\Controllers\CardController@delete');
-Route::post('uploading-photo-api', 'App\Http\Controllers\CardController@uploadPhoto');
+Route::post('uploading-photos', 'App\Http\Controllers\CardController@uploadPhoto');
 
 Route::resource('meters',App\Http\Controllers\Meters\MeterController::class)->except(['create', 'edit']);
 
