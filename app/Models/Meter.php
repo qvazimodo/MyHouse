@@ -15,7 +15,8 @@ class Meter extends Model
         'value',
         'date',
         'user_id',
-        'type'
+        'type',
+        'month'
     ];
 
     public $timestamps = false;
