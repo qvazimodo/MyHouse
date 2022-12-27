@@ -5,7 +5,19 @@ const { Panel } = Collapse;
 const { Text } = Typography;
 
 class MetersForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            type: 'cold_water',
+            number: '',
+            now: '',
+            userId: '',
+            month: '1',
+        };
 
+        this.valueInputChange = this.valueInputChange.bind(this);
+    }
+/*
     state = {
         type: 'cold_water',
         number: '',
@@ -13,7 +25,7 @@ class MetersForm extends React.Component {
         userId: '',
         month: '1',
     };
-
+*/
     componentDidMount() {
         /* Код get запроса для получения user_id */
 
@@ -59,17 +71,30 @@ class MetersForm extends React.Component {
             .then(data => console.log(data));
 
     }
+
     typeChange = (value) => {
         this.setState({type: value});
-    }
-    numberChange = (e) => {
-        this.setState({number: e.target.value});
     }
     monthChange = ( value ) => {
         this.setState( { month: value } );
     }
-    nowChange = (e) => {
-        this.setState({now: e.target.value});
+    /*
+       numberChange = (e) => {
+           this.setState({number: e.target.value});
+       }
+       nowChange = (e) => {
+           this.setState({now: e.target.value});
+       }
+   */
+
+    valueInputChange(e) {
+        const target = e.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
     }
 
 
@@ -84,6 +109,7 @@ class MetersForm extends React.Component {
                         <Form>
                             <Form.Item label="Выберите счетчик">
                                 <Select
+                                    name="type"
                                     defaultValue="cold_water"
                                     onChange={this.typeChange}
                                     options={[
@@ -107,10 +133,11 @@ class MetersForm extends React.Component {
                                 />
                             </Form.Item>
                             <Form.Item label="Заводской номер счетчика">
-                                <Input value={this.state.number} onChange={this.numberChange} />
+                                <Input name="number" value={this.state.number} onChange={this.valueInputChange} />
                             </Form.Item>
                             <Form.Item label="Выберите месяц">
                                 <Select
+                                    name="month"
                                     defaultValue="1"
                                     onChange={this.monthChange}
                                     options={[
@@ -166,7 +193,7 @@ class MetersForm extends React.Component {
                                 />
                             </Form.Item>
                             <Form.Item label="Текущие показания">
-                                <Input value={this.state.now} onChange={this.nowChange} />
+                                <Input name="now" value={this.state.now} onChange={this.valueInputChange} />
                             </Form.Item>
                             <Form.Item>
                                 <Button type="primary" onClick={this.sendForm}>Отправить</Button>
