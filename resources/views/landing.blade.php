@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-
+    <div id="place"></div>
     <div id="watch"></div>
 
     <div class="video-section">
