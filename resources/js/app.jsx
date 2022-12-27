@@ -20,6 +20,7 @@ import Questions from "./components/Questions";
 import Reviews from "./components/Reviews";
 import Watch from "./components/Watch";
 import About from "./components/About";
+import ListCards from "./components/ListCards";
 
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
@@ -51,6 +52,11 @@ if (document.getElementById('watch')) {
 if (document.getElementById('about')) {
     const root = createRoot(document.getElementById('about'));
     root.render(<About />);
+}
+
+if (document.getElementById('listCards')) {
+    const root = createRoot(document.getElementById('listCards'));
+    root.render(<ListCards />);
 }
 
 
