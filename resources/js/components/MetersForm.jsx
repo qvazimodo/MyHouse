@@ -6,7 +6,7 @@ const { Panel } = Collapse;
 class MetersForm extends React.Component {
 
     state = {
-        name: '',
+        type:'',
         number: '',
         last: '',
         now: '',
@@ -34,7 +34,9 @@ class MetersForm extends React.Component {
                 number: this.state.number,
                 user_id: this.state.userId,
                 value: this.state.now,
-                type: this.state.name,
+                // type: this.state.name,
+                type: this.state.type,
+                // type: 'hot_water',
                 date: '2022-12-25 22:30:05',
             })
         })
@@ -43,6 +45,10 @@ class MetersForm extends React.Component {
 
         alert("Данные приняты");
 
+    }
+    typeChange = (value) => {
+        this.setState({type: value});
+        console.log(this.state);
     }
     numberChange = (e) => {
         this.setState({number: e.target.value});
@@ -65,8 +71,8 @@ render() {
                     <Form>
                         <Form.Item label="Выберите счетчик">
                             <Select
-                                defaultValue="cold_water"
-                                onChange={this.meterChange}
+                                // defaultValue="cold_water"
+                                onChange={this.typeChange}
                                 options={[
                                     {
                                         value: 'cold_water',

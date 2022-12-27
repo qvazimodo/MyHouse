@@ -43,3 +43,7 @@ Route::match(['get', 'post'], '/userprofile', [UserProfileController::class, 'in
 Route::get('/about', function () {
     return view('about');
 });
+
+Route::get('/test', function () {
+    return view('test');
+});
