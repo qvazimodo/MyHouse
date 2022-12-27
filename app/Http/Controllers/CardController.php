@@ -51,16 +51,19 @@ class CardController extends Controller
     {
         $validated = Validator::make($request->all(), [
             'image*' => 'required|mimes:png,jpg,jpeg,gif,array|max:50000',
+            'id' => 'required: int'
         ]);
         if ($validated->fails()) {
             return response()->json($validated->errors());
         } else {
+            $cardId = $request->input('id');
             $names = [];
             foreach ($request->file('image') as $photo) {
                 $path = $photo->store('public/upload');
                 $name = $photo->getClientOriginalName();
 
                 $save = new Photo();
+                $save->card_id = $cardId;
                 $save->name = $name;
                 $save->path = $path;
                 $save->save();

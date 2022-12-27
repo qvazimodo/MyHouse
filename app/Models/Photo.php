@@ -15,7 +15,8 @@ class Photo extends Model
         'path',
         'thumbnail_path',
         'width',
-        'height'
+        'height',
+        'card_id'
     ];
 
     public function card(): BelongsTo
