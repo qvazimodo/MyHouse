@@ -21,14 +21,10 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-       $this->call(UserSeeder::class);
-      $this->call(ClientsSeeder::class);
-       $this->call(EmployeesSeeder::class);
-       $this->call(CardSeeder::class);
-       $this->call(HotWaterMeterSeeder::class);
-        $this->call(ColdWaterMeterSeeder::class);
-        $this->call(GasMeterSeeder::class);
-        $this->call(PowerMeterSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(ClientsSeeder::class);
+        $this->call(EmployeesSeeder::class);
+        $this->call(CardSeeder::class);
         $this->call(MeterSeeder::class);
     }
 }
