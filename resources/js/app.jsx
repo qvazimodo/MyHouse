@@ -21,6 +21,7 @@ import Reviews from "./components/Reviews";
 import Watch from "./components/Watch";
 import About from "./components/About";
 import ListCards from "./components/ListCards";
+import Video from "./components/Video";
 
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
@@ -57,6 +58,11 @@ if (document.getElementById('about')) {
 if (document.getElementById('listCards')) {
     const root = createRoot(document.getElementById('listCards'));
     root.render(<ListCards />);
+}
+
+if (document.getElementById('video')) {
+    const root = createRoot(document.getElementById('video'));
+    root.render(<Video />);
 }
 
 
