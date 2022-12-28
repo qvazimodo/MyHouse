@@ -21,6 +21,7 @@ import Reviews from "./components/Reviews";
 import Watch from "./components/Watch";
 import About from "./components/About";
 import ListCards from "./components/ListCards";
+import {EmployeesList} from "./components/admin/EmployeesList";
 
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
@@ -59,7 +60,10 @@ if (document.getElementById('listCards')) {
     root.render(<ListCards />);
 }
 
-
+if (document.getElementById('employees-list')){
+    const root=createRoot(document.getElementById('employees-list'));
+    root.render(<EmployeesList/>);
+}
 
 
 
