@@ -10,13 +10,13 @@ class Meter extends Model
     use HasFactory;
 
     protected $fillable = [
+        'parent_id',
+        'user_id',
+        'month',
         'number',
-        'previous_record_number',
         'value',
         'date',
-        'user_id',
         'type',
-        'month'
     ];
 
     public $timestamps = false;

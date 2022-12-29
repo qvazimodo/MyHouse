@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Meter;
 use Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -25,7 +26,7 @@ class MeterFactory extends Factory
 
         return [
             'user_id' => $faker->numberBetween(1, 100),
-            'meter_id' => $faker->numberBetween(1, 100),
+            'meter_id' => $faker->numberBetween(1, 10),
             'type' => $type[array_rand($type)],
             'number' => $faker->numberBetween(1000, 9000),
             'month' => $month[array_rand($month)],
