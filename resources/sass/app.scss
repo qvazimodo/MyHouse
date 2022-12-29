@@ -6,3 +6,25 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+//Стили
+@import 'header';
+@import "landing";
+@import 'footer';
+@import "about";
+
+
+@import 'login';
+@import 'register';
+
+@import "adaptiv_320";
+@import "adaptiv_768";
+@import "adaptiv_1100.css";
+
+
+@import 'login';
+@import 'client';
+
+@import "cabinet";
+
+

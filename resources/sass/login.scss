@@ -1,0 +1,72 @@
+.login-form {
+    height: 80vh;
+    background: #242B33;
+    padding-top: 100px;
+}
+.login-element {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.login-txt {
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #FFFFFF;
+    width: 80px;
+}
+
+.login-input {
+    font-family: 'Raleway', sans-serif;
+    border-radius: 10px;
+    height: 50px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.9;
+    background: transparent;
+    border: none;
+    border-bottom: 2px #D4C17F solid;
+    color: #BEBEBE;
+    outline: none;
+    width: 50%;
+    margin-left: 20px;
+}
+.remember-txt {
+    color: #D4C17F;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-left: 20px;
+    transform: translateY(2px);
+}
+.login-btn {
+    border: none;
+    border-radius: 10px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #FFFFFF;
+    background: #D4C17F;
+    padding: 11px 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.password-txt {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-left: 20px;
+    color: #FFFFFF;
+    transition: .3s all;
+}
+.password-txt:hover {
+    color: #D4C17F;
+}
+
+.reset-btn {
+    margin-top: 50px;
+}
