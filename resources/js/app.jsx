@@ -21,10 +21,7 @@ import Reviews from "./components/Reviews";
 import Watch from "./components/Watch";
 import About from "./components/About";
 import ListCards from "./components/ListCards/ListCards";
-
 import Video from "./components/Video";
-
-import ListCards from "./components/ListCards";
 import {EmployeesList} from "./components/admin/EmployeesList";
 
 if (document.getElementById('questions')) {
