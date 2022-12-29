@@ -20,7 +20,8 @@ import Questions from "./components/Questions";
 import Reviews from "./components/Reviews";
 import Watch from "./components/Watch";
 import About from "./components/About";
-import ListCards from "./components/ListCards";
+import ListCards from "./components/ListCards/ListCards";
+
 import Video from "./components/Video";
 
 if (document.getElementById('questions')) {
