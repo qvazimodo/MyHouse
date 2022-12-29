@@ -1,4 +1,3 @@
-<div id="enu"></div>
 <div class="header">
     <div class="top">
         <div class="top-left">
