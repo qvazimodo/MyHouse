@@ -21,4 +21,13 @@ class Meter extends Model
 
     public $timestamps = false;
 
+    public function previous()
+    {
+        return $this->belongsTo(Meter::class);
+    }
+
+    public function next()
+    {
+        return $this->belongsTo(Meter::class);
+    }
 }
