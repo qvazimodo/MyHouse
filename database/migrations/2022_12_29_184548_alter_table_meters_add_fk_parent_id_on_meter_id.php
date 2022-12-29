@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('meters', function (Blueprint $table){
-            $table->foreign('parent_id')->references('id')->on('meters')->onUpdate('cascade');
+            $table->foreign('parent_id')->references('id')->on('meters')->onUpdate('cascade')->onDelete('restrict');
         });
     }
 
