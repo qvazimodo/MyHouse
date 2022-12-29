@@ -1,8 +1,41 @@
 import React, { useState } from 'react';
-import { Collapse, Button, Form, Input, Select, Typography, Divider } from 'antd';
+import { Collapse, Button, Form, Input, Select, Typography, Divider, Table } from 'antd';
 
 const { Panel } = Collapse;
 const { Text } = Typography;
+
+const columns = [
+    {
+        title: 'Заводской номер счетчика',
+        dataIndex: 'number',
+        key: 'number',
+        render: (text) => <p>{text}</p>,
+    },
+    {
+        title: 'Вид счетчика',
+        dataIndex: 'type',
+        key: 'type',
+        render: (text) => <p>{text}</p>,
+    },
+    {
+        title: 'Месяц ввода показаний',
+        dataIndex: 'month',
+        key: 'month',
+        render: (text) => <p>{text}</p>,
+    },
+    {
+        title: 'Прошлые показания',
+        dataIndex: 'lastValue',
+        key: 'lastValue',
+        render: (text) => <p>{text}</p>,
+    },
+    {
+        title: 'Введенные показания',
+        dataIndex: 'value',
+        key: 'value',
+        render: (text) => <p>{text}</p>,
+    },
+];
 
 class MetersForm extends React.Component {
     constructor(props) {
@@ -13,19 +46,12 @@ class MetersForm extends React.Component {
             now: '',
             userId: '',
             month: '1',
+            info: [],
         };
 
         this.valueInputChange = this.valueInputChange.bind(this);
     }
-/*
-    state = {
-        type: 'cold_water',
-        number: '',
-        now: '',
-        userId: '',
-        month: '1',
-    };
-*/
+
     componentDidMount() {
         /* Код get запроса для получения user_id */
 
@@ -39,7 +65,15 @@ class MetersForm extends React.Component {
         fetch('http://localhost/api/auth_meters')
             .then(response => response.json())
                 .catch(e => console.log(e))
-            .then(data => console.log(data));
+            .then( (data) => {
+                for (let item in data) {
+
+                    data[item].key = +item + 1;
+                    this.setState(prevState => ({
+                        info: [...prevState.info, data[item]]
+                    }))
+                }
+            });
 
     }
 
@@ -61,21 +95,34 @@ class MetersForm extends React.Component {
             })
         })
             .then(response => response.json())
-            .then(data => console.log(data))
+                .catch(e => console.log(e))
+            .then((data) => {
+                data.key = this.state.info.length + 1;
+                this.setState(prevState => ({
+                    info: [...prevState.info, data]
+                }))
+            })
 
         alert("Данные приняты");
 
-        fetch('http://127.0.0.1/api/meters/')
-            .then(response => response.json())
-                .catch(e => console.log(e))
-            .then(data => console.log(data));
+
+        //TODO Разобраться с функцией очистки полей формы из AntDesign, подключить её
+
+        this.setState({
+            type: 'cold_water',
+            number: '',
+            now: '',
+            month: '1',
+        });
 
     }
+
+    //TODO: Сделать чтобы поля формы SELECT тоже можно было обрабатывать в valueInputChange
 
     typeChange = (value) => {
-        this.setState({type: value});
+        this.setState({ type: value });
     }
-    monthChange = ( value ) => {
+    monthChange = (value) => {
         this.setState( { month: value } );
     }
     /*
@@ -97,14 +144,14 @@ class MetersForm extends React.Component {
         });
     }
 
-
     render() {
         return (
             <div className="container">
                 <Collapse accordion>
                     <Panel header="Ввести показания счетчиков" key="1" className="cabinet-txt">
                         <Text mark>Показания счетчиков за прошлый период</Text>
-                        <Divider />
+                        <Table columns={columns} dataSource={this.state.info} />
+
                         <Text mark>Заполните форму для ввода новых показаний</Text>
                         <Form>
                             <Form.Item label="Выберите счетчик">
@@ -198,6 +245,7 @@ class MetersForm extends React.Component {
                             <Form.Item>
                                 <Button type="primary" onClick={this.sendForm}>Отправить</Button>
                             </Form.Item>
+
                         </Form>
                     </Panel>
                 </Collapse>
