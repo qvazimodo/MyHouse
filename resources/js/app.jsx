@@ -24,6 +24,7 @@ import ListCards from "./components/ListCards/ListCards";
 
 import Video from "./components/Video";
 
+
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
     root.render(<Questions/>);
@@ -65,11 +66,3 @@ if (document.getElementById('video')) {
     const root = createRoot(document.getElementById('video'));
     root.render(<Video />);
 }
-
-
-
-
-
-
-
-

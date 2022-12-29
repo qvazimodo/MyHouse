@@ -52,6 +52,7 @@ class MetersForm extends React.Component {
         this.valueInputChange = this.valueInputChange.bind(this);
     }
 
+
     componentDidMount() {
         /* Код get запроса для получения user_id */
 
@@ -116,6 +117,7 @@ class MetersForm extends React.Component {
         });
 
     }
+
 
     //TODO: Сделать чтобы поля формы SELECT тоже можно было обрабатывать в valueInputChange
 
