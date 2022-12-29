@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\Admin\EmployeeAPIController;
 use App\Models\Meter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,15 +33,17 @@ Route::resource('meters',App\Http\Controllers\Meters\MeterController::class)->ex
 //api вывода всех счетчиков по текущему пользователю
 Route::get('auth_meters',function(){
         $meters = Meter::query()
-        ->where('user_id', '=', Auth::id())
-        ->get();
+            ->where('user_id', '=', Auth::id())
+            ->get();
     return response()->json($meters);
 })->middleware('auth');
 
-Route::get('auth_user', function(){
+Route::get('auth_user', function () {
     $user = Auth::user();
-    return  $user;
+    return $user;
 })->middleware('auth');
+
+Route::get('/employees', [EmployeeAPIController::class, 'index']);
 
 /*
 //API роутов по счетчикам горячей воды
