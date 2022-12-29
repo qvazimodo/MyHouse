@@ -12,7 +12,7 @@
 
 @section('content')
 
-    
+
     <div id="place"></div>
     <div id="watch"></div>
     <div id="video"></div>

@@ -26,6 +26,9 @@ const OutputCards = () => {
                         cardList.push(data[i].card[j])
                     }
                 }
+                cardList.sort(function(a, b){
+                    return a.id - b.id;
+                });
                 setItems(cardList)
             });
     }, [])
@@ -61,7 +64,7 @@ const OutputCards = () => {
                 >
                     <List.Item.Meta
                         avatar={<Avatar/>}
-                        title={<div>Загаловок: {item.title} + id {item.id}</div>}
+                        title={<div>Заголовок: {item.title} + id {item.id}</div>}
                         description={<div>Описание: {item.description}</div>}
                     />
                     <div>Цена: {item.price}$</div>

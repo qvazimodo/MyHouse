@@ -1,13 +1,13 @@
 import React from 'react';
 import OutputCards from "./OutputCards";
-import EnterCards from "./EnterCards";
+import FormCards from "./FormCards";
 
 
 const ListCards = () => {
 
     return (
         <div>
-            <EnterCards/>
+            <FormCards/>
             <OutputCards/>
         </div>
     );
