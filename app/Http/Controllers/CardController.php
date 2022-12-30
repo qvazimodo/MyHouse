@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Card;
+use App\Models\Client;
 use App\Models\Photo;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -75,5 +76,12 @@ class CardController extends Controller
                 "names" => $names
             ]);
         }
+    }
+
+    public function getUserCards(Request $request)
+    {
+        $userId = $request->input('userID');
+        $cards = Card::where('user_id', '=',  $userId)->get();
+        return response()->json($cards);
     }
 }
