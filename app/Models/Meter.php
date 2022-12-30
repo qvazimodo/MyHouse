@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Meter extends Model
 {
@@ -21,15 +22,19 @@ class Meter extends Model
 
     public $timestamps = false;
 
-    public function next()
+    public function parentId()
     {
-        return $this->hasOne(self::class, 'parent_id');
+        return $this->hasOne(self::class, 'id');
     }
 
-    public function previous()
+    public function id()
     {
         return $this->belongsTo(self::class, 'parent_id');
     }
 
+    public function month():BelongsTo
+    {
+        return $this->belongsTo(Month::class, 'id');
+    }
 
 }

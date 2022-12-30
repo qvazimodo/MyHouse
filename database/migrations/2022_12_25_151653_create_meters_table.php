@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->biginteger('user_id')->unsigned()->nullable(false)->comment('id пользователя');
             $table->integer('meter_id')->default(0)->comment('номер записи с предыдущими показаниями счётчика');
-            $table->enum('type', ['hot_water', 'cold_water', 'electricity', 'heat'])
-                ->default('hot_water')
+            $table->enum('type', ['горячая вода', 'холодная вода', 'электричество', 'тепловая энергия', 'газ'])
+                ->default('горячая вода')
                 ->comment('тип счетчика');
             $table->integer('number')->default(0)->comment('заводской номер счетчика');
             $table->enum('month', [
