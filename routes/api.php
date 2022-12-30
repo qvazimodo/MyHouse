@@ -28,8 +28,10 @@ Route::get('cards/{card}', 'App\Http\Controllers\CardController@show');
 Route::post('cards', 'App\Http\Controllers\CardController@store');
 Route::put('cards/{card}','App\Http\Controllers\CardController@update');
 Route::delete('cards/{card}', 'App\Http\Controllers\CardController@delete');
-Route::get('user-cards', 'App\Http\Controllers\CardController@getUserCards');
+Route::get('user_cards', 'App\Http\Controllers\CardController@getUserCards');
 Route::post('uploading-photos', 'App\Http\Controllers\CardController@uploadPhoto');
+//api проверят является ли клиентом текущий пользователь
+Route::get('is_client', 'App\Http\Controllers\ClientController@isClient');
 
 //api по счетчикам
 Route::resource('meters',MeterController::class)->except(['create', 'edit']);

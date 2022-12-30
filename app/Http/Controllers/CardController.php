@@ -17,15 +17,18 @@ class CardController extends Controller
     public function index(): JsonResponse
     {
         $cards = User::with('card')->get();
-
         return response()->json($cards);
     }
 
 
     public function store(Request $request): JsonResponse
     {
-        $card = Card::create($request->all());
-        return response()->json($card, 201);
+        if ((Client::where('user_id', $request->input('user_id'))->get())->isEmpty()) {
+            return response()->json("Нет прав", 403);
+        } else {
+            $card = Card::create($request->all());
+            return response()->json($card, 201);
+        }
     }
 
 
@@ -78,10 +81,11 @@ class CardController extends Controller
         }
     }
 
-    public function getUserCards(Request $request)
+    public function getUserCards(Request $request): JsonResponse
     {
-        $userId = $request->input('userID');
-        $cards = Card::where('user_id', '=',  $userId)->get();
+        $userId = $request->input('user_id');
+        $cards = Card::where('user_id', '=', $userId)->get();
         return response()->json($cards);
     }
+
 }
