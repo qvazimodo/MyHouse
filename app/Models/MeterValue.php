@@ -11,11 +11,11 @@ class MeterValue extends Model
 {
     use HasFactory;
 
-    private $fillable = [
+    protected $fillable = [
         'meter_id',
         'parent_id',
         'month_id',
-        'value'
+        'value',
     ];
 
     public function meter(): BelongsTo
@@ -23,13 +23,18 @@ class MeterValue extends Model
         return $this->belongsTo(Meter::class);
     }
 
-    public function parentId():HasOne
+    public function parentId(): HasOne
     {
         return $this->hasOne(self::class, 'id');
     }
 
-    public function id():BelongsTo
+    public function id(): BelongsTo
     {
         return $this->belongsTo(self::class, 'parent_id');
+    }
+
+    public function month(): HasOne
+    {
+        return $this->hasOne(Month::class);
     }
 }

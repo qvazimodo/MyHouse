@@ -28,10 +28,4 @@ class Meter extends Model
     {
         return $this->hasMany(MeterValue::class);
     }
-
-    public function month():BelongsTo
-    {
-        return $this->belongsTo(Month::class, 'id');
-    }
-
 }

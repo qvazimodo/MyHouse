@@ -17,8 +17,8 @@ class Month extends Model
 
     public $timestamps = false;
 
-    public function month(): HasMany
+    public function meterValue(): BelongsTo
     {
-        return $this->hasMany(Meter::class, 'month');
+        return $this->belongsTo(Meter::class);
     }
 }
