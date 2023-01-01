@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -23,8 +24,12 @@ class User extends Authenticatable
         'name',
         'patronymic',
         'last_name',
+        'is_admin',
+        'phone',
         'email',
+        'email_verified_at',
         'password',
+        'rememberToken',
     ];
 
     /**
@@ -46,9 +51,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function client()
+    public function client():BelongsTo
     {
-        return $this->hasOne(Client::class);
+        return $this->belongsTo(Client::class);
     }
 
     public function employee():HasOne
