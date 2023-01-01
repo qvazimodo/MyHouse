@@ -51,4 +51,9 @@ class Client extends Authenticatable
     {
         return $this->hasMany(Card::class);
     }
+
+    public function meters(): HasMany
+    {
+        return $this->hasMany(Meter::class);
+    }
 }

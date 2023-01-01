@@ -11,16 +11,19 @@ class Meter extends Model
     use HasFactory;
 
     protected $fillable = [
-        'parent_id',
-        'user_id',
-        'month',
-        'number',
-        'value',
-        'date',
+        'client_id',
         'type',
+        'number',
+
+
     ];
 
     public $timestamps = false;
+
+    public function client(): BelongsTo
+    {
+        return $this->belongsTo(Client::class);
+    }
 
     public function parentId()
     {
