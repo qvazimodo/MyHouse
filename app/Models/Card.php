@@ -11,15 +11,15 @@ class Card extends Model
     use HasFactory;
 
     protected $fillable = [
+        'client_id',
         'title',
         'price',
         'description',
-        'user_id',
     ];
 
-    public function user(): BelongsTo
+    public function client(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Client::class, 'client_id');
     }
 
 }

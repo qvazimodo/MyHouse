@@ -19,12 +19,7 @@ class Client extends Authenticatable
      */
     protected $fillable = [
         'user_id',
-        'street',
-        'house_number',
-        'entrance',
-        'floor',
-        'apartment_number',
-        'residents_number',
+        'apartment_id',
     ];
 
     /**
@@ -48,5 +43,10 @@ class Client extends Authenticatable
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function cards()
+    {
+        return $this->belongsToMany(Card::class);
     }
 }
