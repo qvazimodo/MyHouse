@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('card_id')->nullable(false);
             $table->string('name')->default('without name');
             $table->string('path')->default('storage/images/woman.jpg');
-            $table->string('thumbnail_path ')->default('storage/images/woman.jpg');
+            $table->string('thumbnail_path')->default('storage/images/woman.jpg');
             $table->unsignedInteger('width')->default(null);
             $table->unsignedInteger('height')->default(null);
             $table->timestamps();
