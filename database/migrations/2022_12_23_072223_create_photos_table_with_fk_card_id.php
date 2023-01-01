@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('path');
+            $table->unsignedBigInteger('card_id')->nullable(false);
+            $table->string('name')->default('without name');
+            $table->string('path')->default('storage/images/woman.jpg');
             $table->timestamps();
+
+            $table->foreign('card_id')->references('id')->on('cards');
         });
     }
 
@@ -28,6 +31,9 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::table('photos',function (Blueprint $table){
+            $table->dropForeign('photos_card_id_foreign');
+        });
         Schema::dropIfExists('photos');
     }
 };

@@ -13,20 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name', 25);
             $table->string('patronymic', 25)->comment('отчество');
             $table->string('last_name', 25)->comment('фамилия')->nullable();
-            $table->string('street', 30);
-            $table->integer('house_number');
-            $table->string('letter', 1)->default('');
-            $table->integer('entrance')->comment('подъезд');
-            $table->integer('floor')->comment('этаж');
-            $table->integer('apartment_number')->comment('номер квартиры');
-            $table->integer('residents_number')->comment('количество проживающих');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at');
+            $table->boolean('is_admin')->default(false);
+            $table->string('phone', 15)->unique();
+            $table->string('email',30)->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
