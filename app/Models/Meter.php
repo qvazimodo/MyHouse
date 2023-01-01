@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Meter extends Model
 {
@@ -14,8 +15,6 @@ class Meter extends Model
         'client_id',
         'type',
         'number',
-
-
     ];
 
     public $timestamps = false;
@@ -25,14 +24,9 @@ class Meter extends Model
         return $this->belongsTo(Client::class);
     }
 
-    public function parentId()
+    public function values():HasMany
     {
-        return $this->hasOne(self::class, 'id');
-    }
-
-    public function id()
-    {
-        return $this->belongsTo(self::class, 'parent_id');
+        return $this->hasMany(MeterValue::class);
     }
 
     public function month():BelongsTo

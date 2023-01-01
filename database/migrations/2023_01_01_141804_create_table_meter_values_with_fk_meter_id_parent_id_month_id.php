@@ -12,12 +12,12 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('meters_values', function (Blueprint $table) {
+        Schema::create('meter_values', function (Blueprint $table) {
             $table->id();
             $table->foreignId('meter_id')->nullable(false)->comment('id счётчика');
             $table->unsignedBigInteger('parent_id')->nullable(false)->comment(
                 'id строки с предыдущими показаниями счётчика');
-            $table->foreign('parent_id')->references('id')->on('meters');
+            $table->foreign('parent_id')->references('id')->on('meter_values')->onDelete('restrict');
             $table->foreignId('month_id')->nullable(false)->comment('порядковый номер месяца в году');
 /*            $table->enum('month_id', [
                 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
