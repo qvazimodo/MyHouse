@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Client;
 use App\Models\Meter;
 use Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -28,19 +29,11 @@ class MeterFactory extends Factory
         $month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
         $number = [1111111, 2222222, 3333333, 4444444, 5555555, 6666666, 7777777, 8888888];
         return [
-            'user_id' => $faker->numberBetween(1, 100),
+            'client_id' => Client::factory(),
             'type' => $type[array_rand($type)],
             'number' => $number[array_rand($number)],
-            'month' => $month[array_rand($month)],
-            'value' => $faker->numberBetween(100, 900),
             'created_at' => now(),
             'updated_at' => now(),
         ];
     }
-
-    /*    private function parentId(){
-            $myArr =array(1,2,3,4,5);
-            $myArr2 =array(3,4);
-            $resArr = array_diff($myArr, $myArr2);
-        }*/
 }

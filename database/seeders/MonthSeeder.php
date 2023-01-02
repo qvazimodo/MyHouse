@@ -14,7 +14,7 @@ class MonthSeeder extends Seeder
      */
     public function run()
     {
-        $name = [
+        $months = [
 
             [
                 'name' => 'Январь',
@@ -66,6 +66,6 @@ class MonthSeeder extends Seeder
             ],
         ];
 
-        Month::query()->insert($name);
+        Month::query()->insert($months);
     }
 }

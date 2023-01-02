@@ -24,7 +24,7 @@ class Meter extends Model
         return $this->belongsTo(Client::class);
     }
 
-    public function values():HasMany
+    public function meterValue():HasMany
     {
         return $this->hasMany(MeterValue::class);
     }
