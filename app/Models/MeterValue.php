@@ -33,8 +33,8 @@ class MeterValue extends Model
         return $this->belongsTo(self::class, 'parent_id');
     }
 
-    public function month(): HasOne
+    public function month(): BelongsTo
     {
-        return $this->hasOne(Month::class);
+        return $this->belongsTo(Month::class);
     }
 }

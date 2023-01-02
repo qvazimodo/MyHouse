@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Month extends Model
@@ -17,8 +16,8 @@ class Month extends Model
 
     public $timestamps = false;
 
-    public function meterValue(): BelongsTo
+    public function meterValues(): HasMany
     {
-        return $this->belongsTo(Meter::class);
+        return $this->hasMany(MeterValue::class);
     }
 }
