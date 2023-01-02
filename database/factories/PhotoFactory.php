@@ -20,12 +20,12 @@ class PhotoFactory extends Factory
         $faker = \Faker\Factory::create('ru_Ru');
 
         return [
-            'card_id' => Card::factory()->create(),
+            'card_id' => Card::factory(),
             'name' => $faker->title,
             'path' => $faker->filePath(),
             'thumbnail_path' => $faker->filePath(),
-            'width' => rand(100, 200),
-            'height' => rand(100, 200),
+            'width' => 400,
+            'height' => 300,
             'created_at' => now(),
             'updated_at' => now(),
         ];

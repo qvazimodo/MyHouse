@@ -21,7 +21,7 @@ class CardFactory extends Factory
         $faker = Faker\Factory::create('ru_Ru');
 
         return [
-            'client_id' => Client::factory()->create(),
+            'client_id' => Client::factory(),
             'title' => $faker->title(),
             'price' => rand(10, 100),
             'description' => $faker->realText(),

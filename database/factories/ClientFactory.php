@@ -24,10 +24,9 @@ class ClientFactory extends Factory
         $faker = Faker\Factory::create('ru_Ru');
 
         return [
-            'user_id' => User::factory()->create(),
+            'user_id' => User::factory(),
             'apartment_id'=> '1',
             'created_at' => now(),
-            'updated_at' => now(),
         ];
     }
 
