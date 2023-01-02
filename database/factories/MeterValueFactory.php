@@ -25,12 +25,6 @@ class MeterValueFactory extends Factory
         $months = Month::all();
         return [
             'meter_id' => Meter::factory(),
-            'parent_id' => function (array $attributes) {
-                $parent = DB::table('meter_values')
-                    ->orderBy('id', 'desc')
-                    ->first();
-                return is_null($parent) ? null : $parent->id;
-            },
             'month_id' => rand(1, 12),
             'value' => $faker->numberBetween(100, 10000),
             'created_at' => now(),
