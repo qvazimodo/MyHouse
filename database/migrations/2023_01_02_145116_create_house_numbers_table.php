@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('house_numbers', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('value')->nullable(false)->comment('номер дома');
         });
     }
 
