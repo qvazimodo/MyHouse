@@ -6,19 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Card extends Model
+class Month extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'price',
-        'description',
-        'user_id',
+        'month',
     ];
 
-    public function user(): BelongsTo
+    public $timestamps = false;
+
+    public function month(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Meter::class, 'month');
     }
 }

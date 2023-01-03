@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(EmployeesSeeder::class);
         $this->call(CardSeeder::class);
         $this->call(MeterSeeder::class);
+        $this->call(MonthsSeeder::class);
     }
 }
