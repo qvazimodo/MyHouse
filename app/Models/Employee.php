@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -18,8 +19,7 @@ class Employee extends Model
      */
     protected $fillable = [
         'user_id',
-        'profession',
-
+        'held_position',
     ];
 
     /**
@@ -40,7 +40,7 @@ class Employee extends Model
         'email_verified_at' => 'datetime',
     ];
 
-    public function user()
+    public function user():BelongsTo
     {
         return $this->belongsTo(User::class);
     }

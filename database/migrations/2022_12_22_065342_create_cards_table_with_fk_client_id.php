@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
+            $table->biginteger('client_id')->unsigned()->default(1);
             $table->string('title')->nullable(false);
             $table->float('price', 10, 2);
             $table->text('description');
-            $table->biginteger('user_id')->unsigned()->default(1);
             $table->timestamps();
         });
 
         Schema::table('cards', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
         });
 
     }
@@ -36,7 +36,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('cards', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
+            $table->dropForeign(['client_id']);
         });
         Schema::dropIfExists('cards');
     }

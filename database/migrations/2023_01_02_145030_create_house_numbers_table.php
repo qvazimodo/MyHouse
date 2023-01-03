@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,8 +13,9 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('is_employee', 'is_client');
+        Schema::create('house_numbers', function (Blueprint $table) {
+            $table->id();
+            $table->string('value')->nullable(false)->comment('номер дома');
         });
     }
 
@@ -24,9 +26,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_employee')->default(false);
-            $table->boolean('is_client')->default(true);
-        });
+        Schema::dropIfExists('house_numbers');
     }
 };

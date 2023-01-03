@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
+use Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Faker;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -29,6 +29,7 @@ class UserFactory extends Factory
             'patronymic' => $patronymic[array_rand($patronymic)],
             'last_name' => $faker->lastName('male'),
             'is_admin' => '0',
+            'phone' => fake()->unique()->phoneNumber(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => Hash::make('123'), // password

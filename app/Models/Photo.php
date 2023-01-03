@@ -11,12 +11,13 @@ class Photo extends Model
     use HasFactory;
 
     protected $fillable = [
+        'card_id',
         'name',
         'path',
         'thumbnail_path',
         'width',
         'height',
-        'card_id'
+
     ];
 
     public function card(): BelongsTo
