@@ -16,8 +16,9 @@ class StreetFactory extends Factory
      */
     public function definition()
     {
+        $faker = \Faker\Factory::create('ru_Ru');
         return [
-            //
+            'name'=>$faker->streetName(),
         ];
     }
 }

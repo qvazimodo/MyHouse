@@ -11,6 +11,7 @@ class HouseNumber extends Model
     use HasFactory;
 
     protected $fillable = ['value'];
+    public $timestamps = false;
 
     public function houseAddresses():HasMany{
         return $this->hasMany(HouseAddress::class);

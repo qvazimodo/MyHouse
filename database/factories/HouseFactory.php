@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\HouseAddress;
+use App\Models\HouseDescription;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,10 @@ class HouseFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'house_address_id'=>HouseAddress::factory(),
+            'house_descriptions_id'=>HouseDescription::factory(),
+            'created_at'=>now(),
+            'updated_at'=>now(),
         ];
     }
 }

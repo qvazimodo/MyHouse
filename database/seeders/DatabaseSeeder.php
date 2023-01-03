@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call(MonthSeeder::class);
         $this->call(UsersSeeder::class);
-        $this->call(ClientsSeeder::class);
+        $this->call(ClientSeeder::class);
         $this->call(EmployeesSeeder::class);
 //        $this->call(CardsSeeder::class);
 

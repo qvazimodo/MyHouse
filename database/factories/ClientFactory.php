@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Apartment;
 use App\Models\User;
 use Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -25,7 +26,7 @@ class ClientFactory extends Factory
 
         return [
             'user_id' => User::factory(),
-            'apartment_id'=> '1',
+            'apartment_id'=> Apartment::factory(),
             'created_at' => now(),
         ];
     }

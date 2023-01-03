@@ -11,6 +11,7 @@ class HouseAddress extends Model
     use HasFactory;
 
     protected $fillable = ['street_id', 'house_number_id'];
+    public $timestamps = false;
 
     public function house_number(): BelongsTo
     {

@@ -16,6 +16,6 @@ class EmployeesSeeder extends Seeder
      */
     public function run()
     {
-        Employee::factory(5)->create();
+        Employee::factory(10)->create();
     }
 }

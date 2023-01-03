@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('house_addresses', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('street_id')->nullable(false);
+            $table->foreign(['street_id'])->references('id')->on('streets');
+            $table->unsignedBigInteger('house_number_id')->nullable(false);
+            $table->foreign(['house_number_id'])->references('id')->on('house_numbers');
             $table->timestamps();
         });
     }
@@ -26,6 +30,10 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::table('house_addresses', function (Blueprint $table){
+            $table->dropForeign(['street_id']);
+            $table->dropForeign(['house_number_id']);
+        });
         Schema::dropIfExists('house_addresses');
     }
 };

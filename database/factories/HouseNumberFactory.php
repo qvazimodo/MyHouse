@@ -16,8 +16,9 @@ class HouseNumberFactory extends Factory
      */
     public function definition()
     {
+        $faker = \Faker\Factory::create('ru_Ru');
         return [
-            //
+            'value'=>$faker->numberBetween(1, 255)
         ];
     }
 }

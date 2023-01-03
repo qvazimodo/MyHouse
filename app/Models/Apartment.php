@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Apartment extends Model
 {
@@ -15,5 +16,10 @@ class Apartment extends Model
     public function house(): BelongsTo
     {
         return $this->belongsTo(House::class, 'house_id');
+    }
+
+    public function client(): HasOne
+    {
+        return $this->hasOne(Client::class);
     }
 }

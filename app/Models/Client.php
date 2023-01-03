@@ -57,4 +57,9 @@ class Client extends Authenticatable
     {
         return $this->hasMany(Meter::class);
     }
+
+    public function apartment(): BelongsTo
+    {
+        return $this->belongsTo(Apartment::class);
+    }
 }
