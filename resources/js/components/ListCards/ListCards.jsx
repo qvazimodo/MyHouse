@@ -5,15 +5,10 @@ import FormCards from "./FormCards";
 
 const ListCards = () => {
 
-    const [name, setName] = useState('')
-    const handleLenghtChage = (name) =>{
-        setName(name)
-    }
-
     return (
         <div>
-            <FormCards name={name}/>
-            <OutputCards onChange={handleLenghtChage}/>
+            <FormCards />
+            <OutputCards/>
         </div>
     );
 }

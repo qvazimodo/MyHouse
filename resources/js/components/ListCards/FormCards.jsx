@@ -3,11 +3,11 @@ import {Button, Form, Input, Typography} from "antd";
 
 const { Text } = Typography;
 
-const FormCards = ({name}) => {
+const FormCards = () => {
 
 
     const [argument, setArgument] = useState({
-        userId: '2'
+        userId: ''
     });
 
     const [title, setTitle]=useState('');
@@ -21,7 +21,7 @@ const FormCards = ({name}) => {
             .then(response => response.json())
             .catch(e => console.log(e))
             .then(data =>setArgument({
-                userId: `${data.id}`
+                userId: data.id
             }));
 
         /* Получение информации по счетчикам пользователя */
@@ -30,44 +30,25 @@ const FormCards = ({name}) => {
 
     const sendForm = (e) => {
         e.preventDefault();
-            fetch(`http://127.0.0.1/api/user_cards/?user_id=2`, {
+            fetch(`http://127.0.0.1/api/cards`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
                     // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 },
                 body: JSON.stringify({
-                    id:101 ,
-                    title:'fajidf' ,
-                    price:3214,
-                    description:'udshf' ,
-                    user_id: 2,
-                    created_at: null,
-                    updated_at: null
+                    title: title ,
+                    price: +price,
+                    description: description,
+                    user_id: +argument,
                 })
             })
                 .then(response => response.json())
                     .catch(e => console.log(e))
-
-
     }
-
-    // function sendForm(){
-    //     let data={title,description,price}
-    //     fetch("http://127.0.0.1/api/user_cards/?user_id=2",{
-    //         method:'POST',
-    //         headers:{
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body:JSON.stringify(data)
-    //     })
-    //         .then((result)=>{
-    //             console.warn('result',result);
-    //         })
-    // }
-
+    console.log(typeof title)
 
     return (
         <>
@@ -80,7 +61,7 @@ const FormCards = ({name}) => {
                     <Input name='description' value={description} onChange={(e) => {setDescription(e.target.value)}} />
                 </Form.Item>
                 <Form.Item label="Введите цену:">
-                    <Input name='price' value={price} onChange={(e) => {setPrice(e.target.value)}} />
+                    <Input name='price' value={price} type='number' onChange={(e) => {setPrice(e.target.value)}} />
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" onClick={sendForm} >Отправить</Button>

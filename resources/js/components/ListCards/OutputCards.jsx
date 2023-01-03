@@ -2,15 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {Avatar, List} from "antd";
 
 
-const OutputCards = ({onChange}) => {
+const OutputCards = () => {
 
     const [items, setItems] = useState([]);
-    const [index, setIndex] = useState([]);
-
-    const handleLenghtChage = (event) => {
-        onChange(index)
-        console.log(index)
-    }
 
     let cardList = [];
 
@@ -36,8 +30,6 @@ const OutputCards = ({onChange}) => {
                     return a.id - b.id;
                 });
                 setItems(cardList);
-                setIndex(cardList.length);
-                console.log(index)
             });
     }, [])
 
