@@ -10,45 +10,49 @@ const FormCards = () => {
         userId: ''
     });
 
-    const [title, setTitle]=useState('');
-    const [description, setDescription]=useState('');
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
 
 
-    useEffect( () => {
+    useEffect(() => {
 
         fetch('http://localhost/api/auth_user')
             .then(response => response.json())
             .catch(e => console.log(e))
-            .then(data =>setArgument({
+            .then(data => setArgument({
                 userId: data.id
             }));
 
         /* Получение информации по счетчикам пользователя */
 
-    },[])
+    }, [])
 
     const sendForm = (e) => {
+        if (argument.userId === '101') {
         e.preventDefault();
-            fetch(`http://127.0.0.1/api/cards`, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                    // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                },
-                body: JSON.stringify({
-                    title: title ,
-                    price: +price,
-                    description: description,
-                    user_id: +argument,
-                })
+        fetch(`http://127.0.0.1/api/cards`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+                // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+            body: JSON.stringify({
+                title: title,
+                price: +price,
+                description: description,
+                user_id: +argument,
             })
-                .then(response => response.json())
-                    .catch(e => console.log(e))
-    }
-    console.log(typeof title)
+        })
+            .then(response => response.json())
+            .catch(e => console.log(e))
+    } else {
+            window.alert('У вас нет прав')
+        }
+}
+
 
     return (
         <>
