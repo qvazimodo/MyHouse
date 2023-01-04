@@ -54,7 +54,7 @@ const ListCards = () => {
     }, [])
 
     const sendForm = (e) => {
-        if (argument.userId !== '101') {
+        if (argument.userId === '101') {
             e.preventDefault();
             fetch(`http://127.0.0.1/api/cards`, {
                 method: 'POST',
@@ -68,7 +68,7 @@ const ListCards = () => {
                     title: title,
                     price: +price,
                     description: description,
-                    user_id: 2,
+                    user_id: +argument,
                 })
             })
                 .then(response => response.json())
