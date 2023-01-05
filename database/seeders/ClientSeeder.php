@@ -24,7 +24,7 @@ class ClientSeeder extends Seeder
      */
     public function run()
     {
-        Client::factory(200)              //количество клиентов
+        Client::factory(10)             //количество клиентов
         ->has(Card::factory(3)          //количество объявлений у клиента
             ->has(Photo::factory(3))    //количество фотографий у объявления
              )
