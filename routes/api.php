@@ -52,4 +52,5 @@ Route::get('auth_user', function () {
 })->middleware('auth');
 
 Route::get('/employees', [EmployeeAPIController::class, 'index']);
+Route::get('/employees/{employee}', [EmployeeAPIController::class, 'show']);
 

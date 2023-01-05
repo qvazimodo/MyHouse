@@ -3,17 +3,18 @@
 namespace App\Http\Controllers\API\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\EmployeeResource;
 use App\Models\Employee;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Models\User;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class EmployeeAPIController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function index():JsonResponse
     {
@@ -34,12 +35,12 @@ class EmployeeAPIController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Employee $employee
+     * @return  JsonResource
      */
-    public function show($id)
+    public function show(Employee $employee):JsonResource
     {
-        //
+        return new EmployeeResource($employee);
     }
 
     /**
