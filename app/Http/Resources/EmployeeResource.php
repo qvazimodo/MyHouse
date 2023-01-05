@@ -6,6 +6,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class EmployeeResource extends JsonResource
 {
+    //Служит для переименования свойства data в JSON-ответе, возвращаемом контроллером
+    //    public static $wrap = 'rubric';
+
     /**
      * Transform the resource into an array.
      *
