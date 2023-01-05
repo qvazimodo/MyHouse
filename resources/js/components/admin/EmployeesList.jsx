@@ -40,8 +40,8 @@ export const EmployeesList = () => {
         },
         {
             title: 'Должность',
-            dataIndex: 'profession',
-            key: 'profession',
+            dataIndex: 'held_position',
+            key: 'held_position',
         },
     ];
 

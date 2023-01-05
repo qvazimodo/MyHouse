@@ -17,7 +17,7 @@ class EmployeeAPIController extends Controller
      */
     public function index():JsonResponse
     {
-        return response()->json(Employee::select("id","user_id","profession")->with('user:id,name,patronymic,last_name')->get());
+        return response()->json(Employee::select("id","user_id","held_position")->with('user:id,name,patronymic,last_name')->get());
     }
 
     /**
