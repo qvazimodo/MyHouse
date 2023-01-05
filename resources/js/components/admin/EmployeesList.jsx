@@ -66,7 +66,7 @@ export const EmployeesList = () => {
         fetch( EMPLOYEES_API_URL )
             .then( response => response.json() )
             .catch( err => console.log( err ) )
-            .then( result => setEmployeesList( result ) );
+            .then( result => setEmployeesList( result.data ) );
     }
 
     /* useEffect(() => {
