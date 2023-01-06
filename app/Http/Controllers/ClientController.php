@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class ClientController extends Controller
@@ -78,5 +80,14 @@ class ClientController extends Controller
         $client->delete();
         return redirect()->route('client.index')
             ->with('success', 'Данные клиента удалены успешно!');
+    }
+
+    public function isClient(): JsonResponse
+    {
+        if ((Client::where('user_id', Auth::user()->id)->get())->isEmpty()) {
+            return response()->json(false);
+        } else {
+            return response()->json(true);
+        }
     }
 }

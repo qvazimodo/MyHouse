@@ -1,4 +1,3 @@
-
 <div class="header">
     <div class="top">
         <div class="top-left">
@@ -24,9 +23,9 @@
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                             Панель администратора</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('admin.clients.index') }}"> Клиенты</a></li>
-{{--                            <li><a class="dropdown-item" href="{{ route('admin.employees.index') }}"> Клиенты</a></li>
-                            <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Все пользователи</a></li>--}}
+                            <li><a class="dropdown-item" href="{{ route('admin.clients.index') }}">Клиенты</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.employees') }}">Сотрудники</a></li>
+{{--                            <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Все пользователи</a></li>--}}
                         </ul>
                     </li>
 

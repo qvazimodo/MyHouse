@@ -24,16 +24,6 @@ class MeterController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -42,6 +32,7 @@ class MeterController extends Controller
     public function store(Request $request)
     {
         $meter_request = $request->all();
+
         $meter = new Meter();
         $meter->fill($meter_request);
         $meter->save();
@@ -58,17 +49,6 @@ class MeterController extends Controller
     public function show(Meter $meter): Meter
     {
         return $meter;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Meter  $meter
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Meter $meter)
-    {
-        //
     }
 
     /**

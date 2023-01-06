@@ -20,8 +20,9 @@ import Questions from "./components/Questions";
 import Reviews from "./components/Reviews";
 import Watch from "./components/Watch";
 import About from "./components/About";
-import ListCards from "./components/ListCards";
+import ListCards from "./components/ListCards/ListCards";
 import Video from "./components/Video";
+import {EmployeesList} from "./components/admin/EmployeesList";
 
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
@@ -64,8 +65,10 @@ if (document.getElementById('video')) {
     const root = createRoot(document.getElementById('video'));
     root.render(<Video />);
 }
-
-
+if (document.getElementById('employees-list')){
+    const root=createRoot(document.getElementById('employees-list'));
+    root.render(<EmployeesList/>);
+}
 
 
 

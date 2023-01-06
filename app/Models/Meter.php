@@ -4,21 +4,28 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Meter extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'number',
-        'previous_record_number',
-        'value',
-        'date',
-        'user_id',
+        'client_id',
         'type',
-        'month'
+        'number',
     ];
 
     public $timestamps = false;
 
+    public function client(): BelongsTo
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function meterValue():HasMany
+    {
+        return $this->hasMany(MeterValue::class);
+    }
 }
