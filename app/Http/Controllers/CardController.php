@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ClientResource;
 use App\Models\Card;
 use App\Models\Client;
 use App\Models\Photo;
-use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Facades\Validator;
 
 
 class CardController extends Controller
 {
 
-    public function index(): JsonResponse
+    public function index(): ResourceCollection
     {
-        $cards = User::with('card')->get();
-        return response()->json($cards);
+      return  ClientResource::collection(Client::with('cards')->paginate(3));
+
     }
 
 

@@ -10,7 +10,7 @@
     <div class="card container-fluid client ">
         <div class="card-body">
             <div class="row ">
-                <h1 class="card-title text-center py-3 title-2 ">Перечень клиентов компании</h1>
+                <h1 class="carmeter_valuesd-title text-center py-3 title-2 ">Перечень клиентов компании</h1>
                 <div class="list-group  text-center py-3 client-content">
                     @forelse($clients as $client)
                         <a class="d-flex align-items-center justify-content-between px-3 list-group-item
