@@ -6,6 +6,7 @@
         </div>
         <div class="top-right">
             <div class="complex"><a href="about">О нас</a></div>
+            <div class="complex"><a href="{{ route('announcement') }}">Объявления</a></div>
             <div class="district"><a href="#">Дома</a></div>
             <div class="catalog"><a href="#">Тарифы и услуги</a></div>
             @guest
