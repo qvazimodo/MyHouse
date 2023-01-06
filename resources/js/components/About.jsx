@@ -8,7 +8,5 @@ const About = () => (
     ratione rerum sapiente tempore temporibus ullam veniam voluptate voluptatibus? Accusamus alias aut beatae cum
     cupiditate enim in neque reiciendis, soluta tempora!</p>
     </div>
-
-
 );
 export default About;
