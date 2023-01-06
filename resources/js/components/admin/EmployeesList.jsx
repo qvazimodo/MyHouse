@@ -7,6 +7,27 @@ import Column from "antd/es/table/Column";
 export const EmployeesList = () => {
     const [ employeesList, setEmployeesList ] = useState( [] )
     const [ data, setData ] = useState( [] );
+    const [ dataLink, setDataLink ] = useState( EMPLOYEES_API_URL );
+    const [ meta, setMeta ] = useState( {per_page:3} );
+    const [ links, setLinks ] = useState( {} );
+    const [current, setCurrent] = useState(1);
+
+
+    const itemRender = ( _, type, originalElement ) => {
+        if ( type === 'prev' ) {
+            return <a onClick={()=>setDataLink(links.prev)}>Previous</a>;
+        }
+        if ( type === 'next'  ) {
+            return <a onClick={()=>setDataLink(links.next)}>Next</a>;
+        }
+        return originalElement;
+    };
+
+    const onPageChange = (page)=>{
+
+        setCurrent(page)
+    }
+
     const dataSource = [
         {
             key: '1',
@@ -46,8 +67,8 @@ export const EmployeesList = () => {
     ];
 
     useEffect( () => {
-        fetchEmployees()
-    }, [] )
+        fetchEmployees(dataLink)
+    }, [dataLink] )
 
     useEffect( () => {
         setData( employeesList.map( item => {
@@ -62,11 +83,17 @@ export const EmployeesList = () => {
     }, [ employeesList ] );
 
 
-    const fetchEmployees = () => {
-        fetch( EMPLOYEES_API_URL )
+    const fetchEmployees = ( url ) => {
+        fetch( url )
             .then( response => response.json() )
             .catch( err => console.log( err ) )
-            .then( result => setEmployeesList( result.data ) );
+            .then( result => {
+                console.log(url, result)
+                setEmployeesList( result.data )
+                setLinks(result.links)
+                setMeta( result.meta )
+                console.log('fetch')
+            } );
     }
 
     /* useEffect(() => {
@@ -84,11 +111,18 @@ export const EmployeesList = () => {
 
     return (
         <div className='container'>
-            <Table dataSource={ data }>
+            <Table dataSource={ data } pagination={ {
+                pageSize: meta.per_page,
+                total:meta.total,
+                itemRender,
+                onChange: onPageChange
+                // showSizeChanger: true,
+            } }>
                 <ColumnGroup title="ФИО">
                     <Column title="Фамилия" dataIndex="lastName" key="lastName"/>
                     <Column title="Имя" dataIndex="name" key="name"/>
                     <Column title="Отчество" dataIndex="patronymic" key="patronymic"/>
+                    <Column title="Должность" dataIndex="held_position" key="held_position"/>
                     <Column title="Возраст" dataIndex="age" key="age"/>
                     <Column title="Адрес" dataIndex="address" key="address"/>
                     <Column
