@@ -6,26 +6,16 @@ import Column from "antd/es/table/Column";
 
 export const EmployeesList = () => {
     const [ employeesList, setEmployeesList ] = useState( [] )
+    const [ totalPages, setTotalPages ] = useState( 1 );
+    const [ pageSize, setPageSize ] = useState( 5 );
+    const [ loading, setLoading ] = useState( false );
     const [ data, setData ] = useState( [] );
-    const [ dataLink, setDataLink ] = useState( EMPLOYEES_API_URL );
-    const [ meta, setMeta ] = useState( {per_page:3} );
+
     const [ links, setLinks ] = useState( {} );
-    const [current, setCurrent] = useState(1);
-
-
-    const itemRender = ( _, type, originalElement ) => {
-        if ( type === 'prev' ) {
-            return <a onClick={()=>setDataLink(links.prev)}>Previous</a>;
-        }
-        if ( type === 'next'  ) {
-            return <a onClick={()=>setDataLink(links.next)}>Next</a>;
-        }
-        return originalElement;
-    };
+    const [ current, setCurrent ] = useState( 1 );
 
     const onPageChange = (page)=>{
-
-        setCurrent(page)
+        fetchEmployees( EMPLOYEES_API_URL + `?page=${ page }` )
     }
 
     const dataSource = [
@@ -67,8 +57,8 @@ export const EmployeesList = () => {
     ];
 
     useEffect( () => {
-        fetchEmployees(dataLink)
-    }, [dataLink] )
+        fetchEmployees( EMPLOYEES_API_URL )
+    }, [] )
 
     useEffect( () => {
         setData( employeesList.map( item => {
@@ -83,16 +73,18 @@ export const EmployeesList = () => {
     }, [ employeesList ] );
 
 
-    const fetchEmployees = ( url ) => {
-        fetch( url )
+    const fetchEmployees = ( page ) => {
+        setLoading( true )
+        fetch( page )
             .then( response => response.json() )
             .catch( err => console.log( err ) )
             .then( result => {
-                console.log(url, result)
                 setEmployeesList( result.data )
-                setLinks(result.links)
-                setMeta( result.meta )
-                console.log('fetch')
+                setTotalPages( result.meta.total )
+                setPageSize( result.meta.per_page )
+                setLinks( result.links )
+                setTotalPages( result.meta.total )
+                setLoading( false )
             } );
     }
 
@@ -111,13 +103,16 @@ export const EmployeesList = () => {
 
     return (
         <div className='container'>
-            <Table dataSource={ data } pagination={ {
-                pageSize: meta.per_page,
-                total:meta.total,
-                itemRender,
-                onChange: onPageChange
-                // showSizeChanger: true,
-            } }>
+            <Table
+                loading={ loading }
+                dataSource={ data }
+                pagination={ {
+                    pageSize,
+                    total: totalPages,
+                    onChange: onPageChange
+                    // showSizeChanger: true,
+                } }
+            >
                 <ColumnGroup title="ФИО">
                     <Column title="Фамилия" dataIndex="lastName" key="lastName"/>
                     <Column title="Имя" dataIndex="name" key="name"/>
