@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('meters', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->nullable(false)->comment('id клиента');
+            $table->unsignedBigInteger('client_id')->nullable(false)->comment('id клиента');
             $table->enum('type', ['горячая вода', 'холодная вода', 'электричество', 'тепловая энергия', 'газ'])
                 ->default('горячая вода')
                 ->comment('тип счетчика');
@@ -24,7 +24,13 @@ return new class extends Migration
 
 
         });
-    }
+
+        Schema::table('meters', function (Blueprint $table) {
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('restrict');
+        });
+        }
+
+
 
     /**
      * Reverse the migrations.

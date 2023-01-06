@@ -3,25 +3,46 @@
 namespace App\Http\Controllers\Meters;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\MeterResource;
 use App\Models\Meter;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\Auth;
 
 class MeterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(): JsonResponse
-    {
-        $meters = Meter::query()
-            ->join('clients', 'clients.user_id', '=', 'meters.user_id')
-            ->get();
 
-        return response()->json($meters);
+
+    public function index(): ResourceCollection
+    {
+
+
+        $meters =  Meter::query()
+            ->join('meter_values', 'meter_values.meter_id', '=', 'meters.id' )
+            ->join('months', 'months.id', '=', 'meter_values.month_id')
+            ->with("clientUser:name,patronymic,last_name")
+            ->get(['meter_id','client_id','type','number','parent_id','month']);
+        return MeterResource::collection($meters);
     }
+
+    public function showAuthClient(): JsonResponse
+    {
+
+        $meters = Meter::query()
+            ->join('meter_values', 'meter_values.meter_id', '=', 'meters.id' )
+            ->join('months', 'months.id', '=', 'meter_values.month_id')
+            ->join('clients', 'clients.user_id', '=', 'meters.client_id')
+            ->join('users', 'users.id', '=', 'clients.user_id')
+            //  ->with("clientUser:name,patronymic,last_name")
+            ->where('client_id', '=', Auth::id())
+            ->get();
+         return response()->json($meters);
+        //return MeterResource::collection($meters);
+    }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -43,12 +64,14 @@ class MeterController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Meter  $meter
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Meter $meter
+     * @return JsonResource
      */
-    public function show(Meter $meter): Meter
+    public function show(Meter $meter): JsonResource
     {
-        return $meter;
+
+
+        return new MeterResource($meter);
     }
 
     /**

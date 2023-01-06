@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\API\Admin\EmployeeAPIController;
 use App\Http\Controllers\Meters\MeterController;
-use App\Models\Meter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -37,13 +36,9 @@ Route::get('is_client', 'App\Http\Controllers\ClientController@isClient');
 Route::resource('meters',MeterController::class)->except(['create', 'edit']);
 
 //api вывода всех счетчиков по текущему пользователю
-Route::get('auth_meters',function(){
-        $meters = Meter::query()
-            ->join('months', 'months.id', '=', 'meters.month')
-            ->where('user_id', '=', Auth::id())
-            ->get();
-    return response()->json($meters);
-})->middleware('auth');
+
+
+Route::get('auth_meters','App\Http\Controllers\Meters\MeterController@showAuthClient')->middleware('auth');
 
 //api вывода  текущего пользователя
 Route::get('auth_user', function () {

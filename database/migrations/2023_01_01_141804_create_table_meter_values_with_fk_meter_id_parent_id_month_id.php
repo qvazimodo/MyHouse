@@ -18,13 +18,21 @@ return new class extends Migration {
             $table->unsignedBigInteger('parent_id')->nullable()->comment(
                 'id строки с предыдущими показаниями счётчика');
             $table->foreign('parent_id')->references('id')->on('meter_values')->onDelete('restrict');
-            $table->foreignId('month_id')->nullable(false)->comment('порядковый номер месяца в году');
+            $table->unsignedBigInteger('month_id')->nullable(false)->comment('порядковый номер месяца в году');
             /*            $table->enum('month_id', [
                             1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
                         ])->comment('порядковый номер месяца в году');*/
             $table->float('value', 10, 2, true);
             $table->timestamps();
         });
+
+        Schema::table('meter_values', function (Blueprint $table) {
+
+            $table->foreign('month_id')->references('id')->on('months')->onDelete('restrict');
+            $table->foreign('meter_id')->references('id')->on('meters')->onDelete('restrict');
+
+        });
+
     }
 
     /**
