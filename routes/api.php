@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\Admin\EmployeeAPIController;
+use App\Http\Controllers\API\HouseController;
 use App\Http\Controllers\Meters\MeterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,4 +50,6 @@ Route::get('auth_user', function () {
 Route::get('/employees', [EmployeeAPIController::class, 'index']);
 Route::get('/employees/{employee}', [EmployeeAPIController::class, 'show']);
 Route::delete('/employees/{employee}', [EmployeeAPIController::class, 'destroy']);
+Route::get('/houses', [HouseController::class, 'index']);
+
 

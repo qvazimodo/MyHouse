@@ -14,7 +14,7 @@ class House extends Model
 
     public function house_address(): HasOne
     {
-        return $this->hasOne(HouseAddress::class);
+        return $this->hasOne(HouseAddress::class, 'id');
     }
 
     public function house_description(): HasOne
