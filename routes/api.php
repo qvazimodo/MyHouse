@@ -48,4 +48,5 @@ Route::get('auth_user', function () {
 
 Route::get('/employees', [EmployeeAPIController::class, 'index']);
 Route::get('/employees/{employee}', [EmployeeAPIController::class, 'show']);
+Route::delete('/employees/{employee}', [EmployeeAPIController::class, 'destroy']);
 
