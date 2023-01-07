@@ -18,21 +18,6 @@ export const EmployeesList = () => {
         fetchEmployees( EMPLOYEES_API_URL + `?page=${ page }` )
     }
 
-    const dataSource = [
-        {
-            key: '1',
-            name: 'Mike',
-            age: 32,
-            address: '10 Downing Street',
-        },
-        {
-            key: '2',
-            name: 'John',
-            age: 42,
-            address: '10 Downing Street',
-        },
-    ];
-
     const columns = [
         {
             title: 'Фамилия',
@@ -64,7 +49,7 @@ export const EmployeesList = () => {
         setData( employeesList.map( item => {
             return {
                 key: item.id,
-                profession: item.profession,
+                held_position: item.held_position,
                 name: item.user.name,
                 patronymic: item.user.patronymic,
                 lastName: item.user["last_name"],
@@ -117,6 +102,7 @@ export const EmployeesList = () => {
                     <Column title="Фамилия" dataIndex="lastName" key="lastName"/>
                     <Column title="Имя" dataIndex="name" key="name"/>
                     <Column title="Отчество" dataIndex="patronymic" key="patronymic"/>
+                </ColumnGroup>
                     <Column title="Должность" dataIndex="held_position" key="held_position"/>
                     <Column title="Возраст" dataIndex="age" key="age"/>
                     <Column title="Адрес" dataIndex="address" key="address"/>
@@ -130,7 +116,6 @@ export const EmployeesList = () => {
                             </Space>
                         ) }
                     />
-                </ColumnGroup>
             </Table>
             <Button type="primary" onClick={ () => console.log( employeesList, data ) }>Вывести данные в
                 консоль</Button>
