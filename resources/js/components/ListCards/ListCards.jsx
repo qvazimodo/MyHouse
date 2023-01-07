@@ -108,7 +108,7 @@ const ListCards = () => {
 
     return (
         <div className="container">
-            <Text>Заполните форму для ввода новых показаний:</Text>
+            <Text style={{color: '#D4C17F', marginBottom: 30, display: 'block', fontSize: 18}}>Заполните форму для ввода новых показаний:</Text>
             <Form>
                 <Form.Item label="Введите заголовок:">
                     <Input name='title' value={title} onChange={(e) => {
