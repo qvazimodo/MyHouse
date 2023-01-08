@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\Http\Resources\ClientResource;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\CardResource;
 use App\Models\Card;
 use App\Models\Client;
 use App\Models\Photo;
@@ -17,7 +18,7 @@ class CardController extends Controller
 
     public function index(): ResourceCollection
     {
-      return  ClientResource::collection(Client::with('cards')->paginate(3));
+      return  CardResource::collection(Card::with(['client', 'photos'])->paginate(10));
 
     }
 

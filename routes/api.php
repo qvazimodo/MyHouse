@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\Admin\EmployeeAPIController;
 use App\Http\Controllers\API\HouseController;
+use App\Http\Controllers\API\CardController;
 use App\Http\Controllers\Meters\MeterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,13 +24,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('cards', 'App\Http\Controllers\CardController@index');
-Route::get('cards/{card}', 'App\Http\Controllers\CardController@show');
-Route::post('cards', 'App\Http\Controllers\CardController@store');
-Route::put('cards/{card}','App\Http\Controllers\CardController@update');
-Route::delete('cards/{card}', 'App\Http\Controllers\CardController@delete');
-Route::get('user_cards', 'App\Http\Controllers\CardController@getUserCards');
-Route::post('uploading-photos', 'App\Http\Controllers\CardController@uploadPhoto');
+Route::get('cards', 'CardController@index');
+Route::get('cards/{card}', 'CardController@show');
+Route::post('cards', 'CardController@store');
+Route::put('cards/{card}','CardController@update');
+Route::delete('cards/{card}', 'CardController@delete');
+Route::get('user_cards', 'CardController@getUserCards');
+Route::post('uploading-photos', 'CardController@uploadPhoto');
 //api проверят является ли клиентом текущий пользователь
 Route::get('is_client', 'App\Http\Controllers\ClientController@isClient');
 
