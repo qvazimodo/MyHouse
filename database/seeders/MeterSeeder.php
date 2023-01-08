@@ -15,6 +15,6 @@ class MeterSeeder extends Seeder
      */
     public function run()
     {
-        Meter::factory(100)->create();
+        Meter::factory(10)->create();
     }
 }

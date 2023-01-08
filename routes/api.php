@@ -1,12 +1,14 @@
 <?php
 
-use App\Http\Controllers\API\Admin\EmployeeAPIController;
-use App\Http\Controllers\Meters\MeterController;
-use App\Models\Meter;
+use App\Http\Controllers\API\MeterValueController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\API\Admin\EmployeeAPIController;
+use App\Http\Controllers\API\HouseController;
+use App\Http\Controllers\API\CardController;
+use \App\Http\Controllers\API\ClientAnnouncementController;
+use \App\Http\Controllers\API\MeterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,27 +25,27 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('cards', 'App\Http\Controllers\CardController@index');
-Route::get('cards/{card}', 'App\Http\Controllers\CardController@show');
-Route::post('cards', 'App\Http\Controllers\CardController@store');
-Route::put('cards/{card}','App\Http\Controllers\CardController@update');
-Route::delete('cards/{card}', 'App\Http\Controllers\CardController@delete');
-Route::get('user_cards', 'App\Http\Controllers\CardController@getUserCards');
-Route::post('uploading-photos', 'App\Http\Controllers\CardController@uploadPhoto');
-//api проверят является ли клиентом текущий пользователь
+//Route::get('cards', 'CardController@index');
+Route::get('cards/{card}', 'CardController@show');
+Route::post('cards', 'CardController@store');
+Route::put('cards/{card}','CardController@update');
+Route::delete('cards/{card}', 'CardController@delete');
+Route::get('user_cards', 'CardController@getUserCards');
+Route::post('uploading-photos', 'CardController@uploadPhoto');
+
+Route::get('client_ad', [ClientAnnouncementController::class, 'index']);
+Route::get('cards', [CardController::class, 'index']);
+
+//api проверяет, является ли клиентом текущий пользователь
 Route::get('is_client', 'App\Http\Controllers\ClientController@isClient');
 
 //api по счетчикам
-Route::resource('meters',MeterController::class)->except(['create', 'edit']);
+Route::resource('meters', MeterValueController::class)->except(['create', 'edit']);
 
 //api вывода всех счетчиков по текущему пользователю
-Route::get('auth_meters',function(){
-        $meters = Meter::query()
-            ->join('months', 'months.id', '=', 'meters.month')
-            ->where('user_id', '=', Auth::id())
-            ->get();
-    return response()->json($meters);
-})->middleware('auth');
+Route::get('auth_meters','App\Http\Controllers\Meters\MeterController@showAuthClient')->middleware('auth');
+
+Route::get('client_meters', [MeterController::class, 'index']);
 
 //api вывода  текущего пользователя
 Route::get('auth_user', function () {
@@ -52,4 +54,8 @@ Route::get('auth_user', function () {
 })->middleware('auth');
 
 Route::get('/employees', [EmployeeAPIController::class, 'index']);
+Route::get('/employees/{employee}', [EmployeeAPIController::class, 'show']);
+Route::delete('/employees/{employee}', [EmployeeAPIController::class, 'destroy']);
+Route::get('/houses', [HouseController::class, 'index']);
+
 

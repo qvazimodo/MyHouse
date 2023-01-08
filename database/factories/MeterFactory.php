@@ -2,14 +2,19 @@
 
 namespace Database\Factories;
 
+use App\Models\Client;
+use App\Models\Meter;
 use Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use function Symfony\Component\Translation\t;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Meter>
  */
 class MeterFactory extends Factory
 {
+    private array $parentIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
     /**
      * Define the model's default state.
      *
@@ -19,17 +24,14 @@ class MeterFactory extends Factory
     {
         $faker = Faker\Factory::create('ru_Ru');
         $type = [
-            'hot_water', 'cold_water', 'electricity', 'heat'
+            'горячая вода', 'холодная вода', 'электричество', 'тепловая энергия', 'газ'
         ];
         $month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-
+        $number = [1111111, 2222222, 3333333, 4444444, 5555555, 6666666, 7777777, 8888888];
         return [
-            'user_id' => $faker->numberBetween(1, 100),
-            'meter_id' => $faker->numberBetween(1, 100),
+            'client_id' => Client::factory(),
             'type' => $type[array_rand($type)],
-            'number' => $faker->numberBetween(1000, 9000),
-            'month' => $month[array_rand($month)],
-            'value' => $faker->numberBetween(100, 900),
+            'number' => $number[array_rand($number)],
             'created_at' => now(),
             'updated_at' => now(),
         ];

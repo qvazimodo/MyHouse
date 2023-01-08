@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Collapse, Button, Form, Input, Select, Typography, Divider, Table } from 'antd';
+import { Collapse, App, Button, Form, Input, Select, Typography, Divider, Table } from 'antd';
+import {AUTH_METERS_API_URL, AUTH_USER_API_URL} from "../helpers/API";
 
 const { Panel } = Collapse;
 const { Text } = Typography;
+//const { message } = App.useApp();
 
 const columns = [
     {
@@ -19,8 +21,8 @@ const columns = [
     },
     {
         title: 'Месяц ввода показаний',
-        dataIndex: 'month',
-        key: 'month',
+        dataIndex: 'name',
+        key: 'name',
         render: (text) => <p>{text}</p>,
     },
     {
@@ -41,7 +43,7 @@ class MetersForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            type: 'cold_water',
+            type: 'холодная вода',
             number: '',
             now: '',
             userId: '',
@@ -56,24 +58,25 @@ class MetersForm extends React.Component {
     componentDidMount() {
         /* Код get запроса для получения user_id */
 
-        fetch('http://localhost/api/auth_user')
+        fetch(AUTH_USER_API_URL)
             .then(response => response.json())
                 .catch(e => console.log(e))
             .then(data => this.state.userId = data.id);
 
         /* Получение информации по счетчикам пользователя */
 
-        fetch('http://localhost/api/auth_meters')
+        fetch(AUTH_METERS_API_URL)
             .then(response => response.json())
                 .catch(e => console.log(e))
             .then( (data) => {
-                for (let item in data) {
 
-                    data[item].key = +item + 1;
-                    this.setState(prevState => ({
-                        info: [...prevState.info, data[item]]
+                for (let item in data.data) {
+                   data.data[item].key = +item + 1;
+                   this.setState(prevState => ({
+                        info: [...prevState.info, data.data[item]]
                     }))
                 }
+
             });
 
     }
@@ -105,12 +108,13 @@ class MetersForm extends React.Component {
             })
 
         alert("Данные приняты");
+        //message.success('Данные приняты!');
 
 
         //TODO Разобраться с функцией очистки полей формы из AntDesign, подключить её
 
         this.setState({
-            type: 'cold_water',
+            type: 'холодная вода',
             number: '',
             now: '',
             month: '1',
@@ -159,24 +163,28 @@ class MetersForm extends React.Component {
                             <Form.Item label="Выберите счетчик">
                                 <Select
                                     name="type"
-                                    defaultValue="cold_water"
+                                    defaultValue="холодная вода"
                                     onChange={this.typeChange}
                                     options={[
                                         {
-                                            value: 'cold_water',
+                                            value: 'холодная вода',
                                             label: 'Счетчик холодной воды',
                                         },
                                         {
-                                            value: 'hot_water',
+                                            value: 'горячая вода',
                                             label: 'Счетчик горячей воды',
                                         },
                                         {
-                                            value: 'heat',
+                                            value: 'газ',
                                             label: 'Счетчик газа',
                                         },
                                         {
-                                            value: 'electricity',
+                                            value: 'электричество',
                                             label: 'Счетчик электричества',
+                                        },
+                                        {
+                                            value: 'тепловая энергия',
+                                            label: 'Счетчик тепла',
                                         },
                                     ]}
                                 />

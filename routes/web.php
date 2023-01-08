@@ -47,6 +47,10 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/test', function () {
-    return view('test');
-});
+Route::get('/announcement', function () {
+    return view('announcement');
+})->name('announcement');
+
+Route::get('/usercards', function () {
+    return view('usercards');
+})->name('usercards');

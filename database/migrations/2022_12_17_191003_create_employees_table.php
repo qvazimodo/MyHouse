@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable(false);
-            $table->string('profession', 20);
+            $table->enum('held_position', ['директор', 'бухгалтер', 'мастер', 'электрик', 'сантехник', 'дворник', 'уборщица']);
             $table->timestamps();
         });
     }

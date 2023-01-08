@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('months', function (Blueprint $table) {
             $table->id();
-            $table->string('month');
-            $table->timestamps();
+            $table->string('name');
         });
     }
 
