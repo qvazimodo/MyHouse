@@ -50,3 +50,7 @@ Route::get('/about', function () {
 Route::get('/announcement', function () {
     return view('announcement');
 })->name('announcement');
+
+Route::get('/usercards', function () {
+    return view('usercards');
+})->name('usercards');

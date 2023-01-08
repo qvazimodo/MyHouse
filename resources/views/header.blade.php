@@ -42,6 +42,7 @@
                                 @csrf
                             </form> </li>
                         <li><a class="dropdown-item" href="{{ route('userProfile') }}">Мой профиль</a></li>
+                        <li><a class="dropdown-item" href="{{ route('usercards') }}">Мои объявления</a></li>
                     </ul>
                 </li>
             @endguest

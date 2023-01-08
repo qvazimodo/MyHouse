@@ -23,6 +23,7 @@ import About from "./components/About";
 import ListCards from "./components/ListCards/ListCards";
 import Video from "./components/Video";
 import {EmployeesList} from "./components/admin/EmployeesList";
+import UserCards from "./components/UserCards";
 
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
@@ -44,6 +45,11 @@ if (document.getElementById('meters')) {
 if (document.getElementById('reviews')) {
     const root = createRoot(document.getElementById('reviews'));
     root.render(<Reviews />);
+}
+
+if (document.getElementById('usercards')){
+    const root=createRoot(document.getElementById('usercards'));
+    root.render(<UserCards/>);
 }
 
 if (document.getElementById('watch')) {
@@ -69,6 +75,7 @@ if (document.getElementById('employees-list')){
     const root=createRoot(document.getElementById('employees-list'));
     root.render(<EmployeesList/>);
 }
+
 
 
 

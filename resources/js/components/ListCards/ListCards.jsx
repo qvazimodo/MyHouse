@@ -36,17 +36,18 @@ const ListCards = () => {
         fetchEmployees(CARDS_API_URL)
     }, [])
 
-    useEffect(() => {
-        let cardList = [];
-        for (let cards of employeesList){
-            for (let card of cards.cards){
-               setData(cardList = [...cardList, card])
-            }
-        }
-        setData(cardList)
-    }, [employeesList]);
 
-    console.log(data)
+    useEffect(() => {
+        setData(employeesList.map(item => {
+            return {
+                key: item.id,
+                title: item.title,
+                description: item.description,
+                price: item.price,
+                client_id: item.client_id,
+            }
+        }))
+    }, [employeesList]);
 
 
     const fetchEmployees = (page) => {
@@ -57,7 +58,7 @@ const ListCards = () => {
             .then(result => {
                 setEmployeesList(result.data)
                 setTotalPages(result.meta.total)
-                // setPageSize(result.meta.per_page)
+                setPageSize(result.meta.per_page)
                 setLinks(result.links)
                 setLoading(false)
             });
@@ -150,7 +151,7 @@ const ListCards = () => {
                 dataSource={data}
                 renderItem={(item) => (
                     <List.Item>
-                        <Card title={`Заголовок: ${item.title} client_id: ${item.client_id}`}>Номер объявления: {item.id} <br/><br/> Текст: {item.description}<br/><br/>Цена: {item.price}$</Card>
+                        <Card title={`Заголовок: ${item.title} client_id: ${item.client_id}`}>Номер объявления: {item.key} <br/><br/> Текст: {item.description}<br/><br/>Цена: {item.price}$</Card>
                     </List.Item>
                 )}
             />
