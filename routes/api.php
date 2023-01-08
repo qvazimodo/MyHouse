@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\API\MeterValueController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Admin\EmployeeAPIController;
 use App\Http\Controllers\API\HouseController;
 use App\Http\Controllers\API\CardController;
-//use App\Http\Controllers\Meters\MeterController;
 use \App\Http\Controllers\API\ClientAnnouncementController;
 use \App\Http\Controllers\API\MeterController;
 
@@ -40,7 +40,7 @@ Route::get('cards', [CardController::class, 'index']);
 Route::get('is_client', 'App\Http\Controllers\ClientController@isClient');
 
 //api по счетчикам
-Route::resource('meters',MeterController::class)->except(['create', 'edit']);
+Route::resource('meters', MeterValueController::class)->except(['create', 'edit']);
 
 //api вывода всех счетчиков по текущему пользователю
 Route::get('auth_meters','App\Http\Controllers\Meters\MeterController@showAuthClient')->middleware('auth');

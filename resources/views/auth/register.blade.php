@@ -70,18 +70,16 @@
                </div>
 
                <div class="register-element">
+                   <label for="phone" class="register-txt">{{ __('Номер телефона') }}</label>
+                   <input id="phone" type="phone" class="register-input @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="email">
 
-                   <div class="form-check ">
-                       <label for="isClient" class="register-txt ">{{ __('Клиент') }}</label>
-                       <input id="isClient" name="is_client"
-                              type="checkbox" value="1" class="form-check-input" checked>
+                   @error('phone')
+                   <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                   @enderror
+                   <div class="col-md-6">
 
-                   </div>
-
-                   <div class="form-check">
-                       <input id="isEmployee" name="is_employee"
-                              type="checkbox" value="1" class="form-check-input">
-                       <label for="isEmployee" class="register-txt">{{ __('Рабочий персонал') }}</label>
                    </div>
                </div>
 

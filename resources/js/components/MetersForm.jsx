@@ -114,7 +114,7 @@ class MetersForm extends React.Component {
         //TODO Разобраться с функцией очистки полей формы из AntDesign, подключить её
 
         this.setState({
-            type: 'cold_water',
+            type: 'холодная вода',
             number: '',
             now: '',
             month: '1',

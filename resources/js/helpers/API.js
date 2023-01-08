@@ -14,3 +14,6 @@ export const AUTH_USER_API_URL = API_URL + "/api/auth_user";
 // маршрут получения всех счетчиков текущего пользователя
 export const AUTH_METERS_API_URL = API_URL + "/api/client_meters";
 
+//маршрут передачи показаний счетчика методом POST
+export const METER_VALUE_API_URL = API_URL + "/api/meters";
+
