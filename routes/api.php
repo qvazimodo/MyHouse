@@ -1,13 +1,13 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Admin\EmployeeAPIController;
 use App\Http\Controllers\API\HouseController;
 use App\Http\Controllers\API\CardController;
 use App\Http\Controllers\Meters\MeterController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\API\ClientAnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +31,10 @@ Route::put('cards/{card}','CardController@update');
 Route::delete('cards/{card}', 'CardController@delete');
 Route::get('user_cards', 'CardController@getUserCards');
 Route::post('uploading-photos', 'CardController@uploadPhoto');
-//api проверят является ли клиентом текущий пользователь
+
+Route::get('client_ad', [ClientAnnouncementController::class, 'index']);
+
+//api проверяет, является ли клиентом текущий пользователь
 Route::get('is_client', 'App\Http\Controllers\ClientController@isClient');
 
 //api по счетчикам
