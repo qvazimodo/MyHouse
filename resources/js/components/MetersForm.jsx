@@ -41,7 +41,7 @@ class MetersForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            type: 'cold_water',
+            type: 'холодная вода',
             number: '',
             now: '',
             userId: '',
@@ -159,24 +159,28 @@ class MetersForm extends React.Component {
                             <Form.Item label="Выберите счетчик">
                                 <Select
                                     name="type"
-                                    defaultValue="cold_water"
+                                    defaultValue="холодная вода"
                                     onChange={this.typeChange}
                                     options={[
                                         {
-                                            value: 'cold_water',
+                                            value: 'холодная вода',
                                             label: 'Счетчик холодной воды',
                                         },
                                         {
-                                            value: 'hot_water',
+                                            value: 'горячая вода',
                                             label: 'Счетчик горячей воды',
                                         },
                                         {
-                                            value: 'heat',
+                                            value: 'газ',
                                             label: 'Счетчик газа',
                                         },
                                         {
-                                            value: 'electricity',
+                                            value: 'электричество',
                                             label: 'Счетчик электричества',
+                                        },
+                                        {
+                                            value: 'тепловая энергия',
+                                            label: 'Счетчик тепла',
                                         },
                                     ]}
                                 />

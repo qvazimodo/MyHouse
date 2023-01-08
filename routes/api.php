@@ -38,8 +38,6 @@ Route::get('is_client', 'App\Http\Controllers\ClientController@isClient');
 Route::resource('meters',MeterController::class)->except(['create', 'edit']);
 
 //api вывода всех счетчиков по текущему пользователю
-
-
 Route::get('auth_meters','App\Http\Controllers\Meters\MeterController@showAuthClient')->middleware('auth');
 
 //api вывода  текущего пользователя
