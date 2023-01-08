@@ -20,11 +20,6 @@ class Meter extends Model
 
     public $timestamps = false;
 
-    public function client(): BelongsTo
-    {
-        return $this->belongsTo(Client::class);
-    }
-
     public function clientUser(): HasOneThrough
     {
         return $this->hasOneThrough(
@@ -37,10 +32,13 @@ class Meter extends Model
         );
     }
 
-
-
-    public function meterValue():HasMany
+    public function meterValues():HasMany
     {
-        return $this->hasMany(MeterValue::class);
+        return $this->hasMany(MeterValue::class, 'meter_id', 'id');
+    }
+
+    public function client():BelongsTo
+    {
+        return $this->belongsTo(Client::class, 'id', 'client_id');
     }
 }

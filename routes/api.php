@@ -6,8 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Admin\EmployeeAPIController;
 use App\Http\Controllers\API\HouseController;
 use App\Http\Controllers\API\CardController;
-use App\Http\Controllers\Meters\MeterController;
+//use App\Http\Controllers\Meters\MeterController;
 use \App\Http\Controllers\API\ClientAnnouncementController;
+use \App\Http\Controllers\API\MeterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('cards', 'CardController@index');
+//Route::get('cards', 'CardController@index');
 Route::get('cards/{card}', 'CardController@show');
 Route::post('cards', 'CardController@store');
 Route::put('cards/{card}','CardController@update');
@@ -33,6 +34,7 @@ Route::get('user_cards', 'CardController@getUserCards');
 Route::post('uploading-photos', 'CardController@uploadPhoto');
 
 Route::get('client_ad', [ClientAnnouncementController::class, 'index']);
+Route::get('cards', [CardController::class, 'index']);
 
 //api проверяет, является ли клиентом текущий пользователь
 Route::get('is_client', 'App\Http\Controllers\ClientController@isClient');
@@ -44,6 +46,8 @@ Route::resource('meters',MeterController::class)->except(['create', 'edit']);
 
 
 Route::get('auth_meters','App\Http\Controllers\Meters\MeterController@showAuthClient')->middleware('auth');
+
+Route::get('client_meters', [MeterController::class, 'index']);
 
 //api вывода  текущего пользователя
 Route::get('auth_user', function () {
