@@ -65,11 +65,10 @@ class MetersForm extends React.Component {
 
         /* Получение информации по счетчикам пользователя */
 
-        fetch('http://localhost/api/client_meters')
+        fetch(AUTH_METERS_API_URL)
             .then(response => response.json())
                 .catch(e => console.log(e))
             .then( (data) => {
-                console.log(data.data);
 
                 for (let item in data.data) {
                    data.data[item].key = +item + 1;
@@ -77,7 +76,7 @@ class MetersForm extends React.Component {
                         info: [...prevState.info, data.data[item]]
                     }))
                 }
-                console.log(this.state.info);
+
             });
 
     }
