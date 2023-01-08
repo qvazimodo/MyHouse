@@ -150,7 +150,7 @@ const ListCards = () => {
                 dataSource={data}
                 renderItem={(item) => (
                     <List.Item>
-                        <Card title={`Заголовок: ${item.title} client_id: ${item.client_id}`}>Номер объявления: {item.id} <br/><br/> Текст: {item.description}// <br/><br/>Цена: {item.price}</Card>
+                        <Card title={`Заголовок: ${item.title} client_id: ${item.client_id}`}>Номер объявления: {item.id} <br/><br/> Текст: {item.description}<br/><br/>Цена: {item.price}$</Card>
                     </List.Item>
                 )}
             />
