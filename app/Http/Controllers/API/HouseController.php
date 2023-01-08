@@ -12,6 +12,6 @@ class HouseController extends Controller
 {
     public function index(): ResourceCollection
     {
-        return  HouseResource::collection(House::with('house_address')->paginate(3));
+        return  HouseResource::collection(House::with('houseAddress', 'houseDescription')->paginate(3));
     }
 }

@@ -12,14 +12,14 @@ class House extends Model
 
     protected $fillable = ['house_address_id', 'houses_description_id'];
 
-    public function house_address(): HasOne
+    public function houseAddress(): HasOne
     {
         return $this->hasOne(HouseAddress::class, 'id');
     }
 
-    public function house_description(): HasOne
+    public function houseDescription(): HasOne
     {
-        return $this->hasOne(HouseDescription::class);
+        return $this->hasOne(HouseDescription::class, 'id');
     }
 
     public function apartment(): HasOne
