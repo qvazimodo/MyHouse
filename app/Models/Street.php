@@ -15,6 +15,6 @@ class Street extends Model
 
     public function house_addresses():HasMany
     {
-        return $this->hasMany(HouseAddress::class);
+        return $this->hasMany(HouseAddress::class, 'street_id', 'id');
     }
 }

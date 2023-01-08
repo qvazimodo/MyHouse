@@ -13,17 +13,17 @@ class HouseAddress extends Model
     protected $fillable = ['street_id', 'house_number_id'];
     public $timestamps = false;
 
-    public function house_number(): BelongsTo
+    public function houseNumber(): BelongsTo
     {
-        return $this->belongsTo(HouseNumber::class);
+        return $this->belongsTo(HouseNumber::class, 'id', 'house_number_id');
     }
 
     public function street(): BelongsTo
     {
-        return $this->belongsTo(Street::class);
+        return $this->belongsTo(Street::class, 'id','street_id');
     }
 
     public function house():BelongsTo{
-        return $this->belongsTo(House::class);
+        return $this->belongsTo(House::class, 'house_address_id');
     }
 }
