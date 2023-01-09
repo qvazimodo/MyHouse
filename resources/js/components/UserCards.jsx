@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card, Form, Input, List, Typography} from "antd";
-import {MYCARDS_API_URL} from "../helpers/API";
+import {AUTH_USER_API_URL, CARDS2_VALUE_API_URL, MYCARDS_API_URL} from "../helpers/API";
 
 const {Text} = Typography;
 
@@ -65,7 +65,7 @@ const UserCards = () => {
     //-----------------------------------Форма
 
     useEffect(() => {
-        fetch('http://localhost/api/auth_user')
+        fetch(AUTH_USER_API_URL)
             .then(response => response.json())
             .catch(e => console.log(e))
             .then(data => setArgument({
@@ -79,7 +79,7 @@ const UserCards = () => {
     const sendForm = (e) => {
 
             e.preventDefault();
-            fetch(`http://127.0.0.1/api/cards`, {
+            fetch(CARDS2_VALUE_API_URL, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
