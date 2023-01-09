@@ -48,7 +48,6 @@ const UserCards = () => {
         }))
     }, [employeesList]);
 
-
     const fetchEmployees = (page) => {
         setLoading(true)
         fetch(page)
@@ -77,7 +76,6 @@ const UserCards = () => {
 
     }, [])
 
-
     const sendForm = (e) => {
 
             e.preventDefault();
@@ -93,7 +91,7 @@ const UserCards = () => {
                     title: title,
                     price: +price,
                     description: description,
-                    client_id: +argument,
+                    user_id: argument.userId,
                 })
             })
                 .then(response => response.json())
