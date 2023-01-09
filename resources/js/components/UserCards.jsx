@@ -91,7 +91,7 @@ const UserCards = () => {
                     title: title,
                     price: +price,
                     description: description,
-                    user_id: argument.userId,
+                    client_id: argument.userId,
                 })
             })
                 .then(response => response.json())
