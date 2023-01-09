@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class HouseDescription extends Model
 {
@@ -22,8 +22,8 @@ class HouseDescription extends Model
             'apartments_amount',
         ];
 
-    public function house():BelongsTo
+    public function house():HasOne
     {
-        return $this->belongsTo(House::class);
+        return $this->hasOne(House::class);
     }
 }

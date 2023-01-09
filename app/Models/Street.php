@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Street extends Model
@@ -13,8 +14,13 @@ class Street extends Model
     protected $fillable=['name'];
     public $timestamps = false;
 
-    public function house_addresses():HasMany
+    public function houseNumberStreets():HasMany
     {
-        return $this->hasMany(HouseAddress::class, 'street_id', 'id');
+        return $this->hasMany(HouseNumberStreet::class, 'street_id', 'id');
+    }
+
+    public function houseNumbers():BelongsToMany
+    {
+        return $this->belongsToMany(HouseNumber::class);
     }
 }

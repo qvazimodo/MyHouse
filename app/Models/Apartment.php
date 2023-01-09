@@ -15,7 +15,7 @@ class Apartment extends Model
 
     public function house(): BelongsTo
     {
-        return $this->belongsTo(House::class, 'house_id');
+        return $this->belongsTo(House::class);
     }
 
     public function client(): HasOne

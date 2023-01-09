@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class HouseAddress extends Model
+class HouseNumberStreet extends Model
 {
     use HasFactory;
 
@@ -23,7 +24,8 @@ class HouseAddress extends Model
         return $this->belongsTo(Street::class, 'id','street_id');
     }
 
-    public function house():BelongsTo{
-        return $this->belongsTo(House::class, 'house_address_id');
+    public function house(): HasOne
+    {
+        return $this->hasOne(House::class);
     }
 }

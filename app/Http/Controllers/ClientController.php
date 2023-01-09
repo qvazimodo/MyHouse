@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\House;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
@@ -12,14 +13,10 @@ class ClientController extends Controller
 {
     public function index():View
     {
-        $clients = Client::orderBy('updated_at', 'desc')->paginate(20);
+           $clients = Client::with(['user', 'apartment'])->orderBy('updated_at', 'desc')->paginate(5);
 
-        //$clients = User::query()->where('is_client', '=','1')->client();
-//        $clients = User::query()
-//            ->join('clients', 'users.id', '=', 'clients.user_id')
-//            ->where('is_client', '=','1')
-//            ->orderBy('updated_at', 'desc')
-//            ->paginate(20);
+/*        $clients = House::with(['apartments', 'houseDescription'])->paginate(10);*/
+
         return view('client.index')->with('clients', $clients);
     }
 
