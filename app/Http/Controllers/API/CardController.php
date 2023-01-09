@@ -24,7 +24,7 @@ class CardController extends Controller
 
     public function store(Request $request): JsonResponse
     {
-        if ((Client::where('user_id', $request->input('user_id'))->get())->isEmpty()) {
+        if ((Client::where('user_id', $request->input('client_id'))->get())->isEmpty()) {
             return response()->json("Нет прав", 403);
         } else {
             $card = Card::create($request->all());
