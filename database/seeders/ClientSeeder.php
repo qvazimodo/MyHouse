@@ -8,6 +8,7 @@ use App\Models\Client;
 use App\Models\House;
 use App\Models\HouseAddress;
 use App\Models\HouseDescription;
+use App\Models\HouseNumberStreet;
 use App\Models\Meter;
 use App\Models\MeterValue;
 use App\Models\Photo;
@@ -54,7 +55,7 @@ class ClientSeeder extends Seeder
         ))
             ->has(Apartment::factory()                     //количество квартир у клиента
                 ->has(House::factory()                     //дом, в котором расположена квартира клиента
-                    ->has(HouseAddress::factory())         //адрес дома
+                    ->has(HouseNumberStreet::factory())         //адрес дома
                     ->has(HouseDescription::factory()      //описание (параметры) дома
                     )
                 )

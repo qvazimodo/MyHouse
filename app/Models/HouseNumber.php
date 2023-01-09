@@ -13,7 +13,7 @@ class HouseNumber extends Model
     protected $fillable = ['value'];
     public $timestamps = false;
 
-    public function houseAddresses():HasMany{
-        return $this->hasMany(HouseAddress::class, 'house_number_id', 'id');
+    public function houseNumberStreets():HasMany{
+        return $this->hasMany(HouseNumberStreet::class, 'house_number_id', 'id');
     }
 }

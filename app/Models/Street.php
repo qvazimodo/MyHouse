@@ -13,8 +13,8 @@ class Street extends Model
     protected $fillable=['name'];
     public $timestamps = false;
 
-    public function house_addresses():HasMany
+    public function houseNumberStreets():HasMany
     {
-        return $this->hasMany(HouseAddress::class, 'street_id', 'id');
+        return $this->hasMany(HouseNumberStreet::class, 'street_id', 'id');
     }
 }
