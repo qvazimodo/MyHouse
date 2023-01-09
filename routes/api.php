@@ -1,14 +1,15 @@
 <?php
 
+use App\Http\Controllers\API\Admin\EmployeeAPIController;
+use App\Http\Controllers\API\Admin\HouseController;
+
+use App\Http\Controllers\API\CardController;
+use App\Http\Controllers\API\ClientAnnouncementController;
+use App\Http\Controllers\API\MeterController;
 use App\Http\Controllers\API\MeterValueController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\Admin\EmployeeAPIController;
-use App\Http\Controllers\API\HouseController;
-use App\Http\Controllers\API\CardController;
-use \App\Http\Controllers\API\ClientAnnouncementController;
-use \App\Http\Controllers\API\MeterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,7 @@ Route::get('auth_user', function () {
 Route::get('/employees', [EmployeeAPIController::class, 'index']);
 Route::get('/employees/{employee}', [EmployeeAPIController::class, 'show']);
 Route::delete('/employees/{employee}', [EmployeeAPIController::class, 'destroy']);
-Route::get('/houses', [HouseController::class, 'index']);
+//Route::get('/houses', [HouseController::class, 'index']);
 
+Route::resource('/houses', HouseController::class);
 

@@ -54,3 +54,7 @@ Route::get('/announcement', function () {
 Route::get('/usercards', function () {
     return view('usercards');
 })->name('usercards');
+
+Route::get('/serviced_houses', function (){
+    return view('serviced_houses');
+})->name('serviced_houses');

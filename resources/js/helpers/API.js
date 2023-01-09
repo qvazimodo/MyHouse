@@ -6,6 +6,7 @@ export const CARDS_API_URL = API_URL + "/api/cards";
 
 export const MYCARDS_API_URL = API_URL + "/api/client_ad";
 
+//
 export const HOUSES_API_URL = API_URL + "/api/houses";
 
 // маршрут получения текущего пользователя
@@ -16,4 +17,5 @@ export const AUTH_METERS_API_URL = API_URL + "/api/client_meters";
 
 //маршрут передачи показаний счетчика методом POST
 export const METER_VALUE_API_URL = API_URL + "/api/meters";
+
 

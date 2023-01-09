@@ -33,12 +33,12 @@ class House extends Model
 
     public function street():HasOneThrough
     {
-        return $this->hasOneThrough(Street::class, HouseNumberStreet::class, 'street_id','id','house_address_id', 'id');
+        return $this->hasOneThrough(Street::class, HouseNumberStreet::class, 'street_id','id','house_number_street_id', 'id');
     }
 
     public function houseNumber():HasOneThrough
     {
-        return $this->hasOneThrough(HouseNumber::class, HouseNumberStreet::class, 'house_number_id', 'id', 'house_address_id', 'id');
+        return $this->hasOneThrough(HouseNumber::class, HouseNumberStreet::class, 'house_number_id', 'id', 'house_number_street_id', 'id');
     }
 
 }
