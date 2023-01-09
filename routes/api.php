@@ -25,16 +25,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::get('cards', 'CardController@index');
-Route::get('cards/{card}', 'CardController@show');
-Route::post('cards', 'CardController@store');
-Route::put('cards/{card}','CardController@update');
-Route::delete('cards/{card}', 'CardController@delete');
+Route::apiResource('cards', CardController::class);
+
 Route::get('user_cards', 'CardController@getUserCards');
 Route::post('uploading-photos', 'CardController@uploadPhoto');
 
 Route::get('client_ad', [ClientAnnouncementController::class, 'index']);
-Route::get('cards', [CardController::class, 'index']);
+
 
 //api проверяет, является ли клиентом текущий пользователь
 Route::get('is_client', 'App\Http\Controllers\ClientController@isClient');
