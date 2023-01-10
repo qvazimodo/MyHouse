@@ -86,6 +86,7 @@ class MetersForm extends React.Component {
 
     sendForm = (e) => {
         e.preventDefault();
+        //console.log(this.state);
         fetch(METER_VALUE_API_URL, {
             method: 'POST',
             headers: {
@@ -98,13 +99,13 @@ class MetersForm extends React.Component {
                 user_id: this.state.userId,
                 value: this.state.now,
                 type: this.state.type,
-                name: this.state.month,
+                month: this.state.month,
             })
         })
             .then(response => response.json())
                 .catch(e => console.log(e))
             .then((data) => {
-                console.log(data);
+               // console.log(data);
                 data.key = this.state.info.length + 1;
                 this.setState(prevState => ({
                     info: [...prevState.info, data]
