@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Collapse, App, Button, Form, Input, Select, Typography, Divider, Table } from 'antd';
-import {AUTH_METERS_API_URL, AUTH_USER_API_URL} from "../helpers/API";
+import {AUTH_METERS_API_URL, AUTH_USER_API_URL, METER_VALUE_API_URL} from "../helpers/API";
 
 const { Panel } = Collapse;
 const { Text } = Typography;
+const { Option } = Select;
 //const { message } = App.useApp();
 
 const columns = [
@@ -71,6 +72,7 @@ class MetersForm extends React.Component {
             .then( (data) => {
 
                 for (let item in data.data) {
+
                    data.data[item].key = +item + 1;
                    this.setState(prevState => ({
                         info: [...prevState.info, data.data[item]]
@@ -81,26 +83,28 @@ class MetersForm extends React.Component {
 
     }
 
+
     sendForm = (e) => {
         e.preventDefault();
-        fetch('http://127.0.0.1/api/meters/', {
+        fetch(METER_VALUE_API_URL, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             },
             body: JSON.stringify({
                 number: this.state.number,
                 user_id: this.state.userId,
                 value: this.state.now,
                 type: this.state.type,
-                month: this.state.month,
+                name: this.state.month,
             })
         })
             .then(response => response.json())
                 .catch(e => console.log(e))
             .then((data) => {
+                console.log(data);
                 data.key = this.state.info.length + 1;
                 this.setState(prevState => ({
                     info: [...prevState.info, data]
@@ -163,31 +167,15 @@ class MetersForm extends React.Component {
                             <Form.Item label="Выберите счетчик">
                                 <Select
                                     name="type"
-                                    defaultValue="холодная вода"
                                     onChange={this.typeChange}
-                                    options={[
-                                        {
-                                            value: 'холодная вода',
-                                            label: 'Счетчик холодной воды',
-                                        },
-                                        {
-                                            value: 'горячая вода',
-                                            label: 'Счетчик горячей воды',
-                                        },
-                                        {
-                                            value: 'газ',
-                                            label: 'Счетчик газа',
-                                        },
-                                        {
-                                            value: 'электричество',
-                                            label: 'Счетчик электричества',
-                                        },
-                                        {
-                                            value: 'тепловая энергия',
-                                            label: 'Счетчик тепла',
-                                        },
-                                    ]}
-                                />
+                                >
+                                    {
+                                        this.state.info.map((item, index) => {
+                                            return <Option value={item.type} key={index}>{item.type}</Option>
+                                        })
+                                    }
+
+                                </Select>
                             </Form.Item>
                             <Form.Item label="Заводской номер счетчика">
                                 <Input name="number" value={this.state.number} onChange={this.valueInputChange} />
