@@ -5,7 +5,7 @@
     </div>
     <div class="footer-center">
         <a href="about">О нас</a><br><br>
-        <a href="#">Дома</a><br><br>
+        <a href="{{ route('serviced_houses') }}">Дома</a><br><br>
         <a href="#">Тарифы и услуги</a><br><br>
         <a href="#">Контакты</a>
     </div>

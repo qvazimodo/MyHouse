@@ -140,7 +140,7 @@
 }
 
 .video-block {
-    max-width: 600px;
+    max-width: 270px;
     width: 100%;
     height: 330px;
     /*background: url('/storage/app/public/images/video.png') center / cover no-repeat;*/
@@ -264,6 +264,7 @@
     font-size: 14px;
     line-height: 27px;
     display: flex;
+    align-items: center;
     justify-content: center;
     border-radius: 10px;
 }
