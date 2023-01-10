@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedSmallInteger('floor')->default(1)->comment('номер этажа');
             $table->unsignedSmallInteger('number')->default(1)->comment('номер квартиры');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -31,6 +32,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_apartments');
+        Schema::table('apartments', function (Blueprint $table){
+            $table->dropSoftDeletes();
+        });
+        Schema::dropIfExists('apartments');
     }
 };

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('house_numbers', function (Blueprint $table) {
             $table->id();
             $table->string('value')->nullable(false)->comment('номер дома');
+            $table->softDeletes();
         });
     }
 
@@ -26,6 +27,9 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::table('house_numbers', function (Blueprint $table){
+            $table->dropSoftDeletes();
+        });
         Schema::dropIfExists('house_numbers');
     }
 };

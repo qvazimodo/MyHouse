@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('floors_amount')->default(1)->nullable(false)->comment('количество этажей');
             $table->integer('apartments_amount')->default(1)->nullable(false)->comment('количество квартир');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -34,6 +35,9 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::table('house_descriptions', function(Blueprint $table){
+            $table->dropSoftDeletes();
+        });
         Schema::dropIfExists('house_descriptions');
     }
 };

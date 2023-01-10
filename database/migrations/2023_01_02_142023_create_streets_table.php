@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('name')
                 ->nullable(false)
                 ->comment('название улицы');
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +28,9 @@ return new class extends Migration {
      */
     public function down()
     {
+        Schema::table('streets', function (Blueprint $table){
+            $table->dropSoftDeletes();
+        });
         Schema::dropIfExists('streets');
     }
 };

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable(false);
             $table->enum('held_position', ['директор', 'бухгалтер', 'мастер', 'электрик', 'сантехник', 'дворник', 'уборщица']);
             $table->timestamps();
+            $table->softDeletes()->default(null);
         });
     }
 
@@ -28,6 +29,9 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::table("users", function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
         Schema::dropIfExists('employees');
     }
 };

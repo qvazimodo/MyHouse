@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('house_number_id')->nullable(false);
             $table->foreign(['house_number_id'])->references('id')->on('house_numbers');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -33,6 +34,7 @@ return new class extends Migration
         Schema::table('house_number_streets', function (Blueprint $table){
             $table->dropForeign(['street_id']);
             $table->dropForeign(['house_number_id']);
+            $table->dropSoftDeletes();
         });
         Schema::dropIfExists('house_addresses');
     }

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->unsignedInteger('width')->default(null);
             $table->unsignedInteger('height')->default(null);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('card_id')->references('id')->on('cards');
         });
@@ -36,6 +37,7 @@ return new class extends Migration
     {
         Schema::table('photos',function (Blueprint $table){
             $table->dropForeign('photos_card_id_foreign');
+            $table->dropSoftDeletes();
         });
         Schema::dropIfExists('photos');
     }

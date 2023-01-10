@@ -21,12 +21,14 @@ return new class extends Migration
                 ->comment('тип счетчика');
             $table->integer('number')->default(0)->comment('заводской номер счетчика');
             $table->timestamps();
+            $table->softDeletes();
 
 
         });
 
         Schema::table('meters', function (Blueprint $table) {
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('restrict');
+            $table->dropSoftDeletes();
         });
         }
 

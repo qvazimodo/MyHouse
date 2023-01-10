@@ -24,13 +24,14 @@ return new class extends Migration {
                         ])->comment('порядковый номер месяца в году');*/
             $table->float('value', 10, 2, true);
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('meter_values', function (Blueprint $table) {
 
             $table->foreign('month_id')->references('id')->on('months')->onDelete('restrict');
             $table->foreign('meter_id')->references('id')->on('meters')->onDelete('restrict');
-
+            $table->dropSoftDeletes();
         });
 
     }

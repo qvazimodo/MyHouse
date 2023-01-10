@@ -20,6 +20,7 @@ return new class extends Migration
             $table->float('price', 10, 2);
             $table->text('description');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('cards', function (Blueprint $table) {
@@ -37,6 +38,7 @@ return new class extends Migration
     {
         Schema::table('cards', function (Blueprint $table) {
             $table->dropForeign(['client_id']);
+            $table->dropSoftDeletes();
         });
         Schema::dropIfExists('cards');
     }

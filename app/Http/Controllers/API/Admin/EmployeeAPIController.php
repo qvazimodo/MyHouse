@@ -68,7 +68,10 @@ class EmployeeAPIController extends Controller
      */
     public function destroy(Employee $employee):JsonResponse
     {
-        $employee->delete();
+        if($employee){
+            $employee->delete();
+        }
+
 //        return response()->json(null, 204);
         return response()->json(null, 204);
     }
