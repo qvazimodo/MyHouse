@@ -56,7 +56,11 @@ const ListCards = () => {
 
     return (
         <div className="container">
+            <h2 className="title-2">Объявления</h2>
             <List
+                style={{
+                    marginBottom: 30
+                }}
                 grid={{
                     gutter: 16,
                     xs: 1,
