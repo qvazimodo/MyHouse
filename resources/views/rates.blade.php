@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <div id="rates"></div>
+          <div id="rates"></div>
 @endsection
 
 @section('footer')
