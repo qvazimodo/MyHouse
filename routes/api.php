@@ -26,9 +26,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('cards', CardController::class);
+Route::apiResource('cards', CardController::class)->middleware('auth');
 
-Route::get('user_cards', 'CardController@getUserCards');
+Route::get('user_cards', [CardController::class, 'getUserCards']);
 Route::post('uploading-photos', 'CardController@uploadPhoto');
 
 Route::get('client_ad', [ClientAnnouncementController::class, 'index']);

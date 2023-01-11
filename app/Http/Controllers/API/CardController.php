@@ -10,6 +10,7 @@ use App\Models\Photo;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -41,6 +42,9 @@ class CardController extends Controller
 
     public function update(Request $request, Card $card): JsonResponse
     {
+        if(!Gate::allows('update-card', $card)){
+            abort(403);
+        }
         $card->update($request->all());
         return response()->json($card, 200);
     }
@@ -84,8 +88,8 @@ class CardController extends Controller
 
     public function getUserCards(Request $request): JsonResponse
     {
-        $userId = $request->input('user_id');
-        $cards = Card::where('user_id', '=', $userId)->get();
+        $clientId = $request->input('client_id');
+        $cards = Card::where('client_id', '=', $clientId)->get();
         return response()->json($cards);
     }
 
