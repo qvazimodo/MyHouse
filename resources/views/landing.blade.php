@@ -11,11 +11,9 @@
 @endsection
 
 @section('content')
-
-
-    <div id="place"></div>
+    <div id="place"></div><hr>
     <div id="watch"></div>
-    <div id="video"></div>
+    <div id="video"></div><hr>
     <div id="reviews"></div>
 
      <div class="content-map">
@@ -27,7 +25,7 @@
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
-     <div id="questions"></div>
+     <div id="questions"></div><hr>
 
     </div>
 
