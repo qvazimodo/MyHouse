@@ -26,6 +26,7 @@ import {EmployeesList} from "./components/admin/EmployeesList";
 import UserCards from "./components/UserCards";
 
 import Contacts from "./components/Contacts";
+import Rates from "./components/Rates";
 
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
@@ -82,6 +83,11 @@ if (document.getElementById('employees-list')){
 if (document.getElementById('contacts')){
     const root=createRoot(document.getElementById('contacts'));
     root.render(<Contacts />);
+}
+
+if (document.getElementById('rates')){
+    const root=createRoot(document.getElementById('rates'));
+    root.render(<Rates />);
 }
 
 

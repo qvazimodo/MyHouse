@@ -8,7 +8,7 @@
             <div class="complex"><a href="about">О нас</a></div>
             <div class="complex"><a href="{{ route('announcement') }}">Объявления</a></div>
             <div class="district"><a href="{{ route('serviced_houses') }}">Дома</a></div>
-            <div class="catalog"><a href="#">Тарифы и услуги</a></div>
+            <div class="catalog"><a href="rates">Тарифы и услуги</a></div>
             @guest
                 @if (Route::has('register'))
                     <div class="ipoteka"><a href="{{ route('register') }}">Регистрация</a></div>

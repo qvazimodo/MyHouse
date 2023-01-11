@@ -47,6 +47,10 @@ Route::get('/about', function () {
     return view('about');
 });
 
+Route::get('/rates', function () {
+    return view('rates');
+});
+
 Route::get('/contacts', function () {
     return view('contacts');
 });
