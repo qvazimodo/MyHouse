@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\MeterResource;
 use App\Models\Meter;
+use App\Models\MeterValue;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
@@ -23,13 +24,17 @@ class MeterController extends Controller
             ->join('months', 'months.id', '=', 'meter_values.month_id')
             ->paginate(10)
         );*/
+       // $lastValue = MeterValue::select('value')->where('parent_id');
+       // dd($lastValueId);
 
         $meters = Meter::query()
-            ->select('number', 'type', 'months.name as name', 'value', 'client_id','parent_id', 'meter_id','month_id')
+            ->select('number',
+                'type', 'months.name as name',
+                'value', 'client_id','parent_id',
+                'meter_id','month_id', 'meter_values.id as id')
+            //->selectSub($lastValue, 'lastValue')
             ->join('meter_values', 'meter_values.meter_id', '=', 'meters.id' )
             ->join('months', 'months.id', '=', 'meter_values.month_id')
-            ->join('clients', 'clients.user_id', '=', 'meters.client_id')
-            ->join('users', 'users.id', '=', 'clients.user_id')
             ->where('client_id', '=', $id)
             ->get();
         //return response()->json($meters);
