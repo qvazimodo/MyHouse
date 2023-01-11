@@ -10,8 +10,6 @@ const Video = () => {
                         allowFullScreen/>
             </div>
         // </div>
-
-
     );
 };
 

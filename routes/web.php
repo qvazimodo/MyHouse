@@ -47,6 +47,10 @@ Route::get('/about', function () {
     return view('about');
 });
 
+Route::get('/contacts', function () {
+    return view('contacts');
+});
+
 Route::get('/announcement', function () {
     return view('announcement');
 })->name('announcement');

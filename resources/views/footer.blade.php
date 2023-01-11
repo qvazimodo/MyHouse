@@ -1,13 +1,16 @@
 <footer class="footer">
     <div class="footer-wrapper">
     <div class="footer-left">
-        <div class="house">MyHouse</div>
+        <div class="top-left">
+            <div class="house"><a href="landing">MyHouse</a></div>
+            <div class="residential">Управляющая Компания</div>
+        </div>
     </div>
     <div class="footer-center">
         <a href="about">О нас</a><br><br>
         <a href="{{ route('serviced_houses') }}">Дома</a><br><br>
         <a href="#">Тарифы и услуги</a><br><br>
-        <a href="#">Контакты</a>
+        <a href="contacts">Контакты</a>
     </div>
     <div class="footer-right">
         Адрес: Наб. реки Фонтанки 10-15<br><br>

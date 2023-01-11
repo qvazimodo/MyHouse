@@ -25,6 +25,8 @@ import Video from "./components/Video";
 import {EmployeesList} from "./components/admin/EmployeesList";
 import UserCards from "./components/UserCards";
 
+import Contacts from "./components/Contacts";
+
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
     root.render(<Questions/>);
@@ -71,9 +73,15 @@ if (document.getElementById('video')) {
     const root = createRoot(document.getElementById('video'));
     root.render(<Video />);
 }
+
 if (document.getElementById('employees-list')){
     const root=createRoot(document.getElementById('employees-list'));
     root.render(<EmployeesList/>);
+}
+
+if (document.getElementById('contacts')){
+    const root=createRoot(document.getElementById('contacts'));
+    root.render(<Contacts />);
 }
 
 
