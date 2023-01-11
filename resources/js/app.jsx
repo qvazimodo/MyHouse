@@ -24,7 +24,7 @@ import ListCards from "./components/ListCards/ListCards";
 import Video from "./components/Video";
 import {EmployeesList} from "./components/admin/EmployeesList";
 import UserCards from "./components/UserCards";
-
+import HousesList from "./components/HousesList";
 import Contacts from "./components/Contacts";
 import Rates from "./components/Rates";
 
@@ -88,6 +88,11 @@ if (document.getElementById('contacts')){
 if (document.getElementById('rates')){
     const root=createRoot(document.getElementById('rates'));
     root.render(<Rates />);
+}
+
+if (document.getElementById('housesList')){
+    const root=createRoot(document.getElementById('housesList'));
+    root.render(<HousesList />);
 }
 
 

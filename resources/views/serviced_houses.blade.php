@@ -5,10 +5,9 @@
 @endsection
 
 @section('content')
-    <div class="container">
-        <h2 class="title-2">Мы обслуживаем дома</h2>
-        <div id="houses-list"></div>
-    </div>
+
+        <div id="housesList"></div>
+
 @endsection
 
 @section('footer')
