@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography } from 'antd';
 
+
 const { Text } = Typography;
 const Contacts = () => {
     return (
@@ -47,7 +48,9 @@ const Contacts = () => {
                 (тел) +7 49679 24254<br />
                 ГУ МО «Государственная жилищная инспекция Московской области»:<br />
                 руководитель Федина Ольга Николаевна (тел) +7 800 5505030,
-                e-mail http://gzhi.mosreg.ru<br /></Text><br />
+                e-mail: vip@housevip.ru<br /></Text><br />
+
+
 
 
     </div>
