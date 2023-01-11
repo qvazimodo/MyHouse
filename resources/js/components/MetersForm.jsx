@@ -40,6 +40,12 @@ const columns = [
     },
 ];
 
+let locale = {
+    emptyText: 'У Вас нет данных по счетчикам, оформите заявку администратору для добавления счетчика',
+};
+
+let meterTypes = new Set();
+
 class MetersForm extends React.Component {
     constructor(props) {
         super(props);
@@ -70,7 +76,7 @@ class MetersForm extends React.Component {
             .then(response => response.json())
                 .catch(e => console.log(e))
             .then( (data) => {
-
+                console.log(data);
                 for (let item in data.data) {
 
                    data.data[item].key = +item + 1;
@@ -86,7 +92,7 @@ class MetersForm extends React.Component {
 
     sendForm = (e) => {
         e.preventDefault();
-        //console.log(this.state);
+        console.log(this.state);
         fetch(METER_VALUE_API_URL, {
             method: 'POST',
             headers: {
@@ -105,8 +111,11 @@ class MetersForm extends React.Component {
             .then(response => response.json())
                 .catch(e => console.log(e))
             .then((data) => {
-               // console.log(data);
+                console.log(data);
                 data.key = this.state.info.length + 1;
+                data.type = this.state.type;
+                data.number = this.state.number;
+                data.name = this.state.month;
                 this.setState(prevState => ({
                     info: [...prevState.info, data]
                 }))
@@ -161,20 +170,29 @@ class MetersForm extends React.Component {
                 <Collapse accordion>
                     <Panel header="Ввести показания счетчиков" key="1" className="cabinet-txt">
                         <Text mark>Показания счетчиков за прошлый период</Text>
-                        <Table columns={columns} dataSource={this.state.info} />
-
+                        <Table columns={columns} dataSource={this.state.info} locale={locale}/>
+                        <Button>Отправить заявку на добавление нового счетчика</Button>
+                        <Divider />
                         <Text mark>Заполните форму для ввода новых показаний</Text>
                         <Form>
                             <Form.Item label="Выберите счетчик">
                                 <Select
                                     name="type"
                                     onChange={this.typeChange}
+                                    notFoundContent="Нет данных по счетчикам"
                                 >
                                     {
+
                                         this.state.info.map((item, index) => {
-                                            return <Option value={item.type} key={index}>{item.type}</Option>
+
+                                            if (!meterTypes.has(item.type)) {
+                                                meterTypes.add(item.type);
+                                                return <Option value={item.type} key={index}>{item.type}</Option>
+                                            }
                                         })
                                     }
+
+
 
                                 </Select>
                             </Form.Item>
