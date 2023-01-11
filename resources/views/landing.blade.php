@@ -25,8 +25,8 @@
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
-     <div id="questions"></div><hr>
-
+     <div id="questions"></div>
+         <hr>
     </div>
 
 @endsection
