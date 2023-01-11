@@ -1,31 +1,53 @@
-import React, {useEffect, useState} from 'react';
-import {EMPLOYEES_API_URL} from '../../helpers/API';
-import {Button, Space, Table} from "antd";
+import React, { useEffect, useState } from 'react';
+import { EMPLOYEES_API_URL } from '../../helpers/API';
+import { Button, Modal, Space, Table } from "antd";
 import ColumnGroup from "antd/es/table/ColumnGroup";
 import Column from "antd/es/table/Column";
 
 export const EmployeesList = () => {
-    const [employeesList, setEmployeesList] = useState([])
-    const [currentPageNumber, setCurrentPageNumber] = useState(1)
-    const [totalPages, setTotalPages] = useState(1);
-    const [pageSize, setPageSize] = useState(5);
-    const [loading, setLoading] = useState(false);
-    const [data, setData] = useState([]);
+    const [ employeesList, setEmployeesList ] = useState( [] )
+    const [ currentPageNumber, setCurrentPageNumber ] = useState( 1 )
+    const [ totalPages, setTotalPages ] = useState( 1 );
+    const [ pageSize, setPageSize ] = useState( 5 );
+    const [ loading, setLoading ] = useState( false );
+    const [ data, setData ] = useState( [] );
 
-    const [links, setLinks] = useState({});
-    const [current, setCurrent] = useState(1);
+    const [ links, setLinks ] = useState( {} );
+    const [ currentId, setCurrentId ] = useState( {} );
 
-    const onPageChange = (page) => {
-        fetchEmployees(EMPLOYEES_API_URL + `?page=${page}`)
+    const [ open, setOpen ] = useState( false );
+    const [ confirmLoading, setConfirmLoading ] = useState( false );
+    const [ modalText, setModalText ] = useState( 'Content of the modal' );
+    const showModal = () => {
+        setOpen( true );
+    };
+    const handleOk = () => {
+        setConfirmLoading( true );
+
+        deleteEmployee( currentId )
+        fetchEmployees( EMPLOYEES_API_URL + `?page=${ currentPageNumber }` )
+
+        setTimeout( () => {
+            setOpen( false );
+            setConfirmLoading( false );
+        }, 2000 );
+    };
+    const handleCancel = () => {
+        console.log( 'Clicked cancel button' );
+        setOpen( false );
+    };
+
+    const onPageChange = ( page ) => {
+        fetchEmployees( EMPLOYEES_API_URL + `?page=${ page }` )
     }
 
 
-    useEffect(() => {
-        fetchEmployees(EMPLOYEES_API_URL)
-    }, [])
+    useEffect( () => {
+        fetchEmployees( EMPLOYEES_API_URL )
+    }, [] )
 
-    useEffect(() => {
-        setData(employeesList.map(item => {
+    useEffect( () => {
+        setData( employeesList.map( item => {
             return {
                 key: item.id,
                 held_position: item.held_position,
@@ -66,10 +88,16 @@ export const EmployeesList = () => {
      }, []);*/
 
     const deleteEmployee = (id) => {
-        fetch(EMPLOYEES_API_URL + `${id}`, {method: 'DELETE'})
-            .then(response => response.json())
-            .catch((error) => console.log(`Backend delete Employee error: ${error}`))
-            .then((message) => console.log(message));
+        fetch( EMPLOYEES_API_URL + '/' + `${ id }`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector( 'meta[name="csrf-token"]' ).getAttribute( 'content' ),
+                'Accept': 'application/json'
+            }
+        } )
+            .then( response => response.json() )
+            .catch( ( error ) => console.log( `Backend delete Employee error: ${ error }` ) )
+            .then( ( message ) => console.log( message ) );
     }
 
     return (
@@ -100,20 +128,34 @@ export const EmployeesList = () => {
                             {/*<Button>{record.lastName}</Button>*/}
                             <Button type="primary">Задачи</Button>
                             <Button>Премировать</Button>
-                            <Button danger onClick={() => {
-                                console.log(record)
-                                deleteEmployee(record.key)
-                                fetchEmployees(EMPLOYEES_API_URL + `?page=${currentPageNumber}`)
-                            }}>Уволить</Button>
+                            <Button danger onClick={ () => {
+                                console.log( record )
+                                setOpen( true )
+                                setModalText(
+                                    `Производится увольнение сотрудника
+                                    ${ record.name }  ${ record.patronymic }  ${ record.lastName }
+                                    с должности ${ record.held_position } ` );
+                                setCurrentId( record.key )
+                            } }>Уволить</Button>
                         </Space>
-                    )}
+                    ) }
                 />
-            </Table>
-            <Button type="primary" onClick={() => {
-                console.log(employeesList, data)
 
-            }}>Вывести данные в
+            </Table>
+            <Button type="primary" onClick={ () => {
+                console.log( employeesList, data )
+
+            } }>Вывести данные в
                 консоль</Button>
+            <Modal
+                title="Title"
+                open={ open }
+                onOk={ handleOk }
+                confirmLoading={ confirmLoading }
+                onCancel={ handleCancel }
+            >
+                <p>{ modalText }</p>
+            </Modal>
         </div>
     )
 }

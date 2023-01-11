@@ -70,6 +70,6 @@ class EmployeeAPIController extends Controller
     {
         $employee->delete();
 //        return response()->json(null, 204);
-        return response()->json(null, 204);
+        return response()->json(['status'=>'ok'], 204);
     }
 }
