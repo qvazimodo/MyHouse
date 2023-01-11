@@ -205,87 +205,6 @@
 
 }
 
-.content-question {
-    margin: 100px 0 60px;
-    background-color: #242B33;
-}
-
-.question {
-    font-family: 'Playfair Display', sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 36px;
-    line-height: 48px;
-    color: #D4C17F;
-}
-
-.second-line {
-    display: flex;
-}
-
-.second-line-one {
-    font-family: 'Raleway', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 16px;
-    text-align: center;
-    color: #E7E7E7;
-    width: 255px;
-    height: 28px;
-}
-
-.second-line-two {
-    width: 255px;
-    height: 50px;
-    background-color: #D4C17F;
-    margin-left: 35px;
-    font-family: 'Raleway', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 27px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-}
-
-.text3 {
-    margin-top: 10px;
-}
-
-.second-line-tree {
-    width: 255px;
-    height: 50px;
-    background-color: #D4C17F;
-    margin-left: 30px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 27px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-}
-
-.second-line-four {
-    width: 255px;
-    height: 50px;
-    background-color: White;
-    margin-left: 30px;
-    font-family: 'Raleway', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 27px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-}
-
 .img-review {
     width: 75px;
     height: 75px;
@@ -314,7 +233,7 @@
     display: flex;
 }
 
-.mycards{
+.mycards {
     text-align: center;
     color: #D4C17F;
     margin: 0 0 60px 0;

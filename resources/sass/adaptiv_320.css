@@ -176,38 +176,6 @@
         margin-bottom: 10px;
     }
 
-    .question {
-        font-size: 33px;
-        line-height: 48px;
-    }
-
-    .content-question {
-        margin: 46px 26px 60px 48px;
-    }
-
-    .second-line {
-        display: block;
-    }
-
-    .second-line-one {
-        width: 320px;
-        margin-bottom: 36px;
-        margin-top: -48px;
-    }
-
-    .second-line-two {
-        margin-left: 30px;
-        margin-bottom: 10px;
-    }
-
-    .second-line-tree {
-        margin-bottom: 10px;
-    }
-
-    .text3 {
-        margin-left: 0;
-    }
-
     .footer {
         max-width: 320px;
         width: 100%;
