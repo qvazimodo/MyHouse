@@ -20,26 +20,15 @@
 }
 
 .footer-center {
-    max-width: 125px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 610px;
     width: 100%;
-    margin-top: 72px;
     font-family: 'Raleway', sans-serif;
     color: #FFFFFF;
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
     letter-spacing: 0.05em;
+    margin-top: 85px;
 }
-
-.footer-right {
-    max-width: 245px;
-    width: 100%;
-    margin-top: 72px;
-    font-family: 'Raleway', sans-serif;
-    color: #FFFFFF;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-    letter-spacing: 0.05em;
-}
-

@@ -188,8 +188,10 @@
     }
 
     .footer-center {
+        display: block;
         margin-top: 14px;
         margin-left: 25px;
+        margin-bottom: 22px;
     }
 
     .footer-right {
