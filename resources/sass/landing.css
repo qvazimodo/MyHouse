@@ -237,12 +237,6 @@
     display: flex;
 }
 
-.mycards {
-    text-align: center;
-    color: #D4C17F;
-    margin: 0 0 60px 0;
-}
-
 .text {
     color: white;
     font-family: "Raleway", sans-serif;

@@ -3,6 +3,7 @@ import {Avatar, Button, Card, Col, Form, Input, List, Row, Space, Table, Typogra
 import {CARDS_API_URL, EMPLOYEES_API_URL} from "../../helpers/API";
 import ColumnGroup from "antd/es/table/ColumnGroup";
 import Column from "antd/es/table/Column";
+import s from './ListCards.module.css';
 
 
 const ListCards = () => {
@@ -38,7 +39,6 @@ const ListCards = () => {
             }
         }))
     }, [employeesList]);
-
 
     const fetchEmployees = (page) => {
         setLoading(true)

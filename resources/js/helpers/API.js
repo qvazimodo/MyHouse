@@ -23,8 +23,4 @@ export const AUTH_METERS_API_URL = API_URL + "/api/client_meters/values";
 //маршрут передачи показаний счетчика методом POST
 export const METER_VALUE_API_URL = API_URL + "/api/meters";
 
-//маршрут передачи показаний счетчика методом POST
-export const CARDS2_VALUE_API_URL = "http://127.0.0.1/api/cards";
-
-
 
