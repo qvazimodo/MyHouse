@@ -4,44 +4,32 @@ import { useState } from 'react';
 const items = [
     {
         label: (
-            <a href="about" target="_blank">
-                Тарифы и услуги
-            </a>
+            <a href="about">Тарифы и услуги</a>
         ),
     },
     {
         label: (
-            <a href="about" target="_blank">
-                Дома
-            </a>
+            <a href="about">Дома</a>
         ),
     },
     {
         label: (
-            <a href="about" target="_blank">
-                Объявления
-            </a>
+            <a href="about">Объявления</a>
         ),
     },
     {
         label: (
-            <a href="about" target="_blank">
-                О нас
-            </a>
+            <a href="about">О нас</a>
         ),
     },
     {
         label: (
-            <a href="about" target="_blank">
-                Регистрация
-            </a>
+            <a href="about">Регистрация</a>
         ),
     },
     {
         label: (
-            <a href="about" target="_blank">
-                Вход
-            </a>
+            <a href="about">Вход</a>
         ),
     },
 ];
