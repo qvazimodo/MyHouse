@@ -1,4 +1,4 @@
-<div class="header-two">
+<nav>
     <div class="top">
         <div class="top-left">
             <div class="house"><a href="landing">MyHouse</a></div>
@@ -50,7 +50,7 @@
         </div>
     </div>
 
-</div>
+</nav>
 
 
 
