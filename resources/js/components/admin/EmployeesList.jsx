@@ -53,7 +53,10 @@ export const EmployeesList = () => {
                 held_position: item.held_position,
                 name: item.user.name,
                 patronymic: item.user.patronymic,
-                lastName: item.user["last_name"],
+                lastName: item.user['last_name'],
+                birthDate: new Date(item.user['birth_date']).toLocaleDateString(),
+                // age:(new Date().getTime() - new Date(item.user['birth_date']).getTime()).getFullYear()
+                age: new Date(Date.now() - new Date(item.user['birth_date']).getTime()).getFullYear() - 1970,
             }
         }))
     }, [employeesList]);
@@ -118,16 +121,33 @@ export const EmployeesList = () => {
                     <Column title="Отчество" dataIndex="patronymic" key="patronymic"/>
                 </ColumnGroup>
                 <Column title="Должность" dataIndex="held_position" key="held_position"/>
+                <Column title="Дата рождения" dataIndex="birthDate" key="birthDate"/>
                 <Column title="Возраст" dataIndex="age" key="age"/>
-                <Column title="Адрес" dataIndex="address" key="address"/>
-                <Column
-                    title="Action"
-                    key="action"
+                <ColumnGroup
+                title="Доступные действия">
+                    <Column
+                        key="action1"
+                        render={(_, record) => (
+                            <Space size="middle">
+                                {/*<Button>{record.lastName}</Button>*/}
+                                <Button type="primary">Задачи</Button>
+                            </Space>
+                        ) }
+                    />
+                    <Column
+                    key="action2"
                     render={(_, record) => (
                         <Space size="middle">
                             {/*<Button>{record.lastName}</Button>*/}
-                            <Button type="primary">Задачи</Button>
                             <Button>Премировать</Button>
+                        </Space>
+                    ) }
+                />
+                    <Column
+                    key="action3"
+                    render={(_, record) => (
+                        <Space size="middle">
+                            {/*<Button>{record.lastName}</Button>*/}
                             <Button danger onClick={ () => {
                                 console.log( record )
                                 setOpen( true )
@@ -140,7 +160,7 @@ export const EmployeesList = () => {
                         </Space>
                     ) }
                 />
-
+                </ColumnGroup>
             </Table>
             <Button type="primary" onClick={ () => {
                 console.log( employeesList, data )

@@ -28,6 +28,7 @@ class UserFactory extends Factory
             'name' => $faker->firstName('male'),
             'patronymic' => $patronymic[array_rand($patronymic)],
             'last_name' => $faker->lastName('male'),
+            'birth_date' => $faker->dateTimeBetween('-50 years', '-20 years'),
             'is_admin' => '0',
             'phone' => fake()->unique()->phoneNumber(),
             'email' => fake()->unique()->safeEmail(),

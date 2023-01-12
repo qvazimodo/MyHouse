@@ -21,7 +21,7 @@ class EmployeeAPIController extends Controller
     {
 //        return response()->json(Employee::select("id","user_id","held_position")->with('user:id,name,patronymic,last_name')->get());
         return EmployeeResource::collection(
-            Employee::select("id", "user_id", "held_position")->with('user:id,name,patronymic,last_name')->paginate(3)
+            Employee::select("id", "user_id", "held_position")->with('user:id,name,patronymic,last_name,birth_date')->paginate(3)
         );
     }
 

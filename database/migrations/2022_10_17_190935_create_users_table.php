@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name', 25);
             $table->string('patronymic', 25)->comment('отчество');
             $table->string('last_name', 25)->comment('фамилия')->nullable();
+            $table->timestamp('birth_date')->comment('дата рождения')->nullable();
             $table->boolean('is_admin')->default(false);
             $table->string('phone', 20)->unique()->default(null);
             $table->string('email',50)->unique();
