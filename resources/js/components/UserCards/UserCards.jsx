@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card, Form, Input, List, Typography} from "antd";
-import {AUTH_USER_API_URL, CARDS2_VALUE_API_URL, MYCARDS_API_URL} from "../helpers/API";
+import {AUTH_USER_API_URL, CARDS_API_URL, MYCARDS_API_URL} from "../../helpers/API";
+import s from './UserCards.module.css';
 
 const {Text} = Typography;
 
@@ -39,7 +40,7 @@ const UserCards = () => {
     useEffect(() => {
         setData(employeesList.map(item => {
             return {
-                key: item.id,
+                id: item.id,
                 title: item.title,
                 description: item.description,
                 price: item.price,
@@ -76,16 +77,18 @@ const UserCards = () => {
 
     }, [])
 
+    console.log(argument.userId)
+
     const sendForm = (e) => {
 
             e.preventDefault();
-            fetch(CARDS2_VALUE_API_URL, {
+            fetch(CARDS_API_URL, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                    // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'Access-Control-Allow-Origin': '*',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 },
                 body: JSON.stringify({
                     title: title,
@@ -96,11 +99,13 @@ const UserCards = () => {
             })
                 .then(response => response.json())
                 .catch(e => console.log(e))
-                .then(data => {
-                    console.log(data)
+                .then(result => {
+                    setData([...data,result])
+                    console.log(result)
                 })
 
     }
+    console.log(data)
 
 
 
@@ -111,8 +116,12 @@ const UserCards = () => {
             {/*Форма*/}
 
             <Text style={{color: '#D4C17F', marginBottom: 30, display: 'block', fontSize: 18}}>Заполните форму для ввода новых показаний:</Text>
-            <Form>
-                <Form.Item label="Введите заголовок:">
+            <Form
+                layout={'vertical'}
+                size={'middle'}
+            >
+                <Form.Item
+                    label="Введите заголовок:">
                     <Input name='title' value={title} onChange={(e) => {
                         setTitle(e.target.value)
                     }}/>
@@ -134,7 +143,7 @@ const UserCards = () => {
 
             {/*Карточки*/}
 
-            <h2 className='mycards'>Ваши карточки</h2>
+            <h2 className={s.mycards}>Ваши карточки</h2>
             <List
                 grid={{
                     gutter: 16,
@@ -155,7 +164,7 @@ const UserCards = () => {
                 dataSource={data}
                 renderItem={(item) => (
                     <List.Item>
-                        <Card title={`Заголовок: ${item.title} client_id: ${item.client_id}`}>Номер объявления: {item.key} <br/><br/> Текст: {item.description}<br/><br/>Цена: {item.price}$</Card>
+                        <Card title={`Заголовок: ${item.title} client_id: ${item.client_id}`}>Номер объявления: {item.id} <br/><br/> Текст: {item.description}<br/><br/>Цена: {item.price}$</Card>
                     </List.Item>
                 )}
             />
