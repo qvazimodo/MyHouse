@@ -14,8 +14,11 @@ export const HOUSES_API_URL = API_URL + "/api/houses";
 // маршрут получения текущего пользователя
 export const AUTH_USER_API_URL = API_URL + "/api/auth/auth_user";
 
-// маршрут получения всех счетчиков текущего пользователя
-export const AUTH_METERS_API_URL = API_URL + "/api/client_meters";
+// маршрут получения показаний всех счетчиков текущего пользователя
+export const AUTH_METERS_LIST_API_URL = API_URL + "/api/client_meters";
+
+// маршрут получения показаний всех счетчиков текущего пользователя
+export const AUTH_METERS_API_URL = API_URL + "/api/client_meters/values";
 
 //маршрут передачи показаний счетчика методом POST
 export const METER_VALUE_API_URL = API_URL + "/api/meters";

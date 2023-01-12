@@ -40,11 +40,8 @@ Route::get('is_client', 'App\Http\Controllers\ClientController@isClient');
 //api по счетчикам
 Route::resource('meters', MeterValueController::class)->except(['create', 'edit']);
 
-//api вывода всех счетчиков по текущему пользователю
-Route::get('auth_meters', 'App\Http\Controllers\Meters\MeterController@showAuthClient')->middleware('auth');
 
-Route::get('client_meters', [MeterController::class, 'index']);
-
+//Route::get('auth_meters', 'App\Http\Controllers\Meters\MeterController@showAuthClient')->middleware('auth');
 
 Route::get('/employees', [EmployeeAPIController::class, 'index']);
 Route::get('/employees/{employee}', [EmployeeAPIController::class, 'show']);
@@ -65,4 +62,12 @@ Route::prefix('auth')->group(function () {
     Route::get('/csrf', function () {
         return response()->json(Session::token());
     });
+})->middleware('auth');
+
+Route::prefix('')->group(function () {
+//api вывода информации обо всех счетчиках текущего пользователю
+    Route::get('/client_meters', [MeterController::class, 'index']);
+
+//api вывода показаний всех счетчиков по текущему пользователю
+    Route::get('/client_meters/values', [MeterController::class, 'values']);
 })->middleware('auth');
