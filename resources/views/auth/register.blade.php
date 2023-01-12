@@ -6,6 +6,10 @@
     @include('header')
 @endsection
 
+@section('menu')
+    @include('menu')
+@endsection
+
 @section('content')
    <div class="register-form">
        <div class="container">

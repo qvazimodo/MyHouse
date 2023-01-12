@@ -2,8 +2,13 @@
 
 @section('title', 'My House Управляющая компания')
 
+
 @section('header')
     @include('header')
+@endsection
+
+@section('menu')
+    @include('menu')
 @endsection
 
 @section('content')

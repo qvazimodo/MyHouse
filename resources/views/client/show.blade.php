@@ -6,6 +6,10 @@
     @include('header')
 @endsection
 
+@section('menu')
+    @include('menu')
+@endsection
+
 @section('content')
     <div class="card container-lg d-flex align-items-center justify-content-center py-5 client">
         <div class="card text-center col-md-8 client ">

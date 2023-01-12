@@ -5,6 +5,12 @@
 @section('header')
     @include('header')
 @endsection
+
+@section('menu')
+    @include('menu')
+@endsection
+
+
 {{--@dd($clients)--}}
 @section('content')
     <div class="card container-fluid client ">

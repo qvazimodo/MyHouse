@@ -4,10 +4,12 @@
     @include('header')
 @endsection
 
+@section('menu')
+    @include('menu')
+@endsection
+
 @section('content')
-
-        <div id="housesList"></div>
-
+  <div id="housesList"></div>
 @endsection
 
 @section('footer')

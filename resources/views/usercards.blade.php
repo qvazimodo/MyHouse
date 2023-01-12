@@ -4,12 +4,13 @@
     @include('header')
 @endsection
 
-@section('content')
-
-    <div id="usercards"></div>
-
+@section('menu')
+    @include('menu')
 @endsection
 
+@section('content')
+    <div id="usercards"></div>
+@endsection
 
 @section('footer')
     @include('footer')

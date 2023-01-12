@@ -31,7 +31,9 @@
 
 <body>
 <div class="app" id="app">
+
     <div class="app-wrapper">
+        @yield('menu')
         @yield('header')
 
 
