@@ -22,7 +22,7 @@ import Watch from "./components/Watch";
 import About from "./components/About";
 import ListCards from "./components/ListCards/ListCards";
 import Video from "./components/Video";
-import {EmployeesList} from "./components/admin/EmployeesList";
+import {Employees} from "./components/admin/Employees";
 import UserCards from "./components/UserCards";
 import HousesList from "./components/HousesList";
 import Contacts from "./components/Contacts";
@@ -75,9 +75,9 @@ if (document.getElementById('video')) {
     root.render(<Video />);
 }
 
-if (document.getElementById('employees-list')){
-    const root=createRoot(document.getElementById('employees-list'));
-    root.render(<EmployeesList/>);
+if (document.getElementById('employees')){
+    const root=createRoot(document.getElementById('employees'));
+    root.render(<Employees/>);
 }
 
 if (document.getElementById('contacts')){

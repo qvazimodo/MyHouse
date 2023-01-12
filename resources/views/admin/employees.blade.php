@@ -10,8 +10,8 @@
 
 @section('content')
     <div class="container">
-        <h2 class="title-2">Список сотрудников</h2>
-        <div id="employees-list"></div>
+        <h2 class="title-2">Сотрудники</h2>
+        <div id="employees"></div>
     </div>
 @endsection
 
