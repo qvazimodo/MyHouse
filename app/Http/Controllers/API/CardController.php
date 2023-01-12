@@ -19,7 +19,7 @@ class CardController extends Controller
 
     public function index(): ResourceCollection
     {
-      return  CardResource::collection(Card::with(['client', 'photos'])->paginate(10));
+      return  CardResource::collection(Card::with(['client', 'photos'])->paginate(9));
     }
 
 
@@ -42,9 +42,9 @@ class CardController extends Controller
 
     public function update(Request $request, Card $card): JsonResponse
     {
-        if(!Gate::allows('update-card', $card)){
+        /*if(!Gate::allows('update-card', $card)){
             abort(403);
-        }
+        }*/
         $card->update($request->all());
         return response()->json($card, 200);
     }
