@@ -28,6 +28,7 @@ import HousesList from "./components/HousesList";
 import Contacts from "./components/Contacts";
 import Rates from "./components/Rates";
 import Navigation from "./components/Navigation";
+import Logo from "./components/Logo";
 
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
@@ -99,6 +100,11 @@ if (document.getElementById('housesList')){
 if (document.getElementById('navigation')){
     const root=createRoot(document.getElementById('navigation'));
     root.render(<Navigation />);
+}
+
+if (document.getElementById('logo')){
+    const root=createRoot(document.getElementById('logo'));
+    root.render(<Logo />);
 }
 
 

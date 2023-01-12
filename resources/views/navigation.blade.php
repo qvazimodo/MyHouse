@@ -7,12 +7,11 @@
 @endsection
 
 @section('menu')
+    <div id="logo"></div>
     <div id="navigation"></div>
 @endsection
 
-
 @section('content')
-
 
 @endsection
 
