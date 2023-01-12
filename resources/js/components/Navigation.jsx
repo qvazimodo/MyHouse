@@ -1,4 +1,3 @@
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import {Menu, theme} from 'antd';
 import { useState } from 'react';
 const items = [
@@ -44,6 +43,9 @@ const Navigation = () => {
     }} style={{ background: "#242B33",
         borderColor: "#2b2b2c",
         color: "#d7d7d7",
-        fontFamily: "Raleway" }} />;
+        fontFamily: "Raleway",
+        marginLeft: 1100,
+        paddingTop: 25,
+    }} />;
 };
 export default Navigation;
