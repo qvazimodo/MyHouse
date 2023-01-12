@@ -3,6 +3,7 @@ import {EmployeeRegisterForm,} from "./EmployeeRegisterForm";
 import {useState} from "react";
 import {ConfigProvider, Button, theme} from "antd";
 
+
 export const Employees = () => {
     const [showList, setShowList] = useState(true)
     const [showRegistrationForm, setShowRegistrationForm] = useState(false)
@@ -11,6 +12,10 @@ export const Employees = () => {
             theme={{
                 algorithm: theme.darkAlgorithm,
             }}
+            // style={{ background: "gold",
+            // borderColor: "gold",
+            // color: "gold",
+            // fontFamily: "Raleway" }}
         >
             {!showList && <Button onClick={() => {
                 console.log('click')

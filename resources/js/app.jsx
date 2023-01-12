@@ -27,6 +27,7 @@ import UserCards from "./components/UserCards";
 import HousesList from "./components/HousesList";
 import Contacts from "./components/Contacts";
 import Rates from "./components/Rates";
+import Navigation from "./components/Navigation";
 
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
@@ -95,6 +96,10 @@ if (document.getElementById('housesList')){
     root.render(<HousesList />);
 }
 
+if (document.getElementById('navigation')){
+    const root=createRoot(document.getElementById('navigation'));
+    root.render(<Navigation />);
+}
 
 
 
