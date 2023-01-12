@@ -76,10 +76,14 @@ class MetersForm extends React.Component {
             .then(response => response.json())
                 .catch(e => console.log(e))
             .then( (data) => {
-                console.log(data);
+                //console.log(data);
+                let values = new Map();
                 for (let item in data.data) {
-
+                    values.set(data.data[item].id, data.data[item].value);
+                }
+                for (let item in data.data) {
                    data.data[item].key = +item + 1;
+                   data.data[item].lastValue = values.get(data.data[item].parent_id);
                    this.setState(prevState => ({
                         info: [...prevState.info, data.data[item]]
                     }))
