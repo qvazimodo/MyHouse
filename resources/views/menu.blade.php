@@ -5,16 +5,27 @@
             <div class="residential">Управляющая Компания</div>
         </div>
         <div class="top-right">
-            <div class="complex"><a href="about">О нас</a></div>
-            <div class="complex"><a href="{{ route('announcement') }}">Объявления</a></div>
-            <div class="district"><a href="{{ route('serviced_houses') }}">Дома</a></div>
-            <div class="catalog"><a href="rates">Тарифы и услуги</a></div>
+            <ul id="navbar">
+                <li><a href="rates">Тарифы и услуги</a></li>
+                <li><a href="{{ route('serviced_houses') }}">Дома</a></li>
+                <li><a href="{{ route('announcement') }}">Объявления</a></li>
+                <li><a href="about">О нас</a></li>
+            </ul>
+        </div>
+{{--                <li><a href="#">Регистрация</a></li>--}}
+{{--                <li><a href="#">Вход</a></li>--}}
+
+{{--            <div class="complex"><a href="about">О нас</a></div>--}}
+{{--            <div class="complex"><a href="{{ route('announcement') }}">Объявления</a></div>--}}
+{{--            <div class="district"><a href="{{ route('serviced_houses') }}">Дома</a></div>--}}
+{{--            <div class="catalog"><a href="rates">Тарифы и услуги</a></div>--}}
+        <div class="top-right-two">
             @guest
                 @if (Route::has('register'))
-                    <div class="ipoteka"><a href="{{ route('register') }}">Регистрация</a></div>
+                        <li class="reg-btn"><a href="{{ route('register') }}">Регистрация</a></li>
                 @endif
                 @if (Route::has('login'))
-                    <div class="contacts"><a href="{{route('login')}}">Вход</a></div>
+                        <li><a href="{{route('login')}}">Вход</a></li>
                 @endif
 
             @else
@@ -46,15 +57,10 @@
                     </ul>
                 </li>
             @endguest
-
         </div>
+
     </div>
-{{--    <ul id="navbar">--}}
-{{--        <li><a href="#">Главная</a></li>--}}
-{{--        <li><a href="#">Новости</a></li>--}}
-{{--        <li><a href="#">Контакты</a></li>--}}
-{{--        <li><a href="#">О нас</a></li>--}}
-{{--    </ul>--}}
+
 </nav>
 
 

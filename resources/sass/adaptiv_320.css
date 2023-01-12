@@ -44,6 +44,7 @@
     .bottom {
         max-width: 320px;
         width: 100%;
+        padding-top: 259px;
     }
 
     .bottom-top {
@@ -224,5 +225,21 @@
         width: 319px;
         margin-left: 0;
     }
+
+    .top-right-two {
+        display: block;
+        margin-left: 107px;
+        font-family: 'Raleway', sans-serif;
+    }
+
+    #navbar li{
+        display: block;
+    }
+
+    #navbar {
+        width: 142px;
+        text-align: left;
+    }
+
 
 }

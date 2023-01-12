@@ -57,3 +57,49 @@ nav {
     letter-spacing: 0.05em;
 }
 
+.top-right-two {
+    display: flex;
+    font-family: 'Raleway', sans-serif;
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 30px;
+    letter-spacing: 0.05em;
+}
+
+/*.top-right-two a:hover {*/
+/*    border-radius: 20px 5px;*/
+/*    background-color: grey;*/
+/*    padding: 5px 10px;*/
+/*}*/
+
+.reg-btn {
+    padding-right: 15px;
+}
+
+#navbar {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    width: 550px;
+    text-align: center;
+    background-color: #242B33;
+    font-family: 'Raleway', sans-serif;
+}
+
+#navbar li {
+    display: inline;
+}
+
+#navbar a {
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: inline-block;
+
+}
+
+#navbar a:hover {
+    border-radius: 20px 5px;
+    background-color: grey;
+}
