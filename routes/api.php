@@ -41,15 +41,10 @@ Route::get('is_client', 'App\Http\Controllers\ClientController@isClient');
 Route::resource('meters', MeterValueController::class)->except(['create', 'edit']);
 
 //api вывода всех счетчиков по текущему пользователю
-Route::get('auth_meters','App\Http\Controllers\Meters\MeterController@showAuthClient')->middleware('auth');
+Route::get('auth_meters', 'App\Http\Controllers\Meters\MeterController@showAuthClient')->middleware('auth');
 
 Route::get('client_meters', [MeterController::class, 'index']);
 
-//api вывода  текущего пользователя
-Route::get('auth_user', function () {
-    $user = Auth::user();
-    return $user;
-})->middleware('auth');
 
 Route::get('/employees', [EmployeeAPIController::class, 'index']);
 Route::get('/employees/{employee}', [EmployeeAPIController::class, 'show']);
@@ -58,3 +53,16 @@ Route::delete('/employees/{employee}', [EmployeeAPIController::class, 'destroy']
 
 Route::resource('/houses', HouseController::class);
 
+
+Route::prefix('auth')->group(function () {
+//api вывода  текущего пользователя
+    Route::get('auth_user', function () {
+        $user = Auth::user();
+        return $user;
+    });
+
+//CSRF-token текущего пользователя
+    Route::get('/csrf', function () {
+        return response()->json(Session::token());
+    });
+})->middleware('auth');
