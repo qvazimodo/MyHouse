@@ -5,5 +5,14 @@
 .mycards {
     text-align: center;
     color: #D4C17F;
-    margin: 0 0 60px 0;
+    margin: 140px 0 60px 0;
+    font-size: 24px;
+}
+
+.cards-photo{
+    text-align: center;
+}
+
+.cards-span{
+    color: red;
 }
