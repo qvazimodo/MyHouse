@@ -1,7 +1,7 @@
 export const API_URL = "http://localhost";
 
 // маршрут получения CSRF-token текущего пользователя
-export const EMPLOYEES_CSRF_URL = API_URL + "/api/auth/csrf";
+export const CSRF_URL = API_URL + "/api/auth/csrf";
 
 export const EMPLOYEES_API_URL = API_URL + "/api/employees";
 

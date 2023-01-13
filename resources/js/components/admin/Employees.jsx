@@ -1,12 +1,12 @@
 import {EmployeesList,} from "./EmployeesList";
-import {EmployeeRegisterForm,} from "./EmployeeRegisterForm";
+import { EmployeeRegistration } from "./EmployeeRegistration";
 import {useState} from "react";
 import {ConfigProvider, Button, theme} from "antd";
 
 
 export const Employees = () => {
-    const [showList, setShowList] = useState(true)
-    const [showRegistrationForm, setShowRegistrationForm] = useState(false)
+    const [showList, setShowList] = useState(false)
+    const [showRegistrationForm, setShowRegistrationForm] = useState(true)
     return (
         <ConfigProvider
             theme={{
@@ -30,7 +30,7 @@ export const Employees = () => {
             }}>Зарегистрировать нового сотрудника</Button>}
 
             {showList && <EmployeesList/>}
-            {showRegistrationForm && <EmployeeRegisterForm/>}
+            {showRegistrationForm && <EmployeeRegistration/>}
         </ConfigProvider>
     )
 
