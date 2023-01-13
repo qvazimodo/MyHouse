@@ -1,44 +1,13 @@
 import { Button, DatePicker, Form, Input, } from 'antd';
-import { useState } from 'react';
 import styles from "./EmployeeRegisterForm.module.css";
-import { CSRF_URL, EMPLOYEES_API_URL } from "../../helpers/API";
-
+import dayjs from 'dayjs';
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 
-export const EmployeeRegisterForm = ( { onChange, fields } ) => {
-    const [ componentDisabled, setComponentDisabled ] = useState( true );
-
-    const [ registrationFormData, setRegistrationFormData ] = useState( {} );
-
-    const getCSRFToken = () => {
-        return fetch( CSRF_URL )
-            .then( ( response ) => response.json() )
-            .catch( ( error ) => console.log( error ) )
-            .then( data => data )
-    }
-
-    const employeeRegistrate = () => {
-        setRegistrationFormData( { response: 'resp' } )
-
-        sendForm()
-    }
-
-    const sendForm = ( e ) => {
-        console.log( registrationFormData )
-        e.preventDefault()
-        fetch( EMPLOYEES_API_URL, {
-            method: 'POST',
-            headers:
-                {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': getCSRFToken()
-                },
-            body: JSON.stringify( registrationFormData )
-        } )
-    }
-
+export const EmployeeRegisterForm = ( { onChange, fields, sendForm } ) => {
+       const initial = {
+        birthDate: dayjs('1990/06/09')
+    };
     return (
         <Form
             className={ styles.form }
@@ -53,7 +22,9 @@ export const EmployeeRegisterForm = ( { onChange, fields } ) => {
             fields={ fields }
             onFieldsChange={ ( _, allFields ) => {
                 onChange( allFields );
-            } }>
+            } }
+            initialValues={initial}
+        >
             <Form.Item label="Фамилия"
                        name="lastName"
                        rules={[
@@ -92,7 +63,7 @@ export const EmployeeRegisterForm = ( { onChange, fields } ) => {
                                message: 'Дату рождения нужно обязательно заполнить!',
                            },
                        ] }>
-                <DatePicker/>
+                <DatePicker onChange={(date) => console.log(date.toISOString())}/>
             </Form.Item>
             <Form.Item label="Номер телефона"
                        name="phone"
@@ -104,17 +75,27 @@ export const EmployeeRegisterForm = ( { onChange, fields } ) => {
                        ] }>
                 <Input/>
             </Form.Item>
-            <Form.Item label="Email"
-                       name="patronymic"
+            <Form.Item label="email"
+                       name="email"
                        rules={ [
                            {
                                required: true,
-                               message: 'Адрес электронной почты требуется обязательно!!',
+                               message: 'Адрес электронной почты требуется обязательно!',
                            },
                        ] }>
                 <Input/>
             </Form.Item>
-            <Button onClick={ () => employeeRegistrate() }>Зарегистрировать сотрудника</Button>
+            <Form.Item label="Должность"
+                       name="heldPosition"
+                       rules={ [
+                           {
+                               required: true,
+                               message: 'Должность работника заполняется обязательно!',
+                           },
+                       ] }>
+                <Input/>
+            </Form.Item>
+            <Button onClick={ (e) => sendForm(e) }>Зарегистрировать сотрудника</Button>
         </Form>
     );
 };

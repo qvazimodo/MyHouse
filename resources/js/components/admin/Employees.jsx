@@ -1,7 +1,8 @@
 import {EmployeesList,} from "./EmployeesList";
-import { EmployeeRegistration } from "./EmployeeRegistration";
+import {EmployeeRegistration} from "./EmployeeRegistration";
 import {useState} from "react";
 import {ConfigProvider, Button, theme} from "antd";
+import ruRu from 'antd/lib/locale/ru_RU';
 
 
 export const Employees = () => {
@@ -9,6 +10,7 @@ export const Employees = () => {
     const [showRegistrationForm, setShowRegistrationForm] = useState(true)
     return (
         <ConfigProvider
+            locale={ruRu}
             theme={{
                 algorithm: theme.darkAlgorithm,
             }}
@@ -30,7 +32,8 @@ export const Employees = () => {
             }}>Зарегистрировать нового сотрудника</Button>}
 
             {showList && <EmployeesList/>}
-            {showRegistrationForm && <EmployeeRegistration/>}
+            {showRegistrationForm && <EmployeeRegistration
+                setShowRegistrationForm={setShowRegistrationForm}/>}
         </ConfigProvider>
     )
 
