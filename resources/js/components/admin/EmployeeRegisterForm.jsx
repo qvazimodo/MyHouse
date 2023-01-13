@@ -14,6 +14,7 @@ import {
     Upload,
 } from 'antd';
 import {useState} from 'react';
+import styles from "./EmployeeRegisterForm.module.css";
 
 const {RangePicker} = DatePicker;
 const {TextArea} = Input;
@@ -25,6 +26,7 @@ export const EmployeeRegisterForm = () => {
     };
     return (
         <Form
+            className={styles.form}
             labelCol={{
                 span: 4,
             }}
