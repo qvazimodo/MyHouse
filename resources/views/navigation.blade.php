@@ -16,5 +16,5 @@
 @endsection
 
 @section('footer')
-    @include('footer')
+     @include('footer')
 @endsection

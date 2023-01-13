@@ -29,6 +29,7 @@ import Contacts from "./components/Contacts";
 import Rates from "./components/Rates";
 import Navigation from "./components/Navigation";
 import Logo from "./components/Logo";
+import Footer_menu from "./components/Footer_menu";
 
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
@@ -105,6 +106,11 @@ if (document.getElementById('navigation')){
 if (document.getElementById('logo')){
     const root=createRoot(document.getElementById('logo'));
     root.render(<Logo />);
+}
+
+if (document.getElementById('footer_menu')){
+    const root=createRoot(document.getElementById('footer_menu'));
+    root.render(<Footer_menu />);
 }
 
 
