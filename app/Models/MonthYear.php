@@ -12,6 +12,7 @@ class MonthYear extends Model
     use HasFactory;
 
     protected $fillable = ['month_id', 'year_id'];
+    public $timestamps = false;
 
     public function year():BelongsTo
     {

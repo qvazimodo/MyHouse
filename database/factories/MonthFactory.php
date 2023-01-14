@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Month;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -10,6 +9,59 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class MonthFactory extends Factory
 {
+    private $months = [
+
+        [
+            'name' => 'Январь',
+
+        ],
+        [
+            'name' => 'Февраль',
+
+        ],
+        [
+            'name' => 'Март',
+
+        ],
+        [
+            'name' => 'Апрель',
+
+        ],
+        [
+            'name' => 'Май',
+
+        ],
+        [
+            'name' => 'Июнь',
+
+        ],
+        [
+            'name' => 'Июль',
+
+        ],
+        [
+            'name' => 'Август',
+
+        ],
+        [
+            'name' => 'Сентябрь',
+
+        ],
+        [
+            'name' => 'Октябрь',
+
+        ],
+        [
+            'name' => 'Ноябрь',
+
+        ],
+        [
+            'name' => 'Декабрь',
+
+        ],
+    ];
+    static $i = 0;
+
     /**
      * Define the model's default state.
      *
@@ -18,7 +70,12 @@ class MonthFactory extends Factory
     public function definition()
     {
         return [
-            'month_id' => Month::factory(),
+            'name' => function () {
+                self::$i = self::$i > 11 ? 0:self::$i;
+                return $this->months[self::$i++]['name'];
+            }
         ];
     }
+
+
 }

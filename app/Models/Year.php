@@ -12,6 +12,7 @@ class Year extends Model
     use HasFactory;
 
     protected $fillable = ['number'];
+    public $timestamps = false;
 
     public function monthYears(): HasMany
     {

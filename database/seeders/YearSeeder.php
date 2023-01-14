@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Month;
+use App\Models\Year;
 use Illuminate\Database\Seeder;
 
 class YearSeeder extends Seeder
@@ -14,6 +15,13 @@ class YearSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Year::factory(3)
+            ->create()
+            ->each(function ($year) {
+                $month = Month::factory(12)->create();
+                /*->each(function ($month) use ($year) {
+                    MonthYear::factory($month, $year);
+                });*/
+            });
     }
 }
