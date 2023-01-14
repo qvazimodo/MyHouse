@@ -44,6 +44,7 @@ Route::resource('meters', MeterValueController::class)->except(['create', 'edit'
 //Route::get('auth_meters', 'App\Http\Controllers\Meters\MeterController@showAuthClient')->middleware('auth');
 
 Route::get('/employees', [EmployeeAPIController::class, 'index']);
+Route::post('/employees', [EmployeeAPIController::class, 'store']);
 Route::get('/employees/{employee}', [EmployeeAPIController::class, 'show']);
 Route::delete('/employees/{employee}', [EmployeeAPIController::class, 'destroy']);
 //Route::get('/houses', [HouseController::class, 'index']);

@@ -1,14 +1,16 @@
 import {EmployeesList,} from "./EmployeesList";
-import {EmployeeRegisterForm,} from "./EmployeeRegisterForm";
+import {EmployeeRegistration} from "./EmployeeRegistration";
 import {useState} from "react";
-import {ConfigProvider, Button, theme} from "antd";
-
+import {ConfigProvider, Button, theme, message} from "antd";
+import ruRu from 'antd/lib/locale/ru_RU';
 
 export const Employees = () => {
-    const [showList, setShowList] = useState(true)
-    const [showRegistrationForm, setShowRegistrationForm] = useState(false)
+    const [showList, setShowList] = useState(false)
+    const [showRegistrationForm, setShowRegistrationForm] = useState(true)
+    const [messageApi, contextHolder] = message.useMessage();
     return (
         <ConfigProvider
+            locale={ruRu}
             theme={{
                 algorithm: theme.darkAlgorithm,
             }}
@@ -30,7 +32,12 @@ export const Employees = () => {
             }}>Зарегистрировать нового сотрудника</Button>}
 
             {showList && <EmployeesList/>}
-            {showRegistrationForm && <EmployeeRegisterForm/>}
+            {showRegistrationForm && <EmployeeRegistration
+                setShowRegistrationForm={setShowRegistrationForm}
+                messageApi={messageApi}
+                contextHolder={contextHolder}
+            />}
+            {contextHolder}
         </ConfigProvider>
     )
 
