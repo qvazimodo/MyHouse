@@ -37,4 +37,9 @@ class MeterValue extends Model
     {
         return $this->belongsTo(Month::class);
     }
+
+    public function monthYear():BelongsTo
+    {
+        return $this->belongsTo(MonthYear::class);
+    }
 }

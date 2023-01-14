@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('months', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->nullable(false);
-        });
+       Schema::table('meter_values', function (Blueprint $table){
+           $table->dropForeign(['month_id']);
+       });
+       Schema::dropColumns('meter_values', ['month_id']);
     }
 
     /**
@@ -26,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('months');
+        Schema::table('meter_values', function (Blueprint $table){
+            $table->foreignId('month_id')->constrained();
+        });
     }
 };
