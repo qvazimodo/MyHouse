@@ -3,13 +3,13 @@ import {useState, useRef} from "react";
 import {EmployeeRegisterForm} from "./EmployeeRegisterForm";
 import {CSRF_URL, EMPLOYEES_API_URL} from "../../helpers/API";
 import {initialRegistrationFormFields} from "./helpers/initialRegistrationFormFields"
-import {message} from 'antd';
 
-export const EmployeeRegistration = ({setShowRegistrationForm}) => {
+
+export const EmployeeRegistration = ({setShowRegistrationForm, messageApi, contextHolder}) => {
     const [fields, setFields] = useState(initialRegistrationFormFields);
     const [response, setResponse] = useState({});
 
-    const [messageApi, contextHolder] = message.useMessage();
+
     const key = 'updatable';
 
     const isInitialMount = useRef(true)
@@ -90,7 +90,7 @@ export const EmployeeRegistration = ({setShowRegistrationForm}) => {
                 }}
                 sendForm={sendForm}
             />
-            {contextHolder}
+
             {/*     <Button type="primary" onClick={openMessage}>
                 Open the message box
             </Button>*/}

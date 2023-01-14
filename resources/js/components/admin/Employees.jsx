@@ -1,13 +1,13 @@
 import {EmployeesList,} from "./EmployeesList";
 import {EmployeeRegistration} from "./EmployeeRegistration";
 import {useState} from "react";
-import {ConfigProvider, Button, theme} from "antd";
+import {ConfigProvider, Button, theme, message} from "antd";
 import ruRu from 'antd/lib/locale/ru_RU';
-
 
 export const Employees = () => {
     const [showList, setShowList] = useState(false)
     const [showRegistrationForm, setShowRegistrationForm] = useState(true)
+    const [messageApi, contextHolder] = message.useMessage();
     return (
         <ConfigProvider
             locale={ruRu}
@@ -33,7 +33,11 @@ export const Employees = () => {
 
             {showList && <EmployeesList/>}
             {showRegistrationForm && <EmployeeRegistration
-                setShowRegistrationForm={setShowRegistrationForm}/>}
+                setShowRegistrationForm={setShowRegistrationForm}
+                messageApi={messageApi}
+                contextHolder={contextHolder}
+            />}
+            {contextHolder}
         </ConfigProvider>
     )
 
