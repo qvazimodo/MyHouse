@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Card, ConfigProvider, Form, Image, Input, List, theme, Typography} from "antd";
+import {Button, Card, ConfigProvider, Form, Image, Input, List, Switch, theme, Typography} from "antd";
 import {AUTH_USER_API_URL, CARDS_API_URL, MYCARDS_API_URL} from "../../helpers/API";
 import s from './UserCards.module.css';
+import {red} from "@ant-design/colors";
 
 const {Text} = Typography;
 
@@ -25,6 +26,9 @@ const UserCards = () => {
     const [price, setPrice] = useState('');
 
     const [visible, setVisible] = useState(false);
+
+    const [currentValue, setCurrentValue] = useState(true)
+
 
     //---------------------- Для Кости (НЕ форма)
     //---------------------- Вывод карточек пользователя
@@ -119,13 +123,23 @@ const UserCards = () => {
                 }}
 
             >
+                <div style={{display:"flex"}}>
+                <Text style={{color: '#D4C17F', display: 'block', fontSize: 24}}>Добавить объявление:</Text>
+                <Switch
+                    style={{backgroundColor: "darkgray", marginTop:9, marginLeft:12}}
+                    defaultChecked
+                    onChange={(value) => {
+                        setCurrentValue(value)
+                    }}
+                />
+        </div>
 
             {/*Форма*/}
 
-            <Text style={{color: '#D4C17F', marginBottom: 30, marginTop: 65, display: 'block', fontSize: 24}}>Добавить объявление:</Text>
             <Form
                 layout={'vertical'}
                 size={'middle'}
+                disabled={currentValue}
             >
                 <span style={{fontSize:18, color:'#D4C17F'}}>Введите заголовок:</span>
                 <Form.Item>
