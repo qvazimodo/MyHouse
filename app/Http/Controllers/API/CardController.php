@@ -72,6 +72,8 @@ class CardController extends Controller
                 $name = $photo->getClientOriginalName();
 
                 $save = new Photo();
+                $save->width = 300;
+                $save->height = 400;
                 $save->card_id = $cardId;
                 $save->name = $name;
                 $save->path = $path;
@@ -79,6 +81,7 @@ class CardController extends Controller
                 $names[] = $name;
             }
             return response()->json([
+                "cardID" => $cardId,
                 "success" => true,
                 "message" => "Photos successfully uploaded",
                 "names" => $names

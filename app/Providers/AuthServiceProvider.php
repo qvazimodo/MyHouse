@@ -28,9 +28,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('update-card', function (Client $client, Card $card){
+        /*Gate::define('update-card', function (Client $client, Card $card){
 
             return $client->id === $card->client_id;
-        });
+        });*/
     }
 }
