@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Collapse, App, Button, Form, Input, Select, Typography, Divider, Table } from 'antd';
-import {AUTH_METERS_API_URL, AUTH_USER_API_URL, METER_VALUE_API_URL} from "../helpers/API";
+import { Collapse, App, Button, Form, Input, Select, Typography, Divider, Table, notification  } from 'antd';
+import {AUTH_METERS_API_URL, AUTH_METERS_LIST_API_URL, AUTH_USER_API_URL, METER_VALUE_API_URL} from "../helpers/API";
 
 const { Panel } = Collapse;
 const { Text } = Typography;
 const { Option } = Select;
-//const { message } = App.useApp();
 
 const columns = [
     {
@@ -44,23 +43,33 @@ let locale = {
     emptyText: 'У Вас нет данных по счетчикам, оформите заявку администратору для добавления счетчика',
 };
 
-let meterTypes = new Set();
-
 class MetersForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            type: 'холодная вода',
+            type: '',
             number: '',
             now: '',
             userId: '',
             month: '1',
             info: [],
+            userMeters: {},
+            meterTypes: [],
         };
 
         this.valueInputChange = this.valueInputChange.bind(this);
     }
 
+    openNotification = () => {
+        notification.open({
+            message: 'Данные приняты',
+            description:
+                'Вы успешно отправили данные по счетчику',
+            onClick: () => {
+               // console.log('Notification Clicked!');
+            },
+        });
+    };
 
     componentDidMount() {
         /* Код get запроса для получения user_id */
@@ -72,11 +81,18 @@ class MetersForm extends React.Component {
 
         /* Получение информации по счетчикам пользователя */
 
+        fetch(AUTH_METERS_LIST_API_URL)
+            .then(response => response.json())
+                .catch(e => console.log(e))
+            .then( (data) => {
+                console.log(data.data);
+                this.setState({ userMeters: data.data });
+            })
+
         fetch(AUTH_METERS_API_URL)
             .then(response => response.json())
                 .catch(e => console.log(e))
             .then( (data) => {
-                //console.log(data);
                 let values = new Map();
                 for (let item in data.data) {
                     values.set(data.data[item].id, data.data[item].value);
@@ -91,8 +107,16 @@ class MetersForm extends React.Component {
 
             });
 
+
     }
 
+    generateSelectTypes = () => {
+        let data = [];
+        for (let key in this.state.userMeters) {
+            data.push(key);
+        }
+        return data;
+    }
 
     sendForm = (e) => {
         e.preventDefault();
@@ -123,17 +147,12 @@ class MetersForm extends React.Component {
                 this.setState(prevState => ({
                     info: [...prevState.info, data]
                 }))
+                this.openNotification();
             })
-
-        alert("Данные приняты");
-        //message.success('Данные приняты!');
-
 
         //TODO Разобраться с функцией очистки полей формы из AntDesign, подключить её
 
         this.setState({
-            type: 'холодная вода',
-            number: '',
             now: '',
             month: '1',
         });
@@ -148,6 +167,9 @@ class MetersForm extends React.Component {
     }
     monthChange = (value) => {
         this.setState( { month: value } );
+    }
+    numberChange = (value) => {
+        this.setState({number: value});
     }
     /*
        numberChange = (e) => {
@@ -186,23 +208,27 @@ class MetersForm extends React.Component {
                                     notFoundContent="Нет данных по счетчикам"
                                 >
                                     {
-
-                                        this.state.info.map((item, index) => {
-
-                                            if (!meterTypes.has(item.type)) {
-                                                meterTypes.add(item.type);
-                                                return <Option value={item.type} key={index}>{item.type}</Option>
-                                            }
+                                        this.generateSelectTypes(this).map((item, index) => {
+                                            return <Option value={item} key={index}>{item}</Option>
                                         })
                                     }
-
-
-
                                 </Select>
                             </Form.Item>
-                            <Form.Item label="Заводской номер счетчика">
-                                <Input name="number" value={this.state.number} onChange={this.valueInputChange} />
+
+                            <Form.Item label="Выберите номер счетчика">
+                                <Select
+                                    name="number"
+                                    onChange={this.numberChange}
+                                    notFoundContent="Нет данных по счетчикам"
+                                >
+                                    {
+                                        this.state.userMeters[this.state.type]?.map((item, index) => {
+                                            return <Option value={item.number} key={index}>{item.number}</Option>
+                                        })
+                                    }
+                                </Select>
                             </Form.Item>
+
                             <Form.Item label="Выберите месяц">
                                 <Select
                                     name="month"
