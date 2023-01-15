@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('month_years', function (Blueprint $table) {
+        Schema::create('month_year', function (Blueprint $table) {
             $table->id();
             $table->foreignId('month_id')->constrained();
             $table->foreignId('year_id')->constrained();
@@ -26,7 +26,7 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::table('month_years', function (Blueprint $table){
+        Schema::table('month_year', function (Blueprint $table){
             $table->dropForeign(['month_id']);
             $table->dropForeign(['year_id']);
         });

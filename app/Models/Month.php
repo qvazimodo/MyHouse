@@ -19,7 +19,7 @@ class Month extends Model
         return $this->hasMany(MeterValue::class);
     }
 
-    public function monthYears(): HasMany
+    public function monthYear(): HasMany
     {
         return $this->hasMany(MonthYear::class);
     }

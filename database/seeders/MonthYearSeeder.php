@@ -16,7 +16,6 @@ class MonthYearSeeder extends Seeder
      */
     public function run()
     {
-        MonthYear::factory(1)         //количество лет //количество лет
-        ->has(Year::factory()->has(Month::factory(12))->create())->create();
+
     }
 }

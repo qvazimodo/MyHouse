@@ -14,7 +14,7 @@ class Year extends Model
     protected $fillable = ['number'];
     public $timestamps = false;
 
-    public function monthYears(): HasMany
+    public function monthYear(): HasMany
     {
         return $this->hasMany(MonthYear::class);
     }

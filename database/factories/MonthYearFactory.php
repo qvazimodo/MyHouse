@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Month;
+use App\Models\Year;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -15,10 +16,11 @@ class MonthYearFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition($month, $year)
+    public function definition()
     {
         return [
             'month_id'=>Month::factory(),
+            'year_id'=>Year::factory(),
         ];
     }
 }
