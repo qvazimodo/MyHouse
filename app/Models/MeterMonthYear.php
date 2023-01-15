@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class MeterValue extends Model
+class MeterMonthYear extends Model
 {
     use HasFactory;
 
@@ -35,8 +35,8 @@ class MeterValue extends Model
         return $this->belongsTo(self::class, 'parent_id');
     }
 
-    public function monthYear():BelongsToMany
+    public function monthYear():BelongsTo
     {
-        return $this->belongsToMany(MonthYear::class, 'month_year_id', 'id');
+        return $this->belongsTo(MonthYear::class);
     }
 }

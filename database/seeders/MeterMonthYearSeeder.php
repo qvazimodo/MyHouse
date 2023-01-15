@@ -7,7 +7,7 @@ use App\Models\MonthYear;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class MeterValueSeeder extends Seeder
+class MeterMonthYearSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,9 +17,9 @@ class MeterValueSeeder extends Seeder
     public function run()
     {
         $meters = Meter::all();
-        $monthYears = DB::table('month_year')->get()->all();
+        $monthYears = MonthYear::all();
         $meters->each(function ($meter) use ($monthYears) {
-            $meter->meterValues()->saveMany($monthYears);
+            $meter->monthYear()->saveMany($monthYears);
         });
     }
 }
