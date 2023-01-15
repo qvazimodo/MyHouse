@@ -21,10 +21,9 @@ class MeterValueFactory extends Factory
     public function definition()
     {
         $faker = Faker\Factory::create('ru_Ru');
-        $months = Month::all();
         return [
             'meter_id' => Meter::factory(),
-            'month_years_id' => MonthYear::factory(),
+            'month_year_id' => MonthYear::factory(),
             'value' => $faker->biasedNumberBetween(100, 200000,
                 $function = 'Faker\Provider\Biased::linearHigh'),
         ];

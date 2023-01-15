@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class MeterValue extends Model
@@ -14,7 +16,7 @@ class MeterValue extends Model
     protected $fillable = [
         'meter_id',
         'parent_id',
-        'month_id',
+        'month_year_id',
         'value',
     ];
 
@@ -33,13 +35,8 @@ class MeterValue extends Model
         return $this->belongsTo(self::class, 'parent_id');
     }
 
-    public function month(): BelongsTo
+    public function monthYear():BelongsToMany
     {
-        return $this->belongsTo(Month::class);
-    }
-
-    public function monthYear():BelongsTo
-    {
-        return $this->belongsTo(MonthYear::class);
+        return $this->belongsToMany(MonthYear::class, 'month_year_id', 'id');
     }
 }

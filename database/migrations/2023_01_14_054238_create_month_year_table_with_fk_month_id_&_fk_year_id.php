@@ -30,6 +30,6 @@ return new class extends Migration {
             $table->dropForeign(['month_id']);
             $table->dropForeign(['year_id']);
         });
-        Schema::dropIfExists('month_years');
+        Schema::dropIfExists('month_year');
     }
 };

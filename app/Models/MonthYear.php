@@ -24,8 +24,8 @@ class MonthYear extends Model
         return $this->belongsTo(Month::class);
     }
 
-    public function meterValue():HasOne
+    public function meterValue():BelongsTo
     {
-        return $this->hasOne(MeterValue::class);
+        return $this->belongsTo(MeterValue::class);
     }
 }
