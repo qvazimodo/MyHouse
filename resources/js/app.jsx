@@ -31,6 +31,8 @@ import Navigation from "./components/Navigation";
 import Logo from "./components/Logo";
 import Footer_menu from "./components/Footer_menu";
 import Logo_footer from "./components/Logo_footer";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
@@ -118,6 +120,16 @@ if (document.getElementById('logo_footer')){
     const root=createRoot(document.getElementById('logo_footer'));
     root.render(<Logo_footer />);
 }
+
+if (document.getElementById('header')){
+    const root=createRoot(document.getElementById('header'));
+    root.render(<Header />);
+}
+if (document.getElementById('footer')){
+    const root=createRoot(document.getElementById('footer'));
+    root.render(<Footer />);
+}
+
 
 
 

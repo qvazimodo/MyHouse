@@ -1,0 +1,33 @@
+#rates {
+    width: 1000px;
+    margin-left: 380px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.rates_title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.33;
+    color: #D4C17F;
+    margin-bottom: 50px;
+}
+
+.rates_text {
+    color: #cbd5e0;
+    font-size: 16px;
+}
+
+@media (max-width:320px) {
+    #rates {
+        width: 100%;
+        margin-left: 2px;
+    }
+
+    .rates_title {
+        text-align: center;
+    }
+
+
+}

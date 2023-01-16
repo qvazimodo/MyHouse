@@ -1,14 +1,14 @@
 import React from 'react';
 import { Typography } from 'antd';
-
+import style from "./css/about.css";
 
 const { Text } = Typography;
 
 const About = () => (
     <div className="container">
-        <h2 className="title-2">О нашей компании</h2>
+        <h2 className="about_title" style={{ style }} >О нашей компании</h2>
 
-        <Text className="text" style={{ color: "white" }} >
+        <Text className="about_text" style={{ style }} >
             История нашей компании началась одновременно с образованием
             самого Домодедовского района в середине прошлого века (1969 год).
             Управление муниципальным фондом было возложено на «Городское

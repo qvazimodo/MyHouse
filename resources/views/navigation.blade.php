@@ -3,7 +3,7 @@
 @section('title', 'My House Управляющая компания')
 
 @section('header')
-    @include('header')
+    <div id="header"></div>
 @endsection
 
 @section('menu')

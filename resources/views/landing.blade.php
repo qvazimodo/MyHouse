@@ -3,7 +3,7 @@
 @section('title', 'My House Управляющая компания')
 
 @section('header')
-    @include('header')
+    <div id="header"></div>
 @endsection
 
 @section('menu')
@@ -15,6 +15,7 @@
 @endsection
 
 @section('content')
+
     <div id="place"></div>
     <div id="watch"></div>
     <div id="video"></div>

@@ -34,7 +34,7 @@
 
     <div class="app-wrapper">
         @yield('menu')
-        @yield('header')
+        <div id="header"></div>
 
 
         {{--    Всплывающее меню на Bootstrap--}}
@@ -78,7 +78,7 @@
             @yield('content')
         </main>
 
-        @yield('footer')
+        @include('footer')
     </div>
 </div>
 </body>

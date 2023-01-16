@@ -1,12 +1,13 @@
 import React from 'react';
 import { Typography } from 'antd';
+import style from "./css/contacts.css";
 
 
 const { Text } = Typography;
 const Contacts = () => {
     return (
-    <div className="container">
-         <h2 className="title-2">Контакты</h2>
+    <div className="container" style={{ style }}>
+         <h2 className="contact_title">Контакты</h2>
          <Text className="text" type="warning" >Наш адрес:</Text><br />
          <Text className="text" style={{ color: "white" }}>
              142000 город Домодедово Московской области, улица Корнеева, дом 42</Text><br /><br />

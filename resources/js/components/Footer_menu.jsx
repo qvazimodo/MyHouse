@@ -1,5 +1,6 @@
 import {Menu, theme} from 'antd';
 import { useState } from 'react';
+import style from "./css/footer_menu.css";
 
 const items = [
     {
@@ -33,17 +34,10 @@ const Footer_menu = () => {
     };
     return (
 
-        <Menu className="Menu-logo" onClick={onClick} mode="horizontal" items={items} theme={{
+        <Menu className="Menu-logo-footer" onClick={onClick} mode="horizontal" items={items} theme={{
             algorithm: theme.darkAlgorithm,
-        }} style={{ background: "#242B33",
-            borderColor: "#242B33",
-            color: "#d7d7d7",
-            fontFamily: "Raleway",
-            marginLeft: 0,
-            marginTop: 27,
-            width: 380,
-            fontSize: 14,
-        }} />
+        }} style={{ style }}
+        />
     );
 };
 export default Footer_menu;

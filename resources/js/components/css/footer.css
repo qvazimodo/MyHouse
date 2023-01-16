@@ -3,7 +3,7 @@
     margin-bottom: 36px;
 }
 
-.footer {
+footer {
     background-color: #242B33;
     display: block;
 }
@@ -25,7 +25,7 @@
     justify-content: space-between;
     max-width: 610px;
     width: 100%;
-    font-family: 'Raleway';
+    font-family: 'Raleway', sans-serif;
     color: #FFFFFF;
     font-weight: 400;
     font-size: 14px;

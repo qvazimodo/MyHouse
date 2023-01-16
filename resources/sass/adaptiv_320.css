@@ -29,7 +29,7 @@
 
     .top-right {
         flex-direction: column;
-        padding-left: 96px;
+        padding-left: 72px;
         padding-top: 20px;
         line-height: 25px;
     }
@@ -206,7 +206,7 @@
 
     .weather {
         margin-top: 0;
-        margin-left: 74px;
+        margin-left: 98px;
         padding-bottom: 20px;
         margin-right: 80px;
     }
@@ -232,7 +232,7 @@
 
     .top-right-two {
         display: block;
-        margin-left: 107px;
+        padding-left: 83px;
         font-family: 'Raleway', sans-serif;
     }
 
@@ -244,11 +244,5 @@
         width: 142px;
         text-align: left;
     }
-
-    /*.logo-footer {*/
-    /*    margin-left: 87px;*/
-    /*    margin-top: -25px;*/
-    /*}*/
-
 
 }
