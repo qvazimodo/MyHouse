@@ -2,12 +2,12 @@
 
 @section('title', 'My House Управляющая компания')
 
-@section('header')
-    <div id="header"></div>
-@endsection
-
 @section('menu')
     @include('menu')
+@endsection
+
+@section('header')
+    <div id="header"></div>
 @endsection
 
 @section('flats')
