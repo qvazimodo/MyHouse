@@ -29,6 +29,7 @@ import Contacts from "./components/Contacts";
 import Rates from "./components/Rates";
 import Navigation from "./components/Navigation";
 import Logo from "./components/Logo";
+import { MetersList } from "./components/admin/MetersList";
 
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
@@ -105,6 +106,11 @@ if (document.getElementById('navigation')){
 if (document.getElementById('logo')){
     const root=createRoot(document.getElementById('logo'));
     root.render(<Logo />);
+}
+
+if (document.getElementById('admin_meters')){
+    const root=createRoot(document.getElementById('admin_meters'));
+    root.render(<MetersList />);
 }
 
 

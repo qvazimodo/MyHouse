@@ -15,10 +15,6 @@ class YearSeeder extends Seeder
      */
     public function run()
     {
-        /*        Year::factory(2)
-                    ->hasAttached(Month::factory(12)
-                        ->create())
-                    ->create();*/
         Year::factory(3)->create();
         Month::factory(12)->create();
         $months = Month::all();

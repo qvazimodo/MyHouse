@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 //use App\Models\User;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ClientSeeder::class);
         $this->call(EmployeeSeeder::class);*/
 
+        $this->call(AdminSeeder::class);
         $this->call(ClientSeeder::class);
         $this->call(YearSeeder::class);
         $this->call(MeterMonthYearSeeder::class);

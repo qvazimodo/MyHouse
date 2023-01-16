@@ -37,10 +37,7 @@ class MeterMonthYearSeeder extends Seeder
             self::$newMeter = true;
             MeterMonthYear::query()->get()->where('meter_id', $i)
                 ->each(function ($item) use ($i) {
-                    echo $i;
-                    echo "new meter=". self::$newMeter . "<br>";
                     if (!self::$newMeter) {
-                        echo $item->id;
                         $item->parent_id = $item->id - 1;
                         $item->save();
                     }
