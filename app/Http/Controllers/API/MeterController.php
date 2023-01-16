@@ -9,7 +9,9 @@ use App\Models\Meter;
 use App\Models\MeterValue;
 use App\Models\Month;
 use App\Models\Year;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class MeterController extends Controller
 {
@@ -25,18 +27,16 @@ class MeterController extends Controller
         return response()->json(['status' => 'ok', 'data' => $metersCollection], 200);
     }
 
-    public function values()
+    public function clientMetersValues():JsonResponse
     {
         $currentClientId = auth()->user()->getAuthIdentifier();
 
         $metersValues = Meter::with(['client', 'monthYear'])->where('client_id',
-            $currentClientId)->with(['monthYear'])->paginate(2);
+            $currentClientId)->paginate(2);
 
-        $metersValuesCollection = MeterResource::collection($metersValues);
         $years = Year::all();
         $months = Month::all();
         $client = Client::with('user')->where('id', $currentClientId)->get();
-
 
         return response()->json([
             'data' => $metersValues,

@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\API\Admin\EmployeeAPIController;
 use App\Http\Controllers\API\Admin\HouseController;
-
 use App\Http\Controllers\API\CardController;
 use App\Http\Controllers\API\ClientAnnouncementController;
 use App\Http\Controllers\API\MeterController;
+use App\Http\Controllers\API\Admin\MeterController as AdminMeterController;
 use App\Http\Controllers\API\MeterValueController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -70,5 +70,13 @@ Route::prefix('')->group(function () {
     Route::get('/client_meters', [MeterController::class, 'index']);
 
 //api вывода показаний всех счетчиков по текущему пользователю
-    Route::get('/client_meters/values', [MeterController::class, 'values']);
+    Route::get('/client_meters/values', [MeterController::class, 'clientMetersValues']);
 })->middleware('auth');
+
+Route::prefix('admin')->group(function () {
+    //api вывода информации обо всех счетчиках всех пользователей
+    Route::get('/meters', [AdminMeterController::class, 'index']);
+
+    //api вывода показаний всех счетчиков всех пользователей
+    Route::get('/meters/values', [AdminMeterController::class, 'allMetersValues']);
+});
