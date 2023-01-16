@@ -49,6 +49,6 @@ class Meter extends Model
     {
         return $this->belongsToMany(MonthYear::class, 'meter_month_year', 'meter_id', 'month_year_id', 'id')
             ->using(MeterMonthYear::class)
-            ->withPivot('value');
+            ->withPivot(['value', 'parent_id']);
     }
 }
