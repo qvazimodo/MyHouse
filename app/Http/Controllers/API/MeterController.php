@@ -4,10 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\MeterResource;
+use App\Models\Client;
 use App\Models\Meter;
 use App\Models\MeterValue;
+use App\Models\Month;
+use App\Models\Year;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class MeterController extends Controller
 {
@@ -23,13 +25,23 @@ class MeterController extends Controller
         return response()->json(['status' => 'ok', 'data' => $metersCollection], 200);
     }
 
-    public function values(): ResourceCollection
+    public function values()
     {
         $currentClientId = auth()->user()->getAuthIdentifier();
 
-        return MeterResource::collection(Meter::with(['client', 'monthYear'])->where('id',
-            $currentClientId)->with(['monthYear'])
-            ->paginate(12));
+        $metersValues = Meter::with(['client', 'monthYear'])->where('client_id',
+            $currentClientId)->with(['monthYear'])->paginate(2);
+
+        $metersValuesCollection = MeterResource::collection($metersValues);
+        $years = Year::all();
+        $months = Month::all();
+        $client = Client::with('user')->where('id', $currentClientId)->get();
+
+
+        return response()->json([
+            'data' => $metersValues,
+            'meta' => ['client' => $client, 'years' => $years, 'months' => $months]
+        ], 200);
 
         /*        return  MeterValueResource::collection(MeterValue::with(['meterValues'])
                     ->where('client_id',$id)
