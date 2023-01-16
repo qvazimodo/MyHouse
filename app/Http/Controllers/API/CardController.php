@@ -29,6 +29,7 @@ class CardController extends Controller
             return response()->json("Нет прав", 403);
         } else {
             $card = Card::create($request->all());
+            $this->uploadPhoto($request, $card);
             return response()->json($card, 201);
         }
     }
@@ -56,16 +57,15 @@ class CardController extends Controller
         return response()->json(null, 204);
     }
 
-    public function uploadPhoto(Request $request): JsonResponse
+    public function uploadPhoto(Request $request, Card $card): JsonResponse
     {
         $validated = Validator::make($request->all(), [
             'image*' => 'required|mimes:png,jpg,jpeg,gif,array|max:50000',
-            'id' => 'required: int'
         ]);
         if ($validated->fails()) {
             return response()->json($validated->errors());
         } else {
-            $cardId = $request->input('id');
+            //$cardId = $request->input('id');
             $names = [];
             foreach ($request->file('image') as $photo) {
                 $path = $photo->store('public/upload');
@@ -74,14 +74,13 @@ class CardController extends Controller
                 $save = new Photo();
                 $save->width = 300;
                 $save->height = 400;
-                $save->card_id = $cardId;
+                $save->card_id = $card->id;
                 $save->name = $name;
                 $save->path = $path;
                 $save->save();
                 $names[] = $name;
             }
             return response()->json([
-                "cardID" => $cardId,
                 "success" => true,
                 "message" => "Photos successfully uploaded",
                 "names" => $names

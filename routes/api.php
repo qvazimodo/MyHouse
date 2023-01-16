@@ -29,7 +29,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('cards', CardController::class)->middleware('auth');
 //Route::apiResource('mail', \App\Http\Controllers\API\Mail::class);
 Route::get('user_cards', [CardController::class, 'getUserCards']);
-Route::post('uploading-photos', [CardController::class, 'uploadPhoto' ]);
+//Route::post('uploading-photos', [CardController::class, 'uploadPhoto' ]);
 
 Route::get('client_ad', [ClientAnnouncementController::class, 'index']);
 
