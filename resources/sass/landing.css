@@ -60,7 +60,7 @@
 
 .watching-section {
     background: url('/storage/app/public/images/watching-bg.png') center / cover no-repeat;
-    padding: 180px 0;
+    padding: 180px 0 ;
     box-sizing: border-box;
 }
 

@@ -30,6 +30,7 @@ import Rates from "./components/Rates";
 import Navigation from "./components/Navigation";
 import Logo from "./components/Logo";
 import Footer_menu from "./components/Footer_menu";
+import Logo_footer from "./components/Logo_footer";
 
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
@@ -111,6 +112,11 @@ if (document.getElementById('logo')){
 if (document.getElementById('footer_menu')){
     const root=createRoot(document.getElementById('footer_menu'));
     root.render(<Footer_menu />);
+}
+
+if (document.getElementById('logo_footer')){
+    const root=createRoot(document.getElementById('logo_footer'));
+    root.render(<Logo_footer />);
 }
 
 

@@ -35,13 +35,14 @@ const Footer_menu = () => {
 
         <Menu className="Menu-logo" onClick={onClick} mode="horizontal" items={items} theme={{
             algorithm: theme.darkAlgorithm,
-        }} style={{ background: "#2D343C",
-            borderColor: "#2D343C",
+        }} style={{ background: "#242B33",
+            borderColor: "#242B33",
             color: "#d7d7d7",
             fontFamily: "Raleway",
-            marginLeft: -64,
-            marginTop: 45,
+            marginLeft: 0,
+            marginTop: 27,
             width: 380,
+            fontSize: 14,
         }} />
     );
 };
