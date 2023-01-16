@@ -10,6 +10,7 @@ use App\Models\Photo;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
@@ -25,13 +26,16 @@ class CardController extends Controller
 
     public function store(Request $request): JsonResponse
     {
-        if ((Client::where('user_id', $request->input('client_id'))->get())->isEmpty()) {
+        if ((Client::where('user_id', Auth::user()->id)->get())->isEmpty()) {
             return response()->json("Нет прав", 403);
-        } else {
+        }
+            $clientId = Client::where('user_id', Auth::user()->id)->first();
+            $clientId = $clientId->id;
             $card = Card::create($request->all());
+            $card->client_id = $clientId;
+            $card->save();
             $this->uploadPhoto($request, $card);
             return response()->json($card, 201);
-        }
     }
 
 
