@@ -31,8 +31,12 @@ class MonthYear extends Model
         return $this->hasMany(MeterMonthYear::class);
     }
 
+    //using(<имя класса связующей модели>)
+    //данный метод позволяет к результату присоединить данные из связующей таблицы
     public function meters(): BelongsToMany
     {
-        return $this->belongsToMany(Meter::class, 'meter_month_year', 'month_year_id', 'meter_id', 'id');
+        return $this->belongsToMany(Meter::class, 'meter_month_year', 'month_year_id', 'meter_id', 'id')
+            ->using(MeterMonthYear::class)
+            ->withPivot('value');
     }
 }

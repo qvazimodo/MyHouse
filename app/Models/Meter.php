@@ -33,18 +33,22 @@ class Meter extends Model
         );
     }
 
-    public function client():BelongsTo
+    public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class, 'client_id', 'id');
     }
 
-    public function meterMonthYear():HasMany
+    public function meterMonthYear(): HasMany
     {
         return $this->hasMany(MeterMonthYear::class);
     }
 
-    public function monthYear():BelongsToMany
+    //using(<имя класса связующей модели>)
+    //данный метод позволяет к результату присоединить данные из связующей таблицы
+    public function monthYear(): BelongsToMany
     {
-        return $this->belongsToMany(MonthYear::class, 'meter_month_year', 'meter_id', 'month_year_id', 'id');
+        return $this->belongsToMany(MonthYear::class, 'meter_month_year', 'meter_id', 'month_year_id', 'id')
+            ->using(MeterMonthYear::class)
+            ->withPivot('value');
     }
 }
