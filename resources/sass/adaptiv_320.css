@@ -134,8 +134,12 @@
     }
 
     .video-block {
-        height: 180px;
-        max-width: 320px;
+        margin: 0 0 0 0;
+    }
+
+    .video_name {
+        width: 310px;
+        height: 177px;
     }
 
     .review-block {
@@ -240,6 +244,11 @@
         width: 142px;
         text-align: left;
     }
+
+    /*.logo-footer {*/
+    /*    margin-left: 87px;*/
+    /*    margin-top: -25px;*/
+    /*}*/
 
 
 }

@@ -15,9 +15,9 @@
 @endsection
 
 @section('content')
-    <div id="place"></div><hr>
+    <div id="place"></div>
     <div id="watch"></div>
-    <div id="video"></div><hr>
+    <div id="video"></div>
     <div id="reviews"></div>
 
      <div class="content-map">
