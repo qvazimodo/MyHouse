@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CardRequest;
 use App\Http\Resources\CardResource;
 use App\Models\Card;
 use App\Models\Client;
@@ -24,7 +25,7 @@ class CardController extends Controller
     }
 
 
-    public function store(Request $request): JsonResponse
+    public function store(CardRequest $request): JsonResponse
     {
         if ((Client::where('user_id', Auth::user()->id)->get())->isEmpty()) {
             return response()->json("Нет прав", 403);
@@ -69,7 +70,6 @@ class CardController extends Controller
         if ($validated->fails()) {
             return response()->json($validated->errors());
         } else {
-            //$cardId = $request->input('id');
             $names = [];
             foreach ($request->file('image') as $photo) {
                 $path = $photo->store('public/upload');
