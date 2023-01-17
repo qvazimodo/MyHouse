@@ -4,10 +4,14 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\MeterResource;
+use App\Models\Client;
 use App\Models\Meter;
 use App\Models\MeterValue;
+use App\Models\Month;
+use App\Models\Year;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class MeterController extends Controller
 {
@@ -23,9 +27,21 @@ class MeterController extends Controller
         return response()->json(['status' => 'ok', 'data' => $metersCollection], 200);
     }
 
-    public function values(): ResourceCollection
+    public function clientMetersValues():JsonResponse
     {
-        $id = auth()->user()->getAuthIdentifier();
+        $currentClientId = auth()->user()->getAuthIdentifier();
+
+        $metersValues = Meter::with(['client', 'monthYear'])->where('client_id',
+            $currentClientId)->paginate(2);
+
+        $years = Year::all();
+        $months = Month::all();
+        $client = Client::with('user')->where('id', $currentClientId)->get();
+
+        return response()->json([
+            'data' => $metersValues,
+            'meta' => ['client' => $client, 'years' => $years, 'months' => $months]
+        ], 200);
 
         /*        return  MeterValueResource::collection(MeterValue::with(['meterValues'])
                     ->where('client_id',$id)
@@ -39,18 +55,18 @@ class MeterController extends Controller
         // $lastValue = MeterValue::select('value')->where('parent_id');
         // dd($lastValueId);
 
-        $meters = Meter::query()
-            ->select('number',
-                'type', 'months.name as name',
-                'value', 'client_id', 'parent_id',
-                'meter_id', 'month_id', 'meter_values.id as id')
-            //->selectSub($lastValue, 'lastValue')
-            ->join('meter_values', 'meter_values.meter_id', '=', 'meters.id')
-            ->join('months', 'months.id', '=', 'meter_values.month_id')
-            ->where('client_id', '=', $id)
-            ->get();
-        //return response()->json($meters);
-        return MeterResource::collection($meters);
+        /*        $meters = Meter::query()
+                    ->select('number',
+                        'type', 'months.name as name',
+                        'value', 'client_id', 'parent_id',
+                        'meter_id', 'month_id', 'meter_values.id as id')
+                    //->selectSub($lastValue, 'lastValue')
+                    ->join('meter_values', 'meter_values.meter_id', '=', 'meters.id')
+                    ->join('months', 'months.id', '=', 'meter_values.month_id')
+                    ->where('client_id', '=', $id)
+                    ->get();
+                //return response()->json($meters);
+                return MeterResource::collection($meters);*/
 
 
     }

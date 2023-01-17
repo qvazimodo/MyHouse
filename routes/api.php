@@ -6,6 +6,7 @@ use App\Http\Controllers\API\Admin\HouseController;
 use App\Http\Controllers\API\CardController;
 use App\Http\Controllers\API\ClientAnnouncementController;
 use App\Http\Controllers\API\MeterController;
+use App\Http\Controllers\API\Admin\MeterController as AdminMeterController;
 use App\Http\Controllers\API\MeterValueController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,9 +28,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('cards', CardController::class)->middleware('auth');
-//Route::apiResource('mail', \App\Http\Controllers\API\Mail::class);
+
 Route::get('user_cards', [CardController::class, 'getUserCards']);
-//Route::post('uploading-photos', [CardController::class, 'uploadPhoto' ]);
+Route::post('uploading-photos', 'CardController@uploadPhoto');
 
 Route::get('client_ad', [ClientAnnouncementController::class, 'index']);
 
@@ -70,6 +71,13 @@ Route::prefix('')->group(function () {
     Route::get('/client_meters', [MeterController::class, 'index']);
 
 //api вывода показаний всех счетчиков по текущему пользователю
-    Route::get('/client_meters/values', [MeterController::class, 'values']);
+    Route::get('/client_meters/values', [MeterController::class, 'clientMetersValues']);
 })->middleware('auth');
 
+Route::prefix('admin')->group(function () {
+    //api вывода информации обо всех счетчиках всех пользователей
+    Route::get('/meters', [AdminMeterController::class, 'index']);
+
+    //api вывода показаний всех счетчиков всех пользователей
+    Route::get('/meters/values', [AdminMeterController::class, 'allMetersValues']);
+});

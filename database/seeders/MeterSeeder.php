@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Meter;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\MeterValue;
 use Illuminate\Database\Seeder;
 
 class MeterSeeder extends Seeder
@@ -15,6 +15,8 @@ class MeterSeeder extends Seeder
      */
     public function run()
     {
-        Meter::factory(10)->create();
+        Meter::factory(10)
+            ->createMany(MeterValue::factory()->create())
+            ->create();
     }
 }

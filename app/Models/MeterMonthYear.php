@@ -3,25 +3,22 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
+//use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class MeterValue extends Model
+
+class MeterMonthYear extends Pivot
 {
     use HasFactory;
-
+    protected $table = 'meter_month_year';
     protected $fillable = [
         'meter_id',
         'parent_id',
-        'month_id',
+        'month_year_id',
         'value',
     ];
-
-    public function meter(): BelongsTo
-    {
-        return $this->belongsTo(Meter::class);
-    }
 
     public function parentId(): HasOne
     {
@@ -33,8 +30,13 @@ class MeterValue extends Model
         return $this->belongsTo(self::class, 'parent_id');
     }
 
-    public function month(): BelongsTo
+    public function meter(): BelongsTo
     {
-        return $this->belongsTo(Month::class);
+        return $this->belongsTo(Meter::class);
+    }
+
+    public function monthYear():BelongsTo
+    {
+        return $this->belongsTo(MonthYear::class);
     }
 }

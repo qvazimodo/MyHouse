@@ -2,12 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\Month;
-use Faker;
 use App\Models\Meter;
+use App\Models\Month;
+use App\Models\MonthYear;
+use Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Database\Eloquent\Factories\Sequence;
-use Illuminate\Support\Facades\DB;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\MeterValue>
@@ -22,13 +21,11 @@ class MeterValueFactory extends Factory
     public function definition()
     {
         $faker = Faker\Factory::create('ru_Ru');
-        $months = Month::all();
         return [
             'meter_id' => Meter::factory(),
-            'month_id' => rand(1, 12),
-            'value' => $faker->numberBetween(100, 10000),
-            'created_at' => now(),
-            'updated_at' => now(),
+            'month_year_id' => MonthYear::factory(),
+            'value' => $faker->biasedNumberBetween(100, 200000,
+                $function = 'Faker\Provider\Biased::linearHigh'),
         ];
     }
 }

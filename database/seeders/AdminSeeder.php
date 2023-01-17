@@ -10,7 +10,7 @@ use Illuminate\Database\Seeder;
 
 use Illuminate\Support\Facades\Hash;
 
-class UsersSeeder extends Seeder
+class AdminSeeder extends Seeder
 {
     /**
      * Run the database seeds.

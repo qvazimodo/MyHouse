@@ -36,6 +36,7 @@ import News from "./components/News";
 
 
 
+import { MetersList } from "./components/admin/MetersList";
 
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
@@ -135,6 +136,11 @@ if (document.getElementById('news')){
 
 
 
+
+if (document.getElementById('admin_meters')){
+    const root=createRoot(document.getElementById('admin_meters'));
+    root.render(<MetersList />);
+}
 
 
 

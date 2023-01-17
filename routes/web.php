@@ -31,9 +31,12 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'is_admin'])
     ->group(function(){
         Route::resource('users', AdminUserController::class);
         Route::resource('clients', ClientController::class);
-        Route::get('employees', function (){
+        Route::get('employees', function () {
             return view('admin.employees');
         })->name('employees');
+        Route::get('/meters', function () {
+            return view('admin.meters');
+        })->name('meters');
 });
 
 Route::get('/landing', function (){

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
@@ -32,13 +33,23 @@ class Meter extends Model
         );
     }
 
-    public function meterValues():HasMany
-    {
-        return $this->hasMany(MeterValue::class, 'meter_id', 'id');
-    }
-
-    public function client():BelongsTo
+    public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class, 'client_id', 'id');
+    }
+
+    public function meterMonthYear(): HasMany
+    {
+        return $this->hasMany(MeterMonthYear::class);
+    }
+
+    //using(<имя класса связующей модели>)
+    //данный метод позволяет к результату присоединить данные из связующей таблицы
+    public function monthYear(): BelongsToMany
+    {
+        return $this->belongsToMany(MonthYear::class, 'meter_month_year', 'meter_id', 'month_year_id', 'id')
+            ->as('meter_reading')
+            ->withPivot(['value', 'parent_id'])
+ ;
     }
 }
