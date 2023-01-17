@@ -1,0 +1,53 @@
+.watching-section {
+    background: url('/resources/js/components/img/watching-bg.png') center / cover no-repeat;
+    padding: 180px 0 ;
+    box-sizing: border-box;
+}
+
+.watching_title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.33;
+    color: #D4C17F;
+    margin-bottom: 50px;
+}
+
+.watching-section_wrp {
+    display: flex;
+    font-family: 'Raleway', sans-serif;
+}
+
+.watching-section_text {
+    flex: 1;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #FFFFFF;
+}
+
+.watching-section_form {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 35px 30px;
+}
+
+.watching_text {
+    background: #D4C17F;
+    border-color: #D4C17F;
+    color: black;
+    font-family: Raleway, sans-serif;
+}
+
+.watching_bottom_text {
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 12px;
+}
+
+.watching_button {
+    background: White;
+    border-color: White;
+    color: black;
+}

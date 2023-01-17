@@ -32,7 +32,8 @@ import Logo from "./components/Logo";
 import Footer_menu from "./components/Footer_menu";
 import Logo_footer from "./components/Logo_footer";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
+
+
 
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
@@ -42,14 +43,12 @@ if (document.getElementById('questions')) {
 if (document.getElementById('request')) {
     const root = createRoot(document.getElementById('request'));
     root.render(<RequestForEmployee />);
-    // ReactDom.render(<RequestForEmployee />, document.getElementById('request'));
 }
 
 if (document.getElementById('meters')) {
     const root = createRoot(document.getElementById('meters'));
     root.render(<MetersForm />);
-   //  ReactDom.render(<MetersForm />, document.getElementById('meters'));
-}
+ }
 
 if (document.getElementById('reviews')) {
     const root = createRoot(document.getElementById('reviews'));
@@ -125,10 +124,8 @@ if (document.getElementById('header')){
     const root=createRoot(document.getElementById('header'));
     root.render(<Header />);
 }
-if (document.getElementById('footer')){
-    const root=createRoot(document.getElementById('footer'));
-    root.render(<Footer />);
-}
+
+
 
 
 

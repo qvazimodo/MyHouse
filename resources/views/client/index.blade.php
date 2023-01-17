@@ -2,12 +2,12 @@
 
 @section('title', 'Клиенты компании')
 
-@section('header')
-    @include('header')
-@endsection
-
 @section('menu')
     @include('menu')
+@endsection
+
+@section('header')
+    <div id="header"></div>
 @endsection
 
 

@@ -2,7 +2,7 @@
 
 @section('title', 'My House Управляющая компания')
 
-@section('menu')@section('menu')
+@section('menu')
     @include('menu')
 @endsection
 

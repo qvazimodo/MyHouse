@@ -1,9 +1,4 @@
-#about {
-    margin-top: 20px;
-    margin-bottom: 50px;
-}
-
-.about_title {
+.hl_title {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     font-size: 36px;
@@ -11,9 +6,3 @@
     color: #D4C17F;
     margin-bottom: 50px;
 }
-
-.about_text {
-    color: #cbd5e0;
-    font-size: 16px;
-}
-

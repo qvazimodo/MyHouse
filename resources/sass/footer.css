@@ -3,9 +3,9 @@
     margin-bottom: 36px;
 }
 
-footer {
+.footer {
     background-color: #242B33;
-    display: block;
+    /*display: block;*/
 }
 
 .footer-wrapper {
@@ -21,7 +21,6 @@ footer {
 }
 
 .footer-center {
-    display: flex;
     justify-content: space-between;
     max-width: 610px;
     width: 100%;

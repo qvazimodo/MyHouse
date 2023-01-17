@@ -1,10 +1,10 @@
 import React from 'react';
+import style from "./css/houses_list.css";
 import {Card, List, Space, Table, Tag} from 'antd';
 import { Typography } from 'antd';
 
-
-
 const { Text } = Typography;
+
 const columns = [
     {
         title: 'Номер дома',
@@ -63,7 +63,7 @@ const columns = [
 ];
 const HousesList = () =>
     <div className="container">
-        <h2 className="title-2">Мы обслуживаем дома</h2>
+        <h2 className="hl_title" style={{ style }}>Мы обслуживаем дома</h2>
 
         <Table columns={columns}  />;
     </div>

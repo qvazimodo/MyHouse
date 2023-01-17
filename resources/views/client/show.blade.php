@@ -2,12 +2,12 @@
 
 @section('title', "Профиль пользователя")
 
-@section('header')
-    @include('header')
-@endsection
-
 @section('menu')
     @include('menu')
+@endsection
+
+@section('header')
+    <div id="header"></div>
 @endsection
 
 @section('content')

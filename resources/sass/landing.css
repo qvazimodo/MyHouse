@@ -58,12 +58,6 @@
     left: 52px;
 }
 
-.watching-section {
-    background: url('/storage/app/public/images/watching-bg.png') center / cover no-repeat;
-    padding: 180px 0 ;
-    box-sizing: border-box;
-}
-
 .container {
     max-width: 1100px;
     width: 100%;
@@ -77,26 +71,6 @@
     line-height: 1.33;
     color: #D4C17F;
     margin-bottom: 50px;
-}
-
-.watching-section_wrp {
-    display: flex;
-    font-family: 'Raleway', sans-serif;
-}
-
-.watching-section_text {
-    flex: 1;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #FFFFFF;
-}
-
-.watching-section_form {
-    flex: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 35px 30px;
 }
 
 .section-input {
@@ -136,44 +110,6 @@
     cursor: pointer;
 }
 
-.video-block {
-    max-width: 1100px;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0 2%;
-    margin: -85px 0 0 550px;
-}
-
-.reviews {
-    background: #242B33;
-    padding: 60px 0;
-    box-sizing: border-box;
-}
-
-.review-block {
-    margin-bottom: 40px;
-}
-
-.review-block:last-child {
-    margin-bottom: 0;
-}
-
-.review-txt {
-    font-family: "Raleway", sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #FFFFFF;
-}
-
-.review-author {
-    font-family: "Raleway", sans-serif;
-    font-weight: 800;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #FFFFFF;
-}
-
 .content-map {
     background-color: #242B33;
     max-width: 1100px;
@@ -200,33 +136,9 @@
 
 }
 
-.img-review {
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    margin-right: 30px;
-    margin-top: 22px;
-}
 
-.img-review2 {
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    margin-right: 30px;
-    margin-top: 11px;
-}
 
-.img-review3 {
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    margin-right: 30px;
-    margin-top: -5px;
-}
 
-.review-block {
-    display: flex;
-}
 
 
 
