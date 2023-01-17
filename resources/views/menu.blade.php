@@ -3,6 +3,7 @@
             <div id="logo"></div>
         <div class="top-right">
             <ul id="navbar">
+                <li><a href="news">Новости</a></li>
                 <li><a href="rates">Тарифы и услуги</a></li>
                 <li><a href="serviced_houses">Дома</a></li>
                 <li><a href="announcement">Объявления</a></li>

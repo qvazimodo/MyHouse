@@ -32,6 +32,7 @@ import Logo from "./components/Logo";
 import Footer_menu from "./components/Footer_menu";
 import Logo_footer from "./components/Logo_footer";
 import Header from "./components/Header";
+import News from "./components/News";
 
 
 
@@ -124,6 +125,11 @@ if (document.getElementById('logo_footer')){
 if (document.getElementById('header')){
     const root=createRoot(document.getElementById('header'));
     root.render(<Header />);
+}
+
+if (document.getElementById('news')){
+    const root=createRoot(document.getElementById('news'));
+    root.render(<News />);
 }
 
 

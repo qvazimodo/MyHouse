@@ -70,3 +70,8 @@ Route::get('/usercards', function () {
 Route::get('/serviced_houses', function (){
     return view('serviced_houses');
 })->name('serviced_houses');
+
+Route::get('/news', function (){
+    return view('news');
+})->name('news');
+
