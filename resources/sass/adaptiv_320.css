@@ -20,18 +20,11 @@
     .top {
         display: block;
         margin: 0 auto;
-        padding: 19px 0 0 0;
+        padding: 5px 0 0 0;
     }
 
     .top-left {
         width: 100%;
-    }
-
-    .top-right {
-        flex-direction: column;
-        padding-left: 72px;
-        padding-top: 20px;
-        line-height: 25px;
     }
 
     .residential {
@@ -39,26 +32,6 @@
         margin-top: 0;
         font-size: 11px;
         line-height: 14px;
-    }
-
-    .bottom {
-        max-width: 320px;
-        width: 100%;
-        padding-top: 259px;
-    }
-
-    .bottom-top {
-        margin-top: -144px;
-        margin-left: -12px;
-        font-size: 33px;
-        line-height: 33px;
-    }
-
-    .bottom-contacts {
-        display: block;
-        font-size: 14px;
-        margin-top: 50px;
-        margin-left: 53px;
     }
 
     .menu-flats {
@@ -96,32 +69,10 @@
         margin-top: -124px;
     }
 
-    .watching-section {
-        padding: 10px 0;
-        box-sizing: border-box;
-    }
-
     .title-2 {
         font-size: 30px;
         margin-bottom: 50px;
         text-align: center;
-    }
-
-    .watching-section_wrp {
-        display: block;
-    }
-
-    .watching-section_text {
-        font-size: 14px;
-    }
-
-    .watching-section_form {
-        display: block;
-        margin-left: 65px;
-    }
-
-    .watching-section_form p {
-        margin-left: -64px;
     }
 
     .text {
@@ -133,40 +84,11 @@
         margin-left: 10px;
     }
 
-    .video-block {
-        margin: 0 0 0 0;
-    }
-
-    .video_name {
-        width: 310px;
-        height: 177px;
-    }
-
-    .review-block {
-        display: block;
-    }
-
-    img.img-review {
-        margin-left: 23px;
-    }
-
-    img.img-review2 {
-        margin-left: 23px;
-    }
-
-    img.img-review3 {
-        margin-left: 23px;
-    }
-
-    .review-author {
-        margin-left: 122px;
-        margin-top: -66px;
-    }
-
     .map {
-        line-height: 36px;
+        line-height: 30px;
         text-align: center;
-        padding-top: 7px;
+        padding-top: 1px;
+        margin-left: 6px;
     }
 
     .map-bottom {
@@ -211,15 +133,6 @@
         margin-right: 80px;
     }
 
-    .about-title {
-        margin-left: 30px;
-    }
-
-    .about-text {
-        margin-left: 30px;
-        margin-right: 30px;
-    }
-
     .text {
         margin-bottom: 10px;
         margin-left: 0;
@@ -230,19 +143,10 @@
         margin-left: 0;
     }
 
-    .top-right-two {
-        display: block;
-        padding-left: 83px;
-        font-family: 'Raleway', sans-serif;
-    }
 
-    #navbar li{
-        display: block;
-    }
 
-    #navbar {
-        width: 142px;
-        text-align: left;
-    }
+
+
+
 
 }

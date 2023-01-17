@@ -64,3 +64,33 @@
 .review-block {
     display: flex;
 }
+
+@media (max-width:320px) {
+
+    .review-block {
+        display: block;
+    }
+
+    img.img-review {
+        margin-left: 23px;
+    }
+
+    img.img-review2 {
+        margin-left: 23px;
+    }
+
+    img.img-review3 {
+        margin-left: 23px;
+    }
+
+    .review-author {
+        margin-left: 122px;
+        margin-top: -66px;
+    }
+
+    .reviews_title {
+        font-size: 33px;
+    }
+
+}
+

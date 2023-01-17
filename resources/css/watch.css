@@ -51,3 +51,43 @@
     border-color: White;
     color: black;
 }
+
+@media (max-width:320px) {
+    .watching_title {
+       font-size: 27px;
+        margin-bottom: 10px;
+    }
+
+    .watching-section_wrp {
+        display: block;
+    }
+
+    .watching-section_text {
+        font-size: 13px;
+        text-align: left;
+        margin-bottom: 18px;
+    }
+
+    .watching-section_form {
+        display: block;
+    }
+
+    .watching-section_form p {
+        margin-top: 18px;
+        margin-bottom: 18px;
+    }
+
+    .watching-section {
+        padding: 10px 0;
+        box-sizing: border-box;
+    }
+
+    .watching_button {
+        width: 100%;
+    }
+
+    .watching_text {
+        margin-top: 5px;
+    }
+}
+

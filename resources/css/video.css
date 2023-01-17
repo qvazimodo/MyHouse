@@ -5,3 +5,17 @@
     padding: 0 2%;
     margin: 85px 0 0 550px;
 }
+
+@media (max-width:320px) {
+
+    .video-block {
+        margin: 45px 0 0 0;
+    }
+
+    .video_name {
+        width: 310px;
+        height: 177px;
+    }
+}
+
+

@@ -15,7 +15,6 @@ nav {
 }
 
 .top-right {
-
     justify-content: space-between;
     max-width: 610px;
     width: 100%;
@@ -25,7 +24,6 @@ nav {
     font-size: 14px;
     line-height: 16px;
     letter-spacing: 0.05em;
-
 }
 
 .top-right-two {
@@ -45,9 +43,7 @@ nav {
 }
 
 #navbar {
-
     list-style-type: none;
-
     text-align: center;
     background-color: #242B33;
     font-family: 'Raleway', sans-serif;
@@ -62,7 +58,42 @@ nav {
     padding: 5px 10px;
     text-decoration: none;
     display: inline-block;
+}
 
+@media (max-width:320px) {
+    .top-right {
+        flex-direction: column;
+        padding-left: 25px;
+        padding-top: 20px;
+        line-height: 25px;
+        font-size: 16px;
+    }
+
+    .top-right-two {
+        display: block;
+        padding-left: 35px;
+        font-size: 16px;
+    }
+
+    #navbar {
+        width: 100%;
+        text-align: left;
+    }
+
+    #navbar li{
+        display: block;
+    }
+}
+
+@media (min-width: 321px) and (max-width: 768px) {
+    .top-right {
+        margin-left: 388px;
+    }
+
+    .top-right-two {
+        margin: 61px 163px 0 -454px;
+        display: block;
+    }
 }
 
 
