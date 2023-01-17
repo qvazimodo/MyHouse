@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Collapse, App, Button, Form, Input, Select, Typography, Divider, Table, notification, Space  } from 'antd';
+import { Collapse, App, Button, Form, Input, Select, Typography, Divider, Table, notification, Space, Modal  } from 'antd';
 import {AUTH_METERS_API_URL, AUTH_METERS_LIST_API_URL, AUTH_USER_API_URL, METER_VALUE_API_URL} from "../helpers/API";
 
 const { Panel } = Collapse;
@@ -69,6 +69,7 @@ class MetersForm extends React.Component {
             info: [],
             userMeters: {},
             meterTypes: [],
+            isModalOpen: false,
         };
 
         this.valueInputChange = this.valueInputChange.bind(this);
@@ -83,6 +84,16 @@ class MetersForm extends React.Component {
                // console.log('Notification Clicked!');
             },
         });
+    };
+
+    showModal = () => {
+        this.setState({isModalOpen: true});
+    };
+    handleOk = () => {
+        this.setState({isModalOpen: false});
+    };
+    handleCancel = () => {
+        this.setState({isModalOpen: false});
     };
 
     componentDidMount() {
@@ -211,7 +222,7 @@ class MetersForm extends React.Component {
                     <Panel header="Ввести показания счетчиков" key="1" className="cabinet-txt">
                         <Text mark>Показания счетчиков за прошлый период</Text>
                         <Table columns={columns} dataSource={this.state.info} locale={locale}/>
-                        <Button>Отправить заявку на добавление нового счетчика</Button>
+                        <Button onClick={this.showModal}>Отправить заявку на добавление нового счетчика</Button>
                         <Divider />
                         <Text mark>Заполните форму для ввода новых показаний</Text>
                         <Form>
@@ -308,6 +319,42 @@ class MetersForm extends React.Component {
                             </Form.Item>
 
                         </Form>
+                        <Modal
+                            title="Заявка на добавление нового счетчика"
+                            open={this.state.isModalOpen} onOk={this.handleOk}
+                            onCancel={this.handleCancel}
+                            okText="Отправить заявку"
+                            cancelText="Отмена"
+                        >
+                            <Text mark>Заполните форму</Text>
+                            <Form>
+                                <Form.Item label="Номер счетчика">
+                                    <Input />
+                                </Form.Item>
+                                <Form.Item label="Выберите тип счетчика">
+                                    <Select
+                                        options={[
+                                            {
+                                                value: '1',
+                                                label: 'горячая вода',
+                                            },
+                                            {
+                                                value: '2',
+                                                label: 'холодная вода',
+                                            },
+                                            {
+                                                value: '3',
+                                                label: 'газ',
+                                            },
+                                            {
+                                                value: '4',
+                                                label: 'электричество',
+                                            },
+                                        ]}
+                                    />
+                                </Form.Item>
+                            </Form>
+                        </Modal>
                     </Panel>
                 </Collapse>
 
