@@ -1,14 +1,11 @@
 <nav>
     <div class="top">
-        <div class="top-left">
-            <div class="house"><a href="landing">MyHouse</a></div>
-            <div class="residential">Управляющая Компания</div>
-        </div>
+            <div id="logo"></div>
         <div class="top-right">
             <ul id="navbar">
                 <li><a href="rates">Тарифы и услуги</a></li>
-                <li><a href="{{ route('serviced_houses') }}">Дома</a></li>
-                <li><a href="{{ route('announcement') }}">Объявления</a></li>
+                <li><a href="serviced_houses">Дома</a></li>
+                <li><a href="announcement">Объявления</a></li>
                 <li><a href="about">О нас</a></li>
             </ul>
         </div>
@@ -52,7 +49,7 @@
                     </ul>
                 </li>
             @endguest
-        </div>
+        </>
 
     </div>
 

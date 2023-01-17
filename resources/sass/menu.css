@@ -14,38 +14,8 @@ nav {
     padding: 30px 0 0 0;
 }
 
-.top-left {
-    width: 164px;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.house {
-    font-family: Post No Bills Jaffna SemiBold, sans-serif;
-    font-size: 36px;
-    font-weight: 600;
-    line-height: 54px;
-    letter-spacing: 0;
-    color: #FFFFFF;
-    width: 100%;
-    text-align: center;
-}
-
-.residential {
-    font-family: 'Raleway', sans-serif;
-    font-weight: 400;
-    font-size: 11px;
-    line-height: 14px;
-    letter-spacing: 0.12em;
-    color: #FFFFFF;
-    margin-top: 15px;
-    height: 14px;
-    width: 167px;
-    text-align: center;
-}
-
 .top-right {
-    display: flex;
+
     justify-content: space-between;
     max-width: 610px;
     width: 100%;
@@ -55,6 +25,7 @@ nav {
     font-size: 14px;
     line-height: 16px;
     letter-spacing: 0.05em;
+
 }
 
 .top-right-two {
@@ -65,23 +36,18 @@ nav {
     font-size: 14px;
     line-height: 30px;
     letter-spacing: 0.05em;
+    width: 250px;
+    justify-content: space-between;
 }
 
-/*.top-right-two a:hover {*/
-/*    border-radius: 20px 5px;*/
-/*    background-color: grey;*/
-/*    padding: 5px 10px;*/
-/*}*/
-
 .reg-btn {
-    padding-right: 15px;
+    margin-left: 96px;
 }
 
 #navbar {
-    margin: 0;
-    padding: 0;
+
     list-style-type: none;
-    width: 550px;
+
     text-align: center;
     background-color: #242B33;
     font-family: 'Raleway', sans-serif;
@@ -99,7 +65,5 @@ nav {
 
 }
 
-#navbar a:hover {
-    border-radius: 20px 5px;
-    background-color: grey;
-}
+
+

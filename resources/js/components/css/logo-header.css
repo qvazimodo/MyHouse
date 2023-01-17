@@ -1,6 +1,6 @@
 .logo-house {
-    margin-left: 300px;
-    margin-top: 20px;
+    /*margin-left: 300px;*/
+    /*margin-top: 20px;*/
     }
 
 .house {
@@ -12,7 +12,6 @@
     line-height: 54px;
     width: 100%;
     text-align: center;
-    margin-bottom: -15px;
 }
 
 .residential {

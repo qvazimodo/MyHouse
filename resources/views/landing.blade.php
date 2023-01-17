@@ -5,7 +5,10 @@
 @section('menu')
     @include('menu')
 @endsection
-
+{{--@section('menu')--}}
+{{--    <div id="logo"></div>--}}
+{{--    <div id="navigation"></div>--}}
+{{--@endsection--}}
 @section('header')
     <div id="header"></div>
 @endsection
