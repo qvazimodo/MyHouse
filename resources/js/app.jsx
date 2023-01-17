@@ -35,6 +35,7 @@ import Header from "./components/Header";
 
 
 
+
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
     root.render(<Questions/>);
@@ -124,6 +125,7 @@ if (document.getElementById('header')){
     const root=createRoot(document.getElementById('header'));
     root.render(<Header />);
 }
+
 
 
 

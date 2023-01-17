@@ -1,7 +1,7 @@
 import React from 'react';
 import Sticker from'./img/sticker.png';
 import Phone from'./img/phone.png';
-import style from "./css/header.css";
+import style from "../../css/header.css";
 
 const Header = () => (
         <div className="header">

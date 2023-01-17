@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from 'antd';
-import style from "./css/contacts.css";
+import style from "../../css/contacts.css";
 
 
 const { Text } = Typography;

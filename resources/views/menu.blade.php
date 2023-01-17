@@ -28,7 +28,6 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('admin.clients.index') }}">Клиенты</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.employees') }}">Сотрудники</a></li>
-                            {{--                            <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Все пользователи</a></li>--}}
                         </ul>
                     </li>
 
@@ -49,7 +48,7 @@
                     </ul>
                 </li>
             @endguest
-        </>
+        <div/>
 
     </div>
 

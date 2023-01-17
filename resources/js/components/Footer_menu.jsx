@@ -1,6 +1,6 @@
 import {Menu, theme} from 'antd';
 import { useState } from 'react';
-import style from "./css/footer_menu.css";
+import style from "../../css/footer_menu.css";
 
 const items = [
     {

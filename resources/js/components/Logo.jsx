@@ -1,6 +1,6 @@
 import React from 'react';
 import { Space, Typography } from 'antd';
-import style from "./css/logo-header.css";
+import style from "../../css/logo-header.css";
 
 const { Link } = Typography;
 

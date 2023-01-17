@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Space } from 'antd';
 import Input from "antd/es/input/Input";
-import style from './css/watch.css'
+import style from '../../css/watch.css'
 
 const Watch = () => (
     <div className="watching-section" style={{ style }}>

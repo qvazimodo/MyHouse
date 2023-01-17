@@ -1,5 +1,5 @@
 import React from 'react';
-import style from "./css/video.css";
+import style from "../../css/video.css";
 
 const src = "https://www.youtube.com/watch?v=h3gs0b38L4c";
 

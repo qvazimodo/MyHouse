@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar } from 'antd';
-import style from './css/reviews.css'
+import style from '../../css/reviews.css'
 import Woman from './img/woman.jpeg'
 import Woman2 from './img/woman2.jpg'
 import Man from './img/man.jpeg'

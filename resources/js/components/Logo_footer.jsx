@@ -1,6 +1,6 @@
 import React from 'react';
 import { Space } from 'antd';
-import style from "./css/logo_footer.css";
+import style from "../../css/logo_footer.css";
 
 const Logo_footer = () => (
     <Space>

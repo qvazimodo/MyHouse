@@ -73,10 +73,8 @@ const ListCards = () => {
     return (
         <div className="container">
             <ConfigProvider
-                theme={{
-                    algorithm: theme.darkAlgorithm,
+                theme={{ algorithm: theme.darkAlgorithm,
                 }}
-
             >
                 <h2 className="title-2">Объявления</h2>
                 <List
@@ -103,7 +101,7 @@ const ListCards = () => {
                     renderItem={(item) => (
                         <List.Item>
                             <Card title={`Заголовок: ${item.title} client_id: ${item.client_id}`}>
-                                <div style={{textAlign:"center"}}>
+                                <div style={{textAlign: "center"}}>
                                     <Image
                                         preview={{
                                             visible: false,

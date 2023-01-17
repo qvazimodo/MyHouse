@@ -1,5 +1,5 @@
 import React from 'react';
-import style from "./css/houses_list.css";
+import style from "../../css/houses_list.css";
 import {Card, List, Space, Table, Tag} from 'antd';
 import { Typography } from 'antd';
 

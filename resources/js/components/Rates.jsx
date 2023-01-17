@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card, List, Space, Table, Tag} from 'antd';
 import { Typography } from 'antd';
-import style from "./css/rates.css";
+import style from "../../css/rates.css";
 
 const { Text } = Typography;
 const columns = [
