@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Collapse, App, Button, Form, Input, Select, Typography, Divider, Table, notification  } from 'antd';
+import { Collapse, App, Button, Form, Input, Select, Typography, Divider, Table, notification, Space  } from 'antd';
 import {AUTH_METERS_API_URL, AUTH_METERS_LIST_API_URL, AUTH_USER_API_URL, METER_VALUE_API_URL} from "../helpers/API";
 
 const { Panel } = Collapse;
@@ -8,9 +8,10 @@ const { Option } = Select;
 
 const columns = [
     {
-        title: 'Заводской номер счетчика',
+        title: 'Номер счетчика',
         dataIndex: 'number',
         key: 'number',
+        sorter: (a, b) => a.number - b.number,
         render: (text) => <p>{text}</p>,
     },
     {
@@ -20,9 +21,16 @@ const columns = [
         render: (text) => <p>{text}</p>,
     },
     {
-        title: 'Месяц ввода показаний',
+        title: 'Месяц',
         dataIndex: 'name',
         key: 'name',
+        render: (text) => <p>{text}</p>,
+    },
+    {
+        title: 'Год',
+        dataIndex: 'year',
+        key: 'year',
+        sorter: (a, b) => a.year - b.year,
         render: (text) => <p>{text}</p>,
     },
     {
@@ -36,6 +44,12 @@ const columns = [
         dataIndex: 'value',
         key: 'value',
         render: (text) => <p>{text}</p>,
+    },
+    {
+        title: '',
+        key: 'payment',
+        render: () =>
+                <a>Получить квитанцию</a>,
     },
 ];
 
