@@ -129,10 +129,7 @@ class MetersForm extends React.Component {
                         info: [...prevState.info, data.data[item]]
                     }))
                 }
-
             });
-
-
     }
 
     generateSelectTypes = () => {
@@ -220,12 +217,12 @@ class MetersForm extends React.Component {
             <div className="container">
                 <Collapse accordion>
                     <Panel header="Ввести показания счетчиков" key="1" className="cabinet-txt">
-                        <Text mark>Показания счетчиков за прошлый период</Text>
-                        <Table columns={columns} dataSource={this.state.info} locale={locale}/>
-                        <Button onClick={this.showModal}>Отправить заявку на добавление нового счетчика</Button>
+                        <Text mark className="cabinet-color-txt">Показания счетчиков за прошлый период</Text>
+                        <Table columns={columns} dataSource={this.state.info} locale={locale} className="meter-table"/>
+                        <Button onClick={this.showModal} className="addMeter-btn">Отправить заявку на добавление нового счетчика</Button>
                         <Divider />
-                        <Text mark>Заполните форму для ввода новых показаний</Text>
-                        <Form>
+                        <Text mark className="cabinet-color-txt">Заполните форму для ввода новых показаний</Text>
+                        <Form className="meter-input">
                             <Form.Item label="Выберите счетчик">
                                 <Select
                                     name="type"
@@ -315,19 +312,21 @@ class MetersForm extends React.Component {
                                 <Input name="now" value={this.state.now} onChange={this.valueInputChange} />
                             </Form.Item>
                             <Form.Item>
-                                <Button type="primary" onClick={this.sendForm}>Отправить</Button>
+                                <Button type="primary" onClick={this.sendForm} className="addValue-btn">Отправить</Button>
                             </Form.Item>
 
                         </Form>
                         <Modal
                             title="Заявка на добавление нового счетчика"
-                            open={this.state.isModalOpen} onOk={this.handleOk}
+                            open={this.state.isModalOpen}
+                            onOk={this.handleOk}
                             onCancel={this.handleCancel}
                             okText="Отправить заявку"
                             cancelText="Отмена"
+                            className="meter-modal"
                         >
-                            <Text mark>Заполните форму</Text>
-                            <Form>
+                            <Text mark className="cabinet-color-txt">Заполните форму</Text>
+                            <Form className="meter-input">
                                 <Form.Item label="Номер счетчика">
                                     <Input />
                                 </Form.Item>
