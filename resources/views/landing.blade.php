@@ -29,9 +29,9 @@
                 max-width="1300" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-     <div id="questions"></div>
     </div>
 
+    <div id="questions"></div>
 @endsection
 
 @section('footer')

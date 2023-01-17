@@ -1,7 +1,6 @@
 .questions-section {
     background: url('/resources/js/components/img/watching-bg.png') center / cover no-repeat;
     padding:  180px 0 180px 0;
-    margin-bottom: -159px;
     box-sizing: border-box;
 }
 
