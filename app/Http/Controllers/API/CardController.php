@@ -25,17 +25,20 @@ class CardController extends Controller
     }
 
 
-    public function store(CardRequest $request): JsonResponse
+    public function store(Request $request): JsonResponse
     {
         if ((Client::where('user_id', Auth::user()->id)->get())->isEmpty()) {
             return response()->json("Нет прав", 403);
         }
+
             $clientId = Client::where('user_id', Auth::user()->id)->first();
             $clientId = $clientId->id;
             $card = Card::create($request->all());
             $card->client_id = $clientId;
             $card->save();
-            $this->uploadPhoto($request, $card);
+            if($request->file()){
+                $this->uploadPhoto($request, $card);
+            }
             return response()->json($card, 201);
     }
 
