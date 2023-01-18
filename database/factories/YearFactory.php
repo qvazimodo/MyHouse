@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Factories;
+
 use Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -9,6 +10,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class YearFactory extends Factory
 {
+    static int $year = 2018;
+
     /**
      * Define the model's default state.
      *
@@ -18,7 +21,7 @@ class YearFactory extends Factory
     {
         $faker = Faker\Factory::create('ru_Ru');
         return [
-            'number' => $faker->biasedNumberBetween(2019, 2023, 'Faker\Provider\Biased::linearHigh'),
+            'number' => static::$year++,
         ];
     }
 }

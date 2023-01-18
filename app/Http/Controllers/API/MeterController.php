@@ -42,33 +42,6 @@ class MeterController extends Controller
             'data' => $metersValues,
             'meta' => ['client' => $client, 'years' => $years, 'months' => $months]
         ], 200);
-
-        /*        return  MeterValueResource::collection(MeterValue::with(['meterValues'])
-                    ->where('client_id',$id)
-                    ->paginate(10));*/
-        /* return MeterResource::collection(Meter::with(['client'])
-             ->where('client_id', $id)
-             ->join('meter_values', 'meter_values.id', '=', 'meters.id')
-             ->join('months', 'months.id', '=', 'meter_values.month_id')
-             ->paginate(10)
-         );*/
-        // $lastValue = MeterValue::select('value')->where('parent_id');
-        // dd($lastValueId);
-
-        /*        $meters = Meter::query()
-                    ->select('number',
-                        'type', 'months.name as name',
-                        'value', 'client_id', 'parent_id',
-                        'meter_id', 'month_id', 'meter_values.id as id')
-                    //->selectSub($lastValue, 'lastValue')
-                    ->join('meter_values', 'meter_values.meter_id', '=', 'meters.id')
-                    ->join('months', 'months.id', '=', 'meter_values.month_id')
-                    ->where('client_id', '=', $id)
-                    ->get();
-                //return response()->json($meters);
-                return MeterResource::collection($meters);*/
-
-
     }
 
     public function store(Request $request)
