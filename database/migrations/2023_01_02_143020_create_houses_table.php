@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('houses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('house_number_street_id')->nullable(false);
-            $table->foreign('house_number_street_id')->references('id')->on('house_number_streets');
+            $table->foreign('house_number_street_id')->references('id')->on('house_number_street');
             $table->foreignId('house_descriptions_id')->nullable(false);
             $table->foreign('house_descriptions_id')->references('id')->on('house_descriptions');
             $table->timestamps();

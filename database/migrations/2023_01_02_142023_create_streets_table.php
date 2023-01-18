@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name')
                 ->nullable(false)
+                ->unique()
                 ->comment('название улицы');
         });
     }

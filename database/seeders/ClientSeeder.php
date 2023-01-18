@@ -32,7 +32,7 @@ class ClientSeeder extends Seeder
         ->has(Meter::factory(rand(1,3)))        //количество счётчиков у клиента
             ->has(Apartment::factory()                     //количество квартир у клиента
                 ->has(House::factory()                     //дом, в котором расположена квартира клиента
-                    ->has(HouseNumberStreet::factory())         //адрес дома
+//                    ->has(HouseNumberStreet::factory())         //адрес дома
                     ->has(HouseDescription::factory()      //описание (параметры) дома
                     )
                 )

@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('house_numbers', function (Blueprint $table) {
             $table->id();
-            $table->string('value')->nullable(false)->comment('номер дома');
+            $table->string('value')
+                ->nullable(false)
+                ->unique()
+                ->comment('номер дома');
         });
     }
 
