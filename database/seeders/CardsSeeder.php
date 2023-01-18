@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Card;
-use App\Models\Photo;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 
@@ -23,10 +23,18 @@ class CardsSeeder extends Seeder
         /*        Card::factory()
                     ->hasPhotos(3)
                     ->create();*/
-        \App\Models\Card::factory(3)
-            ->has(
-                \App\Models\Photo::factory(3)
-            )->create();
+        /*        \App\Models\Card::factory(3)
+                    ->has(
+                        \App\Models\Photo::factory(3)
+                    )->create();*/
+
+        $categories = Category::all();
+
+        Card::all()->each(function ($card) use ($categories) {
+            $card->categories()->save($categories[rand(0, 3)]);
+            $card->categories()->save($categories[rand(4, 9)]);
+
+        });
     }
 
 

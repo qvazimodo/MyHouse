@@ -36,6 +36,6 @@ class Card extends Model
 
     public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Card::class);
+        return $this->belongsToMany(Category::class);
     }
 }
