@@ -79,21 +79,10 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 1.9;
-    /*text-align: center;*/
     background: #D4C17F;
     border: none;
     border-radius: 10px;
     color: #BEBEBE;
-    /*outline: none;*/
-
-}
-
-.watching-section_form p {
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 1.23;
-    text-align: center;
-    color: #E7E7E7;
 }
 
 .section-btn {

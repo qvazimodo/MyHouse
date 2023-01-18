@@ -52,4 +52,45 @@
     color: black;
 }
 
+@media (max-width:320px) {
+
+    .questions-section {
+        padding: 10px 0 10px 0;
+    }
+
+    .question_section_wrp {
+        display: block;
+    }
+
+    .questions_title {
+        font-size: 33px;
+        margin-bottom: 10px;
+    }
+
+    .question_section_text {
+        font-size: 13px;
+        text-align: left;
+        margin-bottom: 18px;
+    }
+
+    .question_section_form {
+        display: block;
+    }
+
+    .questions_text {
+        margin-top: 5px;
+    }
+
+    .questions_bottom_text {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .questions_button {
+        width: 100%;
+    }
+
+
+}
+
 

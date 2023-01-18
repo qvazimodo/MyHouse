@@ -5,7 +5,6 @@ const src = "https://www.youtube.com/watch?v=h3gs0b38L4c";
 
 const Video = () => {
     return (
-
             <div className="video-block" style={{style}}>
                 <iframe className="video_name"
                         width="640"
@@ -16,7 +15,6 @@ const Video = () => {
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen/>
             </div>
-
     );
 };
 

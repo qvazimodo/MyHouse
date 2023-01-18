@@ -78,5 +78,32 @@ li {
     margin-left: 15px;
 }
 
+@media (max-width:320px) {
+    .bottom-top {
+        margin-top: -144px;
+        margin-left: -12px;
+        font-size: 33px;
+        line-height: 33px;
+    }
+
+    .bottom {
+        max-width: 320px;
+        width: 100%;
+        padding-top: 259px;
+    }
+
+    .bottom-contacts {
+        display: block;
+        font-size: 14px;
+        margin-top: 50px;
+        margin-left: 53px;
+    }
+}
+
+@media (min-width: 321px) and (max-width: 768px) {
+
+}
+
+
 
 
