@@ -21,7 +21,7 @@ class CardController extends Controller
 
     public function index(): ResourceCollection
     {
-      return  CardResource::collection(Card::with(['client', 'photos'])->paginate(9));
+      return  CardResource::collection(Card::with(['client', 'photos', 'categories'])->paginate(9));
     }
 
 
