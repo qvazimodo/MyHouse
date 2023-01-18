@@ -14,11 +14,12 @@ class House extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $fillable = ['house_number_street_id', 'houses_description_id'];
 
-    public function houseAddresses(): BelongsTo
+    public function houseNumberStreet(): BelongsTo
     {
-        return $this->belongsTo(HouseNumberStreet::class, 'house_address_id');
+        return $this->belongsTo(HouseNumberStreet::class);
     }
 
     public function houseDescription(): BelongsTo
@@ -31,12 +32,12 @@ class House extends Model
         return $this->hasMany(Apartment::class);
     }
 
-    public function street():HasOneThrough
+    public function street(): HasOneThrough
     {
-        return $this->hasOneThrough(Street::class, HouseNumberStreet::class, 'street_id','id','house_number_street_id', 'id');
+        return $this->hasOneThrough(Street::class, HouseNumberStreet::class, 'street_id', 'id', 'house_number_street_id', 'id');
     }
 
-    public function houseNumber():HasOneThrough
+    public function houseNumber(): HasOneThrough
     {
         return $this->hasOneThrough(HouseNumber::class, HouseNumberStreet::class, 'house_number_id', 'id', 'house_number_street_id', 'id');
     }

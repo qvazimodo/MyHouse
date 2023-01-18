@@ -19,7 +19,7 @@ class HouseFactory extends Factory
     public function definition()
     {
         return [
-            'house_number_street_id'=>HouseNumberStreet::factory(),
+//            'house_number_street_id'=>HouseNumberStreet::factory(),
             'house_descriptions_id'=>HouseDescription::factory(),
             'created_at'=>now(),
             'updated_at'=>now(),

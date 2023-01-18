@@ -11,6 +11,7 @@ class HouseNumberStreet extends Model
 {
     use HasFactory;
 
+    protected $table = 'house_number_street';
     protected $fillable = ['street_id', 'house_number_id'];
     public $timestamps = false;
 
