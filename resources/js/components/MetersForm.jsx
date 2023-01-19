@@ -110,7 +110,6 @@ class MetersForm extends React.Component {
             .then(response => response.json())
                 .catch(e => console.log(e))
             .then( (data) => {
-                console.log(data.data);
                 this.setState({ userMeters: data.data });
             })
 
@@ -118,7 +117,37 @@ class MetersForm extends React.Component {
             .then(response => response.json())
                 .catch(e => console.log(e))
             .then( (data) => {
-                let values = new Map();
+                console.log(data);
+
+                let months = new Map();
+                for (let item in data.meta.months) {
+                    months.set(data.meta.months[item].id, data.meta.months[item].name);
+                }
+
+                let years = new Map();
+                for (let item in data.meta.years) {
+                    years.set(data.meta.years[item].id, data.meta.years[item].number);
+                }
+
+                let meterInfo = data.data.data;
+                let iterForTable = 1;
+                for (let key in meterInfo) {
+
+                    meterInfo[key].month_year.forEach((item) => {
+
+                        item.type = meterInfo[key].type;
+                        item.number = meterInfo[key].number;
+                        item.key = iterForTable++;
+                        item.value = item.meter_reading.value;
+                        item.name = months.get(item.month_id);
+                        item.year = years.get(item.year_id);
+                        
+                        this.setState(prevState => ({
+                            info: [...prevState.info, item]
+                        }))
+                    })
+                }
+               /* let values = new Map();
                 for (let item in data.data) {
                     values.set(data.data[item].id, data.data[item].value);
                 }
@@ -128,7 +157,7 @@ class MetersForm extends React.Component {
                    this.setState(prevState => ({
                         info: [...prevState.info, data.data[item]]
                     }))
-                }
+                }*/
             });
     }
 
