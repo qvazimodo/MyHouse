@@ -1,7 +1,7 @@
 @extends('layouts.landing_layout')
 
 @section('header')
-    @include('header')
+{{--    @include('header')--}}
 @endsection
 
 @section('menu')
