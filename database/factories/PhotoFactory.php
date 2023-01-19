@@ -20,7 +20,7 @@ class PhotoFactory extends Factory
         $faker = \Faker\Factory::create('ru_Ru');
 
         return [
-            'card_id' => Card::factory(),
+            'card_id' => null,
             'name' => $faker->title,
             'path' => $faker->filePath(),
             'thumbnail_path' => $faker->filePath(),

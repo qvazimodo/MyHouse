@@ -23,12 +23,6 @@ class HouseSeeder extends Seeder
             $house->houseNumberStreet()->associate($address);
             $house->houseDescription()->associate($houseDescription);
             $house->save();
-//            House::factory(1)
-//                ->has(HouseDescription::factory())
-//                ->create();
-//            $house = House::query()->latest()->get();
-//
-//            $address->house()->save();
         });
     }
 }

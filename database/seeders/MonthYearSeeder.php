@@ -16,6 +16,9 @@ class MonthYearSeeder extends Seeder
      */
     public function run()
     {
-
+        $months = Month::all();
+        Year::all()->each(function ($year) use ($months) {
+            $year->months()->saveMany($months);
+        });
     }
 }

@@ -26,7 +26,7 @@ class ClientFactory extends Factory
 
         return [
             'user_id' => User::factory(),
-            'apartment_id'=> Apartment::factory(),
+            'apartment_id'=> null,
             'created_at' => now(),
         ];
     }

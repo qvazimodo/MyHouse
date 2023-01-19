@@ -32,7 +32,7 @@ class MeterMonthYearSeeder extends Seeder
             $item->value = self::$value;
             $item->save();
         });
-        $metersAmount = MeterMonthYear::query()->get()->last()->meter_id;
+        $metersAmount = MeterMonthYear::count();
         for ($i = 1; $i <= $metersAmount; $i++) {
             self::$newMeter = true;
             MeterMonthYear::query()->get()->where('meter_id', $i)

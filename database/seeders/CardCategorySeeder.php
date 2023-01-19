@@ -4,10 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\Card;
 use App\Models\Category;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-
-class CardsSeeder extends Seeder
+class CardCategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,26 +16,10 @@ class CardsSeeder extends Seeder
      */
     public function run()
     {
-        /*       Card::factory()
-                    ->has(Photo::factory()->count(3), 'photos')
-                    ->create();*/
-
-        /*        Card::factory()
-                    ->hasPhotos(3)
-                    ->create();*/
-        /*        \App\Models\Card::factory(3)
-                    ->has(
-                        \App\Models\Photo::factory(3)
-                    )->create();*/
-
         $categories = Category::all();
-
         Card::all()->each(function ($card) use ($categories) {
             $card->categories()->save($categories[rand(0, 3)]);
             $card->categories()->save($categories[rand(4, 9)]);
-
         });
     }
-
-
 }
