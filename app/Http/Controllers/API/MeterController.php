@@ -31,7 +31,7 @@ class MeterController extends Controller
     {
         $currentClientId = auth()->user()->getAuthIdentifier();
 
-        $metersValues = Meter::with(['client', 'monthYear'])->where('client_id',
+        $metersValues = Meter::with(['client', 'meterMonthYear'])->where('client_id',
             $currentClientId)->paginate(2);
 
         $years = Year::all();
