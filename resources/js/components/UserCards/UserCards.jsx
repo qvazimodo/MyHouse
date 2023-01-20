@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card, ConfigProvider, Form, Image, Input, List, Switch, theme, Typography, Upload} from "antd";
-import {AUTH_USER_API_URL, CARDS_API_URL, MYCARDS_API_URL} from "../../helpers/API";
+import {AUTH_USER_API_URL, CARDS_API_URL, CLIENT_CARDS_API_URL} from "../../helpers/API";
 import s from './UserCards.module.css';
 import {red} from "@ant-design/colors";
 import {UploadOutlined} from "@ant-design/icons";
@@ -37,12 +37,12 @@ const UserCards = () => {
     //---------------------- Вывод карточек пользователя
 
     const onPageChange = (page) => {
-        fetchEmployees(MYCARDS_API_URL + `?page=${page}`)
+        fetchEmployees(CLIENT_CARDS_API_URL + `?page=${page}`)
     }
 
 
     useEffect(() => {
-        fetchEmployees(MYCARDS_API_URL)
+        fetchEmployees(CLIENT_CARDS_API_URL)
     }, [])
 
 
@@ -114,7 +114,8 @@ const UserCards = () => {
             headers: {
                 'Accept': 'application/json',
                 'Access-Control-Allow-Origin': '*',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                    .getAttribute('content'),
             },
             body: formData
         })

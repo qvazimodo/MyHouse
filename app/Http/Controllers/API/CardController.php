@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CardRequest;
 use App\Http\Resources\CardResource;
 use App\Models\Card;
 use App\Models\Client;
@@ -12,7 +11,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -95,10 +93,12 @@ class CardController extends Controller
         }
     }
 
+    //По моему, этот метод нигде не используется
     public function getUserCards(Request $request): JsonResponse
     {
-        $clientId = $request->input('client_id');
-        $cards = Card::where('client_id', '=', $clientId)->get();
+//        $clientId = $request->input('client_id');
+        $currentClient = Client::where('user_id', '=', Auth::user()->id)->first();
+        $cards = Card::where('client_id', '=', $currentClient->id)->get();
         return response()->json($cards);
     }
 

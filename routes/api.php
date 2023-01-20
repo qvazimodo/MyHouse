@@ -29,10 +29,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('cards', CardController::class)->middleware('auth');
 
-Route::get('user_cards', [CardController::class, 'getUserCards']);
+Route::get('user_cards', [CardController::class, 'getClientCards']);
 /*Route::post('uploading-photos', 'CardController@uploadPhoto');*/
 
-Route::get('client_ad', [ClientAnnouncementController::class, 'index']);
+Route::get('client/cards', [ClientAnnouncementController::class, 'index']);
 
 
 //api проверяет, является ли клиентом текущий пользователь
