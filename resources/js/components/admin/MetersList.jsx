@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ruRu from "antd/lib/locale/ru_RU";
 import { Option } from "antd/es/mentions";
 import { ALL_METERS_VALUES_API_URL } from "../../helpers/API";
+import { HousesList } from "./HousesList";
 
 const { Header, Content, Footer, Sider } = Layout;
 export const MetersList = () => {
@@ -51,6 +52,7 @@ export const MetersList = () => {
             // fontFamily: "Raleway" }}
         >
             <>
+                <HousesList />
                 <Input.Group compact>
                     <Select defaultValue="Год">
                         { years.map( year => (<Option key={ year.id } value={ year.number }></Option>) )
@@ -63,8 +65,8 @@ export const MetersList = () => {
                         <Option ion value="Jiangsu">Jiangsu</Option>
                     </Select>
                     <Select defaultValue="Тип">
-                        { types.map( month => (<Option key={ type.id } value={ type.name }></Option>) )
-                        }
+{/*                        { types.map( month => (<Option key={ type.id } value={ type.name }></Option>) )
+                        }*/}
                         <Option value="Zhejiang">Zhejiang</Option>
                         <Option ion value="Jiangsu">Jiangsu</Option>
                     </Select>

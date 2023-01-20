@@ -1,12 +1,11 @@
 <?php
 
 use App\Http\Controllers\API\Admin\EmployeeAPIController;
-use App\Http\Controllers\API\Admin\HouseController;
-
+use App\Http\Controllers\API\Admin\HouseController as AdminHouseController;
+use App\Http\Controllers\API\Admin\MeterController as AdminMeterController;
 use App\Http\Controllers\API\CardController;
 use App\Http\Controllers\API\ClientAnnouncementController;
 use App\Http\Controllers\API\MeterController;
-use App\Http\Controllers\API\Admin\MeterController as AdminMeterController;
 use App\Http\Controllers\API\MeterValueController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -48,10 +47,6 @@ Route::get('/employees', [EmployeeAPIController::class, 'index']);
 Route::post('/employees', [EmployeeAPIController::class, 'store']);
 Route::get('/employees/{employee}', [EmployeeAPIController::class, 'show']);
 Route::delete('/employees/{employee}', [EmployeeAPIController::class, 'destroy']);
-//Route::get('/houses', [HouseController::class, 'index']);
-
-Route::resource('/houses', HouseController::class);
-
 
 Route::prefix('auth')->group(function () {
 //api вывода  текущего пользователя
@@ -80,4 +75,7 @@ Route::prefix('admin')->group(function () {
 
     //api вывода показаний всех счетчиков всех пользователей
     Route::get('/meters/values', [AdminMeterController::class, 'allMetersValues']);
+
+    //дома с адресами клиентов
+    Route::get('/houses', [AdminHouseController::class, 'index']);
 });
