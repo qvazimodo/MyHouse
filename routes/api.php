@@ -8,6 +8,7 @@ use App\Http\Controllers\API\ClientAnnouncementController;
 use App\Http\Controllers\API\MeterController;
 use App\Http\Controllers\API\Admin\MeterController as AdminMeterController;
 use App\Http\Controllers\API\MeterValueController;
+use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -28,10 +29,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('cards', CardController::class)->middleware('auth');
-
 Route::get('user_cards', [CardController::class, 'getUserCards']);
-/*Route::post('uploading-photos', 'CardController@uploadPhoto');*/
-
 Route::get('client_ad', [ClientAnnouncementController::class, 'index']);
 
 
@@ -81,3 +79,5 @@ Route::prefix('admin')->group(function () {
     //api вывода показаний всех счетчиков всех пользователей
     Route::get('/meters/values', [AdminMeterController::class, 'allMetersValues']);
 });
+
+Route::get('/send_mail', [MailController::class, 'send']);
