@@ -20,29 +20,28 @@ class MeterMonthYearSeeder extends Seeder
      */
     public function run()
     {
-
+        $faker = Factory::create('ru_Ru');
         $meters = Meter::all();
         $monthYears = MonthYear::all();
         $meters->each(function ($meter) use ($monthYears) {
             $meter->monthYear()->saveMany($monthYears);
         });
-        MeterMonthYear::all()->each(function ($item) {
-            $faker = Factory::create('ru_Ru');
-            self::$value = self::$value + $faker->numberBetween(100, 300);
-            $item->value = self::$value;
-            $item->save();
-        });
-        $metersAmount = MeterMonthYear::count();
-        for ($i = 1; $i <= $metersAmount; $i++) {
+
+        $meters->each(function ($meter) use ($faker) {
             self::$newMeter = true;
-            MeterMonthYear::query()->get()->where('meter_id', $i)
-                ->each(function ($item) use ($i) {
-                    if (!self::$newMeter) {
+            MeterMonthYear::query()->get()->where('meter_id', $meter->id)
+                ->each(function ($item) use ($faker) {
+                    if (self::$newMeter) {
+                        self::$value = $faker->numberBetween(5, 30);
+                        $item->value = self::$value;
+                    } else {
+                        self::$value = self::$value + $faker->numberBetween(100, 300);
+                        $item->value = self::$value;
                         $item->parent_id = $item->id - 1;
                         $item->save();
                     }
                     self::$newMeter = false;
                 });
-        }
+        });
     }
 }

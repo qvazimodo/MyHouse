@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\CardCategory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(AdminSeeder::class);
         $this->call(HouseNumberStreetSeeder::class);
         $this->call(HouseSeeder::class);
         $this->call(ApartmentSeeder::class);

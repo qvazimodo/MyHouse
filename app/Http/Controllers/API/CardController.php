@@ -68,13 +68,13 @@ class CardController extends Controller
     public function uploadPhoto(Request $request, Card $card): JsonResponse
     {
         $validated = Validator::make($request->all(), [
-            'image*' => 'required|mimes:png,jpg,jpeg,gif,array|max:50000',
+            'photos*' => 'required|mimes:png,jpg,jpeg,gif,array|max:50000',
         ]);
         if ($validated->fails()) {
             return response()->json($validated->errors());
         } else {
             $names = [];
-            foreach ($request->file('image') as $photo) {
+            foreach ($request->file('photos') as $photo) {
                 $path = $photo->store('public/upload');
                 $name = $photo->getClientOriginalName();
 

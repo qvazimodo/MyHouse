@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\MeterResource;
 use App\Models\Client;
 use App\Models\Meter;
 use App\Models\MeterValue;
@@ -11,7 +10,6 @@ use App\Models\Month;
 use App\Models\Year;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class MeterController extends Controller
 {
@@ -31,7 +29,7 @@ class MeterController extends Controller
     {
         $currentClientId = auth()->user()->getAuthIdentifier();
 
-        $metersValues = Meter::with(['client', 'monthYear'])->where('client_id',
+        $metersValues = Meter::with(['client', 'meterMonthYear', 'monthYear'])->where('client_id',
             $currentClientId)->paginate(2);
 
         $years = Year::all();
