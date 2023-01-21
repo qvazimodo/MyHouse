@@ -16,27 +16,24 @@ import ReactDom from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import RequestForEmployee from './components/RequestForEmployee';
 import MetersForm from "./components/MetersForm";
-import Questions from "./components/Questions";
-import Reviews from "./components/Reviews";
-import Watch from "./components/Watch";
+import Questions from "./components/Content/Questions";
+import Reviews from "./components/Content/Reviews";
+import Watch from "./components/Content/Watch";
 import About from "./components/About";
 import ListCards from "./components/ListCards/ListCards";
-import Video from "./components/Video";
+import Video from "./components/Content/Video";
 import {Employees} from "./components/admin/Employees";
 import UserCards from "./components/UserCards/UserCards";
 import HousesList from "./components/HousesList";
 import Contacts from "./components/Contacts";
 import Rates from "./components/Rates";
-import Navigation from "./components/Navigation";
-import Logo from "./components/Logo";
-import Footer_menu from "./components/Footer_menu";
-import Logo_footer from "./components/Logo_footer";
-import Header from "./components/Header";
 import News from "./components/News";
-
-
-
 import { MetersList } from "./components/admin/MetersList";
+import {Header} from "./components/Identically/Header/Header";
+import {Footer} from "./components/Identically/Footer/Footer";
+import Flats from "./components/Content/Flats";
+import LogoHeader from "./components/Identically/Menu/Logo-header";
+
 
 if (document.getElementById('questions')) {
     const root = createRoot(document.getElementById('questions'));
@@ -66,11 +63,6 @@ if (document.getElementById('usercards')){
 if (document.getElementById('watch')) {
     const root = createRoot(document.getElementById('watch'));
     root.render(<Watch />);
-}
-
-if (document.getElementById('about')) {
-    const root = createRoot(document.getElementById('about'));
-    root.render(<About />);
 }
 
 if (document.getElementById('listCards')) {
@@ -103,44 +95,41 @@ if (document.getElementById('housesList')){
     root.render(<HousesList />);
 }
 
-if (document.getElementById('navigation')){
-    const root=createRoot(document.getElementById('navigation'));
-    root.render(<Navigation />);
-}
-
-if (document.getElementById('logo')){
-    const root=createRoot(document.getElementById('logo'));
-    root.render(<Logo />);
-}
-
-if (document.getElementById('footer_menu')){
-    const root=createRoot(document.getElementById('footer_menu'));
-    root.render(<Footer_menu />);
-}
-
-if (document.getElementById('logo_footer')){
-    const root=createRoot(document.getElementById('logo_footer'));
-    root.render(<Logo_footer />);
-}
-
-if (document.getElementById('header')){
-    const root=createRoot(document.getElementById('header'));
-    root.render(<Header />);
-}
-
 if (document.getElementById('news')){
     const root=createRoot(document.getElementById('news'));
     root.render(<News />);
 }
 
-
-
-
-
 if (document.getElementById('admin_meters')){
     const root=createRoot(document.getElementById('admin_meters'));
     root.render(<MetersList />);
 }
+
+if (document.getElementById('about')) {
+    const root = createRoot(document.getElementById('about'));
+    root.render(<About />);
+}
+
+if (document.getElementById('logo-header')) {
+    const root = createRoot(document.getElementById('logo-header'));
+    root.render(<LogoHeader />);
+}
+
+if (document.getElementById('header')) {
+    const root = createRoot(document.getElementById('header'));
+    root.render(<Header />);
+}
+
+if (document.getElementById('footer')) {
+    const root = createRoot(document.getElementById('footer'));
+    root.render(<Footer />);
+}
+
+if (document.getElementById('flats')) {
+    const root = createRoot(document.getElementById('flats'));
+    root.render(<Flats />);
+}
+
 
 
 

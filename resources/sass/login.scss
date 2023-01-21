@@ -1,3 +1,13 @@
+.login_title {
+    text-align: left;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.33;
+    color: #D4C17F;
+    margin-bottom: 20px;
+}
+
 .login-form {
     height: 80vh;
     background: #242B33;
@@ -31,6 +41,7 @@
     outline: none;
     width: 50%;
     margin-left: 20px;
+    padding-left: 10px;
 }
 .remember-txt {
     color: #D4C17F;

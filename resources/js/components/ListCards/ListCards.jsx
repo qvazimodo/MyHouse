@@ -71,7 +71,7 @@ const ListCards = () => {
     }
 
     return (
-        <div className="container">
+        <div className="container" style={{ background: "#242B33" }}>
             <ConfigProvider
                 theme={{ algorithm: theme.darkAlgorithm,
                 }}

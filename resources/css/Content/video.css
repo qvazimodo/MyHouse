@@ -1,0 +1,38 @@
+#video {
+
+}
+
+
+.video-block {
+    background: #242B33;
+    max-width: 1300px;
+    padding: 1px 0 0 326px;
+}
+
+.video_title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.33;
+    color: #D4C17F;
+    margin: 0 0 10px 0;
+}
+
+@media (max-width:320px) {
+
+    .video-block {
+        margin: 45px 0 0 0;
+    }
+
+    .video_name {
+        width: 310px;
+        height: 177px;
+    }
+}
+
+
+@media (min-width: 321px) and (max-width: 768px) {
+    .video-block {
+        margin: 85px 0 0 45px;
+        }
+}

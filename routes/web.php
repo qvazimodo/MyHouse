@@ -6,20 +6,20 @@ use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('landing');
 });
+
+Route::get('/landing', function (){
+    return view('landing');
+});
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+
 
 //Добавляет CRUD для маршрутов регистрации, аутентификации и сброса пароля
 Auth::routes();
@@ -39,20 +39,11 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'is_admin'])
         })->name('meters');
 });
 
-Route::get('/landing', function (){
-    return view('landing');
-});
+
 
 
 Route::match(['get', 'post'], '/userprofile', [UserProfileController::class, 'index'])->name('userProfile')->middleware('auth');
 
-Route::get('/about', function () {
-    return view('about');
-});
-
-Route::get('/navigation', function () {
-    return view('navigation');
-});
 
 Route::get('/rates', function () {
     return view('rates');

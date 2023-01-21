@@ -1,6 +1,6 @@
 .questions-section {
     background: url('/resources/js/components/img/watching-bg.png') center / cover no-repeat;
-    padding:  180px 0 180px 0;
+    padding:  80px 0;
     box-sizing: border-box;
 }
 
@@ -11,6 +11,7 @@
     line-height: 1.33;
     color: #D4C17F;
     margin-bottom: 50px;
+    text-align: left;
 }
 
 .question_section_wrp {

@@ -1,109 +1,33 @@
-.menu-flats {
-    max-width: 1920px;
-    width: 100%;
-    margin: 0 auto;
-    background: #242B33;
-    padding: 120px 0 0 0;
-}
-
-.flats-position-text {
-    margin: 0 auto 100px;
-    max-width: 1100px;
-    width: 100%;
-}
-
-.flats-txt {
-    color: #D4C17F;
-    font-family: 'Playfair Display', sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 36px;
-    line-height: 48px;
-}
-
-.flats-items {
-    max-width: 1100px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    list-style-type: none;
+* {
+    margin: 0;
     padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: white;
+}
+
+body {
+    text-align:center;
+    background-color: #242B33;
+
+}
+
+#wrapper{
+    width: 1300px;
     margin: 0 auto;
+    text-align: left;
 }
 
-.flats-item {
-    width: 535px;
-    height: 320px;
-    margin: 0 0 30px;
-}
 
-.flats-photo {
-    width: 535px;
-    height: 320px;
-    position: absolute;
-    border-radius: 10px;
-}
-
-.flats-text {
-    font-family: 'Raleway', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 28px;
-    color: #FFFFFF;
-    position: relative;
-    top: 220px;
-    left: 52px;
-}
-
-.container {
-    max-width: 1100px;
-    width: 100%;
-    margin: 0 auto;
-}
-
-.title-2 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 36px;
-    line-height: 1.33;
-    color: #D4C17F;
-    margin-bottom: 50px;
-}
-
-.section-input {
-    font-family: 'Raleway', sans-serif;
-    height: 40px;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1.9;
-    background: #D4C17F;
-    border: none;
-    border-radius: 10px;
-    color: #BEBEBE;
-}
-
-.section-btn {
-    border: none;
-    border-radius: 10px;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 1.6;
-    color: #FFFFFF;
-    background: White;
-    padding: 6px 0;
-    box-sizing: border-box;
-    cursor: pointer;
-}
 
 .content-map {
     background-color: #242B33;
-    max-width: 1100px;
-    width: 100%;
-    margin: 0 auto;
 }
 
 .map {
@@ -112,16 +36,28 @@
     font-size: 36px;
     line-height: 1.33;
     color: #D4C17F;
-    margin-left: 67px;
+    margin-left: 100px;
+    margin-bottom: 50px;
 }
 
-.map-bottom {
-    max-width: 1100px;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0 2%;
-    margin: 40px 0 0 0;
+.top {
+    color: white;
+    display: flex;
+    background-color: #242B33;
+    align-items: center;
+ }
+
+.top-right {
+    margin-left: 440px;
 }
+
+li {
+    display: block;
+    float: left;
+    padding-right: 30px;
+
+}
+
 
 
 

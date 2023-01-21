@@ -2,12 +2,14 @@
 
 @section('title', 'My House Управляющая компания')
 
-@section('header')
-    @include('header')
+@section('menu')
+    <div id="wrapper">
+        @include('Identically.menu')
+    </div>
 @endsection
 
-@section('menu')
-    @include('menu')
+@section('header')
+    @include('Identically.header')
 @endsection
 
 @section('content')
@@ -48,5 +50,7 @@
 @endsection
 
 @section('footer')
-    @include('footer')
+    <div id="wrapper">
+        @include('Identically.footer')
+    </div>
 @endsection

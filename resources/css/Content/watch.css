@@ -1,6 +1,6 @@
 .watching-section {
     background: url('/resources/js/components/img/watching-bg.png') center / cover no-repeat;
-    padding: 180px 0 ;
+    padding: 180px 0;
     box-sizing: border-box;
 }
 
@@ -11,6 +11,7 @@
     line-height: 1.33;
     color: #D4C17F;
     margin-bottom: 50px;
+    text-align: left;
 }
 
 .watching-section_wrp {
@@ -54,12 +55,14 @@
 
 @media (max-width:320px) {
     .watching_title {
-       font-size: 27px;
+       font-size: 23px;
         margin-bottom: 10px;
+        text-align: center;
     }
 
     .watching-section_wrp {
         display: block;
+        text-align: center;
     }
 
     .watching-section_text {
@@ -78,16 +81,17 @@
     }
 
     .watching-section {
-        padding: 10px 0;
+        padding: 0;
         box-sizing: border-box;
     }
 
     .watching_button {
-        width: 100%;
+        width: 89%;
     }
 
     .watching_text {
         margin-top: 5px;
+        width: 89%;
     }
 }
 
