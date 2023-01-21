@@ -16,7 +16,7 @@
 @section('content')
     <div class="container">
         <h2 class="title-2">Счётчики</h2>
-        <div id="admin__meters"></div>
+        <div id="admin__houses"></div>
     </div>
 @endsection
 

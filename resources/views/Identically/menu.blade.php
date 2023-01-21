@@ -17,7 +17,11 @@
         </ul>
         @else
             @if (Auth::user()->is_admin )
-
+                <li>
+                    <a class="nav-link" href="{{ route('admin.houses') }}" role="button"
+                       aria-expanded="false">
+                        Дома на обслуживании</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                        aria-expanded="false">
