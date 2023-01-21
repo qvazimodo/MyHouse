@@ -56,12 +56,17 @@ Footer {
 @media (max-width:320px) {
     .logo-footer {
         margin-left: 0;
-        margin-top: -11px;
+
     }
 
     .Menu-logo-footer {
         display: none;
     }
+
+    .weather {
+        margin-left: 15px;
+    }
+
 }
 
 @media (min-width: 321px) and (max-width: 768px) {
@@ -71,6 +76,12 @@ Footer {
     }
 
     .Menu-logo-footer {
-        margin-left: 264px;
+        margin-left: 188px;
     }
+
+    .weather {
+        margin-left: 43px;
+    }
+
+
 }

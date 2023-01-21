@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('styles.css') }}">
 
     <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     @viteReactRefresh
     @vite(['resources/sass/app.scss','resources/js/app.jsx'])
 </head>

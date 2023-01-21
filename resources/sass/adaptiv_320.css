@@ -27,12 +27,12 @@
         width: 100%;
     }
 
-    .residential {
-        margin-left: 76px;
-        margin-top: 0;
-        font-size: 11px;
-        line-height: 14px;
-    }
+    /*.residential {*/
+    /*    margin-left: 76px;*/
+    /*    margin-top: 0;*/
+    /*    font-size: 11px;*/
+    /*    line-height: 14px;*/
+    /*}*/
 
     .menu-flats {
         max-width: 320px;

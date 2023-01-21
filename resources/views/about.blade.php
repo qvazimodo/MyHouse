@@ -3,12 +3,15 @@
 @section('title', 'My House Управляющая компания')
 
 @section('menu')
-    <div id="wrapper">
-        @include('Identically.menu')
-    </div>
+{{--    <div id="wrapper">--}}
+{{--        @include('Identically.menu')--}}
+        @include('Identically.burger')
+{{--    </div>--}}
 @endsection
+
 @section('header')
     @include('Identically.header')
+
 @endsection
 
 @section('content')
