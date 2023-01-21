@@ -24,8 +24,6 @@ body {
     text-align: left;
 }
 
-
-
 .content-map {
     background-color: #242B33;
 }
@@ -48,14 +46,26 @@ body {
  }
 
 .top-right {
-    margin-left: 440px;
+    margin-left: 80px;
 }
 
 li {
     display: block;
     float: left;
-    padding-right: 30px;
+    padding-right: 15px;
+}
 
+.user-name {
+    margin: 10px 0 0 20px;
+    color: white;
+    display: flex;
+}
+
+.circle {
+    border: 5px solid white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 }
 
 
