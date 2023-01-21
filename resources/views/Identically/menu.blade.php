@@ -22,7 +22,7 @@
             @endif
                         <li><a class="dropdown-item" href="{{ route('userProfile') }}">Мой профиль</a></li>
                         <li><a class="dropdown-item" href="{{ route('usercards') }}">Мои объявления</a></li>
-
+                {{ Auth::user()->name }}
 
                     <li>
                         <a class="dropdown-item" href="{{ route('logout') }}"
@@ -33,7 +33,7 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
-                        {{ Auth::user()->name }}
+
                     </li>
         </ul>
         @endguest
