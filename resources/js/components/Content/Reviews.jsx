@@ -1,14 +1,13 @@
 import React from 'react';
 import { Avatar } from 'antd';
-import style from '../../css/reviews.css'
-import Woman from './img/woman.jpeg'
-import Woman2 from './img/woman2.jpg'
-import Man from './img/man.jpeg'
+import style from '../../../css/Content/reviews.css'
+import Woman from '../img/woman.jpeg'
+import Woman2 from '../img/woman2.jpg'
+import Man from '../img/man.jpeg'
 
 const Reviews = () => (
 
     <div className="reviews" style={{ style }}>
-        <div className="container">
             <h2 className="reviews_title" style={{ style }}>Отзывы наших клиентов</h2>
             <div className="review-block" style={{ style }}>
                 <Avatar.Group
@@ -68,8 +67,6 @@ const Reviews = () => (
                     </p>
                 </div>
             </div>
-
-        </div>
 
     </div>
 

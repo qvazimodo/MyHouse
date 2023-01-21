@@ -1,7 +1,16 @@
+.register-title {
+    text-align: left;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.33;
+    color: #D4C17F;
+    margin-bottom: 20px;
+}
+
 .register-form {
-    height: 80vh;
-    background: #242B33;
-    padding-top: 100px;
+    height: 100vh;
+    margin-bottom: 50px;
 }
 .register-element {
     display: flex;
@@ -11,7 +20,7 @@
 .register-txt {
     font-family: "Raleway", sans-serif;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.5;
     color: #FFFFFF;
     width: 80px;
@@ -28,7 +37,7 @@
     border-bottom: 2px #D4C17F solid;
     color: #BEBEBE;
     outline: none;
-    width: 50%;
+    width: 450px;
     margin-left: 20px;
 }
 .remember-txt {

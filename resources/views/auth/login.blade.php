@@ -3,17 +3,19 @@
 @section('title', 'My House Управляющая компания')
 
 @section('menu')
-    @include('menu')
+    <div id="wrapper">
+        @include('Identically.menu')
+    </div>
 @endsection
 
 @section('header')
-    <div id="header"></div>
+    @include('Identically.header')
 @endsection
 
 @section('content')
-<div class="login-form">
-    <div class="container">
-        <h2 class="title-2">Вход в личный кабинет</h2>
+    <div id="wrapper">
+    <div class="login-form">
+        <h2 class="login_title">Вход в личный кабинет</h2>
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -70,11 +72,13 @@
             </div>
         </form>
     </div>
-    <div id="example"></div>
+
 </div>
 
 @endsection
 
 @section('footer')
-    @include('footer')
+    <div id="wrapper">
+        @include('Identically.footer')
+    </div>
 @endsection

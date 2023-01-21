@@ -1,6 +1,6 @@
 import {Menu, theme} from 'antd';
 import { useState } from 'react';
-import style from "../../css/footer_menu.css";
+import style from "../../../../css/Identically/footer.css";
 
 const items = [
     {
@@ -26,7 +26,7 @@ const items = [
 
 
 ];
-const Footer_menu = () => {
+const MenuFooter = () => {
     const [current, setCurrent] = useState('mail');
     const onClick = (e) => {
         console.log('click ', e);
@@ -40,4 +40,4 @@ const Footer_menu = () => {
         />
     );
 };
-export default Footer_menu;
+export default MenuFooter;

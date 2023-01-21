@@ -1,17 +1,25 @@
 @extends('layouts.landing_layout')
 
+@section('title', 'My House Управляющая компания')
+
 @section('menu')
-    @include('menu')
+    <div id="wrapper">
+        @include('Identically.menu')
+    </div>
 @endsection
 
 @section('header')
-    <div id="header"></div>
+    @include('Identically.header')
 @endsection
 
 @section('content')
+    <div id="wrapper">
     <div id="housesList"></div>
+    </div>
 @endsection
 
 @section('footer')
-    @include('footer')
+    <div id="wrapper">
+        @include('Identically.footer')
+    </div>
 @endsection

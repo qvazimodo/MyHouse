@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button, Space } from 'antd';
 import Input from "antd/es/input/Input";
-import style from '../../css/questions.css'
+import style from '../../../css/Content/questions.css'
 
 const Questions = () => (
     <div className="questions-section" style={{ style }}>
-        <div className="container">
+        <div id="wrapper">
             <h2 className="questions_title" style={{ style }}>Есть вопросы?</h2>
             <div className="question_section_wrp" style={{ style }}>
                 <p className="question_section_text">Наша компания предлагает программу предоставления полного спектра услуг
@@ -17,7 +17,7 @@ const Questions = () => (
                     <Button className="questions_button" style={{ style }}>Заказать звонок</Button>
                 </div>
             </div>
-        </div>
+            </div>
     </div>
 );
 
