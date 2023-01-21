@@ -33,14 +33,12 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
+                        {{ Auth::user()->name }}
                     </li>
         </ul>
         @endguest
     </div>
  </div>
-<div class="user-name">
-    <div class="circle"></div>
-    {{ Auth::user()->name }}</div>
 
 
 
