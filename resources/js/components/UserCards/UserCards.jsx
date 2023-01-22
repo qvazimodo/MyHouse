@@ -96,7 +96,7 @@ const UserCards = () => {
         let formData = new FormData();
 
         fileList.forEach((file) => {
-            formData.append('photos', file);
+            formData.append('photos[]', file);
         });
 
         formData.append('title', title);
