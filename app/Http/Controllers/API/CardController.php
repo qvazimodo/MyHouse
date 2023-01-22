@@ -19,7 +19,7 @@ class CardController extends Controller
 
     public function index(): ResourceCollection
     {
-      return  CardResource::collection(Card::with(['client', 'photos', 'categories'])->paginate(9));
+        return CardResource::collection(Card::with(['client', 'photos', 'categories'])->paginate(9));
     }
 
 
@@ -29,15 +29,17 @@ class CardController extends Controller
             return response()->json("Нет прав", 403);
         }
 
-            $clientId = Client::where('user_id', Auth::user()->id)->first();
-            $clientId = $clientId->id;
-            $card = Card::create($request->all());
-            $card->client_id = $clientId;
-            $card->save();
-            if($request->file()){
-                $this->uploadPhoto($request, $card);
-            }
-            return response()->json($card, 201);
+        $clientId = Client::where('user_id', Auth::user()->id)->first();
+        $clientId = $clientId->id;
+        $card = Card::create($request->all());
+        $card->client_id = $clientId;
+        $card->save();
+        //dd($request->file());
+        if ($request->file()) {
+            $this->uploadPhoto($request, $card);
+        }
+
+        return response()->json($request, 201);
     }
 
 
@@ -70,27 +72,28 @@ class CardController extends Controller
         ]);
         if ($validated->fails()) {
             return response()->json($validated->errors());
-        } else {
-            $names = [];
-            foreach ($request->file('photos') as $photo) {
-                $path = $photo->store('public/upload');
-                $name = $photo->getClientOriginalName();
-
-                $save = new Photo();
-                $save->width = 300;
-                $save->height = 400;
-                $save->card_id = $card->id;
-                $save->name = $name;
-                $save->path = $path;
-                $save->save();
-                $names[] = $name;
-            }
-            return response()->json([
-                "success" => true,
-                "message" => "Photos successfully uploaded",
-                "names" => $names
-            ]);
         }
+        $names = [];
+        foreach ($request->file('photos') as $photo) {
+            $path = $photo->store('public/upload');
+            $name = $photo->getClientOriginalName();
+
+            $save = new Photo();
+            $save->width = 300;
+            $save->height = 400;
+            $save->card_id = $card->id;
+            $save->name = $name;
+            $save->path = $path;
+            $save->save();
+            $names[] = $name;
+        }
+
+        return response()->json([
+            "success" => true,
+            "message" => "Photos successfully uploaded",
+            "names" => $names
+        ]);
+
     }
 
     //По моему, этот метод нигде не используется
