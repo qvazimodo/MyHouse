@@ -20,8 +20,8 @@
                         <li><a class="dropdown-item" href="{{ route('admin.employees') }}">Сотрудники</a></li>
                         <li><a class="dropdown-item" href="{{ route('admin.meters') }}">Счётчики</a></li>
             @endif
-                        <li><a class="dropdown-item" href="{{ route('userProfile') }}">Мой профиль</a></li>
-                        <li><a class="dropdown-item" href="{{ route('usercards') }}">Мои объявления</a></li>
+                <li><a class="dropdown-item" href="{{ route('usercards') }}">Мои объявления</a></li>
+                <li><a class="dropdown-item" href="{{ route('userProfile') }}">Мой профиль</a></li>
                 <li> | </li>
                 <li><a class="dropdown-item">{{ Auth::user()->name }}</a></li>
 
