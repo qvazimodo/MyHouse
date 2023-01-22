@@ -1,10 +1,15 @@
+import {Provider} from "react-redux"
+import store from "../../../store"
 import {HousePageLayout} from "./HousePageLayout"
-import {HousesList} from "../HousesList";
+import {HousesList} from "../HousesPage/HousesList";
 
 export const Root = () => {
     return (
-        <HousePageLayout>
-            <HousesList/>
-        </HousePageLayout>
+        <Provider store={store}>
+            <HousePageLayout>
+                <HousesList/>
+            </HousePageLayout>
+        </Provider>
+
     )
 }
