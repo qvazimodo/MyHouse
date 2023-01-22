@@ -94,6 +94,7 @@
 
 @media (min-width: 321px) and (max-width: 768px) {
     .flats-items {
-
+    padding: 0 105px;
     }
+
 }

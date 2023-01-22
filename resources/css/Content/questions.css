@@ -95,4 +95,17 @@
 
 }
 
+@media (min-width: 321px) and (max-width: 768px) {
+    .question_section_wrp {
+        padding: 0 10px;
+    }
+    .questions_title {
+        padding-left: 10px;
+        margin-bottom: 20px;
+        font-size: 34px;
+    }
+
+}
+
+
 

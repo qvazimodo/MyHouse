@@ -109,4 +109,8 @@
         margin-left: 35px;
         margin-top: 11px;
     }
+
+    .img-header {
+        display: block;
+    }
 }
