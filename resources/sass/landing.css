@@ -18,12 +18,14 @@ body {
 
 }
 
+/*Оцентровка*/
 #wrapper{
     width: 1300px;
     margin: 0 auto;
     text-align: left;
 }
 
+/*Секция карта*/
 .content-map {
     background-color: #242B33;
 }
@@ -37,34 +39,24 @@ body {
     margin-left: 100px;
     margin-bottom: 50px;
 }
-
-.top {
+/*Секция меню*/
+nav {
     color: white;
     display: flex;
     background-color: #242B33;
     align-items: center;
-    margin-left: 73px;
+    font-family: Post No Bills Jaffna SemiBold, sans-serif;
+    font-size: 14px;
+    margin-top: 10px;
  }
-
-.top-right {
-    margin-left: 80px;
-}
 
 li {
     float: left;
+    margin-left: 16px;
 }
 
 .first_row {
-    margin-left: 85px;
-}
-
-.second_row {
-
-    margin-left: 177px;
-}
-
-.logo-house {
-    margin-top: 20px;
+    margin-left: 60px;
 }
 
 .house {
@@ -89,143 +81,6 @@ li {
     height: 14px;
     width: 167px;
     text-align: center;
-}
-
-/*кнопки в меню*/
-
-.btn {
-    border: 1px solid #242B33;
-    border-radius: 0.6em;
-    color: #FFFFFF;
-    line-height: 1;
-    margin: 5px;
-    padding: 15px 15px;
-    font-family: 'Playfair Display', serif;
-}
-
-.btn:hover, .btn:focus {
-    color: #242B33;
-    outline: 0;
-}
-
-.first {
-    -webkit-transition: box-shadow 500ms ease-in-out, color 500ms ease-in-out;
-    transition: box-shadow 500ms ease-in-out, color 500ms ease-in-out;
-}
-.first:hover {
-    box-shadow: 0 0 40px 40px #FFFFFF inset;
-}
-
-
-/*бургер*/
-
-/**{*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*    box-sizing: border-box;*/
-/*    font-family: 'Playfair Display', serif;*/
-/*}*/
-
-.wrapper{
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    /*background: linear-gradient(-135deg, #c850c0, #4158d0);*/
-    /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
-    /* background: linear-gradient(-45deg, #e3eefe 0%, #efddfb 100%);*/
-
-    background: #242B33;
-    clip-path: circle(25px at calc(100% - 45px) 45px);
-    transition: all 0.3s ease-in-out;
-}
-#active:checked ~ .wrapper{
-    clip-path: circle(75%);
-}
-.menu-btn{
-    position: absolute;
-    z-index: 2;
-    right: 40px;
-    /* left: 20px; */
-    top: 20px;
-    height: 50px;
-    width: 50px;
-    text-align: center;
-    line-height: 50px;
-    border-radius: 50%;
-    font-size: 20px;
-    color: #fff;
-    cursor: pointer;
-    /*background: linear-gradient(-135deg, #c850c0, #4158d0);*/
-    /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
-    /* background: linear-gradient(-45deg, #e3eefe 0%, #efddfb 100%); */
-    background: #242B33;
-    transition: all 0.3s ease-in-out;
-}
-#active:checked ~ .menu-btn{
-    color: #fff;
-}
-#active:checked ~ .menu-btn i:before{
-    content: "\f00d";
-}
-.wrapper ul{
-    position: absolute;
-    top: 50%;
-    left: 600px;
-    transform: translate(-30%, -50%);
-    list-style: none;
-    text-align: center;
-}
-.wrapper ul li{
-    margin: 0 5px;
-}
-.wrapper ul li a{
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 5px 10px;
-    color: #fff;
-    border-radius: 50px;
-    background: #242B33;
-    position: relative;
-    line-height: 50px;
-    transition: all 0.3s ease;
-}
-.wrapper ul li a:after{
-    position: absolute;
-    content: "";
-    background: #fff;
-    background: linear-gradient(#14ffe9, #ffeb3b, #ff00e0);
-    /*background: linear-gradient(375deg, #1cc7d0, #2ede98);*/
-    width: 104%;
-    height: 110%;
-    left: -2%;
-    top: -5%; /* if the font is 'Oswald'*/
-    border-radius: 50px;
-    transform: scaleY(0);
-    z-index: -1;
-    animation: rotate 1.5s linear infinite;
-    transition: transform 0.3s ease;
-}
-.wrapper ul li a:hover:after{
-    transform: scaleY(1);
-}
-.wrapper ul li a:hover{
-    color: #fff;
-}
-input[type="checkbox"]{
-    display: none;
-}
-
-
-@keyframes rotate {
-    0%{
-        filter: hue-rotate(0deg);
-    }
-    100%{
-        filter: hue-rotate(360deg);
-    }
 }
 
 @media (max-width:320px) {
