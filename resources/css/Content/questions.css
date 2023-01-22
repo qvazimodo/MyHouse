@@ -56,16 +56,17 @@
 @media (max-width:320px) {
 
     .questions-section {
-        padding: 10px 0 10px 0;
+        padding: 0;
     }
 
     .question_section_wrp {
         display: block;
+        padding: 0 5px;
     }
 
     .questions_title {
-        font-size: 33px;
-        margin-bottom: 10px;
+        font-size: 30px;
+        margin: 10px 0 0 10px;
     }
 
     .question_section_text {

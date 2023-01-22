@@ -58,10 +58,7 @@
 
 @media (max-width:320px) {
     .menu-flats {
-        max-width: 320px;
-        width: 100%;
-
-        margin-top: -143px;
+        margin-top: -98px;
     }
 
     .flats-txt {
@@ -88,7 +85,10 @@
 
     .flats-text {
         font-size: 20px;
+    }
 
+    .flats-position-text {
+        margin: 123px 0;
     }
 }
 

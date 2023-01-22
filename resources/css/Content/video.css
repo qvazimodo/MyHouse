@@ -21,7 +21,7 @@
 @media (max-width:320px) {
 
     .video-block {
-        margin: 45px 0 0 0;
+        margin: 10px 0 0 -320px;
     }
 
     .video_name {

@@ -67,6 +67,10 @@
 
 @media (max-width:320px) {
 
+    .reviews {
+        padding: 45px 10px;
+    }
+
     .review-block {
         display: block;
     }

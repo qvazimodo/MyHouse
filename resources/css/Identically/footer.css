@@ -2,6 +2,7 @@ Footer {
     display: flex;
     background: #242B33;
     align-items: center;
+    margin-top: 10px;
 }
 
 #footer {
@@ -39,7 +40,7 @@ Footer {
     background: #242B33;
     color: #d7d7d7;
     font-family: "Raleway", sans-serif;
-    margin-left: 500px;
+    margin-left: 443px;
     margin-top: -46px;
     font-size: 14px;
     width: 380px;
@@ -48,7 +49,7 @@ Footer {
 .weather {
     margin-top: 24px;
     margin-bottom: 36px;
-    margin-left: 305px;
+    margin-left: 335px;
 }
 
 

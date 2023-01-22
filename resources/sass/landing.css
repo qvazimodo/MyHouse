@@ -88,11 +88,31 @@ li {
         max-width: 320px;
     }
 
-    .wrapper ul {
-        left: 80px;
-        width: 175px;
-        top: 30%;
+    nav {
+        align-items: normal;
+        margin: 25px 0 0 129px;
+        display: block;
+        font-size: 16px;
     }
+
+    .first_row {
+        margin: 23px 109px 0 -27px;
+    }
+
+    li {
+        float: none;
+        margin: 0;
+    }
+    .map {
+        font-size: 30px;
+        margin-left: 5px;
+        margin-bottom: 5px;
+    }
+
+    .map-bottom {
+        padding: 0 2px;
+    }
+
 
 }
 

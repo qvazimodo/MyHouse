@@ -34,9 +34,13 @@ const MenuFooter = () => {
     };
     return (
 
-        <Menu className="Menu-logo-footer" onClick={onClick} mode="horizontal" items={items} theme={{
+        <Menu className="Menu-logo-footer"
+              onClick={onClick}
+              mode="horizontal"
+              items={items} theme={{
             algorithm: theme.darkAlgorithm,
-        }} style={{ style }}
+         }}
+            // style={{ style }}
         />
     );
 };

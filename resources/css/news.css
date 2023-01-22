@@ -1,7 +1,8 @@
 #news {
+    border: 1px solid #FFFFFF;
+    border-radius: 20px;
     margin-top: 20px;
-    margin-bottom: 50px;
-
+    padding: 40px;
 }
 
 .news_title {
@@ -10,7 +11,7 @@
     font-size: 36px;
     line-height: 1.33;
     color: #D4C17F;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 
 }
 
@@ -18,3 +19,4 @@
     color: #cbd5e0;
     font-size: 16px;
 }
+

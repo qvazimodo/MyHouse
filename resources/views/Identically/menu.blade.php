@@ -2,11 +2,11 @@
     <div id="logo-header"></div>
         <ul class="first_row">
             <li><a href="news">Новости</a></li>
-            <li><a href="rates">Тарифы и услуги</a></li>
+            <li><a href="rates">Тарифы</a></li>
             <li><a href="{{ route('serviced_houses') }}">Дома</a></li>
             <li><a href="{{ route('announcement') }}">Объявления</a></li>
             <li><a href="about">О нас</a></li>
-            <li> | </li>
+{{--            <li> | </li>--}}
             @guest
                 @if (Route::has('register'))
                     <li class="reg-btn"><a href="{{ route('register') }}">Регистрация</a></li>
@@ -22,7 +22,7 @@
             @endif
                 <li><a class="dropdown-item" href="{{ route('usercards') }}">Мои объявления</a></li>
                 <li><a class="dropdown-item" href="{{ route('userProfile') }}">Мой профиль</a></li>
-                <li> | </li>
+{{--                <li> | </li>--}}
                 <li><a class="dropdown-item">{{ Auth::user()->name }}</a></li>
 
                         <li><a class="dropdown-item" href="{{ route('logout') }}"

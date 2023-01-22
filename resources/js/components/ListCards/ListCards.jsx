@@ -18,7 +18,7 @@ import {
 import {CARDS_API_URL, EMPLOYEES_API_URL} from "../../helpers/API";
 import ColumnGroup from "antd/es/table/ColumnGroup";
 import Column from "antd/es/table/Column";
-import s from './ListCards.module.css';
+import style from './ListCards.module.css';
 
 
 const ListCards = () => {
@@ -71,7 +71,12 @@ const ListCards = () => {
     }
 
     return (
-        <div className="container" style={{ background: "#242B33" }}>
+        <div className="container" style={{
+            border: "1px solid #FFFFFF",
+            borderRadius: 20,
+            marginTop: 20,
+            padding: 40,
+        }}>
             <ConfigProvider
                 theme={{ algorithm: theme.darkAlgorithm,
                 }}

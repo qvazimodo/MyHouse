@@ -63,6 +63,7 @@
     .watching-section_wrp {
         display: block;
         text-align: center;
+        padding: 0 10px;
     }
 
     .watching-section_text {
