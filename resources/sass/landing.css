@@ -123,10 +123,20 @@ li {
     }
 
     .wrapper ul {
-        top: 71px;
-        left: 32px;
-        transform: translate(0, 0);
+        /*top: 71px;*/
+        /*left: 32px;*/
+        /*transform: translate(0, 0);*/
          }
+
+    nav {
+        margin: 0;
+        display: flex;
+        font-size: 14px;
+    }
+
+    .first_row {
+        margin: 18px 0 0 0;
+    }
 
 }
 
