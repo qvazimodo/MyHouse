@@ -5,8 +5,9 @@ const initialState = {
     loading: false,
     addressesArray: [],
     error: '',
-    selectedStreetId: null,
-    selectedHouseNumberId: null
+    // selectedStreetId: null,
+    // selectedHouseNumberId: null,
+    description: {}
 }
 
 export const fetchHouses = createAsyncThunk('house/fetchHouses', () => {
@@ -27,7 +28,7 @@ const houseSlice = createSlice({
         setSelectedStreetId: (state, action) => {
             state.selectedStreetId = action.payload
         },
-        setSelectedHouseNumberId: (state, action)=>{
+        setSelectedHouseNumberId: (state, action) => {
             state.selectedHouseNumberId = action.payload
         }
     },

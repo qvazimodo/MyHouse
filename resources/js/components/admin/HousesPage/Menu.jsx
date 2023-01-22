@@ -1,13 +1,13 @@
 import {useEffect, useState} from "react";
 import {useSelector, useDispatch} from "react-redux";
-import {Button, Select, Space} from 'antd';
+import {Button, Select, Space, Cascader} from 'antd';
 import {setSelectedStreetId, setSelectedHouseNumberId} from "../../../features/house/houseSlice";
 
 
 export const Menu = () => {
     const [theme, setTheme] = useState('dark');
     const [current, setCurrent] = useState('1');
-    const [addresses, setAddresses] = useState([]);
+    // const [addresses, setAddresses] = useState([]);
     const [selectedStreet, setSelectedStreet] = useState([]);
     const [housesNumbers, setHousesNumbers] = useState([])
 
@@ -66,62 +66,97 @@ export const Menu = () => {
         setCurrent(e.key);
     };
 
+    //TODO получить описания домов
     const fetchHouseDescription = () => {
 
     }
 
-    return (
-        <Space wrap>
-            <Select
-                defaultValue="Улица"
-                style={{
-                    width: 200,
-                }}
-                onChange={streetHandleChange}
-                options={[...addressesArray.map(address => {
+    const addresses = addressesArray.map((address) => {
+        return {
+            value: address.id,
+            label: address.name,
+            children: [
+                ...address['house_numbers'].map(houseNumber => {
                     return {
-                        value: address.id,
-                        label: address.name,
+                        value: houseNumber.id,
+                        label: houseNumber.value
                     }
                 })
+            ]
+        }
+    })
 
-                ]}
-            />
-            <Select
-                onChange={housesNumberHandleChange}
-                defaultValue="Номер дома"
-                style={{
-                    width: 120,
-                }}
-                options={[...housesNumbers]}
-            />
-            <Button onClick={() => fetchHouseDescription()}>Загрузить информацию</Button>
-            <Select
-                defaultValue="Год"
-                style={{
-                    width: 120,
-                }}
-                loading={false}
-                options={[
-                    {
-                        value: 'lucy',
-                        label: 'Lucy',
-                    },
-                ]}
-            />
-            <Select
-                defaultValue="Месяц"
-                style={{
-                    width: 120,
-                }}
-                allowClear
-                options={[
-                    {
-                        value: 'lucy',
-                        label: 'Lucy',
-                    },
-                ]}
-            />
-        </Space>
+
+
+    const onChange = (value, selectedOptions) => {
+        console.log(value, selectedOptions);
+    };
+    const filter = (inputValue, path) =>
+        path.some((option) => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1);
+
+    return (
+       <>
+           <Cascader
+               options={addresses}
+               onChange={onChange}
+               placeholder="Введите адрес"
+               showSearch={{
+                   filter,
+               }}
+               onSearch={(value) => console.log(value)}
+           />
+           <Space wrap>
+               <Select
+                   defaultValue="Улица"
+                   style={{
+                       width: 200,
+                   }}
+                   onChange={streetHandleChange}
+                   options={[...addressesArray.map(address => {
+                       return {
+                           value: address.id,
+                           label: address.name,
+                       }
+                   })
+
+                   ]}
+               />
+               <Select
+                   onChange={housesNumberHandleChange}
+                   defaultValue="Номер дома"
+                   style={{
+                       width: 120,
+                   }}
+                   options={[...housesNumbers]}
+               />
+               <Button onClick={() => fetchHouseDescription()}>Загрузить информацию</Button>
+               <Select
+                   defaultValue="Год"
+                   style={{
+                       width: 120,
+                   }}
+                   loading={false}
+                   options={[
+                       {
+                           value: 'lucy',
+                           label: 'Lucy',
+                       },
+                   ]}
+               />
+               <Select
+                   defaultValue="Месяц"
+                   style={{
+                       width: 120,
+                   }}
+                   allowClear
+                   options={[
+                       {
+                           value: 'lucy',
+                           label: 'Lucy',
+                       },
+                   ]}
+               />
+           </Space>
+       </>
     );
 };
