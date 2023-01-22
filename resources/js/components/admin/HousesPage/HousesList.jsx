@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Collapse, ConfigProvider, theme} from 'antd';
 import ruRu from "antd/lib/locale/ru_RU";
-import {fetchHouses} from "../../../features/house/houseSlice";
+import {fetchHouses, fetchDescription} from "../../../features/house/houseSlice";
 
 const {Panel} = Collapse;
 const text = `
