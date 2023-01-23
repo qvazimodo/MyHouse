@@ -105,9 +105,9 @@ const UserCards = () => {
 
 
         //Вывод значений formData
-        for(let [name, value] of formData) {
-            alert(`${name} = ${value}`); // key1=value1, потом key2=value2
-        }
+        // for(let [name, value] of formData) {
+        //     alert(`${name} = ${value}`); // key1=value1, потом key2=value2
+        // }
 
         fetch(CARDS_API_URL, {
             method: 'POST',
