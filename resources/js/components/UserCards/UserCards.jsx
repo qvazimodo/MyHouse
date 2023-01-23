@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Card, ConfigProvider, Form, Image, Input, List, Switch, theme, Typography} from "antd";
-import {AUTH_USER_API_URL, CARDS_API_URL, MYCARDS_API_URL} from "../../helpers/API";
+import {Button, Card, ConfigProvider, Form, Image, Input, List, Switch, theme, Typography, Upload} from "antd";
+import {AUTH_USER_API_URL, CARDS_API_URL, CLIENT_CARDS_API_URL} from "../../helpers/API";
 import s from './UserCards.module.css';
 import {red} from "@ant-design/colors";
+import {UploadOutlined} from "@ant-design/icons";
 
 const {Text} = Typography;
 
@@ -27,19 +28,21 @@ const UserCards = () => {
 
     const [visible, setVisible] = useState(false);
 
-    const [currentValue, setCurrentValue] = useState(true)
+    const [currentValue, setCurrentValue] = useState(true);
+    const [fileList, setFileList] = useState([]);
+    const [uploading, setUploading] = useState(false);
 
 
     //---------------------- Для Кости (НЕ форма)
     //---------------------- Вывод карточек пользователя
 
     const onPageChange = (page) => {
-        fetchEmployees(MYCARDS_API_URL + `?page=${page}`)
+        fetchEmployees(CLIENT_CARDS_API_URL + `?page=${page}`)
     }
 
 
     useEffect(() => {
-        fetchEmployees(MYCARDS_API_URL)
+        fetchEmployees(CLIENT_CARDS_API_URL)
     }, [])
 
 
@@ -89,20 +92,32 @@ const UserCards = () => {
     const sendForm = (e) => {
 
         e.preventDefault();
+
+        let formData = new FormData();
+
+        fileList.forEach((file) => {
+            formData.append('photos[]', file);
+        });
+
+        formData.append('title', title);
+        formData.append('price', price);
+        formData.append('description', description);
+
+
+        //Вывод значений formData
+        // for(let [name, value] of formData) {
+        //     alert(`${name} = ${value}`); // key1=value1, потом key2=value2
+        // }
+
         fetch(CARDS_API_URL, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                    .getAttribute('content'),
             },
-            body: JSON.stringify({
-                title: title,
-                price: +price,
-                description: description,
-                client_id: argument.userId,
-            })
+            body: formData
         })
             .then(response => response.json())
             .catch(e => console.log(e))
@@ -112,8 +127,21 @@ const UserCards = () => {
             })
 
     }
-    console.log(data)
 
+
+    const props = {
+        onRemove: (file) => {
+            const index = fileList.indexOf(file);
+            const newFileList = fileList.slice();
+            newFileList.splice(index, 1);
+            setFileList(newFileList);
+        },
+        beforeUpload: (file) => {
+            setFileList([...fileList, file]);
+            return false;
+        },
+        fileList,
+    };
 
     return (
         <div className='container'>
@@ -174,6 +202,14 @@ const UserCards = () => {
                         setPrice(e.target.value)
                     }}/>
                 </Form.Item>
+
+                <span style={{fontSize:18, color:'#D4C17F'}}>Отправить фото:</span>
+                <Form.Item>
+                    <Upload {...props}>
+                        <Button icon={<UploadOutlined />}>Select File</Button>
+                    </Upload>
+                </Form.Item>
+
                 <Form.Item>
                     <Button type="primary" style={{backgroundColor:'#D4C17F'}} onClick={sendForm}>Отправить</Button>
                 </Form.Item>
