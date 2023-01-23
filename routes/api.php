@@ -86,5 +86,5 @@ Route::prefix('admin')->group(function () {
     Route::get('/houses/{street_id}/{house_number_id}', [HouseController::class, 'show']);
 
     //описания домов
-    Route::get('/houses/description/{}', [AdminHouseDescriptionController::class, 'show']);
+    Route::get('/houses/description/{street_id}/{house_id}', [AdminHouseDescriptionController::class, 'show']);
 });

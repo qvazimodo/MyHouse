@@ -1,5 +1,5 @@
-import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
-import {ADMIN_HOUSES_API_URL, ADMIN_HOUSE_DESCRIPTION_API_URL} from '../../helpers/API'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { ADMIN_HOUSES_API_URL, ADMIN_HOUSE_DESCRIPTION_API_URL } from '../../helpers/API'
 
 const initialState = {
     loading: false,
@@ -14,9 +14,9 @@ export const fetchHouses = createAsyncThunk('house/fetchHouses', () => {
     return fetch(ADMIN_HOUSES_API_URL).then(response => response.json()).then(result => result.data)
 })
 
-export const fetchDescription=createAsyncThunk('house/fetchDescription', ()=>{
-    return fetch(ADMIN_HOUSE_DESCRIPTION_API_URL).then(response=> response.json()).then(result=>result.data)
-})
+export const fetchDescription = createAsyncThunk( 'house/fetchDescription', ( address ) => {
+    return fetch( `ADMIN_HOUSE_DESCRIPTION_API_URL/{$address.streetId}/{$address.houseId)` ).then( response => response.json() ).then( result => result.data )
+} )
 
 const houseSlice = createSlice({
     name: 'house',
@@ -45,6 +45,17 @@ const houseSlice = createSlice({
             state.loading = false
         })
         builder.addCase(fetchHouses.rejected, (state, action) => {
+            state.error = action.payload
+        })
+
+        builder.addCase(fetchDescription.pending, (state) => {
+            state.loading = true
+        })
+        builder.addCase(fetchDescription.fulfilled, (state, action) => {
+            state.description = action.payload
+            state.loading = false
+        })
+        builder.addCase(fetchDescription.rejected, (state, action) => {
             state.error = action.payload
         })
     },

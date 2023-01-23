@@ -9,7 +9,7 @@
 @endsection
 
 @section('header')
-    @include('Identically.header')
+{{--    @include('Identically.header')--}}
 @endsection
 
 @section('content')

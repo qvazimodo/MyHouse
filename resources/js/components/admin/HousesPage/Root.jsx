@@ -4,6 +4,7 @@ import { HousePageLayout } from "./HousePageLayout"
 import { HousesList } from "../HousesPage/HousesList";
 import { ConfigProvider, theme } from "antd";
 import ruRu from "antd/lib/locale/ru_RU";
+import { Menu } from "./Menu";
 
 export const Root = () => {
     return (

@@ -1,7 +1,8 @@
 import {DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined} from '@ant-design/icons';
-import {Breadcrumb, Layout, theme} from 'antd';
+import { Breadcrumb, Button, Layout, theme } from 'antd';
 import {useState} from 'react';
 import {Menu} from './Menu'
+import styles from "./Menu.module.css";
 
 const {Header, Content, Footer, Sider} = Layout;
 
@@ -53,11 +54,8 @@ export const HousePageLayout = ({children}) => {
                         background: 'rgba(255, 255, 255, 0.2)',
                     }}
                 />
-
-                <Menu theme="dark" mode="horizontal"/>
-
+                <Menu/>
             </Header>
-
             <Content
                 style={{
                     margin: '0 16px',
@@ -78,6 +76,7 @@ export const HousePageLayout = ({children}) => {
                         background: colorBgContainer,
                     }}
                 >
+                    <Menu />
                     {children}
                 </div>
             </Content>

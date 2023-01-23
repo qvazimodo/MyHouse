@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Street;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class StreetSeeder extends Seeder
@@ -11,9 +10,9 @@ class StreetSeeder extends Seeder
     private array $streets = [
         ['name' => 'имени Платонова'],
         ['name' => 'Юбилейная'],
-        /*        ['name' => 'Краснознамённая'],
-                ['name' => 'Триумфаторов'],
-                ['name' => 'имени Гагарина'],*/
+        ['name' => 'Краснознамённая'],
+        ['name' => 'Триумфаторов'],
+        ['name' => 'имени Гагарина'],
     ];
 
     /**
