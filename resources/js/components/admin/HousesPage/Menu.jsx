@@ -115,10 +115,10 @@ export const Menu = () => {
                } }
                onSearch={ ( value ) => console.log( value ) }
            />
-           <Button
+           { <Button
                disabled
                onClick={ () => console.log( addresses ) }>Загрузить
-           </Button>
+           </Button> }
        </>
     );
 };

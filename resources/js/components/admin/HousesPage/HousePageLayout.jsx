@@ -76,7 +76,7 @@ export const HousePageLayout = ({children}) => {
                         background: colorBgContainer,
                     }}
                 >
-                    <Menu />
+                    {/*<Menu />*/}
                     {children}
                 </div>
             </Content>

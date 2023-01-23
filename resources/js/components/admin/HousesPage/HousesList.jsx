@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Collapse } from 'antd';
+import { Collapse } from 'antd';
 import { fetchHouses } from "../../../features/house/houseSlice";
+import { HouseDescription } from "./HouseDescription";
+import { isNull } from "lodash";
 
 const { Panel } = Collapse;
 const text = `
@@ -13,9 +15,10 @@ export const HousesList = () => {
         const [ addresses, setAddresses ] = useState( [] );
         const [ houses, setHouses ] = useState( [] );
 
-        const addressesArray = useSelector(state => state.house.addressesArray)
-
+        const addressesArray = useSelector( state => state.house.addressesArray )
+        const description = useSelector( state => state.house.description )
         const dispatch = useDispatch()
+
         useEffect(() => {
                 dispatch(fetchHouses())
                 // getDataFromAPI(ADMIN_HOUSES_API_URL).then(result => setAddresses(result.data))
@@ -37,15 +40,16 @@ export const HousesList = () => {
         };
         return (
             <>
-                <Button type="primary" onClick={ () => console.log( addressesArray ) }>Click</Button>
-                {/*{ addressesArray.map( (address => <p>{ address.name }</p>) ) }*/}
-                <Collapse defaultActiveKey={ [ '1' ] } onChange={ onChange }>
+                 <HouseDescription description={ description }/>
+                {/*<Button type="primary" onClick={ () => console.log( addressesArray ) }>Click</Button>*/ }
+                {/*{ addressesArray.map( (address => <p>{ address.name }</p>) ) }*/ }
+                {/*                <Collapse defaultActiveKey={ [ '1' ] } onChange={ onChange }>
                     { addressesArray.map( address =>
                         <Panel header={ address.name } key={ address.id }>
                             <p>{ address.name }</p>
                         </Panel>
                     ) }
-                </Collapse>
+                </Collapse>*/ }
             </>
 
         );

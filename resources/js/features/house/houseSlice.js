@@ -17,7 +17,7 @@ export const fetchHouses = createAsyncThunk('house/fetchHouses', () => {
 export const fetchDescription = createAsyncThunk( 'house/fetchDescription', ( address ) => {
     let url = ADMIN_HOUSE_DESCRIPTION_API_URL + "/" + `${ address.streetId }` + "/" + `${ address.houseId }`
     console.log(url)
-    return fetch( url ).then( response => response.json() ).then( result => result )
+    return fetch( url ).then( response => response.json() ).then( result => result[0]['house_description'] )
 } )
 
 const houseSlice = createSlice({
