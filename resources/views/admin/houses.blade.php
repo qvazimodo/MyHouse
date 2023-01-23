@@ -10,13 +10,13 @@
 @endsection
 
 @section('header')
-{{--    @include('Identically.header')--}}
+    {{--    @include('Identically.header')--}}
 @endsection
 
 @section('content')
     <div class="container">
-        <h2 class="title-2">Счётчики</h2>
-        <div id="admin__meters"></div>
+        <h2 class="title-2">Дома на обслуживании</h2>
+        <div id="admin__houses"></div>
     </div>
 @endsection
 

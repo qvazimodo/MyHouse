@@ -6,7 +6,6 @@
             <li><a href="{{ route('serviced_houses') }}">Дома</a></li>
             <li><a href="{{ route('announcement') }}">Объявления</a></li>
             <li><a href="about">О нас</a></li>
-{{--            <li> | </li>--}}
             @guest
                 @if (Route::has('register'))
                     <li class="reg-btn"><a href="{{ route('register') }}">Регистрация</a></li>
@@ -16,6 +15,11 @@
                 @endif
         @else
             @if (Auth::user()->is_admin )
+                <li>
+                    <a class="nav-link" href="{{ route('admin.houses') }}" role="button"
+                       aria-expanded="false">
+                        Дома на обслуживании</a>
+                </li>
                         <li><a class="dropdown-item" href="{{ route('admin.clients.index') }}">Клиенты</a></li>
                         <li><a class="dropdown-item" href="{{ route('admin.employees') }}">Сотрудники</a></li>
                         <li><a class="dropdown-item" href="{{ route('admin.meters') }}">Счётчики</a></li>

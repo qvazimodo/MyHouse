@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\MeterResource;
 use App\Models\Meter;
 use App\Models\Month;
+use App\Models\MonthYear;
 use App\Models\Year;
 use Illuminate\Http\JsonResponse;
 
@@ -18,15 +19,16 @@ class MeterController extends Controller
 
     public function allMetersValues(): JsonResponse
     {
-        $metersValues = Meter::with(['client', 'monthYear', 'clientUser'])->paginate(5);
+        $metersValues = Meter::with(['client', 'clientUser', 'meterMonthYear'])->paginate(5);
 
 
+        $monthYears = MonthYear::all();
         $years = Year::all();
         $months = Month::all();
 
         return response()->json([
             'data' => $metersValues,
-            'meta' => ['years' => $years, 'months' => $months]
+            'meta' => ['monthYears' => $monthYears, 'years' => $years, 'months' => $months]
         ], 200);
     }
 }

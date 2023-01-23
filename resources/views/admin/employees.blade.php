@@ -8,9 +8,6 @@
     </div>
 @endsection
 
-{{--@section('header')--}}
-{{--    @include('Identically.header')--}}
-{{--@endsection--}}
 
 @section('content')
     <div class="container">

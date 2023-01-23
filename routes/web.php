@@ -37,6 +37,9 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'is_admin'])
         Route::get('/meters', function () {
             return view('admin.meters');
         })->name('meters');
+        Route::get('/houses', function () {
+            return view('admin.houses');
+        })->name('houses');
 });
 
 
