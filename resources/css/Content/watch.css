@@ -1,6 +1,6 @@
 .watching-section {
     background: url('/resources/js/components/img/watching-bg.png') center / cover no-repeat;
-    padding: 180px 0 180px 150px;
+    padding: 180px 0;
     box-sizing: border-box;
 }
 .watching_title {
@@ -14,9 +14,10 @@
     padding: 0 100px;
 }
 .watching-section_wrp {
-    display: flex;
+    padding: 0 140px;
 }
 .watching-section_text {
+    padding: 40px 229px;
     flex: 1;
     font-weight: 400;
     font-size: 15px;
@@ -24,6 +25,7 @@
     color: #FFFFFF;
 }
 .watching-section_form {
+    padding: 18px 210px;
     flex: 1;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -48,14 +50,13 @@
  @media (max-width:320px) {
      .watching-section_wrp {
          display: block;
-         padding: 0 5px;
      }
      .watching-section {
          padding: 50px 0 50px 5px;
         }
      .watching-section_form {
          display: block;
-         padding-right: 10px;
+         padding-right: 5px;
      }
      .watching_button {
          width: 100%;

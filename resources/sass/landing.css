@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 a {
     text-decoration: none;
@@ -17,7 +18,7 @@ body {
 
 /*Оцентровка*/
 #wrapper{
-    width: 1300px;
+    width: 1350px;
     margin: 0 auto;
     text-align: left;
 }
@@ -68,7 +69,7 @@ li {
     line-height: 1.33;
     color: #D4C17F;
     margin-bottom: 20px;
-    text-align: left;
+    text-align: center;
 }
 
 @media (max-width:320px) {
@@ -82,7 +83,7 @@ li {
         font-size: 16px;
     }
     .first_row {
-        margin: 25px 0 0 0;
+        margin: 25px 0 0 -45px;
     }
     li {
         float: none;

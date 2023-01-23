@@ -12,11 +12,7 @@ const Reviews = () => (
             <div className="review-block" style={{ style }}>
                 <Avatar.Group
                     size={64}
-                    maxStyle={{
-                        color: '#f56a00',
-                        backgroundColor: '#fde3cf',
-                    }}
-                >
+                 >
                     <Avatar className="img-review" style={{ style }} src={Woman} />
                 </Avatar.Group>
                 <div className="block-review-text">
@@ -33,11 +29,7 @@ const Reviews = () => (
             <div className="review-block" style={{ style }}>
                 <Avatar.Group
                     size={64}
-                    maxStyle={{
-                        color: '#f56a00',
-                        backgroundColor: '#fde3cf',
-                    }}
-                >
+                  >
                     <Avatar className="img-review2" src={Woman2} style={{ style }} />
                 </Avatar.Group>
                 <div className="block-review-text">
@@ -52,11 +44,7 @@ const Reviews = () => (
             <div className="review-block" style={{ style }}>
                 <Avatar.Group
                     size={64}
-                    maxStyle={{
-                        color: '#f56a00',
-                        backgroundColor: '#fde3cf',
-                    }}
-                >
+                  >
                     <Avatar className="img-review3" src={Man} style={{ style }}/>
                 </Avatar.Group>
                 <div className="block-review-text">

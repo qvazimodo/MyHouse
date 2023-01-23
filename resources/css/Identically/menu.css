@@ -55,6 +55,9 @@
 
 }
 @media (min-width: 321px) and (max-width: 375px) {
+    .img-header {
+        width: 100%;
+    }
     .bottom-top {
         font-size: 30px;
     }
@@ -69,6 +72,10 @@
 }
 
 @media (min-width: 376px) and (max-width: 425px) {
+    .img-header {
+        width: 100%;
+        margin: 0 auto;
+    }
     .bottom-top {
         font-size: 30px;
     }
@@ -83,9 +90,17 @@
 }
 
 @media (min-width: 426px) and (max-width: 768px) {
+    .img-header {
+        width: 100%;
+        margin: 0 auto;
+    }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
+    .img-header {
+        width: 100%;
+        margin: 0 auto;
+    }
 }
 
 

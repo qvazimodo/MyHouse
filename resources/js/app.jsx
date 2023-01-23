@@ -96,41 +96,41 @@ if (document.getElementById('housesList')){
 }
 
 if ( document.getElementById( 'news' ) ) {
-    const root = createRoot( document.getElementById( 'news' ) );
+    const root = createRoot( document.getElementById( 'news'));
     root.render( <News/> );
 }
 
 if ( document.getElementById( 'admin__meters' ) ) {
-    const root = createRoot( document.getElementById( 'admin__meters' ) );
+    const root = createRoot( document.getElementById( 'admin__meters'));
     root.render( <MetersList/> );
 }
 
 if ( document.getElementById( 'admin__houses' ) ) {
-    const root = createRoot( document.getElementById( 'admin__houses' ) );
+    const root = createRoot( document.getElementById( 'admin__houses'));
     root.render( <Root/> );
 }
 
 if ( document.getElementById( 'about' ) ) {
-    const root = createRoot( document.getElementById( 'about' ) );
+    const root = createRoot( document.getElementById( 'about'));
     root.render( <About/> );
 }
 
 if ( document.getElementById( 'logo-header' ) ) {
-    const root = createRoot( document.getElementById( 'logo-header' ) );
+    const root = createRoot( document.getElementById( 'logo-header'));
     root.render( <LogoHeader/> );
 }
 
 if ( document.getElementById( 'header' ) ) {
-    const root = createRoot( document.getElementById( 'header' ) );
+    const root = createRoot( document.getElementById( 'header'));
     root.render( <Header/> );
 }
 
 if ( document.getElementById( 'footer' ) ) {
-    const root = createRoot( document.getElementById( 'footer' ) );
+    const root = createRoot( document.getElementById( 'footer'));
     root.render( <Footer/> );
 }
 
 if ( document.getElementById( 'flats' ) ) {
-    const root = createRoot( document.getElementById( 'flats' ) );
+    const root = createRoot( document.getElementById( 'flats'));
     root.render( <Flats/> );
 }
