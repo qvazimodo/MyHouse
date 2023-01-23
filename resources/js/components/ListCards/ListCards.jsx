@@ -81,7 +81,7 @@ const ListCards = () => {
                 theme={{ algorithm: theme.darkAlgorithm,
                 }}
             >
-                <h2 className="about_title">Объявления</h2>
+                <h2 className="title_name">Объявления</h2>
                 <List
                     style={{
                         marginBottom: 30

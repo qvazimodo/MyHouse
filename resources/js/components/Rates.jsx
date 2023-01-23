@@ -63,7 +63,7 @@ const data = [
 const Rates = () => (
         <>
 
-        <h2 className="rates_title" style={{ style }}>Тарифы и услуги</h2>
+        <h2 className="title_name" style={{ style }}>Тарифы и услуги</h2>
         <Text
             style={{
                 color: "yellow",

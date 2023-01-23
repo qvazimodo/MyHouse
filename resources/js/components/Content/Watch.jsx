@@ -6,7 +6,7 @@ import style from '../../../css/Content/watch.css'
 const Watch = () => (
     <div className="watching-section" style={{ style }}>
         <div id="wrapper">
-            <h2 className="watching_title" style={{ style }}>Хотите присоединить свой дом к нашей УК?</h2>
+            <h2 className="title_name" style={{ style }}>Хотите присоединить свой дом к нашей УК?</h2>
             <div className="watching-section_wrp" style={{ style }}>
                 <p className="watching-section_text" style={{ style }}>
                     Наша компания предлагает программу предоставления полного спектра услуг

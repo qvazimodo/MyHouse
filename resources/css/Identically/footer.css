@@ -1,16 +1,11 @@
 Footer {
     display: flex;
-    background: #242B33;
     align-items: center;
-    margin-top: 10px;
 }
-
 #footer {
-    background: #242B33;
     height: 100px;
     align-items: center;
 }
-
 .house-footer {
     text-decoration: none;
     color: #FFFFFF;
@@ -21,11 +16,9 @@ Footer {
     width: 100%;
     text-align: center;
 }
-
 .residential-footer {
     margin-left: -2px;
     margin-top: 1px;
-    font-family: Raleway, sans-serif;
     font-weight: 400;
     font-size: 11px;
     line-height: 14px;
@@ -35,54 +28,82 @@ Footer {
     width: 167px;
     text-align: center;
 }
-
 .Menu-logo-footer {
-    background: #242B33;
     color: #d7d7d7;
-    font-family: "Raleway", sans-serif;
     margin-left: 443px;
     margin-top: -46px;
     font-size: 14px;
     width: 380px;
 }
-
 .weather {
     margin-top: 24px;
     margin-bottom: 36px;
     margin-left: 335px;
 }
 
-
-
 @media (max-width:320px) {
     .logo-footer {
         margin-left: 0;
-
     }
 
     .Menu-logo-footer {
         display: none;
     }
-
     .weather {
         margin-left: 15px;
     }
-
 }
 
-@media (min-width: 321px) and (max-width: 768px) {
+
+@media (min-width: 321px) and (max-width: 375px) {
+    .logo-footer {
+        margin-left: 0;
+    }
+
+    .Menu-logo-footer {
+        display: none;
+    }
+    .weather {
+        margin-left: 85px;
+    }
+}
+
+@media (min-width: 376px) and (max-width: 425px) {
     .logo-footer {
         margin-left: 0;
         margin-top: -11px;
     }
+    .Menu-logo-footer {
+        display: none;
+    }
+    .weather {
+        margin-left: 135px;
+    }
+}
 
+@media (min-width: 426px) and (max-width: 768px) {
+    .logo-footer {
+        margin: 0;
+    }
     .Menu-logo-footer {
         margin-left: 188px;
     }
-
     .weather {
         margin-left: 43px;
     }
-
-
 }
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .logo-footer {
+        margin: 0;
+    }
+    .Menu-logo-footer {
+        margin-left: 188px;
+        width: 580px;
+    }
+    .weather {
+        margin-left: 114px;
+    }
+}
+
+

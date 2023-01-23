@@ -8,7 +8,7 @@ import Man from '../img/man.jpeg'
 const Reviews = () => (
 
     <div className="reviews" style={{ style }}>
-            <h2 className="reviews_title" style={{ style }}>Отзывы наших клиентов</h2>
+            <h2 className="title_name" style={{ style }}>Отзывы наших клиентов</h2>
             <div className="review-block" style={{ style }}>
                 <Avatar.Group
                     size={64}

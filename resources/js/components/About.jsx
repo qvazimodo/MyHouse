@@ -3,11 +3,8 @@ import { Typography } from 'antd';
 import style from "../../css/about.css";
 const { Text } = Typography;
 const About = () => (
-
-
-            <>
-                <h2 className="about_title" style={{ style }} >О нашей компании</h2>
-
+           <>
+                <h2 className="title_name" style={{ style }} >О нашей компании</h2>
                 <Text className="about_text" style={{ style }} >
                     История нашей компании началась одновременно с образованием
                     самого Домодедовского района в середине прошлого века (1969 год).
@@ -29,7 +26,5 @@ const About = () => (
                     а также две круглосуточные аварийно-диспетчерские службы.
                     Девиз компании «Ваше доверие - наш профессионализм»<br /></Text><br />
             </>
-
-
 );
 export default About;

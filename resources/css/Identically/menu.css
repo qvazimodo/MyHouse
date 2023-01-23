@@ -1,25 +1,13 @@
-.menu-header {
-    background: #242B33;
-    border-color: #2b2b2c;
-    color: #d7d7d7;
-    font-family: "Raleway", sans-serif;
-    margin-left: 723px;
-    margin-top: -54px;
-    display: flex;
-}
-
 .img-header {
     height: 815px;
     background: url('/storage/app/public/images/Rectangle.png') center / cover no-repeat;
 }
-
 .bottom {
     max-width: 582px;
     width: 100%;
     margin: 0 auto;
     padding-top: 294px;
 }
-
 .bottom-top {
     padding-left: 15px;
     font-family: 'Playfair Display', sans-serif;
@@ -30,11 +18,9 @@
     text-align: center;
     color: #D4C17F;
 }
-
 .bottom-contacts {
     display: flex;
     justify-content: space-between;
-    font-family: 'Raleway', sans-serif;
     color: #FFFFFF;
     font-style: normal;
     font-weight: 400;
@@ -43,74 +29,64 @@
     text-align: center;
     margin-top: 89px;
 }
-
 .name_street {
     margin-left: 18px;
 }
-
 .sticker,
 .phone {
     display: flex;
 }
-
 .num {
     margin-left: 15px;
 }
 
-
-
 @media (max-width:320px) {
-    .logo-house {
-        margin-left: -55px;
-    }
-
-    .residential {
-        margin-left: 0;
-    }
-
-    .menu-header {
-        margin-left: 0;
-        margin-top: 0;
-    }
-
     .bottom-top {
-        margin-top: -144px;
-        margin-left: -12px;
-        font-size: 33px;
-        line-height: 33px;
+        font-size: 30px;
     }
-
-    .bottom {
-        max-width: 320px;
-        width: 100%;
-        padding-top: 420px;
-    }
-
     .bottom-contacts {
         display: block;
-        font-size: 14px;
-        margin-top: 50px;
-        margin-left: 42px;
+        margin-left: 30px;
     }
-
-    .img-header {
-        display: none;
+    .title_name {
+        margin-left: 20px;
+        font-size: 24px;
     }
 
 }
-
-@media (min-width: 321px) and (max-width: 768px) {
-    .logo-house {
-        margin-left: 0;
-        margin-top: 11px;
+@media (min-width: 321px) and (max-width: 375px) {
+    .bottom-top {
+        font-size: 30px;
     }
-
-    .menu-header {
-        margin-left: 35px;
-        margin-top: 11px;
-    }
-
-    .img-header {
+    .bottom-contacts {
         display: block;
+        margin-left: 62px;
+    }
+    .title_name {
+        margin-left: 20px;
+        font-size: 30px;
     }
 }
+
+@media (min-width: 376px) and (max-width: 425px) {
+    .bottom-top {
+        font-size: 30px;
+    }
+    .bottom-contacts {
+        display: block;
+        margin-left: 86px;
+    }
+    .title_name {
+        margin-left: 20px;
+        font-size: 30px;
+    }
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+}
+
+
+

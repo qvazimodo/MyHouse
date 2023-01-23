@@ -11,7 +11,7 @@ const { Text } = Typography;
 const Flats = () => (
     <div className="menu-flats">
         <div className="flats-position-text">
-            <h2 className="flats-txt">Дома у нас на обслуживании</h2>
+            <h2 className="title_name">Дома у нас на обслуживании</h2>
         </div>
         <div className="flats-items">
             <div className="flats-item">
