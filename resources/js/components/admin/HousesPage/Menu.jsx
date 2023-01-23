@@ -105,58 +105,59 @@ export const Menu = () => {
                }}
                onSearch={(value) => console.log(value)}
            />
-           <Space wrap>
-               <Select
-                   defaultValue="Улица"
-                   style={{
-                       width: 200,
-                   }}
-                   onChange={streetHandleChange}
-                   options={[...addressesArray.map(address => {
-                       return {
-                           value: address.id,
-                           label: address.name,
-                       }
-                   })
+           <Button>Загрузить</Button>
+           {/*<Space wrap>*/}
+           {/*    <Select*/}
+           {/*        defaultValue="Улица"*/}
+           {/*        style={{*/}
+           {/*            width: 200,*/}
+           {/*        }}*/}
+           {/*        onChange={streetHandleChange}*/}
+           {/*        options={[...addressesArray.map(address => {*/}
+           {/*            return {*/}
+           {/*                value: address.id,*/}
+           {/*                label: address.name,*/}
+           {/*            }*/}
+           {/*        })*/}
 
-                   ]}
-               />
-               <Select
-                   onChange={housesNumberHandleChange}
-                   defaultValue="Номер дома"
-                   style={{
-                       width: 120,
-                   }}
-                   options={[...housesNumbers]}
-               />
-               <Button onClick={() => fetchHouseDescription()}>Загрузить информацию</Button>
-               <Select
-                   defaultValue="Год"
-                   style={{
-                       width: 120,
-                   }}
-                   loading={false}
-                   options={[
-                       {
-                           value: 'lucy',
-                           label: 'Lucy',
-                       },
-                   ]}
-               />
-               <Select
-                   defaultValue="Месяц"
-                   style={{
-                       width: 120,
-                   }}
-                   allowClear
-                   options={[
-                       {
-                           value: 'lucy',
-                           label: 'Lucy',
-                       },
-                   ]}
-               />
-           </Space>
+           {/*        ]}*/}
+           {/*    />*/}
+           {/*    <Select*/}
+           {/*        onChange={housesNumberHandleChange}*/}
+           {/*        defaultValue="Номер дома"*/}
+           {/*        style={{*/}
+           {/*            width: 120,*/}
+           {/*        }}*/}
+           {/*        options={[...housesNumbers]}*/}
+           {/*    />*/}
+           {/*    <Button onClick={() => fetchHouseDescription()}>Загрузить информацию</Button>*/}
+           {/*    <Select*/}
+           {/*        defaultValue="Год"*/}
+           {/*        style={{*/}
+           {/*            width: 120,*/}
+           {/*        }}*/}
+           {/*        loading={false}*/}
+           {/*        options={[*/}
+           {/*            {*/}
+           {/*                value: 'lucy',*/}
+           {/*                label: 'Lucy',*/}
+           {/*            },*/}
+           {/*        ]}*/}
+           {/*    />*/}
+           {/*    <Select*/}
+           {/*        defaultValue="Месяц"*/}
+           {/*        style={{*/}
+           {/*            width: 120,*/}
+           {/*        }}*/}
+           {/*        allowClear*/}
+           {/*        options={[*/}
+           {/*            {*/}
+           {/*                value: 'lucy',*/}
+           {/*                label: 'Lucy',*/}
+           {/*            },*/}
+           {/*        ]}*/}
+           {/*    />*/}
+           {/*</Space>*/}
        </>
     );
 };
