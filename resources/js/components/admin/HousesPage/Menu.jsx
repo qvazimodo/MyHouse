@@ -90,7 +90,7 @@ export const Menu = () => {
             streetId: value[0],
             houseId: value[1]
         }
-        fetchDescription( address )
+        dispatch( fetchDescription( address ) )
         console.log( value, selectedOptions );
     };
     const filter = (inputValue, path) =>

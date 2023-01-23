@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { ADMIN_HOUSES_API_URL, ADMIN_HOUSE_DESCRIPTION_API_URL } from '../../helpers/API'
+import { ADMIN_HOUSE_DESCRIPTION_API_URL, ADMIN_HOUSES_API_URL } from '../../helpers/API'
 
 const initialState = {
     loading: false,
@@ -15,7 +15,9 @@ export const fetchHouses = createAsyncThunk('house/fetchHouses', () => {
 })
 
 export const fetchDescription = createAsyncThunk( 'house/fetchDescription', ( address ) => {
-    return fetch( `ADMIN_HOUSE_DESCRIPTION_API_URL/{$address.streetId}/{$address.houseId)` ).then( response => response.json() ).then( result => result.data )
+    let url = ADMIN_HOUSE_DESCRIPTION_API_URL + "/" + `${ address.streetId }` + "/" + `${ address.houseId }`
+    console.log(url)
+    return fetch( url ).then( response => response.json() ).then( result => result )
 } )
 
 const houseSlice = createSlice({
