@@ -14,11 +14,10 @@ export const Employees = () => {
             theme={{
                 algorithm: theme.darkAlgorithm,
             }}
-            // style={{ background: "gold",
-            // borderColor: "gold",
-            // color: "gold",
-            // fontFamily: "Raleway" }}
         >
+            <h2 className="title_name" style={{
+                textAlign: "center"
+            }}>Сотрудники</h2>
             {!showList && <Button onClick={() => {
                 console.log('click')
                 setShowList(true)

@@ -12,6 +12,7 @@ class Street extends Model
     use HasFactory;
 
     protected $fillable=['name'];
+
     public $timestamps = false;
 
     public function houseNumberStreets():HasMany

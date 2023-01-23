@@ -61,8 +61,9 @@ const data = [
     },
 ];
 const Rates = () => (
-    <div className="container">
-        <h2 className="rates_title">Тарифы и услуги</h2>
+        <>
+
+        <h2 className="title_name" style={{ style }}>Тарифы и услуги</h2>
         <Text
             style={{
                 color: "yellow",
@@ -148,6 +149,7 @@ const Rates = () => (
             }} level={1}>Коммунальные услуги:</Text>
 
         <Table classname="rates_table" columns={columns} dataSource={data} />;
-    </div>
+    </>
+
 );
 export default Rates;

@@ -152,7 +152,12 @@ const UserCards = () => {
 
             >
                 <div style={{display:"flex"}}>
-                <Text style={{color: '#D4C17F', display: 'block', fontSize: 24}}>Добавить объявление:</Text>
+                <Text style={{
+                    color: '#D4C17F',
+                    display: 'block',
+                    fontSize: 24,
+                    fontFamily: "Railway"
+                }}>Добавить объявление:</Text>
                 <Switch
                     style={{backgroundColor: "darkgray", marginTop:9, marginLeft:12}}
                     defaultChecked
@@ -169,21 +174,29 @@ const UserCards = () => {
                 size={'middle'}
                 disabled={currentValue}
             >
-                <span style={{fontSize:18, color:'#D4C17F'}}>Введите заголовок:</span>
+                <span style={{
+                    fontSize:18,
+                    color:'#D4C17F',
+                    fontFamily: 'Railway'
+                }}>Введите заголовок:</span>
                 <Form.Item>
                     <Input name='title' value={title} onChange={(e) => {
                         setTitle(e.target.value)
                     }}/>
                 </Form.Item>
 
-                <span style={{fontSize:18,color:'#D4C17F'}}>Введите описание:</span>
+                <span style={{
+                    fontSize:18,
+                    color:'#D4C17F',
+                    fontFamily: "Railway"
+                }}>Введите описание:</span>
                 <Form.Item>
                     <Input name='description' value={description} onChange={(e) => {
                         setDescription(e.target.value)
                     }}/>
                 </Form.Item>
 
-                <span style={{fontSize:18, color:'#D4C17F'}}>Введите цену:</span>
+                <span style={{fontSize:18, color:'#D4C17F', fontFamily: "Railway"}}>Введите цену:</span>
                 <Form.Item>
                     <Input name='price' value={price} type='number' onChange={(e) => {
                         setPrice(e.target.value)

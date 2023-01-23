@@ -1,0 +1,92 @@
+.img-header {
+    height: 815px;
+    background: url('/storage/app/public/images/Rectangle.png') center / cover no-repeat;
+}
+.bottom {
+    max-width: 582px;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 294px;
+}
+.bottom-top {
+    padding-left: 15px;
+    font-family: 'Playfair Display', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 64px;
+    text-align: center;
+    color: #D4C17F;
+}
+.bottom-contacts {
+    display: flex;
+    justify-content: space-between;
+    color: #FFFFFF;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    margin-top: 89px;
+}
+.name_street {
+    margin-left: 18px;
+}
+.sticker,
+.phone {
+    display: flex;
+}
+.num {
+    margin-left: 15px;
+}
+
+@media (max-width:320px) {
+    .bottom-top {
+        font-size: 30px;
+    }
+    .bottom-contacts {
+        display: block;
+        margin-left: 30px;
+    }
+    .title_name {
+        margin-left: 20px;
+        font-size: 24px;
+    }
+
+}
+@media (min-width: 321px) and (max-width: 375px) {
+    .bottom-top {
+        font-size: 30px;
+    }
+    .bottom-contacts {
+        display: block;
+        margin-left: 62px;
+    }
+    .title_name {
+        margin-left: 20px;
+        font-size: 30px;
+    }
+}
+
+@media (min-width: 376px) and (max-width: 425px) {
+    .bottom-top {
+        font-size: 30px;
+    }
+    .bottom-contacts {
+        display: block;
+        margin-left: 86px;
+    }
+    .title_name {
+        margin-left: 20px;
+        font-size: 30px;
+    }
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+}
+
+
+

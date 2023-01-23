@@ -1,16 +1,18 @@
 <?php
 
-use App\Http\Controllers\API\Admin\EmployeeAPIController;
-use App\Http\Controllers\API\Admin\HouseController;
-
-use App\Http\Controllers\API\CardController;
-use App\Http\Controllers\API\ClientAnnouncementController;
-use App\Http\Controllers\API\MeterController;
-use App\Http\Controllers\API\Admin\MeterController as AdminMeterController;
-use App\Http\Controllers\API\MeterValueController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\Admin\EmployeeAPIController;
+use App\Http\Controllers\API\Admin\HouseDescriptionController as AdminHouseDescriptionController;
+use App\Http\Controllers\API\Admin\MeterController as AdminMeterController;
+use App\Http\Controllers\API\CardController;
+use App\Http\Controllers\API\ClientAnnouncementController;
+use App\Http\Controllers\API\MeterController;
+use App\Http\Controllers\API\MeterValueController;
+use App\Http\Controllers\API\HouseController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -48,10 +50,6 @@ Route::get('/employees', [EmployeeAPIController::class, 'index']);
 Route::post('/employees', [EmployeeAPIController::class, 'store']);
 Route::get('/employees/{employee}', [EmployeeAPIController::class, 'show']);
 Route::delete('/employees/{employee}', [EmployeeAPIController::class, 'destroy']);
-//Route::get('/houses', [HouseController::class, 'index']);
-
-Route::resource('/houses', HouseController::class);
-
 
 Route::prefix('auth')->group(function () {
 //api вывода  текущего пользователя
@@ -80,4 +78,14 @@ Route::prefix('admin')->group(function () {
 
     //api вывода показаний всех счетчиков всех пользователей
     Route::get('/meters/values', [AdminMeterController::class, 'allMetersValues']);
+
+    //список всех домов, обслуживаемых компанией
+    Route::get('/houses', [HouseController::class, 'index']);
+
+    //дома с адресами клиентов
+    Route::get('/houses/{street_id}/{house_number_id}', [HouseController::class, 'show']);
+
+    //описания домов
+    Route::get('/houses/description/{street_id}/{house_id}', [HouseController::class, 'show']);
+    http://localhost/api/admin/houses/description/1/5
 });

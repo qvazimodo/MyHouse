@@ -110,7 +110,6 @@ class MetersForm extends React.Component {
             .then(response => response.json())
                 .catch(e => console.log(e))
             .then( (data) => {
-                console.log(data.data);
                 this.setState({ userMeters: data.data });
             })
 
@@ -118,16 +117,41 @@ class MetersForm extends React.Component {
             .then(response => response.json())
                 .catch(e => console.log(e))
             .then( (data) => {
-                let values = new Map();
-                for (let item in data.data) {
-                    values.set(data.data[item].id, data.data[item].value);
+
+                let months = new Map();
+                for (let item in data.meta.months) {
+                    months.set(data.meta.months[item].id, data.meta.months[item].name);
                 }
-                for (let item in data.data) {
-                   data.data[item].key = +item + 1;
-                   data.data[item].lastValue = values.get(data.data[item].parent_id);
-                   this.setState(prevState => ({
-                        info: [...prevState.info, data.data[item]]
-                    }))
+
+                let years = new Map();
+                for (let item in data.meta.years) {
+                    years.set(data.meta.years[item].id, data.meta.years[item].number);
+                }
+
+                let meterInfo = data.data.data;
+
+                let values = new Map();
+                for (let key in meterInfo) {
+                    meterInfo[key].meter_month_year.forEach((item) => {
+                        values.set(item.id, item.value);
+                    })
+                }
+
+                let iterForTable = 1;
+                for (let key in meterInfo) {
+
+                    meterInfo[key].meter_month_year.forEach((item, index) => {
+                        item.type = meterInfo[key].type;
+                        item.number = meterInfo[key].number;
+                        item.key = iterForTable++;
+                        item.name = months.get(meterInfo[key].month_year[index].month_id);
+                        item.year = years.get(meterInfo[key].month_year[index].year_id);
+                        item.lastValue = values.get(item.parent_id);
+
+                        this.setState(prevState => ({
+                            info: [...prevState.info, item]
+                        }))
+                    })
                 }
             });
     }

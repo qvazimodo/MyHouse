@@ -1,0 +1,99 @@
+.watching-section {
+    background: url('/resources/js/components/img/watching-bg.png') center / cover no-repeat;
+    padding: 180px 0 180px 150px;
+    box-sizing: border-box;
+}
+.watching_title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.33;
+    color: #D4C17F;
+    margin-bottom: 50px;
+    text-align: left;
+    padding: 0 100px;
+}
+.watching-section_wrp {
+    display: flex;
+}
+.watching-section_text {
+    flex: 1;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #FFFFFF;
+}
+.watching-section_form {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 35px 30px;
+}
+.watching_text {
+    background: #D4C17F;
+    border-color: #D4C17F;
+    color: black;
+}
+.watching_bottom_text {
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 12px;
+}
+.watching_button {
+    background: White;
+    border-color: White;
+    color: black;
+}
+
+ @media (max-width:320px) {
+     .watching-section_wrp {
+         display: block;
+         padding: 0 5px;
+     }
+     .watching-section {
+         padding: 50px 0 50px 5px;
+        }
+     .watching-section_form {
+         display: block;
+         padding-right: 10px;
+     }
+     .watching_button {
+         width: 100%;
+     }
+     .watching-section_text {
+     padding-right: 10px;
+     }
+ }
+
+
+@media (min-width: 321px) and (max-width: 375px) {
+    .watching-section {
+        padding: 0 0 150px 5px;
+
+    }
+    .watching-section_wrp,
+    .watching-section_form {
+        display: block;
+        margin-right: 5px;
+    }
+    .watching-section_text {
+     font-size: 11px;
+    }
+    .watching_text,
+    .watching_button {
+        width: 100%;
+    }
+}
+
+@media (min-width: 376px) and (max-width: 425px) {
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+}
+
+
+
+

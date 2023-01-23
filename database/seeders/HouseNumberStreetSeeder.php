@@ -22,7 +22,7 @@ class HouseNumberStreetSeeder extends Seeder
         $streets = Street::all()->random();
 
         $streets->each(function ($street) {
-            $housesNumbersRandom = HouseNumber::all()->random(rand(1, 3));
+            $housesNumbersRandom = HouseNumber::all()->random(rand(3, 3));
             $street->houseNumbers()->saveMany($housesNumbersRandom);
         });
     }

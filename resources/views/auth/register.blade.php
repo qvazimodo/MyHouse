@@ -3,17 +3,19 @@
 @section('title', 'My House Управляющая компания')
 
 @section('menu')
-    @include('menu')
+    <div id="wrapper">
+        @include('Identically.menu')
+    </div>
 @endsection
 
-@section('header')
-    <div id="header"></div>
-@endsection
+{{--@section('header')--}}
+{{--    @include('Identically.header')--}}
+{{--@endsection--}}
 
 @section('content')
+    <div id="wrapper">
    <div class="register-form">
-       <div class="container">
-           <h2 class="title-2">{{ __('Регистрация') }}</h2>
+           <h2 class="title_name">{{ __('Регистрация') }}</h2>
            <form method="POST" action="{{ route('register') }}">
                @csrf
 
@@ -118,13 +120,13 @@
                    </div>
                </div>
            </form>
-
-       </div>
-
+   </div>
    </div>
 
 @endsection
 
 @section('footer')
-    @include('footer')
+    <div id="wrapper">
+        @include('Identically.footer')
+    </div>
 @endsection

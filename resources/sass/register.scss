@@ -1,7 +1,8 @@
 .register-form {
-    height: 80vh;
-    background: #242B33;
-    padding-top: 100px;
+    border: 1px solid #FFFFFF;
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: 40px;
 }
 .register-element {
     display: flex;
@@ -9,16 +10,14 @@
     margin-bottom: 15px;
 }
 .register-txt {
-    font-family: "Raleway", sans-serif;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.5;
     color: #FFFFFF;
     width: 80px;
 }
 
 .register-input {
-    font-family: 'Raleway', sans-serif;
     height: 50px;
     font-weight: 400;
     font-size: 14px;
@@ -28,12 +27,11 @@
     border-bottom: 2px #D4C17F solid;
     color: #BEBEBE;
     outline: none;
-    width: 50%;
+    width: 450px;
     margin-left: 20px;
 }
 .remember-txt {
     color: #D4C17F;
-    font-family: 'Raleway', sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 1.5;
@@ -43,7 +41,6 @@
 .register-btn {
     border: none;
     border-radius: 10px;
-    font-family: 'Raleway', sans-serif;
     font-weight: 700;
     font-size: 16px;
     line-height: 1.6;
@@ -54,7 +51,6 @@
     cursor: pointer;
 }
 .password-txt {
-    font-family: 'Raleway', sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 1.5;

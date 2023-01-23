@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
@@ -32,14 +33,14 @@ class House extends Model
         return $this->hasMany(Apartment::class);
     }
 
-    public function street(): HasOneThrough
+    public function streets(): HasManyThrough
     {
-        return $this->hasOneThrough(Street::class, HouseNumberStreet::class, 'street_id', 'id', 'house_number_street_id', 'id');
+        return $this->hasManyThrough(Street::class, HouseNumberStreet::class, 'street_id', 'id', 'house_number_street_id', 'id');
     }
 
-    public function houseNumber(): HasOneThrough
+    public function housesNumbers(): HasManyThrough
     {
-        return $this->hasOneThrough(HouseNumber::class, HouseNumberStreet::class, 'house_number_id', 'id', 'house_number_street_id', 'id');
+        return $this->hasManyThrough(HouseNumber::class, HouseNumberStreet::class, 'house_number_id', 'id', 'house_number_street_id', 'id');
     }
 
 }

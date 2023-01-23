@@ -18,7 +18,7 @@ class HouseNumberFactory extends Factory
     {
         $faker = \Faker\Factory::create('ru_Ru');
         return [
-            'value'=>$faker->numberBetween(1, 255)
+            'value'=>$faker->numberBetween(1, 2555)
         ];
     }
 }

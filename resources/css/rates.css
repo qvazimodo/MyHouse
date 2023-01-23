@@ -1,17 +1,8 @@
 #rates {
-    width: 1000px;
-    margin-left: 380px;
+    border: 1px solid #FFFFFF;
+    border-radius: 20px;
     margin-top: 20px;
-    margin-bottom: 50px;
-}
-
-.rates_title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 36px;
-    line-height: 1.33;
-    color: #D4C17F;
-    margin-bottom: 50px;
+    padding: 40px
 }
 
 .rates_text {
