@@ -1,5 +1,8 @@
 #housesList {
-    background-color: #242B33;
+    border: 1px solid #FFFFFF;
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: 40px;
  }
 
 .hl_title {

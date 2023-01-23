@@ -7,9 +7,10 @@
         @include('Identically.menu')
     </div>
 @endsection
-@section('header')
-    @include('Identically.header')
-@endsection
+
+{{--@section('header')--}}
+{{--    @include('Identically.header')--}}
+{{--@endsection--}}
 
 @section('content')
     <div id="wrapper">

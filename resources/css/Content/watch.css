@@ -54,6 +54,7 @@
 }
 
 @media (max-width:320px) {
+
     .watching_title {
        font-size: 23px;
         margin-bottom: 10px;
@@ -63,6 +64,7 @@
     .watching-section_wrp {
         display: block;
         text-align: center;
+        padding: 0 10px;
     }
 
     .watching-section_text {
@@ -95,3 +97,16 @@
     }
 }
 
+@media (min-width: 321px) and (max-width: 768px) {
+    .watching-section_wrp {
+        padding: 0 10px;
+    }
+    .watching_title {
+     padding-left: 10px;
+        margin-bottom: 20px;
+        font-size: 34px;
+    }
+
+
+
+}
