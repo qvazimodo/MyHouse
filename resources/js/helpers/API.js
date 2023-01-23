@@ -11,10 +11,10 @@ export const MYCARDS_API_URL = DOMEN + "/api/client_ad";
 
 export const HOUSES_API_URL = DOMEN + "/api/houses";
 
-//описание дома
-export const HOUSE_DESCRIPTION_API_URL = DOMEN + "/api/house/description";
-
 export const ADMIN_HOUSES_API_URL = DOMEN + "/api/admin/houses";
+
+//описание дома для администратора
+export const ADMIN_HOUSE_DESCRIPTION_API_URL = DOMEN + "/api/admin/houses/description";
 
 // маршрут получения текущего пользователя
 export const AUTH_USER_API_URL = DOMEN + "/api/auth/auth_user";
