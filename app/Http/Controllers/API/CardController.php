@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CardRequest;
 use App\Http\Resources\CardResource;
 use App\Models\Card;
 use App\Models\Client;
@@ -12,7 +11,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -21,7 +19,7 @@ class CardController extends Controller
 
     public function index(): ResourceCollection
     {
-      return  CardResource::collection(Card::with(['client', 'photos', 'categories'])->paginate(9));
+        return CardResource::collection(Card::with(['client', 'photos', 'categories'])->paginate(9));
     }
 
 
@@ -31,15 +29,17 @@ class CardController extends Controller
             return response()->json("Нет прав", 403);
         }
 
-            $clientId = Client::where('user_id', Auth::user()->id)->first();
-            $clientId = $clientId->id;
-            $card = Card::create($request->all());
-            $card->client_id = $clientId;
-            $card->save();
-            if($request->file()){
-                $this->uploadPhoto($request, $card);
-            }
-            return response()->json($card, 201);
+        $clientId = Client::where('user_id', Auth::user()->id)->first();
+        $clientId = $clientId->id;
+        $card = Card::create($request->all());
+        $card->client_id = $clientId;
+        $card->save();
+        //dd($request->file());
+        if ($request->file()) {
+            $this->uploadPhoto($request, $card);
+        }
+
+        return response()->json($request, 201);
     }
 
 
@@ -72,33 +72,36 @@ class CardController extends Controller
         ]);
         if ($validated->fails()) {
             return response()->json($validated->errors());
-        } else {
-            $names = [];
-            foreach ($request->file('photos') as $photo) {
-                $path = $photo->store('public/upload');
-                $name = $photo->getClientOriginalName();
-
-                $save = new Photo();
-                $save->width = 300;
-                $save->height = 400;
-                $save->card_id = $card->id;
-                $save->name = $name;
-                $save->path = $path;
-                $save->save();
-                $names[] = $name;
-            }
-            return response()->json([
-                "success" => true,
-                "message" => "Photos successfully uploaded",
-                "names" => $names
-            ]);
         }
+        $names = [];
+        foreach ($request->file('photos') as $photo) {
+            $path = $photo->store('public/upload');
+            $name = $photo->getClientOriginalName();
+
+            $save = new Photo();
+            $save->width = 300;
+            $save->height = 400;
+            $save->card_id = $card->id;
+            $save->name = $name;
+            $save->path = $path;
+            $save->save();
+            $names[] = $name;
+        }
+
+        return response()->json([
+            "success" => true,
+            "message" => "Photos successfully uploaded",
+            "names" => $names
+        ]);
+
     }
 
+    //По моему, этот метод нигде не используется
     public function getUserCards(Request $request): JsonResponse
     {
-        $clientId = $request->input('client_id');
-        $cards = Card::where('client_id', '=', $clientId)->get();
+//        $clientId = $request->input('client_id');
+        $currentClient = Client::where('user_id', '=', Auth::user()->id)->first();
+        $cards = Card::where('client_id', '=', $currentClient->id)->get();
         return response()->json($cards);
     }
 
