@@ -33,6 +33,9 @@ import { Footer } from "./components/Identically/Footer/Footer";
 import Flats from "./components/Content/Flats";
 import LogoHeader from "./components/Identically/Menu/Logo-header";
 import { Main } from "./components/admin/HousesPage/Main";
+import { Root } from "./components/admin/Root";
+import {RouterProvider} from "react-router-dom";
+import {Router} from "./components/admin/Router"
 
 
 if ( document.getElementById( 'questions' ) ) {
@@ -102,7 +105,7 @@ if ( document.getElementById( 'news' ) ) {
 
 if ( document.getElementById( 'admin' ) ) {
     const root = createRoot( document.getElementById( 'admin' ) );
-    root.render( <Root/> )
+    root.render( <RouterProvider router={Router}/> )
 }
 
 if ( document.getElementById( 'admin__meters' ) ) {

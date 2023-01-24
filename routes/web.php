@@ -29,6 +29,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //middleware будут выполняться в той последовательности, в которой они перечислены в массиве.
 Route::name('admin.')->prefix('admin')->middleware(['auth', 'is_admin'])
     ->group(function(){
+        Route::get('/', function () {
+            return view('admin.index');
+        });
         Route::resource('users', AdminUserController::class);
         Route::resource('clients', ClientController::class);
         Route::get('employees', function () {

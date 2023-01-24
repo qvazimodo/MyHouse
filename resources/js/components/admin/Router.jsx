@@ -1,17 +1,15 @@
 import { createHashRouter } from "react-router-dom";
-import { Root } from "./Root";
 import { MetersList } from "./MetersList";
+import { MainPage } from "./MainPage";
 
-export const Router = createHashRouter( [
-    {
-        path: "/",
-        element: <Root/>,
-        children:[
-            {
-                path: "meters",
-                element: <MetersList/>
-            }
-        ]
-    },
-
-] )
+export const Router = createHashRouter(
+    [
+        {
+            path: "/",
+            element: <MainPage/>,
+        },
+        {
+            path: "/meters",
+            element: <MetersList/>
+        } ]
+)
