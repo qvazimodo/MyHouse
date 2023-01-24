@@ -1,22 +1,12 @@
-.watching-section {
+.section {
     background: url('/resources/js/components/img/watching-bg.png') center / cover no-repeat;
     padding: 180px 0;
     box-sizing: border-box;
 }
-.watching_title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 36px;
-    line-height: 1.33;
-    color: #D4C17F;
-    margin-bottom: 50px;
-    text-align: left;
-    padding: 0 100px;
-}
-.watching-section_wrp {
+.section_wrp {
     padding: 0 140px;
 }
-.watching-section_text {
+.section_text {
     padding: 40px 229px;
     flex: 1;
     font-weight: 400;
@@ -24,60 +14,60 @@
     line-height: 1.5;
     color: #FFFFFF;
 }
-.watching-section_form {
+.section_form {
     padding: 18px 210px;
     flex: 1;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 35px 30px;
 }
-.watching_text {
+.input_text {
     background: #D4C17F;
     border-color: #D4C17F;
     color: black;
 }
-.watching_bottom_text {
+.bottom_text {
     color: #FFFFFF;
     text-align: center;
     font-size: 12px;
 }
-.watching_button {
+.input_button {
     background: White;
     border-color: White;
     color: black;
 }
 
  @media (max-width:320px) {
-     .watching-section_wrp {
+     .section_wrp {
          display: block;
      }
-     .watching-section {
+     .section {
          padding: 50px 0 50px 5px;
         }
-     .watching-section_form {
+     .section_form {
          display: block;
          padding-right: 5px;
      }
-     .watching_button {
+     .input_button {
          width: 100%;
      }
-     .watching-section_text {
+     .section_text {
      padding-right: 10px;
      }
  }
 
 
 @media (min-width: 321px) and (max-width: 375px) {
-    .watching-section {
+    .section {
         padding: 0 0 150px 5px;
 
     }
-    .watching-section_wrp,
-    .watching-section_form {
+    .section_wrp,
+    .section_form {
         display: block;
         margin-right: 5px;
     }
-    .watching-section_text {
+    .section_text {
      font-size: 11px;
     }
     .watching_text,
