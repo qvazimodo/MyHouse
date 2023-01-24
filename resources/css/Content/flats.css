@@ -34,63 +34,9 @@
 }
 
 @media (max-width:767px) {
-    .flats-items {
-        position: absolute;
-        margin:0 auto;
-        width:100%;
-        height: auto;
+    .flats-text {
+        font-size: 20px;
+        top: 230px;
     }
 }
-
-/*@media (max-width:320px) {*/
-/*    .menu-flats {*/
-/*        margin-top: -98px;*/
-/*    }*/
-/*    .flats-txt {*/
-/*        text-align: center;*/
-/*        font-size: 33px;*/
-/*        line-height: 48px;*/
-/*    }*/
-/*    .flats-items {*/
-/*        margin: -86px 0 0 0;*/
-/*    }*/
-/*    .flats-item {*/
-/*        width: 99%;*/
-/*        height: 320px;*/
-/*    }*/
-/*    .flats-photo {*/
-/*        height: 185px;*/
-/*    }*/
-/*    .flats-text {*/
-/*        font-size: 20px;*/
-/*        top: 115px;*/
-/*    }*/
-/*    .flats-position-text {*/
-/*        margin: 123px 0;*/
-/*    }*/
-/*}*/
-
-/*@media (min-width: 321px) and (max-width: 375px) {*/
-/*    .flats-items {*/
-/*        padding: 0 105px;*/
-/*    }*/
-/*    .flats-position-text {*/
-/*        margin: 0 0 20px 0;*/
-/*    }*/
-/*    .flats-items {*/
-/*        padding: 0;*/
-/*    }*/
-/*    .watching-section {*/
-/*        padding: 0 0 150px 5px;*/
-/*    }*/
-/*}*/
-
-/*@media (min-width: 376px) and (max-width: 425px) {*/
-/*}*/
-
-/*@media (min-width: 426px) and (max-width: 768px) {*/
-/*}*/
-
-/*@media (min-width: 769px) and (max-width: 1024px) {*/
-/*}*/
 

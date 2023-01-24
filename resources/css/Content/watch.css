@@ -37,53 +37,69 @@
     color: black;
 }
 
- @media (max-width:320px) {
-     .section_wrp {
-         display: block;
-     }
-     .section {
-         padding: 50px 0 50px 5px;
-        }
-     .section_form {
-         display: block;
-         padding-right: 5px;
-     }
-     .input_button {
-         width: 100%;
-     }
-     .section_text {
-     padding-right: 10px;
-     }
- }
 
-
-@media (min-width: 321px) and (max-width: 375px) {
-    .section {
-        padding: 0 0 150px 5px;
-
+@media (max-width:767px) {
+    .section_wrp{
+      padding: 0;
     }
-    .section_wrp,
-    .section_form {
+    .section_text{
+        padding: 0 10px;
+    }
+    .section_form{
         display: block;
-        margin-right: 5px;
+        padding: 0 10px;
     }
-    .section_text {
-     font-size: 11px;
-    }
-    .watching_text,
-    .watching_button {
+    .input_button{
         width: 100%;
     }
 }
+ /*@media (max-width:320px) {*/
+ /*    .section_wrp {*/
+ /*        display: block;*/
+ /*    }*/
+ /*    .section {*/
+ /*        padding: 50px 0 50px 5px;*/
+ /*       }*/
+ /*    .section_form {*/
+ /*        display: block;*/
+ /*        padding-right: 5px;*/
+ /*    }*/
+ /*    .input_button {*/
+ /*        width: 100%;*/
+ /*    }*/
+ /*    .section_text {*/
+ /*    padding-right: 10px;*/
+ /*    }*/
+ /*}*/
 
-@media (min-width: 376px) and (max-width: 425px) {
-}
 
-@media (min-width: 426px) and (max-width: 768px) {
-}
+/*@media (min-width: 321px) and (max-width: 375px) {*/
+/*    .section {*/
+/*        padding: 0 0 150px 5px;*/
 
-@media (min-width: 769px) and (max-width: 1024px) {
-}
+/*    }*/
+/*    .section_wrp,*/
+/*    .section_form {*/
+/*        display: block;*/
+/*        margin-right: 5px;*/
+/*    }*/
+/*    .section_text {*/
+/*     font-size: 11px;*/
+/*    }*/
+/*    .watching_text,*/
+/*    .watching_button {*/
+/*        width: 100%;*/
+/*    }*/
+/*}*/
+
+/*@media (min-width: 376px) and (max-width: 425px) {*/
+/*}*/
+
+/*@media (min-width: 426px) and (max-width: 768px) {*/
+/*}*/
+
+/*@media (min-width: 769px) and (max-width: 1024px) {*/
+/*}*/
 
 
 

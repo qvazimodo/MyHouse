@@ -191,6 +191,9 @@ body {
     .header__list li{
         margin: 0 0 10px 0;
     }
+    .map-bottom{
+        padding: 0 2px;
+    }
 
 }
 

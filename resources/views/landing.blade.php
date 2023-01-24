@@ -9,7 +9,9 @@
 @endsection
 
 @section('header')
+
     @include('Identically.header')
+
 @endsection
 
 @section('content')

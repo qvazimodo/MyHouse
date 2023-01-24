@@ -41,69 +41,14 @@ Footer {
     margin-left: 335px;
 }
 
-@media (max-width:320px) {
-    .logo-footer {
-        margin-left: 0;
-    }
-
+@media (max-width:767px) {
     .Menu-logo-footer {
         display: none;
     }
-    .weather {
-        margin-left: 15px;
-    }
-}
-
-
-@media (min-width: 321px) and (max-width: 375px) {
-    .logo-footer {
-        margin-left: 0;
-    }
-
-    .Menu-logo-footer {
+    #footer{
         display: none;
     }
-    .weather {
-        margin-left: 65px;
+    .weather{
+        margin: 0 auto;
     }
 }
-
-@media (min-width: 376px) and (max-width: 425px) {
-    .logo-footer {
-        margin-left: 0;
-        margin-top: -11px;
-    }
-    .Menu-logo-footer {
-        display: none;
-    }
-    .weather {
-        margin-left: 135px;
-    }
-}
-
-@media (min-width: 426px) and (max-width: 768px) {
-    .logo-footer {
-        margin: 0;
-    }
-    .Menu-logo-footer {
-        margin-left: 188px;
-    }
-    .weather {
-        margin-left: 43px;
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    .logo-footer {
-        margin: 0;
-    }
-    .Menu-logo-footer {
-        margin-left: 188px;
-        width: 580px;
-    }
-    .weather {
-        margin-left: 114px;
-    }
-}
-
-
