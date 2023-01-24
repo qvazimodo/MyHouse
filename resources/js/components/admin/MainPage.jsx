@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import store from "../../store";
 import { ConfigProvider, theme } from "antd";
 import ruRu from "antd/lib/locale/ru_RU";
@@ -16,6 +16,8 @@ export const MainPage = ()=>{
                 } }>
 
                 <HousePageLayout>
+                    <Link to="/employees">Employees</Link>
+                    <Outlet/>
                     <NavLink to="/meters" replace>Meters</NavLink>
                     <HousesList/>
                 </HousePageLayout>
