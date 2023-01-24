@@ -32,7 +32,7 @@ import { Header } from "./components/Identically/Header/Header";
 import { Footer } from "./components/Identically/Footer/Footer";
 import Flats from "./components/Content/Flats";
 import LogoHeader from "./components/Identically/Menu/Logo-header";
-import { Root } from "./components/admin/HousesPage/Root";
+import { Main } from "./components/admin/HousesPage/Main";
 
 
 if ( document.getElementById( 'questions' ) ) {
@@ -90,14 +90,19 @@ if (document.getElementById('rates')){
     root.render(<Rates />);
 }
 
-if (document.getElementById('housesList')){
-    const root=createRoot(document.getElementById('housesList'));
-    root.render(<HousesList />);
+if ( document.getElementById( 'housesList' ) ) {
+    const root = createRoot( document.getElementById( 'housesList' ) );
+    root.render( <HousesList/> );
 }
 
 if ( document.getElementById( 'news' ) ) {
     const root = createRoot( document.getElementById( 'news' ) );
     root.render( <News/> );
+}
+
+if ( document.getElementById( 'admin' ) ) {
+    const root = createRoot( document.getElementById( 'admin' ) );
+    root.render( <Root/> )
 }
 
 if ( document.getElementById( 'admin__meters' ) ) {
@@ -107,7 +112,7 @@ if ( document.getElementById( 'admin__meters' ) ) {
 
 if ( document.getElementById( 'admin__houses' ) ) {
     const root = createRoot( document.getElementById( 'admin__houses' ) );
-    root.render( <Root/> );
+    root.render( <Main/> );
 }
 
 if ( document.getElementById( 'about' ) ) {
