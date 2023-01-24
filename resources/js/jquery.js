@@ -1203,19 +1203,19 @@
                 support.cssSupportsSelector = assert( function() {
                     /* eslint-disable no-undef */
 
-                    return CSS.supports( "selector(*)" ) &&
+                    // return CSS.supports( "selector(*)" ) &&
 
                         // Support: Firefox 78-81 only
                         // In old Firefox, `:is()` didn't use forgiving parsing. In that case,
                         // fail this test as there's no selector to test against that.
                         // `CSS.supports` uses unforgiving parsing
-                        document.querySelectorAll( ":is(:jqfake)" ) &&
-
-                        // `*` is needed as Safari & newer Chrome implemented something in between
-                        // for `:has()` - it throws in `qSA` if it only contains an unsupported
-                        // argument but multiple ones, one of which is supported, are fine.
-                        // We want to play safe in case `:is()` gets the same treatment.
-                        !CSS.supports( "selector(:is(*,:jqfake))" );
+                        // document.querySelectorAll( ":is(:jqfake)" ) &&
+                        //
+                        // // `*` is needed as Safari & newer Chrome implemented something in between
+                        // // for `:has()` - it throws in `qSA` if it only contains an unsupported
+                        // // argument but multiple ones, one of which is supported, are fine.
+                        // // We want to play safe in case `:is()` gets the same treatment.
+                        // !CSS.supports( "selector(:is(*,:jqfake))" );
 
                     /* eslint-enable */
                 } );
@@ -1427,7 +1427,7 @@
 
                         // Support: Firefox <=3.6 - 5 only
                         // Old Firefox doesn't throw on a badly-escaped identifier.
-                        el.querySelectorAll( "\\\f" );
+                        el.querySelectorAll( "\f" );
                         rbuggyQSA.push( "[\\r\\n\\f]" );
                     } );
 
@@ -1462,7 +1462,7 @@
 
                         // Support: Opera 10 - 11 only
                         // Opera 10-11 does not throw on post-comma invalid pseudos
-                        el.querySelectorAll( "*,:x" );
+                        // el.querySelectorAll( "*,:x" );
                         rbuggyQSA.push( ",.*:" );
                     } );
                 }
