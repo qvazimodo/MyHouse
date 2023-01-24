@@ -89,3 +89,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/houses/description/{street_id}/{house_id}', [HouseController::class, 'show']);
     http://localhost/api/admin/houses/description/1/5
 });
+
+// Password reset routes
+Route::post('password/email',ForgotPasswordController::class);
+Route::post('password/code/check', CodeCheckController::class);
+Route::post('password/reset', ResetPasswordController::class);
