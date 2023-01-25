@@ -38,6 +38,8 @@ import { Main } from "./components/admin/HousesPage/Main";
 import { Root } from "./components/admin/Root";
 import {RouterProvider} from "react-router-dom";
 import {Router} from "./components/admin/Router"
+import { Provider } from "react-redux";
+import store from "./store";
 
 
 if ( document.getElementById( 'questions' ) ) {
@@ -107,7 +109,9 @@ if ( document.getElementById( 'news' ) ) {
 
 if ( document.getElementById( 'admin' ) ) {
     const root = createRoot( document.getElementById( 'admin' ) );
-    root.render( <RouterProvider router={Router}/> )
+    root.render( <Provider store={store}>
+        <RouterProvider router={Router}/>
+    </Provider> )
 }
 
 if ( document.getElementById( 'admin__meters' ) ) {

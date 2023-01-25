@@ -10,14 +10,12 @@
 @endsection
 
 @section('header')
-    {{--    @include('Identically.header')--}}
+{{--        @include('Identically.header')--}}
 @endsection
 
 @section('content')
-    <div class="container">
-        <h2 class="title-2">Панель администратора</h2>
         <div id="admin"></div>
-    </div>
+
 @endsection
 
 @section('footer')
@@ -25,3 +23,4 @@
         @include('Identically.footer')
     </div>
 @endsection
+

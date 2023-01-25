@@ -1,29 +1,156 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
-import store from "../../store";
-import { ConfigProvider, theme } from "antd";
-import ruRu from "antd/lib/locale/ru_RU";
-import { HousePageLayout } from "./HousesPage/HousePageLayout";
-import { HousesList } from "./HousesPage/HousesList";
-import { Provider } from "react-redux";
+import React, { useState } from "react";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom"
+import {
+    DesktopOutlined,
+    FileOutlined,
+    LaptopOutlined,
+    NotificationOutlined,
+    PieChartOutlined,
+    TeamOutlined,
+    UserOutlined
+} from '@ant-design/icons';
+import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import HousesList from "../HousesList";
 
-export const MainPage = ()=>{
-    return(
-        <Provider store={ store }>
-            <ConfigProvider
-                locale={ ruRu }
-                theme={ {
-                    algorithm: theme.darkAlgorithm,
-                } }>
+const { Header, Content, Footer, Sider } = Layout;
 
-                <HousePageLayout>
-                    <Link to="/employees">Employees</Link>
-                    <Outlet/>
-                    <NavLink to="/meters" replace>Meters</NavLink>
-                    <HousesList/>
-                </HousePageLayout>
+const items1 = [ '1', '2', '3' ].map( ( key ) => ({
+    key,
+    label: `nav ${ key }`,
+}) );
 
-            </ConfigProvider>
-        </Provider>
+const headerMenuItems = [
+    {
+        key: '/houses',
+        icon: '',
+        label: 'Дома'
+    },
+    {
+        key: '/clients',
+        icon: '',
+        label: 'Клиенты'
+    },
+    {
+        key: '/meters',
+        icon: '',
+        label: 'Счётчики'
+    },
+    {
+        key: '/employees',
+        icon: '',
+        label: 'Сотрудники'
+    },
+]
 
-    )
+const items2 = [ UserOutlined, LaptopOutlined, NotificationOutlined ].map( ( icon, index ) => {
+    const key = String( index + 1 );
+    return {
+        key: `sub${ key }`,
+        icon: React.createElement( icon ),
+        label: `subnav ${ key }`,
+        children: new Array( 4 ).fill( null ).map( ( _, j ) => {
+            const subKey = index * 4 + j + 1;
+            return {
+                key: subKey,
+                label: `option${ subKey }`,
+            };
+        } ),
+    };
+} );
+
+function getItem( label, key, icon, children ) {
+    return {
+        key,
+        icon,
+        children,
+        label,
+    };
 }
+
+const items = [
+    getItem( 'Option 1', '1', <PieChartOutlined/> ),
+    getItem( 'Option 2', '2', <DesktopOutlined/> ),
+    getItem( 'User', 'sub1', <UserOutlined/>, [
+        getItem( 'Tom', '3' ),
+        getItem( 'Bill', '4' ),
+        getItem( 'Alex', '5' ),
+    ] ),
+    getItem( 'Team', 'sub2', <TeamOutlined/>, [ getItem( 'Team 1', '6' ), getItem( 'Team 2', '8' ) ] ),
+    getItem( 'Files', '9', <FileOutlined/> ),
+];
+export const MainPage = () => {
+    const [ collapsed, setCollapsed ] = useState( false );
+    const {
+        token: { colorBgContainer },
+    } = theme.useToken();
+    const navigate = useNavigate()
+    const clickOnHeaderMenu = ( { key } ) => {
+        navigate( key )
+    }
+    return (
+        <Layout
+            style={ {
+                minHeight: '100vh',
+            } }
+        >
+            <Sider collapsible collapsed={ collapsed } onCollapse={ ( value ) => setCollapsed( value ) }>
+                <div
+                    style={ {
+                        height: 32,
+                        margin: 16,
+                        background: 'rgba(255, 255, 255, 0.2)',
+                    } }
+                />
+                <Menu theme="dark" defaultSelectedKeys={ [ '1' ] }
+                      mode="inline" items={ items2 }/>
+            </Sider>
+            <Layout className="site-layout">
+                <Header
+                    style={ {
+                        padding: 0,
+                        background: colorBgContainer,
+                    } }
+                >
+                    <Menu theme="dark" mode="horizontal"
+                          defaultSelectedKeys={ [ '2' ] }
+                          items={ headerMenuItems }
+                          onClick={ clickOnHeaderMenu }
+                    />
+                </Header>
+                <Content
+                    style={ {
+                        margin: '0 16px',
+                    } }
+                >
+                    <Breadcrumb
+                        style={ {
+                            margin: '16px 0',
+                        } }
+                    >
+                        <Breadcrumb.Item>User</Breadcrumb.Item>
+                        <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                    </Breadcrumb>
+                    <div
+                        style={ {
+                            padding: 24,
+                            minHeight: 360,
+                            background: colorBgContainer,
+                        } }
+                    >
+                        Content
+                        <Link to="/employees">Сотрудники</Link>
+                        <Outlet/>
+                        <NavLink to="/meters" replace>Meters</NavLink>
+                    </div>
+                </Content>
+                <Footer
+                    style={ {
+                        textAlign: 'center',
+                    } }
+                >
+                    Ant Design ©2023 Created by Ant UED
+                </Footer>
+            </Layout>
+        </Layout>
+    );
+};

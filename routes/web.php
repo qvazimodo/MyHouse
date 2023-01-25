@@ -31,7 +31,7 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'is_admin'])
     ->group(function(){
         Route::get('/', function () {
             return view('admin.index');
-        });
+        })->name('index');
         Route::resource('users', AdminUserController::class);
         Route::resource('clients', ClientController::class);
         Route::get('employees', function () {

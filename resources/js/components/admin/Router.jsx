@@ -2,6 +2,7 @@ import { createHashRouter } from "react-router-dom";
 import { MetersList } from "./MetersList";
 import { MainPage } from "./MainPage";
 import { Employees } from "./Employees";
+import { HousesList } from "./HousesList";
 
 export const Router = createHashRouter(
     [
@@ -10,13 +11,22 @@ export const Router = createHashRouter(
             element: <MainPage/>,
             children:[
                 {
-                    path: "employees/",
+                    path: "houses",
+                    element: <HousesList/>
+                },
+                {
+                    path: "clients",
                     element: <Employees/>
+                },
+                {
+                    path: "employees",
+                    element: <Employees/>
+                },
+                {
+                    path: "/meters",
+                    element: <MetersList/>
                 }
             ]
         },
-        {
-            path: "/meters",
-            element: <MetersList/>
-        } ]
+    ]
 )
