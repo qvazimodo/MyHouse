@@ -34,7 +34,11 @@ import { Header } from "./components/Identically/Header/Header";
 import { Footer } from "./components/Identically/Footer/Footer";
 import Flats from "./components/Content/Flats";
 import LogoHeader from "./components/Identically/Menu/Logo-header";
-import { Root } from "./components/admin/HousesPage/Root";
+import { Main } from "./components/admin/HousesPage/Main";
+import {RouterProvider} from "react-router-dom";
+import {Router} from "./components/admin/Router"
+import { Provider } from "react-redux";
+import store from "./store";
 
 
 if ( document.getElementById( 'questions' ) ) {
@@ -98,41 +102,48 @@ if (document.getElementById('housesList')){
 }
 
 if ( document.getElementById( 'news' ) ) {
-    const root = createRoot( document.getElementById( 'news'));
+    const root = createRoot( document.getElementById( 'news' ) );
     root.render( <News/> );
 }
 
+if ( document.getElementById( 'admin' ) ) {
+    const root = createRoot( document.getElementById( 'admin' ) );
+    root.render( <Provider store={store}>
+        <RouterProvider router={Router}/>
+    </Provider> )
+}
+
 if ( document.getElementById( 'admin__meters' ) ) {
-    const root = createRoot( document.getElementById( 'admin__meters'));
+    const root = createRoot( document.getElementById( 'admin__meters' ) );
     root.render( <MetersList/> );
 }
 
 if ( document.getElementById( 'admin__houses' ) ) {
-    const root = createRoot( document.getElementById( 'admin__houses'));
-    root.render( <Root/> );
+    const root = createRoot( document.getElementById( 'admin__houses' ) );
+    root.render( <Main/> );
 }
 
 if ( document.getElementById( 'about' ) ) {
-    const root = createRoot( document.getElementById( 'about'));
+    const root = createRoot( document.getElementById( 'about' ) );
     root.render( <About/> );
 }
 
 if ( document.getElementById( 'logo-header' ) ) {
-    const root = createRoot( document.getElementById( 'logo-header'));
+    const root = createRoot( document.getElementById( 'logo-header' ) );
     root.render( <LogoHeader/> );
 }
 
 if ( document.getElementById( 'header' ) ) {
-    const root = createRoot( document.getElementById( 'header'));
+    const root = createRoot( document.getElementById( 'header' ) );
     root.render( <Header/> );
 }
 
 if ( document.getElementById( 'footer' ) ) {
-    const root = createRoot( document.getElementById( 'footer'));
+    const root = createRoot( document.getElementById( 'footer' ) );
     root.render( <Footer/> );
 }
 
 if ( document.getElementById( 'flats' ) ) {
-    const root = createRoot( document.getElementById( 'flats'));
+    const root = createRoot( document.getElementById( 'flats' ) );
     root.render( <Flats/> );
 }
