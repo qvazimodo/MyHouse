@@ -11,16 +11,15 @@ class ResetPasswordController extends ApiController
     public function __invoke(ResetPasswordRequest $request)
     {
         $passwordReset = PasswordReset::firstWhere('code', $request->code);
-
         if ($passwordReset->isExpire()) {
             return $this->jsonResponse(null, trans('passwords.code_is_expire'), 422);
         }
-
         $user = User::firstWhere('email', $passwordReset->email);
 
-        $user->update($request->only('password'));
+        $user->password = ($request->get('password'));
+        $user->save();
 
-        $passwordReset->delete();
+        PasswordReset::where('code', $request->code)->delete();
 
         return $this->jsonResponse(null, trans('site.password_has_been_successfully_reset'), 200);
     }
