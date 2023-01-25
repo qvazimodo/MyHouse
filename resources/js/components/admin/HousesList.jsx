@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { clearDescription, fetchDescription, fetchHouses } from "../../features/house/houseSlice"
-import { Button, Collapse, ConfigProvider, Layout, theme } from 'antd';
+import { Button, Collapse, ConfigProvider, Layout, Spin, theme } from 'antd';
 import ruRu from "antd/lib/locale/ru_RU";
 import "./styles/HousesList.css";
 import styles from "./styles/HousesList.module.scss"
@@ -20,6 +20,7 @@ export const HousesList = () => {
 
     const addressesArray = useSelector( state => state.house.addressesArray )
     const description = useSelector( state => state.house.description )
+    const isLoading = useSelector( state=> state.house.loading)
     const dispatch = useDispatch()
 
     useEffect( () => {
@@ -84,9 +85,12 @@ export const HousesList = () => {
                         }
                     ) }
                 </Collapse> }
-                { description.id != null && <Layout>
+
+                {  <Layout>
+
                     <Content>
-                        <HouseDescription description={ description }/>
+                        {isLoading && <div className={styles.houseDescription__content}><Spin className={styles.contentSpinner}/></div>}
+                        { description.id != null && <HouseDescription description={ description }/> }
                     </Content>
                 </Layout> }
             </div>
