@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Collapse, App, Button, Form, Input, Select, Typography, Divider, Table, notification, Space, Modal  } from 'antd';
 import {AUTH_METERS_API_URL, AUTH_METERS_LIST_API_URL, AUTH_USER_API_URL, METER_VALUE_API_URL} from "../helpers/API";
+
+import DocumentRender from "./DocumentRender";
 
 const { Panel } = Collapse;
 const { Text } = Typography;
@@ -15,7 +17,7 @@ const columns = [
         render: (text) => <p>{text}</p>,
     },
     {
-        title: 'Вид счетчика',
+        title: 'Тип счетчика',
         dataIndex: 'type',
         key: 'type',
         render: (text) => <p>{text}</p>,
@@ -48,10 +50,10 @@ const columns = [
     {
         title: '',
         key: 'payment',
-        render: () =>
-                <a>Получить квитанцию</a>,
+        render: (_, record) => (<DocumentRender last={record.lastValue} now={record.value} tax={2} />)
     },
 ];
+
 
 let locale = {
     emptyText: 'У Вас нет данных по счетчикам, оформите заявку администратору для добавления счетчика',
@@ -340,6 +342,7 @@ class MetersForm extends React.Component {
                             </Form.Item>
 
                         </Form>
+
                         <Modal
                             title="Заявка на добавление нового счетчика"
                             open={this.state.isModalOpen}
@@ -377,6 +380,7 @@ class MetersForm extends React.Component {
                                     />
                                 </Form.Item>
                             </Form>
+
                         </Modal>
                     </Panel>
                 </Collapse>
