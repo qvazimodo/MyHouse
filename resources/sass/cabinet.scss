@@ -18,7 +18,7 @@
 .end-cabinet {
     margin-bottom: 150px;
 }
-.ant-collapse>.ant-collapse-item >.ant-collapse-header {
+.ant-collapse>.ant-collapse-item >.ant-collapse-header .ant-collapse-header-text{
     color: #FFFFFF;
 }
 
@@ -68,4 +68,8 @@ body > div:nth-child(2) > div > div.ant-modal-wrap > div > div.ant-modal-content
 }
 .meter-modal {
     text-align: left;
+}
+
+.title_name {
+    margin-top: 100px;
 }

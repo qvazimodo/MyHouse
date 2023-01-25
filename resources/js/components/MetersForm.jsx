@@ -50,7 +50,7 @@ const columns = [
     {
         title: '',
         key: 'payment',
-        render: (_, record) => (<DocumentRender last={record.lastValue} now={record.value} tax={2} />)
+        render: (_, record) => (<DocumentRender last={record.lastValue ? record.lastValue : 0} now={record.value} tax={2} />)
     },
 ];
 
