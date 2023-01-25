@@ -6,7 +6,7 @@ const src = "https://www.youtube.com/watch?v=h3gs0b38L4c";
 const Video = () => {
     return (
             <div className="video-block" style={{style}}>
-                <h2 className="video_title" style={{ style }}>Наше видео</h2>
+                <h2 className="title_name" style={{ style }}>Наше видео</h2>
                 <iframe className="video_name"
                         width="640"
                         height="360"

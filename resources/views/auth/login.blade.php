@@ -15,7 +15,7 @@
 @section('content')
     <div id="wrapper">
     <div class="login-form">
-        <h2 class="login_title">Вход в личный кабинет</h2>
+        <h2 class="title_name">Вход в личный кабинет</h2>
         <form method="POST" action="{{ route('login') }}">
             @csrf
 

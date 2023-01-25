@@ -5,6 +5,8 @@
  */
 
 import './bootstrap';
+import './jquery';
+import './script';
 
 /**
  * Next, we will create a fresh React component instance and attach it to
@@ -93,9 +95,9 @@ if (document.getElementById('rates')){
     root.render(<Rates />);
 }
 
-if ( document.getElementById( 'housesList' ) ) {
-    const root = createRoot( document.getElementById( 'housesList' ) );
-    root.render( <HousesList/> );
+if (document.getElementById('housesList')){
+    const root=createRoot(document.getElementById('housesList'));
+    root.render(<HousesList />);
 }
 
 if ( document.getElementById( 'news' ) ) {

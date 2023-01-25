@@ -1,112 +1,106 @@
-.watching-section {
+.section {
     background: url('/resources/js/components/img/watching-bg.png') center / cover no-repeat;
     padding: 180px 0;
     box-sizing: border-box;
 }
-
-.watching_title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 36px;
-    line-height: 1.33;
-    color: #D4C17F;
-    margin-bottom: 50px;
-    text-align: left;
+.section_wrp {
+    padding: 0 140px;
 }
-
-.watching-section_wrp {
-    display: flex;
-    font-family: 'Raleway', sans-serif;
-}
-
-.watching-section_text {
+.section_text {
+    padding: 40px 229px;
     flex: 1;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.5;
     color: #FFFFFF;
 }
-
-.watching-section_form {
+.section_form {
+    padding: 18px 210px;
     flex: 1;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 35px 30px;
 }
-
-.watching_text {
+.input_text {
     background: #D4C17F;
     border-color: #D4C17F;
     color: black;
-    font-family: Raleway, sans-serif;
 }
-
-.watching_bottom_text {
+.bottom_text {
     color: #FFFFFF;
     text-align: center;
     font-size: 12px;
 }
-
-.watching_button {
+.input_button {
     background: White;
     border-color: White;
     color: black;
 }
 
-@media (max-width:320px) {
 
-    .watching_title {
-       font-size: 23px;
-        margin-bottom: 10px;
-        text-align: center;
+@media (max-width:767px) {
+    .section_wrp{
+      padding: 0;
     }
-
-    .watching-section_wrp {
-        display: block;
-        text-align: center;
+    .section_text{
         padding: 0 10px;
     }
-
-    .watching-section_text {
-        font-size: 13px;
-        text-align: left;
-        margin-bottom: 18px;
-    }
-
-    .watching-section_form {
+    .section_form{
         display: block;
-    }
-
-    .watching-section_form p {
-        margin-top: 18px;
-        margin-bottom: 18px;
-    }
-
-    .watching-section {
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    .watching_button {
-        width: 89%;
-    }
-
-    .watching_text {
-        margin-top: 5px;
-        width: 89%;
-    }
-}
-
-@media (min-width: 321px) and (max-width: 768px) {
-    .watching-section_wrp {
         padding: 0 10px;
     }
-    .watching_title {
-     padding-left: 10px;
-        margin-bottom: 20px;
-        font-size: 34px;
+    .input_button{
+        width: 100%;
     }
-
-
-
 }
+ /*@media (max-width:320px) {*/
+ /*    .section_wrp {*/
+ /*        display: block;*/
+ /*    }*/
+ /*    .section {*/
+ /*        padding: 50px 0 50px 5px;*/
+ /*       }*/
+ /*    .section_form {*/
+ /*        display: block;*/
+ /*        padding-right: 5px;*/
+ /*    }*/
+ /*    .input_button {*/
+ /*        width: 100%;*/
+ /*    }*/
+ /*    .section_text {*/
+ /*    padding-right: 10px;*/
+ /*    }*/
+ /*}*/
+
+
+/*@media (min-width: 321px) and (max-width: 375px) {*/
+/*    .section {*/
+/*        padding: 0 0 150px 5px;*/
+
+/*    }*/
+/*    .section_wrp,*/
+/*    .section_form {*/
+/*        display: block;*/
+/*        margin-right: 5px;*/
+/*    }*/
+/*    .section_text {*/
+/*     font-size: 11px;*/
+/*    }*/
+/*    .watching_text,*/
+/*    .watching_button {*/
+/*        width: 100%;*/
+/*    }*/
+/*}*/
+
+/*@media (min-width: 376px) and (max-width: 425px) {*/
+/*}*/
+
+/*@media (min-width: 426px) and (max-width: 768px) {*/
+/*}*/
+
+/*@media (min-width: 769px) and (max-width: 1024px) {*/
+/*}*/
+
+
+
+

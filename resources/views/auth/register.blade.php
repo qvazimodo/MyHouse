@@ -15,7 +15,7 @@
 @section('content')
     <div id="wrapper">
    <div class="register-form">
-           <h2 class="register-title">{{ __('Регистрация') }}</h2>
+           <h2 class="title_name">{{ __('Регистрация') }}</h2>
            <form method="POST" action="{{ route('register') }}">
                @csrf
 

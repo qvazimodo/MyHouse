@@ -15,7 +15,7 @@
 
 @section('content')
     <div class="container">
-        <h2 class="title-2">Дома на обслуживании</h2>
+        <h2 class="title_name">Дома на обслуживании</h2>
         <div id="admin__houses"></div>
     </div>
 @endsection

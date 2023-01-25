@@ -1,42 +1,24 @@
 .reviews {
-    background: #242B33;
-    padding: 50px 100px;
-    box-sizing: border-box;
+    padding: 50px 0;
 }
-
-.reviews_title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 36px;
-    line-height: 1.33;
-    color: #D4C17F;
-    margin-bottom: 50px;
-}
-
 .review-block {
     margin-bottom: 40px;
 }
-
 .review-author {
-    font-family: "Raleway", sans-serif;
     font-weight: 800;
     font-size: 14px;
     line-height: 1.5;
     color: #FFFFFF;
 }
-
 .review-block:last-child {
     margin-bottom: 0;
 }
-
 .review-txt {
-    font-family: "Raleway", sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 1.5;
     color: #FFFFFF;
 }
-
 .img-review {
     width: 75px;
     height: 75px;
@@ -44,7 +26,6 @@
     margin-right: 30px;
     margin-top: 22px;
 }
-
 .img-review2 {
     width: 75px;
     height: 75px;
@@ -52,7 +33,6 @@
     margin-right: 30px;
     margin-top: 11px;
 }
-
 .img-review3 {
     width: 75px;
     height: 75px;
@@ -60,41 +40,15 @@
     margin-right: 30px;
     margin-top: -5px;
 }
-
 .review-block {
     display: flex;
+    padding: 0 10px;
 }
 
-@media (max-width:320px) {
 
-    .reviews {
-        padding: 45px 10px;
-    }
-
-    .review-block {
+@media (max-width:767px) {
+    .review-block{
         display: block;
+        text-align: left;
     }
-
-    img.img-review {
-        margin-left: 23px;
-    }
-
-    img.img-review2 {
-        margin-left: 23px;
-    }
-
-    img.img-review3 {
-        margin-left: 23px;
-    }
-
-    .review-author {
-        margin-left: 122px;
-        margin-top: -66px;
-    }
-
-    .reviews_title {
-        font-size: 33px;
-    }
-
 }
-

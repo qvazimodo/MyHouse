@@ -5,16 +5,6 @@
     padding: 40px;
 }
 
-.news_title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 36px;
-    line-height: 1.33;
-    color: #D4C17F;
-    margin-bottom: 20px;
-
-}
-
 .news_text {
     color: #cbd5e0;
     font-size: 16px;
