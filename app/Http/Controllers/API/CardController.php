@@ -34,7 +34,6 @@ class CardController extends Controller
         $card = Card::create($request->all());
         $card->client_id = $clientId;
         $card->save();
-        //dd($request->file());
         if ($request->file()) {
             $this->uploadPhoto($request, $card);
         }

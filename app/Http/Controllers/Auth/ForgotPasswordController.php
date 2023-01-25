@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use App\Http\Controllers\ApiController;
+use App\Models\PasswordReset;
+use App\Mail\SendCodeResetPassword;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\Auth\ForgotPasswordRequest;
 
-class ForgotPasswordController extends Controller
+class ForgotPasswordController extends ApiController
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reset Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller is responsible for handling password reset emails and
-    | includes a trait which assists in sending these notifications from
-    | your application to your users. Feel free to explore this trait.
-    |
-    */
+    public function __invoke(ForgotPasswordRequest $request)
+    {
+        PasswordReset::where('email', $request->email)->delete();
+        $codeData = PasswordReset::create($request->data());
 
-    use SendsPasswordResetEmails;
+        Mail::to($request->email)->send(new SendCodeResetPassword($codeData->code));
+
+        return $this->jsonResponse(null, trans('passwords.sent'), 200);
+    }
 }
