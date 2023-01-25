@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Collapse } from 'antd';
 import { fetchHouses } from "../../../features/house/houseSlice";
 import { HouseDescription } from "./HouseDescription";
-import { isNull } from "lodash";
+
 
 const { Panel } = Collapse;
 const text = `

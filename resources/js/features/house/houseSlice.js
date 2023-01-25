@@ -15,7 +15,7 @@ export const fetchHouses = createAsyncThunk('house/fetchHouses', () => {
 })
 
 export const fetchDescription = createAsyncThunk( 'house/fetchDescription', ( address ) => {
-    let url = ADMIN_HOUSE_DESCRIPTION_API_URL + "/" + `${ address.streetId }` + "/" + `${ address.houseId }`
+    let url = ADMIN_HOUSE_DESCRIPTION_API_URL + "/" + `${ address.streetId }` + "/" + `${ address.houseNumberId }`
     console.log(url)
     return fetch( url ).then( response => response.json() ).then( result => result[0]['house_description'] )
 } )
@@ -28,14 +28,17 @@ const houseSlice = createSlice({
             state.array = action.payload
         },
         //добавление дома в список (для примера) - мутирует состояние
-        addHouse: (state, action) => {
-            state.array.push(action.payload)
+        addHouse: ( state, action ) => {
+            state.array.push( action.payload )
         },
-        setSelectedStreetId: (state, action) => {
+        setSelectedStreetId: ( state, action ) => {
             state.selectedStreetId = action.payload
         },
-        setSelectedHouseNumberId: (state, action) => {
+        setSelectedHouseNumberId: ( state, action ) => {
             state.selectedHouseNumberId = action.payload
+        },
+        clearDescription: ( state ) => {
+            state.description = {}
         }
     },
     extraReducers: (builder) => {
@@ -65,4 +68,4 @@ const houseSlice = createSlice({
 
 
 export default houseSlice.reducer
-export const {setHouses, setSelectedStreetId, setSelectedHouseNumberId} = houseSlice.actions
+export const {setHouses, setSelectedStreetId, setSelectedHouseNumberId, clearDescription} = houseSlice.actions

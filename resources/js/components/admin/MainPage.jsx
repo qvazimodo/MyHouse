@@ -11,6 +11,7 @@ import {
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import HousesList from "../HousesList";
+import {adminHeaderMenuItems} from "./helpers/adminHeaderMenuItems"
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -19,28 +20,6 @@ const items1 = [ '1', '2', '3' ].map( ( key ) => ({
     label: `nav ${ key }`,
 }) );
 
-const headerMenuItems = [
-    {
-        key: '/houses',
-        icon: '',
-        label: 'Дома'
-    },
-    {
-        key: '/clients',
-        icon: '',
-        label: 'Клиенты'
-    },
-    {
-        key: '/meters',
-        icon: '',
-        label: 'Счётчики'
-    },
-    {
-        key: '/employees',
-        icon: '',
-        label: 'Сотрудники'
-    },
-]
 
 const items2 = [ UserOutlined, LaptopOutlined, NotificationOutlined ].map( ( icon, index ) => {
     const key = String( index + 1 );
@@ -113,7 +92,7 @@ export const MainPage = () => {
                 >
                     <Menu theme="dark" mode="horizontal"
                           defaultSelectedKeys={ [ '2' ] }
-                          items={ headerMenuItems }
+                          items={ adminHeaderMenuItems }
                           onClick={ clickOnHeaderMenu }
                     />
                 </Header>
@@ -137,10 +116,9 @@ export const MainPage = () => {
                             background: colorBgContainer,
                         } }
                     >
-                        Content
-                        <Link to="/employees">Сотрудники</Link>
+
                         <Outlet/>
-                        <NavLink to="/meters" replace>Meters</NavLink>
+
                     </div>
                 </Content>
                 <Footer
