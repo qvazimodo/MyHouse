@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Link, NavLink, Outlet, useNavigate } from "react-router-dom"
+import React, { useState } from "react"
+import { useSelector } from "react-redux"
+import { Outlet, useNavigate } from "react-router-dom"
 import {
     DesktopOutlined,
     FileOutlined,
@@ -10,8 +11,7 @@ import {
     UserOutlined
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
-import HousesList from "../HousesList";
-import {adminHeaderMenuItems} from "./helpers/adminHeaderMenuItems"
+import { adminHeaderMenuItems } from "./helpers/adminHeaderMenuItems"
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -66,6 +66,9 @@ export const MainPage = () => {
     const clickOnHeaderMenu = ( { key } ) => {
         navigate( key )
     }
+
+    const address = useSelector( state => state.house.selectedAddress )
+
     return (
         <Layout
             style={ {
@@ -106,8 +109,8 @@ export const MainPage = () => {
                             margin: '16px 0',
                         } }
                     >
-                        <Breadcrumb.Item>User</Breadcrumb.Item>
-                        <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                        <Breadcrumb.Item>{ address.streetName }</Breadcrumb.Item>
+                        <Breadcrumb.Item>{ address.houseNumber }</Breadcrumb.Item>
                     </Breadcrumb>
                     <div
                         style={ {

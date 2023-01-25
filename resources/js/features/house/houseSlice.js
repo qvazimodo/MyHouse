@@ -7,7 +7,11 @@ const initialState = {
     error: '',
     // selectedStreetId: null,
     // selectedHouseNumberId: null,
-    description: {}
+    description: {},
+    selectedAddress: {
+        streetName: '',
+        houseNumber: null
+    }
 }
 
 export const fetchHouses = createAsyncThunk('house/fetchHouses', () => {
@@ -39,6 +43,12 @@ const houseSlice = createSlice({
         },
         clearDescription: ( state ) => {
             state.description = {}
+        },
+        setSelectedAddress: ( state, action ) => {
+            state.selectedAddress = {
+                streetName: action.payload.streetName,
+                houseNumber: action.payload.houseNumber
+            }
         }
     },
     extraReducers: (builder) => {
@@ -68,4 +78,4 @@ const houseSlice = createSlice({
 
 
 export default houseSlice.reducer
-export const {setHouses, setSelectedStreetId, setSelectedHouseNumberId, clearDescription} = houseSlice.actions
+export const {setHouses, setSelectedStreetId, setSelectedHouseNumberId, clearDescription, setSelectedAddress} = houseSlice.actions
