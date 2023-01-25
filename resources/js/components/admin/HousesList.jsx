@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { clearDescription, fetchDescription, fetchHouses } from "../../features/house/houseSlice"
-import { Button, Collapse, ConfigProvider, Layout, theme } from 'antd';
+import { clearDescription, fetchDescription, fetchHouses, setSelectedAddress } from "../../features/house/houseSlice"
+import { Button, Collapse, ConfigProvider, Layout, Spin, theme } from 'antd';
 import ruRu from "antd/lib/locale/ru_RU";
 import "./styles/HousesList.css";
 import styles from "./styles/HousesList.module.scss"
 import { Content } from "antd/es/layout/layout";
 import { HouseDescription } from "./HouseDescription";
+import { isNull } from "lodash";
 
 const { Panel } = Collapse;
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
+
 export const HousesList = () => {
-    const [ streetId, setStreetId ] = useState( null );
+    const [ address, setAddress ] = useState( {
+        streetId: null,
+        streetName: '',
+        houseNumberId: null,
+        houseNumberValue: ''
+    } );
     const [ houses, setHouses ] = useState( [] );
 
     const addressesArray = useSelector( state => state.house.addressesArray )
     const description = useSelector( state => state.house.description )
+    const isLoading = useSelector( state => state.house.loading )
     const dispatch = useDispatch()
 
     useEffect( () => {
@@ -42,14 +45,43 @@ export const HousesList = () => {
         console.log( key );
     };
 
-    const selectStreet = ( streetId ) => {
+    const setAddressStreet = ( street ) => {
         dispatch( clearDescription() )
-        setStreetId( streetId )
+        dispatch( setSelectedAddress( { streetName: street.name,houseNumber:''} ) )
+        setAddress(
+            {
+                ...address,
+                streetId: street.id,
+                streetName: street.name,
+                houseNumberId: null,
+                houseNumberValue: ''
+            } )
     }
 
-    const showHouseDescription = ( houseNumberId ) => {
-        dispatch( fetchDescription( { streetId, houseNumberId } ) )
+    const setAddressHouseNumber = ( houseNumber ) => {
+        console.log( address )
+        console.log( houseNumber )
+        let newAddress = Object.assign( address,
+            {
+                houseNumberId: houseNumber.id,
+                houseNumberValue: houseNumber.value
+            } )
+        setAddress( newAddress )
     }
+    useEffect( () => {
+        return () => {
+            if ( !isNull( address.houseNumberId ) ) {
+                console.log( address )
+
+                dispatch( fetchDescription( { streetId: address.streetId, houseNumberId: address.houseNumberId } ) )
+                dispatch( setSelectedAddress( {
+                    streetName: address.streetName,
+                    houseNumber: address.houseNumberValue
+                } ) )
+            }
+        };
+    }, [ address ] );
+
     return (
         <ConfigProvider
             locale={ ruRu }
@@ -65,14 +97,15 @@ export const HousesList = () => {
                                     className={ styles.houseNumber__buttons }
                                     header={ address.name }
                                     key={ address.id }
-                                    onClick={ () => selectStreet( address.id ) }
+                                    onClick={ () => setAddressStreet( { id: address.id, name: address.name } ) }
                                 >
                                     { address['house_numbers'].map( houseNumber => {
                                         return (
                                             <Button
-
-                                                data-pivot={ houseNumber.id }
-                                                onClick={ () => showHouseDescription( houseNumber.id ) }
+                                                onClick={ () => setAddressHouseNumber( {
+                                                    id: houseNumber.id,
+                                                    value: houseNumber.value
+                                                } ) }
                                                 className={ styles.houseNumber__button }
                                                 key={ houseNumber.id }>
                                                 { houseNumber.value }
@@ -84,9 +117,13 @@ export const HousesList = () => {
                         }
                     ) }
                 </Collapse> }
-                { description.id != null && <Layout>
-                    <Content>
-                        <HouseDescription description={ description }/>
+
+                { <Layout className={ styles.contentLayout }>
+
+                    <Content onClick={ () => console.log( address ) }>
+                        { isLoading && <div className={ styles.houseDescription__content }><Spin
+                            className={ styles.contentSpinner }/></div> }
+                        { description.id != null && <HouseDescription description={ description }/> }
                     </Content>
                 </Layout> }
             </div>
