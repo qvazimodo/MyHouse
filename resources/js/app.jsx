@@ -5,6 +5,8 @@
  */
 
 import './bootstrap';
+import './jquery';
+import './script';
 
 /**
  * Next, we will create a fresh React component instance and attach it to
@@ -32,7 +34,12 @@ import { Header } from "./components/Identically/Header/Header";
 import { Footer } from "./components/Identically/Footer/Footer";
 import Flats from "./components/Content/Flats";
 import LogoHeader from "./components/Identically/Menu/Logo-header";
-import { Root } from "./components/admin/HousesPage/Root";
+import { Main } from "./components/admin/HousesPage/Main";
+import { Root } from "./components/admin/Root";
+import {RouterProvider} from "react-router-dom";
+import {Router} from "./components/admin/Router"
+import { Provider } from "react-redux";
+import store from "./store";
 
 
 if ( document.getElementById( 'questions' ) ) {
@@ -100,6 +107,13 @@ if ( document.getElementById( 'news' ) ) {
     root.render( <News/> );
 }
 
+if ( document.getElementById( 'admin' ) ) {
+    const root = createRoot( document.getElementById( 'admin' ) );
+    root.render( <Provider store={store}>
+        <RouterProvider router={Router}/>
+    </Provider> )
+}
+
 if ( document.getElementById( 'admin__meters' ) ) {
     const root = createRoot( document.getElementById( 'admin__meters' ) );
     root.render( <MetersList/> );
@@ -107,7 +121,7 @@ if ( document.getElementById( 'admin__meters' ) ) {
 
 if ( document.getElementById( 'admin__houses' ) ) {
     const root = createRoot( document.getElementById( 'admin__houses' ) );
-    root.render( <Root/> );
+    root.render( <Main/> );
 }
 
 if ( document.getElementById( 'about' ) ) {

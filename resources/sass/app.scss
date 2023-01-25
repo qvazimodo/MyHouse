@@ -17,11 +17,13 @@
 //@import "adaptiv_768";
 //@import "adaptiv_1100.css";
 
-
 @import 'login';
 @import 'client';
 
 @import "cabinet";
+
+@import "menuRight";
+@import "admin";
 
 @tailwind base;
 @tailwind components;

@@ -40,52 +40,19 @@
     margin-left: 15px;
 }
 
-@media (max-width:320px) {
+@media (max-width:767px) {
+    .img-header {
+        width: 100%;
+    }
     .bottom-top {
         font-size: 30px;
     }
     .bottom-contacts {
         display: block;
-        margin-left: 30px;
+        position: absolute;
+        left: 50%;
+        margin: 95px 0 0 -125px;
     }
-    .title_name {
-        margin-left: 20px;
-        font-size: 24px;
-    }
-
-}
-@media (min-width: 321px) and (max-width: 375px) {
-    .bottom-top {
-        font-size: 30px;
-    }
-    .bottom-contacts {
-        display: block;
-        margin-left: 62px;
-    }
-    .title_name {
-        margin-left: 20px;
-        font-size: 30px;
-    }
-}
-
-@media (min-width: 376px) and (max-width: 425px) {
-    .bottom-top {
-        font-size: 30px;
-    }
-    .bottom-contacts {
-        display: block;
-        margin-left: 86px;
-    }
-    .title_name {
-        margin-left: 20px;
-        font-size: 30px;
-    }
-}
-
-@media (min-width: 426px) and (max-width: 768px) {
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
 }
 
 

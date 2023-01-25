@@ -9,7 +9,9 @@
 @endsection
 
 @section('header')
+
     @include('Identically.header')
+
 @endsection
 
 @section('content')
@@ -30,3 +32,5 @@
     @include('Identically.footer')
     </div>
 @endsection
+
+

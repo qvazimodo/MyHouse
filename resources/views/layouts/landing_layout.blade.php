@@ -19,12 +19,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Raleway&display=swap"
           rel="stylesheet">
-{{--    <link rel="stylesheet" href="{{ asset('styles.css') }}">--}}
 
     <!-- Scripts -->
-
     @viteReactRefresh
     @vite(['resources/sass/app.scss','resources/js/app.jsx'])
+
 </head>
 
 <body>
@@ -32,5 +31,6 @@
         @yield('header')
         @yield('content')
         @yield('footer')
+
 </body>
 </html>

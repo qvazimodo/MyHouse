@@ -1,12 +1,12 @@
 import { Provider } from "react-redux"
 import store from "../../../store"
+import { HashRouter } from "react-router-dom";
 import { HousePageLayout } from "./HousePageLayout"
 import { HousesList } from "../HousesPage/HousesList";
 import { ConfigProvider, theme } from "antd";
 import ruRu from "antd/lib/locale/ru_RU";
-import { Menu } from "./Menu";
 
-export const Root = () => {
+export const Main = () => {
     return (
         <Provider store={ store }>
             <ConfigProvider
@@ -14,9 +14,11 @@ export const Root = () => {
                 theme={ {
                     algorithm: theme.darkAlgorithm,
                 } }>
-                <HousePageLayout>
-                    <HousesList/>
-                </HousePageLayout>
+
+                    <HousePageLayout>
+                        <HousesList/>
+                    </HousePageLayout>
+
             </ConfigProvider>
         </Provider>
 

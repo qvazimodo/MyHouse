@@ -35,6 +35,7 @@ export const HousePageLayout = ({children}) => {
         <Layout
             style={{
                 minHeight: '100vh',
+                background: "#242B33",
             }}
         >
             <Header
@@ -43,6 +44,7 @@ export const HousePageLayout = ({children}) => {
                     top: 0,
                     zIndex: 1,
                     width: '100%',
+                    background: "#242B33",
                 }}
             >
                 <div
@@ -52,6 +54,7 @@ export const HousePageLayout = ({children}) => {
                         height: 31,
                         margin: '16px 24px 16px 0',
                         background: 'rgba(255, 255, 255, 0.2)',
+
                     }}
                 />
                 <Menu/>
@@ -59,6 +62,7 @@ export const HousePageLayout = ({children}) => {
             <Content
                 style={{
                     margin: '0 16px',
+                    background: "#242B33",
                 }}
             >
                 <Breadcrumb
@@ -74,19 +78,13 @@ export const HousePageLayout = ({children}) => {
                         padding: 24,
                         minHeight: 360,
                         background: colorBgContainer,
+                        // background: "#242B33",
                     }}
                 >
                     {/*<Menu />*/}
                     {children}
                 </div>
             </Content>
-            <Footer
-                style={{
-                    textAlign: 'center',
-                }}
-            >
-                Ant Design ©2023 Created by Ant UED
-            </Footer>
 
         </Layout>
     );
