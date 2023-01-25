@@ -22,11 +22,15 @@ const styles = StyleSheet.create({
     }
 });
 
-const MyDoc = () => (
+const MyDoc = (props) => (
     <Document>
         <Page size="A4" style={styles.page}>
             <View style={styles.section}>
-                <Text>Здесь будет квитанция</Text>
+                <Text>Квитанция</Text>
+                <Text>Прошлые показания: {props.last}</Text>
+                <Text>Текущие показания: {props.now}</Text>
+                <Text>Тариф: {props.tax}</Text>
+                <Text>Итого к оплате: {(props.now - props.last) * props.tax} руб.</Text>
             </View>
         </Page>
     </Document>
@@ -39,9 +43,10 @@ class DocumentRender extends React.Component {
     }
 
     render() {
+
         return (
             <div>
-                <PDFDownloadLink document={<MyDoc />} fileName="pay.pdf">
+                <PDFDownloadLink document={<MyDoc last={this.props.last} now={this.props.now} tax={this.props.tax}/>} fileName="pay.pdf">
                     {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Получить квитанцию')}
                 </PDFDownloadLink>
             </div>

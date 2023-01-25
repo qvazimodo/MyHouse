@@ -50,8 +50,7 @@ const columns = [
     {
         title: '',
         key: 'payment',
-        render: () =>
-            <DocumentRender />,
+        render: (_, record) => (<DocumentRender last={record.lastValue} now={record.value} tax={2} />)
     },
 ];
 
@@ -343,10 +342,6 @@ class MetersForm extends React.Component {
                             </Form.Item>
 
                         </Form>
-
-                        <DocumentRender />
-
-
 
                         <Modal
                             title="Заявка на добавление нового счетчика"
