@@ -34,11 +34,12 @@ class CardController extends Controller
         $card = Card::create($request->all());
         $card->client_id = $clientId;
         $card->save();
+        $photo = JsonResponse::class;
         if ($request->file()) {
-            $this->uploadPhoto($request, $card);
+            $photo = $this->uploadPhoto($request, $card);
         }
 
-        return response()->json($request, 201);
+        return response()->json([$card, $photo], 201);
     }
 
 
@@ -74,7 +75,7 @@ class CardController extends Controller
         }
         $names = [];
         foreach ($request->file('photos') as $photo) {
-            $path = $photo->store('public/upload');
+            $path = $photo->store('public/ads-images');
             $name = $photo->getClientOriginalName();
 
             $save = new Photo();

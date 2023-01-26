@@ -16,7 +16,6 @@ use App\Http\Controllers\API\MeterValueController;
 use App\Http\Controllers\API\HouseController;
 
 
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,9 +32,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('cards', CardController::class)->middleware('auth');
-
-Route::get('user_cards', [CardController::class, 'getClientCards']);
-/*Route::post('uploading-photos', 'CardController@uploadPhoto');*/
 
 Route::get('client/cards', [ClientAnnouncementController::class, 'index']);
 
@@ -94,6 +90,6 @@ Route::prefix('admin')->group(function () {
 });
 
 // Password reset routes
-Route::post('password/email',ForgotPasswordController::class);
+Route::post('password/email', ForgotPasswordController::class);
 Route::post('password/code/check', CodeCheckController::class);
 Route::post('password/reset', ResetPasswordController::class);
