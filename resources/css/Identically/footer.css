@@ -1,10 +1,10 @@
 Footer {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
 }
 #footer {
     height: 100px;
-    align-items: center;
+
 }
 .house-footer {
     text-decoration: none;

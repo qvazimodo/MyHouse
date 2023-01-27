@@ -5,8 +5,7 @@
  */
 
 import './bootstrap';
-import './jquery';
-import './script';
+
 
 /**
  * Next, we will create a fresh React component instance and attach it to

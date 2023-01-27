@@ -73,8 +73,6 @@ const ListCards = () => {
 
     return (
         <div className="container" style={{
-            border: "1px solid #FFFFFF",
-            borderRadius: 20,
             marginTop: 20,
             padding: 40,
         }}>
