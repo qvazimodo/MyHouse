@@ -1,8 +1,6 @@
 #about {
-    border: 1px solid #FFFFFF;
-    border-radius: 20px;
     margin-top: 80px;
-    padding: 40px;
+    padding: 0 40px 10px 40px;
 }
 
 .about_text {

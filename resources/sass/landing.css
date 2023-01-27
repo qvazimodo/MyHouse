@@ -14,13 +14,14 @@ a:hover {
 html,
 body {
     height: 100%;
-    text-align:center;
+    text-align:left;
     font-family: Raleway, sans-serif;
     background: #242B33;
+
 }
 
 #wrapper{
-    max-width: 1400px;
+    max-width: 1350px;
     margin: 0 auto;
 }
 

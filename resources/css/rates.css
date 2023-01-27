@@ -1,24 +1,9 @@
 #rates {
-    border: 1px solid #FFFFFF;
-    border-radius: 20px;
-    margin-top: 20px;
-    padding: 40px
+    margin-top: 80px;
+    padding: 0 40px 10px 40px;
 }
-
 .rates_text {
     color: #cbd5e0;
     font-size: 16px;
 }
 
-@media (max-width:320px) {
-    #rates {
-        width: 100%;
-        margin-left: 2px;
-    }
-
-    .rates_title {
-        text-align: center;
-    }
-
-
-}
