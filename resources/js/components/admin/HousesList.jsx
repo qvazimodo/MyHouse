@@ -19,7 +19,6 @@ export const HousesList = () => {
         houseNumberId: null,
         houseNumberValue: ''
     } );
-    const [ houses, setHouses ] = useState( [] );
 
     const addressesArray = useSelector( state => state.house.addressesArray )
     const description = useSelector( state => state.house.description )
@@ -29,61 +28,13 @@ export const HousesList = () => {
 
     useEffect( () => {
             dispatch( fetchHouses() )
-            // getDataFromAPI(ADMIN_HOUSES_API_URL).then(result => setAddresses(result.data))
         }, []
     )
-
-    /*        const getDataFromAPI = async (url) => {
-                try {
-                    let response = await fetch(url)
-                    return await response.json()
-                } catch (error) {
-                    console.log(error)
-                }
-            }*/
 
     const onChange = ( key ) => {
         console.log( addressesArray )
         console.log( key );
     };
-
-    const setAddressStreet = ( street ) => {
-        dispatch( clearDescription() )
-        dispatch( setSelectedAddress( { streetName: street.name,houseNumber:''} ) )
-        setAddress(
-            {
-                ...address,
-                streetId: street.id,
-                streetName: street.name,
-                houseNumberId: null,
-                houseNumberValue: ''
-            } )
-    }
-
-    const setAddressHouseNumber = ( houseNumber ) => {
-        console.log( address )
-        console.log( houseNumber )
-        let newAddress = Object.assign( address,
-            {
-                houseNumberId: houseNumber.id,
-                houseNumberValue: houseNumber.value
-            } )
-        setAddress( newAddress )
-        console.log( address )
-    }
-    useEffect( () => {
-        return () => {
-            if ( !isNull( address.houseNumberId ) ) {
-                console.log( address )
-
-                dispatch( fetchDescription( { streetId: address.streetId, houseNumberId: address.houseNumberId } ) )
-                dispatch( setSelectedAddress( {
-                    streetName: address.streetName,
-                    houseNumber: address.houseNumberValue
-                } ) )
-            }
-        };
-    }, [ address ] );
 
     return (
         <ConfigProvider
@@ -93,45 +44,14 @@ export const HousesList = () => {
             } }
         >
             <div className={ styles.houses__box }>
-                {
-                    <div className="houses__collapse">
-                        <Collapse accordion onChange={ onChange }>
-                            { addressesArray.map( address => {
-                                    return (
-                                        <Panel
-                                            className={ styles.houseNumber__buttons }
-                                            header={ address.name }
-                                            key={ address.id }
-                                            onClick={ () => setAddressStreet( { id: address.id, name: address.name } ) }
-                                        >
-                                            { address['house_numbers'].map( houseNumber => {
-                                                return (
-                                                    <Button
-                                                        onClick={ () => setAddressHouseNumber( {
-                                                            id: houseNumber.id,
-                                                            value: houseNumber.value
-                                                        } ) }
-                                                        className={ styles.houseNumber__button }
-                                                        key={ houseNumber.id }>
-                                                        { houseNumber.value }
-                                                    </Button>
-                                                )
-                                            } ) }
-                                        </Panel>
-                                    )
-                                }
-                            ) }
-                        </Collapse>
-                    </div>
-                }
 
                 { <Layout className={ styles.contentLayout }>
 
-                    <Content onClick={ () => console.log( selectedAddress ) }>
+                    <Content className={styles.content} onClick={ () => console.log( selectedAddress ) }>
                         { selectedAddress.streetName === '' &&
                             <div className={ styles.content__message }>
                                 <Texty>
-                                    Выберите улицу!
+                                    Выберите улицу и номер дома!
                                 </Texty>
                             </div> }
                         { selectedAddress.houseNumber === '' &&
@@ -142,7 +62,7 @@ export const HousesList = () => {
                             </div> }
                         { isLoading && <div className={ styles.houseDescription__content }><Spin
                             className={ styles.contentSpinner }/></div> }
-                        { description.id != null && <HouseDescription description={ description }/> }
+                        { !isLoading && description.id != null && <HouseDescription description={ description }/> }
                     </Content>
                 </Layout> }
             </div>
