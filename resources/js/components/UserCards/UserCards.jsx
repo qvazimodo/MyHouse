@@ -4,6 +4,8 @@ import {AUTH_USER_API_URL, CARDS_API_URL, CLIENT_CARDS_API_URL} from "../../help
 import s from './UserCards.module.css';
 import {red} from "@ant-design/colors";
 import {UploadOutlined} from "@ant-design/icons";
+import "./UserCards.css"
+
 
 const {Text} = Typography;
 
@@ -18,19 +20,13 @@ const UserCards = () => {
     const [current, setCurrent] = useState(1);
 
     //--------------Для формы хуки
-    const [items, setItems] = useState([]);
-    const [argument, setArgument] = useState({
-        userId: ''
-    });
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-
-    const [visible, setVisible] = useState(false);
+    const [checkListPaginash, setCheckListPaginash] = useState(1);
 
     const [currentValue, setCurrentValue] = useState(true);
     const [fileList, setFileList] = useState([]);
-    const [uploading, setUploading] = useState(false);
 
 
     //---------------------- Для Кости (НЕ форма)
@@ -38,6 +34,7 @@ const UserCards = () => {
 
     const onPageChange = (page) => {
         fetchEmployees(CLIENT_CARDS_API_URL + `?page=${page}`)
+        setCheckListPaginash(page)
     }
 
 
@@ -75,19 +72,6 @@ const UserCards = () => {
 
     //-----------------------------------Форма
 
-    useEffect(() => {
-        fetch(AUTH_USER_API_URL)
-            .then(response => response.json())
-            .catch(e => console.log(e))
-            .then(data => setArgument({
-                userId: data.id
-            }));
-
-        /* Получение информации по счетчикам пользователя */
-
-    }, [])
-
-    console.log(argument.userId)
 
     const sendForm = (e) => {
 
@@ -104,11 +88,6 @@ const UserCards = () => {
         formData.append('description', description);
 
 
-        //Вывод значений formData
-        // for(let [name, value] of formData) {
-        //     alert(`${name} = ${value}`); // key1=value1, потом key2=value2
-        // }
-
         fetch(CARDS_API_URL, {
             method: 'POST',
             headers: {
@@ -122,11 +101,11 @@ const UserCards = () => {
             .then(response => response.json())
             .catch(e => console.log(e))
             .then(result => {
-                setData([...data, result])
-                console.log(result)
+                onPageChange(checkListPaginash)
             })
 
     }
+
 
 
     const props = {
@@ -241,34 +220,18 @@ const UserCards = () => {
                 renderItem={(item) => (
                     <List.Item>
                         <Card title={`Заголовок: ${item.title} client_id: ${item.client_id}`}>
-                            <div style={{textAlign:"center"}}>
-                                <Image
-                                    preview={{
-                                        visible: false,
-                                    }}
-                                    width={200}
-                                    src="https://gw.alipayobjects.com/zos/antfincdn/LlvErxo8H9/photo-1503185912284-5271ff81b9a8.webp"
-                                    onClick={() => setVisible(true)}
-                                    src={`http://[::1]:5174/storage/app/${item.img[0].path}`}
-                                />
-                                <div
-                                    style={{
-                                        display: 'none',
-                                    }}
-                                >
+                            <div className="wrapperusercard">
+
                                     <Image.PreviewGroup
-                                        preview={{
-                                            visible,
-                                            onVisibleChange: (vis) => setVisible(vis),
-                                        }}
                                     >
                                         <div>{item.img.map((photopath) => <Image
-                                            src={`http://[::1]:5174/storage/app/${photopath.path}`}/>)}</div>
-                                        <Image />
+                                            src={`http://[::1]:5174/storage/app/${photopath.path}`}
+                                            width={200}
+                                            height={200}
+                                        />)}</div>
 
 
                                     </Image.PreviewGroup>
-                                </div>
                             </div>
                             <br/>
 
