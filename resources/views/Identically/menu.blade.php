@@ -32,10 +32,7 @@
                                                 Панель администратора</a>
                                         </li>
                                     </ul>
-                                    {{--     <li><a href="{{ route('admin.clients.index') }}" class="header__link">Клиенты</a></li>
-                                         <li><a href="{{ route('admin.employees') }}" class="header__link">Сотрудники</a></li>
-                                         <li><a href="{{ route('admin.meters') }}" class="header__link">Счётчики</a></li>--}}
-                                @else
+                                 @else
                                     <ul class="header__list">
                                         <li><a href="{{ route('usercards') }}" class="header__link">Мои объявления</a>
                                         </li>

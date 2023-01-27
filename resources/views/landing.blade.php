@@ -4,7 +4,7 @@
 
 @section('menu')
     <div id="wrapper">
-         @include('Identically.menu')
+         @include('Identically.menuuu')
     </div>
 @endsection
 

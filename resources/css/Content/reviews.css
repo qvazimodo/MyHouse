@@ -46,9 +46,4 @@
 }
 
 
-@media (max-width:767px) {
-    .review-block{
-        display: block;
-        text-align: left;
-    }
-}
+
