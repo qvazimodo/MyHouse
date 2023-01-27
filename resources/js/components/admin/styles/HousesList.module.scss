@@ -10,9 +10,15 @@
 }
 
 .houseDescription__content {
-    @apply flex justify-center h-full}
-.contentSpinner{
+    @apply flex justify-center h-full
+}
+
+.contentSpinner {
     @apply self-center
 }
-.contentLayout{
+
+.contentLayout {
 }
+.content__message{
+    @apply h-full text-2xl flex justify-center  items-center}
+

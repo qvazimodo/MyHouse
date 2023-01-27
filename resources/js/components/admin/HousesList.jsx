@@ -8,6 +8,7 @@ import styles from "./styles/HousesList.module.scss"
 import { Content } from "antd/es/layout/layout";
 import { HouseDescription } from "./HouseDescription";
 import { isNull } from "lodash";
+import Texty from 'rc-texty';
 
 const { Panel } = Collapse;
 
@@ -23,6 +24,7 @@ export const HousesList = () => {
     const addressesArray = useSelector( state => state.house.addressesArray )
     const description = useSelector( state => state.house.description )
     const isLoading = useSelector( state => state.house.loading )
+    const selectedAddress = useSelector( state => state.house.selectedAddress )
     const dispatch = useDispatch()
 
     useEffect( () => {
@@ -67,6 +69,7 @@ export const HousesList = () => {
                 houseNumberValue: houseNumber.value
             } )
         setAddress( newAddress )
+        console.log( address )
     }
     useEffect( () => {
         return () => {
@@ -90,37 +93,53 @@ export const HousesList = () => {
             } }
         >
             <div className={ styles.houses__box }>
-                { <Collapse accordion onChange={ onChange }>
-                    { addressesArray.map( address => {
-                            return (
-                                <Panel
-                                    className={ styles.houseNumber__buttons }
-                                    header={ address.name }
-                                    key={ address.id }
-                                    onClick={ () => setAddressStreet( { id: address.id, name: address.name } ) }
-                                >
-                                    { address['house_numbers'].map( houseNumber => {
-                                        return (
-                                            <Button
-                                                onClick={ () => setAddressHouseNumber( {
-                                                    id: houseNumber.id,
-                                                    value: houseNumber.value
-                                                } ) }
-                                                className={ styles.houseNumber__button }
-                                                key={ houseNumber.id }>
-                                                { houseNumber.value }
-                                            </Button>
-                                        )
-                                    } ) }
-                                </Panel>
-                            )
-                        }
-                    ) }
-                </Collapse> }
+                {
+                    <div className="houses__collapse">
+                        <Collapse accordion onChange={ onChange }>
+                            { addressesArray.map( address => {
+                                    return (
+                                        <Panel
+                                            className={ styles.houseNumber__buttons }
+                                            header={ address.name }
+                                            key={ address.id }
+                                            onClick={ () => setAddressStreet( { id: address.id, name: address.name } ) }
+                                        >
+                                            { address['house_numbers'].map( houseNumber => {
+                                                return (
+                                                    <Button
+                                                        onClick={ () => setAddressHouseNumber( {
+                                                            id: houseNumber.id,
+                                                            value: houseNumber.value
+                                                        } ) }
+                                                        className={ styles.houseNumber__button }
+                                                        key={ houseNumber.id }>
+                                                        { houseNumber.value }
+                                                    </Button>
+                                                )
+                                            } ) }
+                                        </Panel>
+                                    )
+                                }
+                            ) }
+                        </Collapse>
+                    </div>
+                }
 
                 { <Layout className={ styles.contentLayout }>
 
-                    <Content onClick={ () => console.log( address ) }>
+                    <Content onClick={ () => console.log( selectedAddress ) }>
+                        { selectedAddress.streetName === '' &&
+                            <div className={ styles.content__message }>
+                                <Texty>
+                                    Выберите улицу!
+                                </Texty>
+                            </div> }
+                        { selectedAddress.houseNumber === '' &&
+                            <div className={ styles.content__message }>
+                                <Texty>
+                                    Выберите номер дома!
+                                </Texty>
+                            </div> }
                         { isLoading && <div className={ styles.houseDescription__content }><Spin
                             className={ styles.contentSpinner }/></div> }
                         { description.id != null && <HouseDescription description={ description }/> }

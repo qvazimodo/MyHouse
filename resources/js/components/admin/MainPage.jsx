@@ -94,7 +94,7 @@ export const MainPage = () => {
                     } }
                 >
                     <Menu theme="dark" mode="horizontal"
-                          defaultSelectedKeys={ [ '2' ] }
+                          defaultSelectedKeys={ [ '/houses' ] }
                           items={ adminHeaderMenuItems }
                           onClick={ clickOnHeaderMenu }
                     />
