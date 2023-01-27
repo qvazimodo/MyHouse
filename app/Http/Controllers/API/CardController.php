@@ -96,13 +96,4 @@ class CardController extends Controller
 
     }
 
-    //По моему, этот метод нигде не используется
-    public function getUserCards(Request $request): JsonResponse
-    {
-//        $clientId = $request->input('client_id');
-        $currentClient = Client::where('user_id', '=', Auth::user()->id)->first();
-        $cards = Card::where('client_id', '=', $currentClient->id)->get();
-        return response()->json($cards);
-    }
-
 }
