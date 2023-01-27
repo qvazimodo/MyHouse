@@ -3,6 +3,7 @@ import { Collapse, App, Button, Form, Input, Select, Typography, Divider, Table,
 import {AUTH_METERS_API_URL, AUTH_METERS_LIST_API_URL, AUTH_USER_API_URL, METER_VALUE_API_URL} from "../helpers/API";
 
 import DocumentRender from "./DocumentRender";
+import "./MetersForm.css"
 
 const { Panel } = Collapse;
 const { Text } = Typography;
@@ -241,24 +242,27 @@ class MetersForm extends React.Component {
     render() {
         return (
             <div className="container">
-                <Collapse accordion>
+                <div className="cabinet">
+                    <Collapse accordion>
                     <Panel header="Ввести показания счетчиков" key="1" className="cabinet-txt">
                         <Text mark className="cabinet-color-txt">Показания счетчиков за прошлый период</Text>
-                        <Table columns={columns} dataSource={this.state.info} locale={locale} className="meter-table"/>
-                        <Button onClick={this.showModal} className="addMeter-btn">Отправить заявку на добавление нового счетчика</Button>
-                        <Divider />
+                        <Table columns={ columns } dataSource={ this.state.info } locale={ locale }
+                               className="meter-table"/>
+                        <Button onClick={ this.showModal } className="addMeter-btn">Отправить заявку на добавление
+                            нового счетчика</Button>
+                        <Divider/>
                         <Text mark className="cabinet-color-txt">Заполните форму для ввода новых показаний</Text>
                         <Form className="meter-input">
                             <Form.Item label="Выберите счетчик">
                                 <Select
                                     name="type"
-                                    onChange={this.typeChange}
+                                    onChange={ this.typeChange }
                                     notFoundContent="Нет данных по счетчикам"
                                 >
                                     {
-                                        this.generateSelectTypes(this).map((item, index) => {
-                                            return <Option value={item} key={index}>{item}</Option>
-                                        })
+                                        this.generateSelectTypes( this ).map( ( item, index ) => {
+                                            return <Option value={ item } key={ index }>{ item }</Option>
+                                        } )
                                     }
                                 </Select>
                             </Form.Item>
@@ -266,13 +270,13 @@ class MetersForm extends React.Component {
                             <Form.Item label="Выберите номер счетчика">
                                 <Select
                                     name="number"
-                                    onChange={this.numberChange}
+                                    onChange={ this.numberChange }
                                     notFoundContent="Нет данных по счетчикам"
                                 >
                                     {
-                                        this.state.userMeters[this.state.type]?.map((item, index) => {
-                                            return <Option value={item.number} key={index}>{item.number}</Option>
-                                        })
+                                        this.state.userMeters[this.state.type]?.map( ( item, index ) => {
+                                            return <Option value={ item.number } key={ index }>{ item.number }</Option>
+                                        } )
                                     }
                                 </Select>
                             </Form.Item>
@@ -281,8 +285,8 @@ class MetersForm extends React.Component {
                                 <Select
                                     name="month"
                                     defaultValue="1"
-                                    onChange={this.monthChange}
-                                    options={[
+                                    onChange={ this.monthChange }
+                                    options={ [
                                         {
                                             value: '1',
                                             label: 'Январь',
@@ -331,23 +335,24 @@ class MetersForm extends React.Component {
                                             value: '12',
                                             label: 'Декабрь',
                                         },
-                                    ]}
+                                    ] }
                                 />
                             </Form.Item>
                             <Form.Item label="Текущие показания">
-                                <Input name="now" value={this.state.now} onChange={this.valueInputChange} />
+                                <Input name="now" value={ this.state.now } onChange={ this.valueInputChange }/>
                             </Form.Item>
                             <Form.Item>
-                                <Button type="primary" onClick={this.sendForm} className="addValue-btn">Отправить</Button>
+                                <Button type="primary" onClick={ this.sendForm }
+                                        className="addValue-btn">Отправить</Button>
                             </Form.Item>
 
                         </Form>
 
                         <Modal
                             title="Заявка на добавление нового счетчика"
-                            open={this.state.isModalOpen}
-                            onOk={this.handleOk}
-                            onCancel={this.handleCancel}
+                            open={ this.state.isModalOpen }
+                            onOk={ this.handleOk }
+                            onCancel={ this.handleCancel }
                             okText="Отправить заявку"
                             cancelText="Отмена"
                             className="meter-modal"
@@ -355,11 +360,11 @@ class MetersForm extends React.Component {
                             <Text mark className="cabinet-color-txt">Заполните форму</Text>
                             <Form className="meter-input">
                                 <Form.Item label="Номер счетчика">
-                                    <Input />
+                                    <Input/>
                                 </Form.Item>
                                 <Form.Item label="Выберите тип счетчика">
                                     <Select
-                                        options={[
+                                        options={ [
                                             {
                                                 value: '1',
                                                 label: 'горячая вода',
@@ -376,14 +381,14 @@ class MetersForm extends React.Component {
                                                 value: '4',
                                                 label: 'электричество',
                                             },
-                                        ]}
+                                        ] }
                                     />
                                 </Form.Item>
                             </Form>
 
                         </Modal>
                     </Panel>
-                </Collapse>
+                </Collapse></div>
 
             </div>
         );
