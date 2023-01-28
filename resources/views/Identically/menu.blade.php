@@ -2,6 +2,7 @@
      style="background: #242B33;
       position: fixed;
       overflow: hidden;
+      top: 0;
        right: 0;
       width: 100%;
       z-index: 1;
