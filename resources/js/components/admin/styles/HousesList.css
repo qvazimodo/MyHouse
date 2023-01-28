@@ -6,3 +6,8 @@
     line-height: 40px;
     text-align: left;
 }
+
+#admin .ant-descriptions .ant-descriptions-title{
+    text-align: center;
+    padding: 45px 0 15px;
+}
