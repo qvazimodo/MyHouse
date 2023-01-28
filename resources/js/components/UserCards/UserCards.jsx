@@ -4,7 +4,7 @@ import {AUTH_USER_API_URL, CARDS_API_URL, CLIENT_CARDS_API_URL} from "../../help
 import s from './UserCards.module.css';
 import {red} from "@ant-design/colors";
 import {UploadOutlined} from "@ant-design/icons";
-// import "./UserCards.css"
+import "./UserCards.css";
 
 
 const {Text} = Typography;
@@ -221,7 +221,6 @@ const UserCards = () => {
                     <List.Item>
                         <Card title={`Заголовок: ${item.title} client_id: ${item.client_id}`}>
                             <div className="wrapperusercard">
-
                                     <Image.PreviewGroup
                                     >
                                         <div>{item.img.map((photopath) => <Image

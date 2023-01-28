@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Admin\EmployeeAPIController;
+use App\Http\Controllers\API\Admin\ClientController as AdminClientController;
 use App\Http\Controllers\API\Admin\HouseDescriptionController as AdminHouseDescriptionController;
 use App\Http\Controllers\API\Admin\MeterController as AdminMeterController;
 use App\Http\Controllers\API\CardController;
@@ -86,7 +87,11 @@ Route::prefix('admin')->group(function () {
 
     //описания домов
     Route::get('/houses/description/{street_id}/{house_id}', [HouseController::class, 'show']);
-    http://localhost/api/admin/houses/description/1/5
+
+    //Клиенты
+    Route::get('/clients/by_address/{street_id}/{house_id}',
+        [AdminClientController::class, 'getClientsByAddress']);
+
 });
 
 // Password reset routes

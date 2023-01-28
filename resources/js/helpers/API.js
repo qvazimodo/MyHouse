@@ -20,6 +20,9 @@ export const ADMIN_HOUSE_DESCRIPTION_API_URL = DOMEN + "/api/admin/houses/descri
 // маршрут получения текущего пользователя
 export const AUTH_USER_API_URL = DOMEN + "/api/auth/auth_user";
 
+//получение массива клиентов по адресу проживания
+export const ADMIN_CLIENTS_BY_ADDRESS_API_URL = DOMEN + "api/clients/by_address/";
+
 // маршрут получения показаний всех счетчиков текущего клиента
 export const AUTH_METERS_LIST_API_URL = DOMEN + "/api/client_meters";
 

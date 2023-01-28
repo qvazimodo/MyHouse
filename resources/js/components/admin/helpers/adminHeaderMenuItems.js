@@ -1,8 +1,8 @@
 export const adminHeaderMenuItems = [
     {
-        key: '/houses',
+        key: '/addresses',
         icon: '',
-        label: 'Дома'
+        label: 'Адреса'
     },
     {
         key: '/clients',

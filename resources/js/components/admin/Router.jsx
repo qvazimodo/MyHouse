@@ -11,7 +11,7 @@ export const Router = createHashRouter(
             element: <MainPage/>,
             children:[
                 {
-                    path: "houses",
+                    path: "addresses",
                     element: <HousesList/>
                 },
                 {

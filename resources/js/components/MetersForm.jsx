@@ -68,10 +68,11 @@ class MetersForm extends React.Component {
             number: '',
             now: '',
             userId: '',
-            month: '1',
+            month: '',
             info: [],
             userMeters: {},
             meterTypes: [],
+            values: new Map(),
             isModalOpen: false,
         };
 
@@ -125,6 +126,9 @@ class MetersForm extends React.Component {
                 for (let item in data.meta.months) {
                     months.set(data.meta.months[item].id, data.meta.months[item].name);
                 }
+                this.setState({
+                    month: months.get((new Date().getMonth() + 1)),
+                });
 
                 let years = new Map();
                 for (let item in data.meta.years) {
@@ -133,13 +137,21 @@ class MetersForm extends React.Component {
 
                 let meterInfo = data.data.data;
 
+                for (let key in meterInfo) {
+                    meterInfo[key].meter_month_year.forEach((item) => {
+                        this.setState({
+                            values: this.state.values.set(item.id, item.value),
+                        })
+                    })
+                }
+/*
                 let values = new Map();
                 for (let key in meterInfo) {
                     meterInfo[key].meter_month_year.forEach((item) => {
                         values.set(item.id, item.value);
                     })
                 }
-
+*/
                 let iterForTable = 1;
                 for (let key in meterInfo) {
 
@@ -149,7 +161,7 @@ class MetersForm extends React.Component {
                         item.key = iterForTable++;
                         item.name = months.get(meterInfo[key].month_year[index].month_id);
                         item.year = years.get(meterInfo[key].month_year[index].year_id);
-                        item.lastValue = values.get(item.parent_id);
+                        item.lastValue = this.state.values.get(item.parent_id);
 
                         this.setState(prevState => ({
                             info: [...prevState.info, item]
@@ -169,7 +181,6 @@ class MetersForm extends React.Component {
 
     sendForm = (e) => {
         e.preventDefault();
-        console.log(this.state);
         fetch(METER_VALUE_API_URL, {
             method: 'POST',
             headers: {
@@ -182,7 +193,6 @@ class MetersForm extends React.Component {
                 user_id: this.state.userId,
                 value: this.state.now,
                 type: this.state.type,
-                month: this.state.month,
             })
         })
             .then(response => response.json())
@@ -193,6 +203,8 @@ class MetersForm extends React.Component {
                 data.type = this.state.type;
                 data.number = this.state.number;
                 data.name = this.state.month;
+                data.year = new Date().getFullYear();
+                data.lastValue = this.state.values.get(data.parent_id);
                 this.setState(prevState => ({
                     info: [...prevState.info, data]
                 }))
@@ -203,7 +215,6 @@ class MetersForm extends React.Component {
 
         this.setState({
             now: '',
-            month: '1',
         });
 
     }
@@ -213,9 +224,6 @@ class MetersForm extends React.Component {
 
     typeChange = (value) => {
         this.setState({ type: value });
-    }
-    monthChange = (value) => {
-        this.setState( { month: value } );
     }
     numberChange = (value) => {
         this.setState({number: value});
@@ -281,61 +289,11 @@ class MetersForm extends React.Component {
                                 </Select>
                             </Form.Item>
 
-                            <Form.Item label="Выберите месяц">
+                            <Form.Item label="Текущий месяц">
                                 <Select
                                     name="month"
-                                    defaultValue="1"
-                                    onChange={ this.monthChange }
-                                    options={ [
-                                        {
-                                            value: '1',
-                                            label: 'Январь',
-                                        },
-                                        {
-                                            value: '2',
-                                            label: 'Февраль',
-                                        },
-                                        {
-                                            value: '3',
-                                            label: 'Март',
-                                        },
-                                        {
-                                            value: '4',
-                                            label: 'Апрель',
-                                        },
-                                        {
-                                            value: '5',
-                                            label: 'Май',
-                                        },
-                                        {
-                                            value: '6',
-                                            label: 'Июнь',
-                                        },
-                                        {
-                                            value: '7',
-                                            label: 'Июль',
-                                        },
-                                        {
-                                            value: '8',
-                                            label: 'Август',
-                                        },
-                                        {
-                                            value: '9',
-                                            label: 'Сентябрь',
-                                        },
-                                        {
-                                            value: '10',
-                                            label: 'Октябрь',
-                                        },
-                                        {
-                                            value: '11',
-                                            label: 'Ноябрь',
-                                        },
-                                        {
-                                            value: '12',
-                                            label: 'Декабрь',
-                                        },
-                                    ] }
+                                    defaultValue={this.state.month}
+                                    disabled
                                 />
                             </Form.Item>
                             <Form.Item label="Текущие показания">
