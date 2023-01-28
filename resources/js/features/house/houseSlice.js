@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { ADMIN_HOUSE_DESCRIPTION_API_URL, ADMIN_HOUSES_API_URL } from '../../helpers/API'
+import {
+    ADMIN_CLIENTS_BY_ADDRESS_API_URL,
+    ADMIN_HOUSE_DESCRIPTION_API_URL,
+    ADMIN_HOUSES_API_URL
+} from '../../helpers/API'
 
 const initialState = {
     loading: false,
@@ -10,25 +14,36 @@ const initialState = {
     description: {},
     selectedAddress: {
         streetName: '',
-        houseNumber: null
-    }
+        houseNumber: null,
+        streetId:null,
+        houseNumberId:null
+    },
+    clients:[],
 }
 
-export const fetchHouses = createAsyncThunk('house/fetchHouses', () => {
-    return fetch(ADMIN_HOUSES_API_URL).then(response => response.json()).then(result => result.data)
-})
+export const fetchHouses = createAsyncThunk( 'house/fetchHouses', () => {
+    return fetch( ADMIN_HOUSES_API_URL ).then( response => response.json() ).then( result => result.data )
+} )
 
 export const fetchDescription = createAsyncThunk( 'house/fetchDescription', ( address ) => {
     let url = ADMIN_HOUSE_DESCRIPTION_API_URL + "/" + `${ address.streetId }` + "/" + `${ address.houseNumberId }`
-    console.log(url)
+    console.log( url )
     return fetch( url ).then( response => response.json() ).then( result => result[0]['house_description'] )
 } )
 
-const houseSlice = createSlice({
+export const fetchClients = createAsyncThunk( 'house/fetchClientsList', ( address ) => {
+    let url = ADMIN_CLIENTS_BY_ADDRESS_API_URL + "/" + `${ address.streetId }` + "/" + `${ address.houseNumberId }`
+    console.log( url )
+    return fetch( url ).then( response => response.json() ).then( result => {
+        console.log( result.data )
+    } )
+} )
+
+const houseSlice = createSlice( {
     name: 'house',
     initialState,
     reducers: {
-        setHouses: (state, action) => {
+        setHouses: ( state, action ) => {
             state.array = action.payload
         },
         //добавление дома в список (для примера) - мутирует состояние
@@ -47,32 +62,45 @@ const houseSlice = createSlice({
         setSelectedAddress: ( state, action ) => {
             state.selectedAddress = {
                 streetName: action.payload.streetName,
-                houseNumber: action.payload.houseNumber
+                houseNumber: action.payload.houseNumber,
+                streetId:action.payload.streetId,
+                houseNumberId:action.payload.houseNumberId
             }
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchHouses.pending, (state) => {
+        builder.addCase( fetchHouses.pending, ( state ) => {
             state.loading = true
-        })
-        builder.addCase(fetchHouses.fulfilled, (state, action) => {
+        } )
+        builder.addCase( fetchHouses.fulfilled, ( state, action ) => {
             state.addressesArray = action.payload
             state.loading = false
-        })
-        builder.addCase(fetchHouses.rejected, (state, action) => {
+        } )
+        builder.addCase( fetchHouses.rejected, ( state, action ) => {
             state.error = action.payload
-        })
+        } )
 
-        builder.addCase(fetchDescription.pending, (state) => {
+        builder.addCase( fetchDescription.pending, ( state ) => {
             state.loading = true
-        })
-        builder.addCase(fetchDescription.fulfilled, (state, action) => {
+        } )
+        builder.addCase( fetchDescription.fulfilled, ( state, action ) => {
             state.description = action.payload
             state.loading = false
-        })
-        builder.addCase(fetchDescription.rejected, (state, action) => {
+        } )
+        builder.addCase( fetchDescription.rejected, ( state, action ) => {
             state.error = action.payload
-        })
+        } )
+
+        builder.addCase( fetchClients.pending, ( state ) => {
+            state.loading = true
+        } )
+        builder.addCase( fetchClients.fulfilled, ( state, action ) => {
+            state.clients = action.payload
+            state.loading = false
+        } )
+        builder.addCase( fetchClients.rejected, ( state, action ) => {
+            state.error = action.payload
+        } )
     },
 })
 

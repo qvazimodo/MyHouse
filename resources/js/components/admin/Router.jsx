@@ -3,6 +3,7 @@ import { MetersList } from "./MetersList";
 import { MainPage } from "./MainPage";
 import { Employees } from "./Employees";
 import { HousesList } from "./HousesList";
+import { ClientsList } from "./ClientsList";
 
 export const Router = createHashRouter(
     [
@@ -16,7 +17,7 @@ export const Router = createHashRouter(
                 },
                 {
                     path: "clients",
-                    element: <Employees/>
+                    element: <ClientsList/>
                 },
                 {
                     path: "employees",
