@@ -38,15 +38,6 @@
     color: black;
 }
 
-@media (min-width: 426px) and (max-width: 767px) {
-.section-input{
-    display: flex;
-    margin-bottom: 10px;
-}
-.input_text{
-    margin: 0 5px;
-}
-}
 
 @media (max-width:767px) {
 .section{
@@ -62,12 +53,14 @@
     padding: 0;
     display: block;
 }
+.input_text{
+    width: 50%;
+}
 .input_button{
     left: 50%;
     transform: translate(-50%, 0);
     margin-top: 10px;
 }
-
 }
 
 
