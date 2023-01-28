@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { clearDescription, fetchDescription, fetchHouses, setSelectedAddress } from "../../features/house/houseSlice"
-import { Button, Collapse, ConfigProvider, Layout, Spin, theme } from 'antd';
+import { fetchDescription, fetchHouses } from "../../features/house/houseSlice"
+import { Collapse, ConfigProvider, Layout, Spin, theme } from 'antd';
 import ruRu from "antd/lib/locale/ru_RU";
 import "./styles/HousesList.css";
 import styles from "./styles/HousesList.module.scss"
 import { Content } from "antd/es/layout/layout";
 import { HouseDescription } from "./HouseDescription";
-import { isNull } from "lodash";
 import Texty from 'rc-texty';
 
 const { Panel } = Collapse;
@@ -30,6 +29,11 @@ export const HousesList = () => {
             dispatch( fetchHouses() )
         }, []
     )
+
+    useEffect(() => {
+        console.log(selectedAddress)
+        dispatch(fetchDescription(selectedAddress))
+    }, [selectedAddress])
 
     const onChange = ( key ) => {
         console.log( addressesArray )
