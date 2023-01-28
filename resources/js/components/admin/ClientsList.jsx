@@ -98,6 +98,8 @@ export const ClientsList = ( props ) => {
 
     }, [ selectedAddress ] );
 
+    // let columns =
+
     return (
         <div><Table columns={ columns } dataSource={ data } onChange={ onChange }/></div>
     );

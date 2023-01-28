@@ -1,23 +1,19 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {useSelector  } from "react-redux";
-import {
-    ADMIN_CLIENTS_BY_ADDRESS_API_URL,
-} from '../../helpers/API'
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { ADMIN_CLIENTS_BY_ADDRESS_API_URL, } from '../../helpers/API'
 
 const initialState = {
-    loading:false,
-    array:[],
-    current:{},
-    error:''
+    loading: false,
+    array: [],
+    current: {},
+    error: ''
 }
 
-export const fetchClients = createAsyncThunk( 'client/fetchClientsList', ( address ) => {
+export const fetchClients = createAsyncThunk( 'client/fetchClients', ( address ) => {
     // let address =  useSelector((state )=>state.house.selectedAddress)
     let url = ADMIN_CLIENTS_BY_ADDRESS_API_URL + "/" + `${ address.streetId }` + "/" + `${ address.houseNumberId }`
     console.log( url )
-    return fetch( url ).then( response => response.json() ).then( result => {
-        console.log( result.data )
-    } )
+    return fetch( url ).then( response => response.json() ).then( result => result.data
+    )
 } )
 
 const clientSlice = createSlice({
@@ -33,7 +29,8 @@ const clientSlice = createSlice({
             state.loading = true
         } )
         builder.addCase( fetchClients.fulfilled, ( state, action ) => {
-            state.clients = action.payload
+            state.array = action.payload
+            console.log( action.payload )
             state.loading = false
         } )
         builder.addCase( fetchClients.rejected, ( state, action ) => {
