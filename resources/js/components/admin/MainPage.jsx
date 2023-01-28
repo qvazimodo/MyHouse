@@ -4,27 +4,10 @@ import { Outlet, useNavigate } from "react-router-dom"
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
 import { adminHeaderMenuItems } from "./helpers/adminHeaderMenuItems"
-import { fetchDescription, setSelectedAddress } from "../../features/house/houseSlice";
+import { setSelectedAddress } from "../../features/house/houseSlice";
 
 
 const { Header, Content, Footer, Sider } = Layout;
-
-const items2 = [ UserOutlined, LaptopOutlined, NotificationOutlined ]
-    .map( ( icon, index ) => {
-        const key = String( index + 1 );
-        return {
-            key: `sub${ key }`,
-            icon: React.createElement( icon ),
-            label: `subnav ${key}`,
-            children: new Array(4).fill(null).map((_, j) => {
-                const subKey = index * 4 + j + 1;
-                return {
-                    key: subKey,
-                    label: `option${subKey}`,
-                };
-            }),
-        };
-    });
 
 export const MainPage = () => {
     const [selectedMenuItem, setSelectedMenuItem] = useState({})
@@ -60,7 +43,7 @@ export const MainPage = () => {
     const [openKeys, setOpenKeys] = useState([]);
     const onOpenChange = (keys) => {
         const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
-        console.log(keys)
+        // console.log(keys)
         if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
             setOpenKeys(keys);
         } else {
@@ -79,15 +62,10 @@ export const MainPage = () => {
             streetId: selectedStreetWithHouses.id,
             houseNumberId: selectedHouse.id
         }
-        console.log( selectedAddress )
+        // console.log( selectedAddress )
         dispatch( setSelectedAddress(selectedAddress) )
         return selectedAddress
     }
-
-    useEffect(() => {
-        dispatch(fetchDescription(selectedMenuItem))
-    }, [selectedMenuItem])
-
 
     const defaultSelectedMenuItem = '/addresses'
 
@@ -119,7 +97,7 @@ export const MainPage = () => {
                     onClick={({item, key, keyPath, domEvent}) => {
                         console.log(keyPath)
                         setSelectedMenuItem(getAddress(keyPath))
-                        console.log(selectedMenuItem)
+                        // console.log(selectedMenuItem)
                     }}
                     openKeys={openKeys}
                     onOpenChange={onOpenChange}

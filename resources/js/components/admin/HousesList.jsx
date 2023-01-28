@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { fetchHouses } from "../../features/house/houseSlice"
+import { fetchDescription, fetchHouses } from "../../features/house/houseSlice"
 import { Collapse, ConfigProvider, Layout, Spin, theme } from 'antd';
 import ruRu from "antd/lib/locale/ru_RU";
 import "./styles/HousesList.css";
@@ -29,6 +29,11 @@ export const HousesList = () => {
             dispatch( fetchHouses() )
         }, []
     )
+
+    useEffect(() => {
+        console.log(selectedAddress)
+        dispatch(fetchDescription(selectedAddress))
+    }, [selectedAddress])
 
     const onChange = ( key ) => {
         console.log( addressesArray )

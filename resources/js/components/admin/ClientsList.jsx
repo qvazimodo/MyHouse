@@ -90,15 +90,13 @@ const onChange = ( pagination, filters, sorter, extra ) => {
 };
 export const ClientsList = ( props ) => {
     const dispatch = useDispatch()
-    const address = useSelector( (state => state.house.selectedAddress) )
+    const selectedAddress = useSelector( (state => state.house.selectedAddress) )
 
     useEffect( () => {
-        console.log(address)
-        dispatch( fetchClients() )
-        return () => {
-            dispatch( fetchClients() )
-        };
-    }, [ address.label ] );
+        console.log(selectedAddress)
+        dispatch( fetchClients(selectedAddress) )
+
+    }, [ selectedAddress ] );
 
     return (
         <div><Table columns={ columns } dataSource={ data } onChange={ onChange }/></div>

@@ -62,7 +62,9 @@ const houseSlice = createSlice( {
         setSelectedAddress: ( state, action ) => {
             state.selectedAddress = {
                 streetName: action.payload.streetName,
-                houseNumber: action.payload.houseNumber
+                houseNumber: action.payload.houseNumber,
+                streetId:action.payload.streetId,
+                houseNumberId:action.payload.houseNumberId
             }
         }
     },
