@@ -14,7 +14,7 @@
 
 @section('content')
     <div id="wrapper">
-    <div id="rates"></div>
+        @include('Content.rates')
     </div>
 @endsection
 
