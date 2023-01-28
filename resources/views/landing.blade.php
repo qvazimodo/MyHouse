@@ -4,14 +4,12 @@
 
 @section('menu')
     <div id="wrapper">
-         @include('Identically.menuuu')
+         @include('Identically.menu')
     </div>
 @endsection
 
 @section('header')
-
     @include('Identically.header')
-
 @endsection
 
 @section('content')

@@ -14,10 +14,9 @@ a:hover {
 html,
 body {
     height: 100%;
-    text-align:left;
+    /*text-align:left;*/
     font-family: Raleway, sans-serif;
     background: #242B33;
-
 }
 
 #wrapper{

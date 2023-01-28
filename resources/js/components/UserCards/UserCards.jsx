@@ -4,7 +4,7 @@ import {AUTH_USER_API_URL, CARDS_API_URL, CLIENT_CARDS_API_URL} from "../../help
 import s from './UserCards.module.css';
 import {red} from "@ant-design/colors";
 import {UploadOutlined} from "@ant-design/icons";
-import "./UserCards.css"
+// import "./UserCards.css"
 
 
 const {Text} = Typography;

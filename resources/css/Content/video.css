@@ -4,9 +4,10 @@
 
 @media (max-width:767px) {
     .video_name{
+
         margin: 0 auto;
-        width: auto;
-        height: 100%;
+        max-width: 100%;
+        height: auto;
     }
 }
 

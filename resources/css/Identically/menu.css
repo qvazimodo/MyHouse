@@ -9,7 +9,6 @@
     padding-top: 294px;
 }
 .bottom-top {
-    padding-left: 15px;
     font-family: 'Playfair Display', sans-serif;
     font-style: normal;
     font-weight: 700;
@@ -41,8 +40,8 @@
 }
 
 @media (max-width:767px) {
-    .img-header {
-        width: 100%;
+    .bottom{
+        position: relative;
     }
     .bottom-top {
         font-size: 30px;
@@ -51,7 +50,8 @@
         display: block;
         position: absolute;
         left: 50%;
-        margin: 95px 0 0 -125px;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
     }
 }
 
