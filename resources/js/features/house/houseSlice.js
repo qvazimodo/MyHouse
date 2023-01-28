@@ -14,7 +14,9 @@ const initialState = {
     description: {},
     selectedAddress: {
         streetName: '',
-        houseNumber: null
+        houseNumber: null,
+        streetId:null,
+        houseNumberId:null
     },
     clients:[],
 }

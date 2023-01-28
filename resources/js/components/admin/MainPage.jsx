@@ -1,20 +1,20 @@
-import React, {useEffect, useState} from "react"
-import {useDispatch, useSelector} from "react-redux"
-import {Outlet, useNavigate} from "react-router-dom"
-import {LaptopOutlined, NotificationOutlined, UserOutlined} from '@ant-design/icons';
-import {Breadcrumb, Layout, Menu, theme} from 'antd';
-import {adminHeaderMenuItems} from "./helpers/adminHeaderMenuItems"
-import {fetchHouses, fetchDescription, setSelectedAddress} from "../../features/house/houseSlice";
+import React, { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { Outlet, useNavigate } from "react-router-dom"
+import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
+import { Layout, Menu, theme } from 'antd';
+import { adminHeaderMenuItems } from "./helpers/adminHeaderMenuItems"
+import { fetchDescription, setSelectedAddress } from "../../features/house/houseSlice";
 
 
-const {Header, Content, Footer, Sider} = Layout;
+const { Header, Content, Footer, Sider } = Layout;
 
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined]
-    .map((icon, index) => {
-        const key = String(index + 1);
+const items2 = [ UserOutlined, LaptopOutlined, NotificationOutlined ]
+    .map( ( icon, index ) => {
+        const key = String( index + 1 );
         return {
-            key: `sub${key}`,
-            icon: React.createElement(icon),
+            key: `sub${ key }`,
+            icon: React.createElement( icon ),
             label: `subnav ${key}`,
             children: new Array(4).fill(null).map((_, j) => {
                 const subKey = index * 4 + j + 1;
@@ -69,18 +69,19 @@ export const MainPage = () => {
     };
     const getAddress = (keyPath) => {
         // console.log(keyPath, sideMenuItems)
-        let selectedStreetWithHouses = sideMenuItems.find(street => street.key === keyPath[1])
-        console.log(selectedStreetWithHouses)
-        let selectedHouse = selectedStreetWithHouses.children.find(house => house.key === keyPath[0])
-        console.log(selectedHouse)
-        dispatch(setSelectedAddress({
+        let selectedStreetWithHouses = sideMenuItems.find( street => street.key === keyPath[1] )
+        // console.log( selectedStreetWithHouses )
+        let selectedHouse = selectedStreetWithHouses.children.find( house => house.key === keyPath[0] )
+        // console.log( selectedHouse )
+        const selectedAddress = {
             streetName: selectedStreetWithHouses.label,
-            houseNumber: selectedHouse.label
-        }))
-        return {
+            houseNumber: selectedHouse.label,
             streetId: selectedStreetWithHouses.id,
             houseNumberId: selectedHouse.id
         }
+        console.log( selectedAddress )
+        dispatch( setSelectedAddress(selectedAddress) )
+        return selectedAddress
     }
 
     useEffect(() => {

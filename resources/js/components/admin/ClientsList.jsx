@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { fetchClients } from "../../features/house/houseSlice";
+import { fetchClients } from "../../features/client/clientSlice";
 import { Table } from 'antd';
 
 const columns = [
@@ -90,7 +90,7 @@ const onChange = ( pagination, filters, sorter, extra ) => {
 };
 export const ClientsList = ( props ) => {
     const dispatch = useDispatch()
-    const address = useSelector( (state => state.house.address) )
+    const address = useSelector( (state => state.house.selectedAddress) )
 
     useEffect( () => {
         console.log(address)
@@ -98,7 +98,7 @@ export const ClientsList = ( props ) => {
         return () => {
             dispatch( fetchClients() )
         };
-    }, [ address ] );
+    }, [ address.label ] );
 
     return (
         <div><Table columns={ columns } dataSource={ data } onChange={ onChange }/></div>
