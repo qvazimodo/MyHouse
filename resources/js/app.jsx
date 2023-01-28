@@ -19,7 +19,7 @@ import MetersForm from "./components/MetersForm";
 import Questions from "./components/Content/Questions";
 import Reviews from "./components/Content/Reviews";
 import Watch from "./components/Content/Watch";
-import About from "./components/About";
+
 import ListCards from "./components/ListCards/ListCards";
 import Video from "./components/Content/Video";
 import { Employees } from "./components/admin/Employees";
@@ -90,8 +90,6 @@ if (document.getElementById('contacts')){
     root.render(<Contacts />);
 }
 
-
-
 if (document.getElementById('housesList')){
     const root=createRoot(document.getElementById('housesList'));
     root.render(<HousesList />);
@@ -117,11 +115,6 @@ if ( document.getElementById( 'admin__meters' ) ) {
 if ( document.getElementById( 'admin__houses' ) ) {
     const root = createRoot( document.getElementById( 'admin__houses' ) );
     root.render( <Main/> );
-}
-
-if ( document.getElementById( 'about' ) ) {
-    const root = createRoot( document.getElementById( 'about' ) );
-    root.render( <About/> );
 }
 
 if ( document.getElementById( 'logo-header' ) ) {

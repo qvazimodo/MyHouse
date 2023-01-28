@@ -14,7 +14,7 @@
 
 @section('content')
     <div id="wrapper">
-   <div id="about"></div>
+        @include('Content.about')
     </div>
 @endsection
 
