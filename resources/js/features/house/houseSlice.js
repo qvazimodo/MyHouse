@@ -31,14 +31,6 @@ export const fetchDescription = createAsyncThunk( 'house/fetchDescription', ( ad
     return fetch( url ).then( response => response.json() ).then( result => result[0]['house_description'] )
 } )
 
-export const fetchClients = createAsyncThunk( 'house/fetchClientsList', ( address ) => {
-    let url = ADMIN_CLIENTS_BY_ADDRESS_API_URL + "/" + `${ address.streetId }` + "/" + `${ address.houseNumberId }`
-    console.log( url )
-    return fetch( url ).then( response => response.json() ).then( result => {
-        console.log( result.data )
-    } )
-} )
-
 const houseSlice = createSlice( {
     name: 'house',
     initialState,
@@ -88,17 +80,6 @@ const houseSlice = createSlice( {
             state.loading = false
         } )
         builder.addCase( fetchDescription.rejected, ( state, action ) => {
-            state.error = action.payload
-        } )
-
-        builder.addCase( fetchClients.pending, ( state ) => {
-            state.loading = true
-        } )
-        builder.addCase( fetchClients.fulfilled, ( state, action ) => {
-            state.clients = action.payload
-            state.loading = false
-        } )
-        builder.addCase( fetchClients.rejected, ( state, action ) => {
             state.error = action.payload
         } )
     },
