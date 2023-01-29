@@ -14,9 +14,9 @@
 @endsection
 
 @section('content')
-    <div id="wrapper">
+
         <div id="admin"></div>
-    </div>
+
 @endsection
 
 @section('footer')

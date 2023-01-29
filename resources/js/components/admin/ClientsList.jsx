@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchClients } from "../../features/client/clientSlice";
-import { Button, Input, Space, Table } from 'antd';
+import { Button, Input, Popconfirm, Space, Table } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
+import "./styles/ClientsList.css";
+import { EditableRow } from "../Editable/EditableRow";
+import { EditableCell } from "../Editable/EditableCell";
 
 const onChange = ( pagination, filters, sorter, extra ) => {
     console.log( 'params', pagination, filters, sorter, extra );
@@ -13,6 +16,9 @@ export const ClientsList = ( props ) => {
     const [ searchText, setSearchText ] = useState( '' );
     const [ searchedColumn, setSearchedColumn ] = useState( '' );
     const searchInput = useRef( null );
+    const [dataSource, setDataSource] = useState([])
+    const [count, setCount] = useState(2);
+
     const handleSearch = ( selectedKeys, confirm, dataIndex ) => {
         confirm();
         setSearchText( selectedKeys[0] );
@@ -127,24 +133,37 @@ export const ClientsList = ( props ) => {
 
     }, [ selectedAddress ] );
 
-    let data = clientsArray.map( item => {
-        return {
-            key: item['client_id'],
-            clientId: item['client_id'],
-            userId: item['user_id'],
-            name: item['client_name'],
-            patronymic: item['client_patronymic'],
-            lastName: item['client.last_name'],
-            birthDate: new Date( item['client_birth_date'] ).toLocaleDateString( 'ru-Ru' ),
-            phone: item['client_phone'],
-            email: item['client_email'],
-            entrance: item.entrance,
-            floor: item.floor,
-            apartmentId: item['apartment_id'],
-            apartmentNumber: item['apartment_number'],
-        }
-    } )
-    const columns = [
+    useEffect( () => {
+        let data = clientsArray.map( item => {
+            return {
+                key: item['client_id'],
+                clientId: item['client_id'],
+                userId: item['user_id'],
+                name: item['client_name'],
+                patronymic: item['client_patronymic'],
+                lastName: item['client.last_name'],
+                birthDate: new Date( item['client_birth_date'] ).toLocaleDateString( 'ru-Ru' ),
+                phone: item['client_phone'],
+                email: item['client_email'],
+                entrance: item.entrance,
+                floor: item.floor,
+                apartmentId: item['apartment_id'],
+                apartmentNumber: item['apartment_number'],
+            }
+        } )
+        setDataSource(data)
+    }, [ clientsArray ] );
+
+
+
+
+
+    const handleDelete = (key) => {
+        const newData = dataSource.filter((item) => item.key !== key);
+        setDataSource(newData);
+    };
+
+    const defaultColumns = [
         {
             title: 'Номер подъезда',
             dataIndex: 'entrance',
@@ -173,7 +192,7 @@ export const ClientsList = ( props ) => {
             title: 'Фамилия',
             dataIndex: 'lastName',
             ...getColumnSearchProps( 'lastName' ),
-            filters: [ ...data.map( item => {
+            filters: [ ...dataSource.map( item => {
                 return {
                     text: item.lastName,
                     value: item.lastName,
@@ -191,7 +210,7 @@ export const ClientsList = ( props ) => {
         {
             title: 'Имя',
             dataIndex: 'name',
-            filters: [ ...data.map( item => {
+            filters: [ ...dataSource.map( item => {
                 return {
                     text: item.name,
                     value: item.name,
@@ -222,12 +241,78 @@ export const ClientsList = ( props ) => {
             title: 'Адрес электронной почты',
             dataIndex: 'email',
         },
+        {
+            title: 'operation',
+            dataIndex: 'operation',
+            render: (_, record) =>
+                dataSource.length >= 1 ? (
+                    <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
+                        <a>Delete</a>
+                    </Popconfirm>
+                ) : null,
+        },
     ];
 
+    const columns = defaultColumns.map( ( col ) => {
+        if ( !col.editable ) {
+            return col;
+        }
+        return {
+            ...col,
+            onCell: ( record ) => ({
+                record,
+                editable: col.editable,
+                dataIndex: col.dataIndex,
+                title: col.title,
+                handleSave,
+            }),
+        };
+    } );
+
+    const components = {
+        body: {
+            row: EditableRow,
+            cell: EditableCell,
+        },
+    };
+
+    const handleAdd = () => {
+        const newData = {
+            key: count,
+            name: `Edward King ${count}`,
+            age: '32',
+            address: `London, Park Lane no. ${count}`,
+        };
+        setDataSource([...dataSource, newData]);
+        setCount(count + 1);
+    };
+    const handleSave = (row) => {
+        const newData = [...dataSource];
+        const index = newData.findIndex((item) => row.key === item.key);
+        const item = newData[index];
+        newData.splice(index, 1, {
+            ...item,
+            ...row,
+        });
+        setDataSource(newData);
+    };
+
     return (
-        <div onClick={ () => console.log( data ) }>
+        <div>
+            <Button
+                onClick={ handleAdd }
+                type="primary"
+                style={ {
+                    marginBottom: 16,
+                } }
+            >
+                Add a row
+            </Button>
             <Table columns={ columns }
-                   dataSource={ data }
+                   components={ components }
+                   rowClassName={ () => 'editable-row' }
+                   bordered
+                   dataSource={dataSource}
                    onChange={ onChange }
                    pagination={ {
                        hideOnSinglePage: true,
