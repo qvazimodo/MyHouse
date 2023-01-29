@@ -4,13 +4,15 @@ import { fetchClients } from "../../features/client/clientSlice";
 import { Button, Form, Input, Popconfirm, Space, Table, Typography } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
+import {EditableCell} from '../Editable/EditableCell';
+import './styles/ClientsList.css';
 
 const onChange = ( pagination, filters, sorter, extra ) => {
     console.log( 'params', pagination, filters, sorter, extra );
 };
 export const ClientsList = ( props ) => {
     const [form] = Form.useForm();
-    const [data, setData] = useState(originData);
+    const [data, setData] = useState([]);
     const [editingKey, setEditingKey] = useState('');
     const isEditing = (record) => record.key === editingKey;
     //функционал поиска по значениям в столбцах
@@ -131,7 +133,7 @@ export const ClientsList = ( props ) => {
 
     }, [ selectedAddress ] );
 
-    let data = clientsArray.map( item => {
+    let clientsInStore = clientsArray.map( item => {
         return {
             key: item['client_id'],
             clientId: item['client_id'],
@@ -148,6 +150,11 @@ export const ClientsList = ( props ) => {
             apartmentNumber: item['apartment_number'],
         }
     } )
+
+    useEffect( () => {
+        setData(clientsInStore)
+    }, [ clientsInStore ] )
+
 
     const edit = (record) => {
         form.setFieldsValue({
@@ -187,7 +194,7 @@ export const ClientsList = ( props ) => {
 
     const columns = [
         {
-            title: 'Номер подъезда',
+            title: 'Подъезд',
             dataIndex: 'entrance',
             editable: true,
             sorter: ( a, b ) => {
@@ -205,7 +212,7 @@ export const ClientsList = ( props ) => {
             defaultSortOrder: 'ascend',
         },
         {
-            title: 'Номер квартиры',
+            title: 'Квартира',
             dataIndex: 'apartmentNumber',
             editable: true,
             sorter: ( a, b ) => {
@@ -263,12 +270,12 @@ export const ClientsList = ( props ) => {
             editable: true,
         },
         {
-            title: 'Номер телефона',
+            title: 'Телефон',
             dataIndex: 'phone',
             editable: true,
         },
         {
-            title: 'Адрес электронной почты',
+            title: 'Электронная почта',
             dataIndex: 'email',
             editable: true,
         },

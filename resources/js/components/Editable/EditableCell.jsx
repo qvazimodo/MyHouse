@@ -1,70 +1,45 @@
-import { Button, Form, Input, Popconfirm, Table } from 'antd';
-import React, { useContext, useEffect, useRef, useState } from 'react';
-const EditableContext = React.createContext(null);
-
+import { Form, Input, InputNumber, Popconfirm, Table, Typography } from 'antd';
+import { useState } from 'react';
+const originData = [];
+for (let i = 0; i < 100; i++) {
+    originData.push({
+        key: i.toString(),
+        name: `Edrward ${i}`,
+        age: 32,
+        address: `London Park no. ${i}`,
+    });
+}
 export const EditableCell = ({
-                          title,
-                          editable,
-                          children,
+                          editing,
                           dataIndex,
+                          title,
+                          inputType,
                           record,
-                          handleSave,
+                          index,
+                          children,
                           ...restProps
                       }) => {
-    const [editing, setEditing] = useState(false);
-    const inputRef = useRef(null);
-    const form = useContext(EditableContext);
-    useEffect(() => {
-        if (editing) {
-            inputRef.current.focus();
-        }
-    }, [editing]);
-    const toggleEdit = () => {
-        setEditing(!editing);
-        form.setFieldsValue({
-            [dataIndex]: record[dataIndex],
-        });
-    };
-    const save = async () => {
-        try {
-            const values = await form.validateFields();
-            toggleEdit();
-            handleSave({
-                ...record,
-                ...values,
-            });
-        } catch (errInfo) {
-            console.log('Save failed:', errInfo);
-        }
-    };
-    let childNode = children;
-    if (editable) {
-        childNode = editing ? (
-            <Form.Item
-                style={{
-                    margin: 0,
-                }}
-                name={dataIndex}
-                rules={[
-                    {
-                        required: true,
-                        message: `${title} is required.`,
-                    },
-                ]}
-            >
-                <Input ref={inputRef} onPressEnter={save} onBlur={save} />
-            </Form.Item>
-        ) : (
-            <div
-                className="editable-cell-value-wrap"
-                style={{
-                    paddingRight: 24,
-                }}
-                onClick={toggleEdit}
-            >
-                {children}
-            </div>
-        );
-    }
-    return <td {...restProps}>{childNode}</td>;
+    const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
+    return (
+        <td {...restProps}>
+            {editing ? (
+                <Form.Item
+                    name={dataIndex}
+                    style={{
+                        margin: 0,
+                    }}
+                    rules={[
+                        {
+                            required: true,
+                            message: `Please Input ${title}!`,
+                        },
+                    ]}
+                >
+                    {inputNode}
+                </Form.Item>
+            ) : (
+                children
+            )}
+        </td>
+    );
 };
