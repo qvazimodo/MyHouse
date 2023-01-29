@@ -4,22 +4,19 @@ import { fetchClients } from "../../features/client/clientSlice";
 import { Button, Form, Input, Popconfirm, Space, Table, Typography } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import "./styles/ClientsList.css";
-import { EditableRow } from "../Editable/EditableRow";
-import { EditableCell } from "../Editable/EditableCell";
 
 const onChange = ( pagination, filters, sorter, extra ) => {
     console.log( 'params', pagination, filters, sorter, extra );
 };
 export const ClientsList = ( props ) => {
+    const [form] = Form.useForm();
+    const [data, setData] = useState(originData);
+    const [editingKey, setEditingKey] = useState('');
+    const isEditing = (record) => record.key === editingKey;
     //функционал поиска по значениям в столбцах
     const [ searchText, setSearchText ] = useState( '' );
     const [ searchedColumn, setSearchedColumn ] = useState( '' );
     const searchInput = useRef( null );
-
-    //редактирование данных
-    const [ dataSource, setDataSource ] = useState( [] )
-
     const handleSearch = ( selectedKeys, confirm, dataIndex ) => {
         confirm();
         setSearchText( selectedKeys[0] );
@@ -134,73 +131,61 @@ export const ClientsList = ( props ) => {
 
     }, [ selectedAddress ] );
 
-    useEffect( () => {
-        let data = clientsArray.map( item => {
-            return {
-                key: item['client_id'],
-                clientId: item['client_id'],
-                userId: item['user_id'],
-                name: item['client_name'],
-                patronymic: item['client_patronymic'],
-                lastName: item['client.last_name'],
-                birthDate: new Date( item['client_birth_date'] ).toLocaleDateString( 'ru-Ru' ),
-                phone: item['client_phone'],
-                email: item['client_email'],
-                entrance: item.entrance,
-                floor: item.floor,
-                apartmentId: item['apartment_id'],
-                apartmentNumber: item['apartment_number'],
-            }
-        } )
-        setDataSource(data)
-    }, [ clientsArray ] );
+    let data = clientsArray.map( item => {
+        return {
+            key: item['client_id'],
+            clientId: item['client_id'],
+            userId: item['user_id'],
+            name: item['client_name'],
+            patronymic: item['client_patronymic'],
+            lastName: item['client.last_name'],
+            birthDate: new Date( item['client_birth_date'] ).toLocaleDateString( 'ru-Ru' ),
+            phone: item['client_phone'],
+            email: item['client_email'],
+            entrance: item.entrance,
+            floor: item.floor,
+            apartmentId: item['apartment_id'],
+            apartmentNumber: item['apartment_number'],
+        }
+    } )
 
-
-    const handleDelete = ( key ) => {
-        const newData = dataSource.filter( ( item ) => item.key !== key );
-        setDataSource( newData );
-    };
-
-    const [ form ] = Form.useForm();
-    const [ editingKey, setEditingKey ] = useState( '' );
-    const isEditing = ( record ) => record.key === editingKey;
-    const edit = ( record ) => {
-        form.setFieldsValue( {
+    const edit = (record) => {
+        form.setFieldsValue({
             name: '',
             age: '',
             address: '',
             ...record,
-        } );
-        setEditingKey( record.key );
+        });
+        setEditingKey(record.key);
+    };
+    const cancel = () => {
+        setEditingKey('');
     };
 
-    const cancel = () => {
-        setEditingKey( '' );
-    };
-    const save = async ( key ) => {
+    const save = async (key) => {
         try {
             const row = await form.validateFields();
-            const newData = [ ...dataSource ];
-            const index = newData.findIndex( ( item ) => key === item.key );
-            if ( index > -1 ) {
+            const newData = [...data];
+            const index = newData.findIndex((item) => key === item.key);
+            if (index > -1) {
                 const item = newData[index];
-                newData.splice( index, 1, {
+                newData.splice(index, 1, {
                     ...item,
                     ...row,
-                } );
-                setDataSource( newData );
-                setEditingKey( '' );
+                });
+                setData(newData);
+                setEditingKey('');
             } else {
-                newData.push( row );
-                setDataSource( newData );
-                setEditingKey( '' );
+                newData.push(row);
+                setData(newData);
+                setEditingKey('');
             }
-        } catch ( errInfo ) {
-            console.log( 'Validate Failed:', errInfo );
+        } catch (errInfo) {
+            console.log('Validate Failed:', errInfo);
         }
     };
 
-    const defaultColumns = [
+    const columns = [
         {
             title: 'Номер подъезда',
             dataIndex: 'entrance',
@@ -233,7 +218,7 @@ export const ClientsList = ( props ) => {
             dataIndex: 'lastName',
             editable: true,
             ...getColumnSearchProps( 'lastName' ),
-            filters: [ ...dataSource.map( item => {
+            filters: [ ...data.map( item => {
                 return {
                     text: item.lastName,
                     value: item.lastName,
@@ -252,7 +237,7 @@ export const ClientsList = ( props ) => {
             title: 'Имя',
             dataIndex: 'name',
             editable: true,
-            filters: [ ...dataSource.map( item => {
+            filters: [ ...data.map( item => {
                 return {
                     text: item.name,
                     value: item.name,
@@ -285,134 +270,74 @@ export const ClientsList = ( props ) => {
         {
             title: 'Адрес электронной почты',
             dataIndex: 'email',
+            editable: true,
         },
         {
             title: 'operation',
             dataIndex: 'operation',
-            render: ( _, record ) => {
-                const editable = isEditing( record );
+            render: (_, record) => {
+                const editable = isEditing(record);
                 return editable ? (
                     <span>
             <Typography.Link
-                onClick={ () => save( record.key ) }
-                style={ {
+                onClick={() => save(record.key)}
+                style={{
                     marginRight: 8,
-                } }
+                }}
             >
-              Сохранить
+              Save
             </Typography.Link>
-            <Popconfirm title="Sure to cancel?" onConfirm={ cancel }>
-              <a>Отмена</a>
+            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
+              <a>Cancel</a>
             </Popconfirm>
           </span>
                 ) : (
-                    <Typography.Link disabled={ editingKey !== '' } onClick={ () => edit( record ) }>
-                        Редактировать
+                    <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
+                        Edit
                     </Typography.Link>
                 );
-            }
-        },
-        {
-            title: 'Удаление',
-            dataIndex: 'deleting',
-            render: ( _, record ) => {
-                return dataSource.length >= 1 ? (
-                    <Popconfirm title="Sure to delete?" onConfirm={ () => handleDelete( record.key ) }>
-                        <a>Удалить</a>
-                    </Popconfirm>
-                ) : null
-            }
-
+            },
         },
     ];
 
-    const columns = defaultColumns.map( ( col ) => {
-        if ( !col.editable ) {
+    const mergedColumns = columns.map((col) => {
+        if (!col.editable) {
             return col;
         }
         return {
             ...col,
-            onCell: ( record ) => ({
-                record,
-                editable: col.editable,
-                dataIndex: col.dataIndex,
-                title: col.title,
-                handleSave,
-            }),
-        };
-    } );
-
-    const components = {
-        body: {
-            row: EditableRow,
-            cell: EditableCell,
-        },
-    };
-
-    const handleAdd = () => {
-        const newData = {
-            name: `Введите имя`,
-        };
-        setDataSource( [ ...dataSource, newData ] );
-    };
-    const handleSave = ( row ) => {
-        const newData = [ ...dataSource ];
-        const index = newData.findIndex( ( item ) => row.key === item.key );
-        const item = newData[index];
-        newData.splice( index, 1, {
-            ...item,
-            ...row,
-        } );
-        setDataSource( newData );
-    };
-
-    const mergedColumns = columns.map( ( col ) => {
-        if ( !col.editable ) {
-            return col;
-        }
-        return {
-            ...col,
-            onCell: ( record ) => ({
+            onCell: (record) => ({
                 record,
                 inputType: col.dataIndex === 'age' ? 'number' : 'text',
                 dataIndex: col.dataIndex,
                 title: col.title,
-                editing: isEditing( record ),
+                editing: isEditing(record),
             }),
         };
-    } );
+    });
 
     return (
-        <div>
-            <Button
-                onClick={ handleAdd }
-                type="primary"
-                style={ {
-                    marginBottom: 16,
-                } }
-            >
-                Add a row
-            </Button>
-            <Form form={ form } component={ false }>
-                <Table
-                    columns={ columns }
-                    components={ components }
-                    rowClassName={ () => 'editable-row' }
-                    bordered
-                    dataSource={ dataSource }
-                    onChange={ onChange }
-                    pagination={ {
-                        hideOnSinglePage: true,
-                        onChange: cancel,
-                        // pageSize,
-                        // total: totalPages,
-                        // onChange: onPageChange
-                        // showSizeChanger: true,
-                    } }
-
-                />
-            </Form>
-        </div>
+        <Form form={form} component={false}>
+            <Table columns={mergedColumns}
+                   dataSource={ data }
+                   bordered
+                   onChange={ onChange }
+                   rowClassName="editable-row"
+                   pagination={ {
+                       hideOnSinglePage: true,
+                       onChange: cancel,
+                       // pageSize,
+                       // total: totalPages,
+                       // onChange: onPageChange
+                       // showSizeChanger: true,
+                   } }
+                   components={{
+                       body: {
+                           cell: EditableCell,
+                       },
+                   }}
+            />
+        </Form>
     );
 }
 
