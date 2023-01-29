@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { fetchClients } from "../../features/client/clientSlice";
+import { fetchClients, putClientById, } from "../../features/client/clientSlice";
 import { Button, Form, Input, Popconfirm, Space, Table, Typography } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import {EditableCell} from '../Editable/EditableCell';
+import { EditableCell } from '../Editable/EditableCell';
 import './styles/ClientsList.css';
 
 const onChange = ( pagination, filters, sorter, extra ) => {
@@ -12,7 +12,7 @@ const onChange = ( pagination, filters, sorter, extra ) => {
 };
 export const ClientsList = ( props ) => {
     const [form] = Form.useForm();
-    const [data, setData] = useState([]);
+    const [clientIsUpdated, setClientIsUpdated ] = useState( false );
     const [editingKey, setEditingKey] = useState('');
     const isEditing = (record) => record.key === editingKey;
     //функционал поиска по значениям в столбцах
@@ -127,13 +127,15 @@ export const ClientsList = ( props ) => {
     const dispatch = useDispatch()
     const selectedAddress = useSelector( (state => state.house.selectedAddress) )
     const clientsArray = useSelector( state => state.client.array )
+
     useEffect( () => {
         console.log( selectedAddress )
-        dispatch( fetchClients( selectedAddress ) )
+        dispatch( fetchClients( selectedAddress ) ).then(()=>setClientIsUpdated(false))
 
-    }, [ selectedAddress ] );
+    }, [ selectedAddress, clientIsUpdated ] );
 
-    let clientsInStore = clientsArray.map( item => {
+
+    let data = clientsArray.map( item => {
         return {
             key: item['client_id'],
             clientId: item['client_id'],
@@ -151,10 +153,6 @@ export const ClientsList = ( props ) => {
         }
     } )
 
-    useEffect( () => {
-        setData(clientsInStore)
-    }, [ clientsInStore ] )
-
 
     const edit = (record) => {
         form.setFieldsValue({
@@ -170,21 +168,27 @@ export const ClientsList = ( props ) => {
     };
 
     const save = async (key) => {
+        console.log(key)
         try {
             const row = await form.validateFields();
             const newData = [...data];
+            console.log(newData)
             const index = newData.findIndex((item) => key === item.key);
+            console.log(index)
             if (index > -1) {
                 const item = newData[index];
-                newData.splice(index, 1, {
+              const  newClientData = {
                     ...item,
                     ...row,
-                });
-                setData(newData);
+                }
+                dispatch(putClientById( {...newClientData, ...selectedAddress }))
+                    .then(()=>setClientIsUpdated(true))
                 setEditingKey('');
             } else {
                 newData.push(row);
-                setData(newData);
+                // setData(newData);
+                // console.log(newData)
+                // dispatch(putClientById(newData))
                 setEditingKey('');
             }
         } catch (errInfo) {

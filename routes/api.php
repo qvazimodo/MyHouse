@@ -92,6 +92,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/clients/by_address/{street_id}/{house_id}',
         [AdminClientController::class, 'getClientsByAddress']);
 
+    Route::put('/clients/advanced/',
+        [AdminClientController::class, 'update']);
+
 });
 
 // Password reset routes

@@ -17,6 +17,9 @@ export const ADMIN_HOUSES_API_URL = DOMEN + "/api/admin/houses";
 //описание дома для администратора
 export const ADMIN_HOUSE_DESCRIPTION_API_URL = DOMEN + "/api/admin/houses/description";
 
+//клиенты для администратора
+export const ADMIN_CLIENTS_ADVANCED_API_URL = DOMEN + "/api/admin/clients/advanced";
+
 // маршрут получения текущего пользователя
 export const AUTH_USER_API_URL = DOMEN + "/api/auth/auth_user";
 

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\API\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Apartment;
 use App\Models\Client;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -44,13 +46,54 @@ class ClientController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $input = $request->all();
+        $userId = $input['userId'];
+        $apartmentId = $input['apartmentId'];
+
+
+        $user = User::where('id', $userId)->first();
+        $user['name'] = $input['name'];
+        $user['patronymic'] = $input['patronymic'];
+        $user['last_name'] = $input['lastName'];
+        $user['phone'] = $input['phone'];
+        $user['email'] = $input['email'];
+//        $user['birth_date'] = $input['birthDate '];
+        $user->save();
+
+        $apartment = Apartment::where('id', $apartmentId)->first();
+        $apartment['entrance']= $input['entrance'];
+        $apartment['floor']= $input['floor'];
+        $apartment['number']= $input['apartmentNumber'];
+        $apartment->save();
+
+
+//        dump($$request);
+//        dd($client);
+
+/*        if ((Client::where('user_id', Auth::user()->id)->get())->isEmpty()) {
+            return response()->json("Нет прав", 403);
+        }*/
+
+//        $clientId = Client::where('user_id', Auth::user()->id)->first();
+//        $clientId = $clientId->id;
+//        $card = Card::create($request->all());
+//        $card->client_id = $clientId;
+//        $card->save();
+//        $photo = JsonResponse::class;
+//        if ($request->file()) {
+//            $photo = $this->uploadPhoto($request, $card);
+//        }
+
+        return response()->json([
+            'status' => 'ok',
+            "message" => "Профиль клиента обновлён успешно!",
+        ], 204);
     }
 
     /**
