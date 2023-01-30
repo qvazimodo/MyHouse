@@ -1,5 +1,4 @@
- @extends('layouts.landing_layout')
-
+@extends('layouts.landing_layout')
 
 @section('title', 'My House Управляющая компания')
 
@@ -9,14 +8,13 @@
     </div>
 @endsection
 
-@section('header')
+{{--@section('header')--}}
 {{--    @include('Identically.header')--}}
-@endsection
+{{--@endsection--}}
 
 @section('content')
-    <div class="container">
-        <h2 class="title-2">Счётчики</h2>
-        <div id="admin__meters"></div>
+    <div id="wrapper">
+        <div id="passwordreq"></div>
     </div>
 @endsection
 

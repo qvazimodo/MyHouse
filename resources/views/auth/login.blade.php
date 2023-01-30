@@ -63,8 +63,8 @@
                     {{ __('Войти') }}
                 </button>
 
-                @if (Route::has('password.request'))
-                    <a class="password-txt" href="{{ route('password.request') }}">
+                @if (Route::has('passwordreq'))
+                    <a class="password-txt" href="passwordreq">
                         {{ __('Забыли пароль?') }}
                     </a>
                 @endif

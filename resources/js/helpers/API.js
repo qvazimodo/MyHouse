@@ -7,6 +7,12 @@ export const EMPLOYEES_API_URL = DOMEN + "/api/employees";
 
 export const CARDS_API_URL = DOMEN + "/api/cards";
 
+export const PASSWORD_EMAIL_API_URL = DOMEN + "/api/password/email";
+
+export const PASSWORD_CHECK_EMAIL_API_URL =  DOMEN + "/api/password/code/check";
+
+export const PASSWORD_RESET_EMAIL_API_URL =  DOMEN + "/api/password/reset";
+
 //все объявления текущего клиента
 export const CLIENT_CARDS_API_URL = DOMEN + "/api/client/cards";
 

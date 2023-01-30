@@ -63,6 +63,18 @@ Route::get('/announcement', function () {
     return view('announcement');
 })->name('announcement');
 
+Route::get('/passwordreq', function () {
+    return view('passwordreq');
+})->name('passwordreq');
+
+Route::get('/passwordcode', function () {
+    return view('passwordcode');
+})->name('passwordcode');
+
+Route::get('/passwordnew', function () {
+    return view('passwordnew');
+})->name('passwordnew');
+
 Route::get('/usercards', function () {
     return view('usercards');
 })->name('usercards');
@@ -74,4 +86,6 @@ Route::get('/serviced_houses', function (){
 Route::get('/news', function (){
     return view('news');
 })->name('news');
+
+
 

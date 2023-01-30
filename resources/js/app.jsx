@@ -31,11 +31,14 @@ import { Header } from "./components/Identically/Header/Header";
 import { Footer } from "./components/Identically/Footer/Footer";
 import Flats from "./components/Content/Flats";
 import LogoHeader from "./components/Identically/Menu/Logo-header";
+import PasswordReq from "./components/PasswordReq/PasswordReq";
 import { Main } from "./components/admin/HousesPage/Main";
 import {RouterProvider} from "react-router-dom";
 import {Router} from "./components/admin/Router"
 import { Provider } from "react-redux";
 import store from "./store";
+import CodePassword from "./components/PasswordReq/CodePassword";
+import NewPassword from "./components/PasswordReq/NewPassword";
 
 
 if ( document.getElementById( 'questions' ) ) {
@@ -63,6 +66,21 @@ if (document.getElementById('usercards')){
     root.render(<UserCards/>);
 }
 
+if (document.getElementById('passwordreq')){
+    const root=createRoot(document.getElementById('passwordreq'));
+    root.render(<PasswordReq/>);
+}
+
+if (document.getElementById('passwordcode')){
+    const root=createRoot(document.getElementById('passwordcode'));
+    root.render(<CodePassword/>);
+}
+
+if (document.getElementById('passwordnew')){
+    const root=createRoot(document.getElementById('passwordnew'));
+    root.render(<NewPassword/>);
+}
+
 if (document.getElementById('watch')) {
     const root = createRoot(document.getElementById('watch'));
     root.render(<Watch />);
@@ -72,6 +90,7 @@ if (document.getElementById('listCards')) {
     const root = createRoot(document.getElementById('listCards'));
     root.render(<ListCards />);
 }
+
 
 if (document.getElementById('video')) {
     const root = createRoot(document.getElementById('video'));
