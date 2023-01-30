@@ -1,14 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { fetchClients } from "../../features/client/clientSlice";
-import { Button, Input, Space, Table } from 'antd';
+import { fetchClients, putClientById, } from "../../features/client/clientSlice";
+import { Button, Form, Input, Popconfirm, Space, Table, Typography } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
+import { EditableCell } from '../Editable/EditableCell';
+import './styles/ClientsList.css';
 
 const onChange = ( pagination, filters, sorter, extra ) => {
     console.log( 'params', pagination, filters, sorter, extra );
 };
 export const ClientsList = ( props ) => {
+    const [form] = Form.useForm();
+    const [clientIsUpdated, setClientIsUpdated ] = useState( false );
+    const [editingKey, setEditingKey] = useState('');
+    const isEditing = (record) => record.key === editingKey;
     //функционал поиска по значениям в столбцах
     const [ searchText, setSearchText ] = useState( '' );
     const [ searchedColumn, setSearchedColumn ] = useState( '' );
@@ -121,11 +127,13 @@ export const ClientsList = ( props ) => {
     const dispatch = useDispatch()
     const selectedAddress = useSelector( (state => state.house.selectedAddress) )
     const clientsArray = useSelector( state => state.client.array )
+
     useEffect( () => {
         console.log( selectedAddress )
-        dispatch( fetchClients( selectedAddress ) )
+        dispatch( fetchClients( selectedAddress ) ).then(()=>setClientIsUpdated(false))
 
-    }, [ selectedAddress ] );
+    }, [ selectedAddress, clientIsUpdated ] );
+
 
     let data = clientsArray.map( item => {
         return {
@@ -144,10 +152,55 @@ export const ClientsList = ( props ) => {
             apartmentNumber: item['apartment_number'],
         }
     } )
+
+
+    const edit = (record) => {
+        form.setFieldsValue({
+            name: '',
+            age: '',
+            address: '',
+            ...record,
+        });
+        setEditingKey(record.key);
+    };
+    const cancel = () => {
+        setEditingKey('');
+    };
+
+    const save = async (key) => {
+        console.log(key)
+        try {
+            const row = await form.validateFields();
+            const newData = [...data];
+            console.log(newData)
+            const index = newData.findIndex((item) => key === item.key);
+            console.log(index)
+            if (index > -1) {
+                const item = newData[index];
+              const  newClientData = {
+                    ...item,
+                    ...row,
+                }
+                dispatch(putClientById( {...newClientData, ...selectedAddress }))
+                    .then(()=>setClientIsUpdated(true))
+                setEditingKey('');
+            } else {
+                newData.push(row);
+                // setData(newData);
+                // console.log(newData)
+                // dispatch(putClientById(newData))
+                setEditingKey('');
+            }
+        } catch (errInfo) {
+            console.log('Validate Failed:', errInfo);
+        }
+    };
+
     const columns = [
         {
-            title: 'Номер подъезда',
+            title: 'Подъезд',
             dataIndex: 'entrance',
+            editable: true,
             sorter: ( a, b ) => {
                 return a.entrance - b.entrance
             },
@@ -156,14 +209,16 @@ export const ClientsList = ( props ) => {
         {
             title: 'Этаж',
             dataIndex: 'floor',
+            editable: true,
             sorter: ( a, b ) => {
                 return a.floor - b.floor
             },
             defaultSortOrder: 'ascend',
         },
         {
-            title: 'Номер квартиры',
+            title: 'Квартира',
             dataIndex: 'apartmentNumber',
+            editable: true,
             sorter: ( a, b ) => {
                 return a.apartmentNumber - b.apartmentNumber
             },
@@ -172,6 +227,7 @@ export const ClientsList = ( props ) => {
         {
             title: 'Фамилия',
             dataIndex: 'lastName',
+            editable: true,
             ...getColumnSearchProps( 'lastName' ),
             filters: [ ...data.map( item => {
                 return {
@@ -191,6 +247,7 @@ export const ClientsList = ( props ) => {
         {
             title: 'Имя',
             dataIndex: 'name',
+            editable: true,
             filters: [ ...data.map( item => {
                 return {
                     text: item.name,
@@ -209,36 +266,89 @@ export const ClientsList = ( props ) => {
         {
             title: 'Отчество',
             dataIndex: 'patronymic',
+            editable: true,
         },
         {
             title: 'Дата рождения',
             dataIndex: 'birthDate',
+            editable: true,
         },
         {
-            title: 'Номер телефона',
+            title: 'Телефон',
             dataIndex: 'phone',
+            editable: true,
         },
         {
-            title: 'Адрес электронной почты',
+            title: 'Электронная почта',
             dataIndex: 'email',
+            editable: true,
+        },
+        {
+            title: 'operation',
+            dataIndex: 'operation',
+            render: (_, record) => {
+                const editable = isEditing(record);
+                return editable ? (
+                    <span>
+            <Typography.Link
+                onClick={() => save(record.key)}
+                style={{
+                    marginRight: 8,
+                }}
+            >
+              Save
+            </Typography.Link>
+            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
+              <a>Cancel</a>
+            </Popconfirm>
+          </span>
+                ) : (
+                    <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
+                        Edit
+                    </Typography.Link>
+                );
+            },
         },
     ];
 
+    const mergedColumns = columns.map((col) => {
+        if (!col.editable) {
+            return col;
+        }
+        return {
+            ...col,
+            onCell: (record) => ({
+                record,
+                inputType: col.dataIndex === 'age' ? 'number' : 'text',
+                dataIndex: col.dataIndex,
+                title: col.title,
+                editing: isEditing(record),
+            }),
+        };
+    });
+
     return (
-        <div onClick={ () => console.log( data ) }>
-            <Table columns={ columns }
+        <Form form={form} component={false}>
+            <Table columns={mergedColumns}
                    dataSource={ data }
+                   bordered
                    onChange={ onChange }
+                   rowClassName="editable-row"
                    pagination={ {
                        hideOnSinglePage: true,
+                       onChange: cancel,
                        // pageSize,
                        // total: totalPages,
                        // onChange: onPageChange
                        // showSizeChanger: true,
                    } }
-
+                   components={{
+                       body: {
+                           cell: EditableCell,
+                       },
+                   }}
             />
-        </div>
+        </Form>
     );
 }
 

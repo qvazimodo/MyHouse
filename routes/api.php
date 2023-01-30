@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\TimetableController;
 use App\Http\Controllers\Auth\CodeCheckController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -92,9 +93,15 @@ Route::prefix('admin')->group(function () {
     Route::get('/clients/by_address/{street_id}/{house_id}',
         [AdminClientController::class, 'getClientsByAddress']);
 
+    Route::put('/clients/advanced/',
+        [AdminClientController::class, 'update']);
+
 });
 
 // Password reset routes
 Route::post('password/email', ForgotPasswordController::class);
 Route::post('password/code/check', CodeCheckController::class);
 Route::post('password/reset', ResetPasswordController::class);
+
+//
+Route::apiResource('timetable', TimetableController::class);
