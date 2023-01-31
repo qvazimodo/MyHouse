@@ -26,7 +26,7 @@ return new class extends Migration
         });
 
         Schema::table('meters', function (Blueprint $table) {
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('restrict');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
         });
         }
 

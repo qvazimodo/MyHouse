@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { fetchClients, putClientById, } from "../../features/client/clientSlice";
+import { deleteClient, fetchClients, putClientById } from "../../features/client/clientSlice";
 import { Button, Form, Input, Popconfirm, Space, Table, Typography } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
@@ -303,21 +303,38 @@ export const ClientsList = ( props ) => {
             </Popconfirm>
           </span>
                 ) : (
-                    <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
+                    <Typography.Link disabled={ editingKey !== '' } onClick={ () => edit( record ) }>
                         Edit
                     </Typography.Link>
                 );
             },
         },
+        {
+            title: 'operation',
+            dataIndex: 'operation',
+            render: ( _, record ) =>
+                data.length >= 1 ? (
+                    <Popconfirm title="Sure to delete?" onConfirm={ () => handleDelete( record.key ) }>
+                        <a>Delete</a>
+                    </Popconfirm>
+                ) : null,
+        },
     ];
 
-    const mergedColumns = columns.map((col) => {
-        if (!col.editable) {
+    const handleDelete = ( key ) => {
+        const selectedRow = data.filter( ( item ) => item.key === key );
+        console.log( selectedRow )
+        dispatch( deleteClient( selectedRow[0].clientId ) )
+            .then( () => setClientIsUpdated( true ) )
+    };
+
+    const mergedColumns = columns.map( ( col ) => {
+        if ( !col.editable ) {
             return col;
         }
         return {
             ...col,
-            onCell: (record) => ({
+            onCell: ( record ) => ({
                 record,
                 inputType: col.dataIndex === 'age' ? 'number' : 'text',
                 dataIndex: col.dataIndex,

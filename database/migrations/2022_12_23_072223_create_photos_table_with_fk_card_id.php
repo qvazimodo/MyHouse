@@ -23,7 +23,7 @@ return new class extends Migration
             $table->unsignedInteger('height')->default(null);
             $table->timestamps();
 
-            $table->foreign('card_id')->references('id')->on('cards');
+            $table->foreign('card_id')->references('id')->on('cards')->onDelete('cascade');
         });
     }
 
