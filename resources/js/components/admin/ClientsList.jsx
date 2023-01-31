@@ -1,122 +1,122 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { deleteClient, fetchClients, putClientById } from "../../features/client/clientSlice";
-import { Button, Form, Input, Popconfirm, Space, Table, Typography } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
+import React, {useEffect, useRef, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {deleteClient, fetchClients, putClientById} from "../../features/client/clientSlice";
+import {Button, Form, Input, Popconfirm, Space, Table, Typography} from 'antd';
+import {SearchOutlined} from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import { EditableCell } from '../Editable/EditableCell';
+import {EditableCell} from '../Editable/EditableCell';
 import './styles/ClientsList.css';
 
-const onChange = ( pagination, filters, sorter, extra ) => {
-    console.log( 'params', pagination, filters, sorter, extra );
+const onChange = (pagination, filters, sorter, extra) => {
+    console.log('params', pagination, filters, sorter, extra);
 };
-export const ClientsList = ( props ) => {
+export const ClientsList = (props) => {
     const [form] = Form.useForm();
-    const [clientIsUpdated, setClientIsUpdated ] = useState( false );
+    const [clientIsUpdated, setClientIsUpdated] = useState(false);
     const [editingKey, setEditingKey] = useState('');
     const isEditing = (record) => record.key === editingKey;
     //функционал поиска по значениям в столбцах
-    const [ searchText, setSearchText ] = useState( '' );
-    const [ searchedColumn, setSearchedColumn ] = useState( '' );
-    const searchInput = useRef( null );
-    const handleSearch = ( selectedKeys, confirm, dataIndex ) => {
+    const [searchText, setSearchText] = useState('');
+    const [searchedColumn, setSearchedColumn] = useState('');
+    const searchInput = useRef(null);
+    const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
-        setSearchText( selectedKeys[0] );
-        setSearchedColumn( dataIndex );
+        setSearchText(selectedKeys[0]);
+        setSearchedColumn(dataIndex);
     };
-    const handleReset = ( clearFilters ) => {
+    const handleReset = (clearFilters) => {
         clearFilters();
-        setSearchText( '' );
+        setSearchText('');
     };
-    const getColumnSearchProps = ( dataIndex ) => ({
-        filterDropdown: ( { setSelectedKeys, selectedKeys, confirm, clearFilters, close } ) => (
+    const getColumnSearchProps = (dataIndex) => ({
+        filterDropdown: ({setSelectedKeys, selectedKeys, confirm, clearFilters, close}) => (
             <div
-                style={ {
+                style={{
                     padding: 8,
-                } }
-                onKeyDown={ ( e ) => e.stopPropagation() }
+                }}
+                onKeyDown={(e) => e.stopPropagation()}
             >
                 <Input
-                    ref={ searchInput }
-                    placeholder={ `Search ${ dataIndex }` }
-                    value={ selectedKeys[0] }
-                    onChange={ ( e ) => setSelectedKeys( e.target.value ? [ e.target.value ] : [] ) }
-                    onPressEnter={ () => handleSearch( selectedKeys, confirm, dataIndex ) }
-                    style={ {
+                    ref={searchInput}
+                    placeholder={`Search ${dataIndex}`}
+                    value={selectedKeys[0]}
+                    onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+                    onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                    style={{
                         marginBottom: 8,
                         display: 'block',
-                    } }
+                    }}
                 />
                 <Space>
                     <Button
                         type="primary"
-                        onClick={ () => handleSearch( selectedKeys, confirm, dataIndex ) }
-                        icon={ <SearchOutlined/> }
+                        onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                        icon={<SearchOutlined/>}
                         size="small"
-                        style={ {
+                        style={{
                             width: 90,
-                        } }
+                        }}
                     >
                         Search
                     </Button>
                     <Button
-                        onClick={ () => clearFilters && handleReset( clearFilters ) }
+                        onClick={() => clearFilters && handleReset(clearFilters)}
                         size="small"
-                        style={ {
+                        style={{
                             width: 90,
-                        } }
+                        }}
                     >
                         Reset
                     </Button>
                     <Button
                         type="link"
                         size="small"
-                        onClick={ () => {
-                            confirm( {
+                        onClick={() => {
+                            confirm({
                                 closeDropdown: false,
-                            } );
-                            setSearchText( selectedKeys[0] );
-                            setSearchedColumn( dataIndex );
-                        } }
+                            });
+                            setSearchText(selectedKeys[0]);
+                            setSearchedColumn(dataIndex);
+                        }}
                     >
                         Filter
                     </Button>
                     <Button
                         type="link"
                         size="small"
-                        onClick={ () => {
+                        onClick={() => {
                             close();
-                        } }
+                        }}
                     >
                         close
                     </Button>
                 </Space>
             </div>
         ),
-        filterIcon: ( filtered ) => (
+        filterIcon: (filtered) => (
             <SearchOutlined
-                style={ {
+                style={{
                     color: filtered ? '#1890ff' : undefined,
-                } }
+                }}
             />
         ),
-        onFilter: ( value, record ) =>
-            record[dataIndex].toString().toLowerCase().includes( value.toLowerCase() ),
-        onFilterDropdownOpenChange: ( visible ) => {
-            if ( visible ) {
-                setTimeout( () => searchInput.current?.select(), 100 );
+        onFilter: (value, record) =>
+            record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+        onFilterDropdownOpenChange: (visible) => {
+            if (visible) {
+                setTimeout(() => searchInput.current?.select(), 100);
             }
         },
-        render: ( text ) =>
+        render: (text) =>
             searchedColumn === dataIndex ? (
                 <Highlighter
-                    highlightStyle={ {
+                    highlightStyle={{
                         backgroundColor: '#ffc069',
                         padding: 0,
-                    } }
-                    searchWords={ [ searchText ] }
+                    }}
+                    searchWords={[searchText]}
                     autoEscape
-                    textToHighlight={ text ? text.toString() : '' }
+                    textToHighlight={text ? text.toString() : ''}
                 />
             ) : (
                 text
@@ -125,17 +125,17 @@ export const ClientsList = ( props ) => {
 
 
     const dispatch = useDispatch()
-    const selectedAddress = useSelector( (state => state.house.selectedAddress) )
-    const clientsArray = useSelector( state => state.client.array )
+    const selectedAddress = useSelector((state => state.house.selectedAddress))
+    const clientsArray = useSelector(state => state.client.array)
 
-    useEffect( () => {
-        console.log( selectedAddress )
-        dispatch( fetchClients( selectedAddress ) ).then(()=>setClientIsUpdated(false))
+    useEffect(() => {
+        console.log(selectedAddress)
+        dispatch(fetchClients(selectedAddress)).then(() => setClientIsUpdated(false))
 
-    }, [ selectedAddress, clientIsUpdated ] );
+    }, [selectedAddress, clientIsUpdated]);
 
 
-    let data = clientsArray.map( item => {
+    let data = clientsArray.map(item => {
         return {
             key: item['client_id'],
             clientId: item['client_id'],
@@ -143,7 +143,7 @@ export const ClientsList = ( props ) => {
             name: item['client_name'],
             patronymic: item['client_patronymic'],
             lastName: item['client.last_name'],
-            birthDate: new Date( item['client_birth_date'] ).toLocaleDateString( 'ru-Ru' ),
+            birthDate: new Date(item['client_birth_date']).toLocaleDateString('ru-Ru'),
             phone: item['client_phone'],
             email: item['client_email'],
             entrance: item.entrance,
@@ -151,7 +151,7 @@ export const ClientsList = ( props ) => {
             apartmentId: item['apartment_id'],
             apartmentNumber: item['apartment_number'],
         }
-    } )
+    })
 
 
     const edit = (record) => {
@@ -177,12 +177,12 @@ export const ClientsList = ( props ) => {
             console.log(index)
             if (index > -1) {
                 const item = newData[index];
-              const  newClientData = {
+                const newClientData = {
                     ...item,
                     ...row,
                 }
-                dispatch(putClientById( {...newClientData, ...selectedAddress }))
-                    .then(()=>setClientIsUpdated(true))
+                dispatch(putClientById({...newClientData, ...selectedAddress}))
+                    .then(() => setClientIsUpdated(true))
                 setEditingKey('');
             } else {
                 newData.push(row);
@@ -201,7 +201,7 @@ export const ClientsList = ( props ) => {
             title: 'Подъезд',
             dataIndex: 'entrance',
             editable: true,
-            sorter: ( a, b ) => {
+            sorter: (a, b) => {
                 return a.entrance - b.entrance
             },
             defaultSortOrder: 'ascend',
@@ -210,7 +210,7 @@ export const ClientsList = ( props ) => {
             title: 'Этаж',
             dataIndex: 'floor',
             editable: true,
-            sorter: ( a, b ) => {
+            sorter: (a, b) => {
                 return a.floor - b.floor
             },
             defaultSortOrder: 'ascend',
@@ -219,7 +219,7 @@ export const ClientsList = ( props ) => {
             title: 'Квартира',
             dataIndex: 'apartmentNumber',
             editable: true,
-            sorter: ( a, b ) => {
+            sorter: (a, b) => {
                 return a.apartmentNumber - b.apartmentNumber
             },
             defaultSortOrder: 'ascend',
@@ -228,18 +228,18 @@ export const ClientsList = ( props ) => {
             title: 'Фамилия',
             dataIndex: 'lastName',
             editable: true,
-            ...getColumnSearchProps( 'lastName' ),
-            filters: [ ...data.map( item => {
+            ...getColumnSearchProps('lastName'),
+            filters: [...data.map(item => {
                 return {
                     text: item.lastName,
                     value: item.lastName,
                 }
-            } )
+            })
             ],
             // specify the condition of filtering result
             // here is that finding the name started with `value`
-            onFilter: ( value, record ) => record.lastName.indexOf( value ) === 0,
-            sorter: ( a, b ) => {
+            onFilter: (value, record) => record.lastName.indexOf(value) === 0,
+            sorter: (a, b) => {
                 return (a.lastName.toLowerCase() < b.lastName.toLowerCase()) ? -1 : 1
             },
             defaultSortOrder: 'ascend',
@@ -248,20 +248,20 @@ export const ClientsList = ( props ) => {
             title: 'Имя',
             dataIndex: 'name',
             editable: true,
-            filters: [ ...data.map( item => {
+            filters: [...data.map(item => {
                 return {
                     text: item.name,
                     value: item.name,
                 }
-            } )
+            })
             ],
             // specify the condition of filtering result
             // here is that finding the name started with `value`
-            onFilter: ( value, record ) => record.name.indexOf( value ) === 0,
-            sorter: ( a, b ) => {
+            onFilter: (value, record) => record.name.indexOf(value) === 0,
+            sorter: (a, b) => {
                 return (a.name.toLowerCase() < b.name.toLowerCase()) ? -1 : 1
             },
-            sortDirections: [ 'ascend' ],
+            sortDirections: ['ascend'],
         },
         {
             title: 'Отчество',
@@ -284,57 +284,63 @@ export const ClientsList = ( props ) => {
             editable: true,
         },
         {
-            title: 'operation',
-            dataIndex: 'operation',
-            render: (_, record) => {
-                const editable = isEditing(record);
-                return editable ? (
-                    <span>
+            title: 'Доступные действия',
+            children: [
+                {
+                    dataIndex: 'edit',
+                    render: (_, record) => {
+                        const editable = isEditing(record);
+                        return editable ? (
+                            <span className="flex">
             <Typography.Link
                 onClick={() => save(record.key)}
                 style={{
                     marginRight: 8,
                 }}
             >
-              Save
+              <Button>Сохранить</Button>
             </Typography.Link>
-            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-              <a>Cancel</a>
+            <Popconfirm title="Уверены, что хотите отменить?" onConfirm={cancel}>
+                <Button>Отмена</Button>
             </Popconfirm>
           </span>
-                ) : (
-                    <Typography.Link disabled={ editingKey !== '' } onClick={ () => edit( record ) }>
-                        Edit
-                    </Typography.Link>
-                );
-            },
-        },
-        {
-            title: 'operation',
-            dataIndex: 'operation',
-            render: ( _, record ) =>
-                data.length >= 1 ? (
-                    <Popconfirm title="Sure to delete?" onConfirm={ () => handleDelete( record.key ) }>
-                        <a>Delete</a>
-                    </Popconfirm>
-                ) : null,
-        },
+                        ) : (
+                            <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
+                                <Button type="primary">Редактировать</Button>
+                            </Typography.Link>
+                        );
+                    },
+                },
+                {
+
+                    dataIndex: 'delete',
+                    render: (_, record) =>
+                        data.length >= 1 ? (
+                            <Popconfirm title="Вы уверены, что хотите удалить учётную запись данного клиента?"
+                                        onConfirm={() => handleDelete(record.key)}>
+                                <Button type="primary" danger>Удалить</Button>
+                            </Popconfirm>
+                        ) : null,
+                },
+            ]
+        }
+
     ];
 
-    const handleDelete = ( key ) => {
-        const selectedRow = data.filter( ( item ) => item.key === key );
-        console.log( selectedRow )
-        dispatch( deleteClient( selectedRow[0].clientId ) )
-            .then( () => setClientIsUpdated( true ) )
+    const handleDelete = (key) => {
+        const selectedRow = data.filter((item) => item.key === key);
+        console.log(selectedRow)
+        dispatch(deleteClient(selectedRow[0].clientId))
+            .then(() => setClientIsUpdated(true))
     };
 
-    const mergedColumns = columns.map( ( col ) => {
-        if ( !col.editable ) {
+    const mergedColumns = columns.map((col) => {
+        if (!col.editable) {
             return col;
         }
         return {
             ...col,
-            onCell: ( record ) => ({
+            onCell: (record) => ({
                 record,
                 inputType: col.dataIndex === 'age' ? 'number' : 'text',
                 dataIndex: col.dataIndex,
@@ -347,18 +353,18 @@ export const ClientsList = ( props ) => {
     return (
         <Form form={form} component={false}>
             <Table columns={mergedColumns}
-                   dataSource={ data }
+                   dataSource={data}
                    bordered
-                   onChange={ onChange }
+                   onChange={onChange}
                    rowClassName="editable-row"
-                   pagination={ {
+                   pagination={{
                        hideOnSinglePage: true,
                        onChange: cancel,
                        // pageSize,
                        // total: totalPages,
                        // onChange: onPageChange
                        // showSizeChanger: true,
-                   } }
+                   }}
                    components={{
                        body: {
                            cell: EditableCell,

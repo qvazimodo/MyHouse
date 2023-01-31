@@ -16,3 +16,11 @@ button[type="button"].ant-btn-primary{
 button[type="button"].ant-btn-primary.ant-btn-dangerous{
     background-color: #ff4d4f;
 }
+
+.add{
+    @apply flex justify-end;
+}
+
+.add__button{
+    @apply mr-32 my-5;
+}
