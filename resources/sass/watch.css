@@ -1,0 +1,50 @@
+.section {
+    background: url('/resources/js/components/img/watching-bg.png') center / cover no-repeat;
+    padding: 180px 0;
+    box-sizing: border-box;
+}
+.section_text {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #FFFFFF;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.bottom_text {
+    color: #FFFFFF;
+    font-size: 12px;
+}
+.input-name{
+    padding: 7px 0 7px 7px;
+    border-radius: 10px;
+
+}
+.input_button {
+    border: 1px solid #FFFFFF;
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-size: 14px;
+    width: 198px;
+    padding: 8px 0 8px 0;
+}
+.form-section{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@media (max-width:864px) {
+.form-section{
+    display: block;
+    text-align: center;
+}
+    input{
+        margin-bottom: 5px;
+    }
+    .input_button {
+        padding: 8px 0 8px 0;
+    }
+}
+
+

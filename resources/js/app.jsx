@@ -16,11 +16,8 @@ import React from "react";
 import { createRoot } from 'react-dom/client';
 import RequestForEmployee from './components/RequestForEmployee';
 import MetersForm from "./components/MetersForm";
-import Questions from "./components/Content/Questions";
 import Reviews from "./components/Content/Reviews";
-import Watch from "./components/Content/Watch";
 import ListCards from "./components/ListCards/ListCards";
-import Video from "./components/Content/Video";
 import { Employees } from "./components/admin/Employees";
 import UserCards from "./components/UserCards/UserCards";
 import HousesList from "./components/HousesList";
@@ -40,11 +37,6 @@ import store from "./store";
 import CodePassword from "./components/PasswordReq/CodePassword";
 import NewPassword from "./components/PasswordReq/NewPassword";
 
-
-if ( document.getElementById( 'questions' ) ) {
-    const root = createRoot( document.getElementById( 'questions' ) );
-    root.render( <Questions/> );
-}
 
 if ( document.getElementById( 'request' ) ) {
     const root = createRoot( document.getElementById( 'request' ) );
@@ -81,20 +73,9 @@ if (document.getElementById('passwordnew')){
     root.render(<NewPassword/>);
 }
 
-if (document.getElementById('watch')) {
-    const root = createRoot(document.getElementById('watch'));
-    root.render(<Watch />);
-}
-
 if (document.getElementById('listCards')) {
     const root = createRoot(document.getElementById('listCards'));
     root.render(<ListCards />);
-}
-
-
-if (document.getElementById('video')) {
-    const root = createRoot(document.getElementById('video'));
-    root.render(<Video />);
 }
 
 if (document.getElementById('employees')){

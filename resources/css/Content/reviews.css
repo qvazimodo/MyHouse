@@ -45,7 +45,7 @@
     padding: 0 10px;
 }
 
-@media (max-width:767px) {
+@media (max-width:1000px) {
     .reviews{
         padding: 0;
     }

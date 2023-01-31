@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from 'antd';
-import style from "../../../css/Content/flats.css";
+import style from "../../../sass/flats.css";
 import flat1 from "../img/flat1.jpg"
 import flat2 from "../img/flat2.jpg"
 import flat3 from "../img/flat3.jpg"

@@ -103,8 +103,8 @@ body {
     font-size: 36px;
     line-height: 1.33;
     color: #D4C17F;
-    margin-bottom: 20px;
     text-align: center;
+    margin: 0 0 20px 0;
 }
 #logo-header{
     /*margin-left: -30px;*/
@@ -113,6 +113,7 @@ body {
 }
 
 @media (max-width:767px) {
+
     .title_name {
         font-size: 30px;
     }
