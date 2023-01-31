@@ -85,9 +85,31 @@ class EmployeeAPIController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $input = $request->all();
+        $userId = $input['userId'];
+        $employeeId = $input['employeeId'];
+
+
+        $user = User::where('id', $userId)->first();
+        $user['name'] = $input['name'];
+        $user['patronymic'] = $input['patronymic'];
+        $user['last_name'] = $input['lastName'];
+        $user['phone'] = $input['phone'];
+        $user['email'] = $input['email'];
+//        $user['birth_date'] = $input['birthDate '];
+        $user->save();
+
+        $employee = Employee::where('id', $employeeId)->first();
+        $employee['held_position']= $input['position'];
+
+        $employee->save();
+
+        return response()->json([
+            'status' => 'ok',
+            "message" => "Профиль сотрудника обновлён успешно!",
+        ], 204);
     }
 
     /**

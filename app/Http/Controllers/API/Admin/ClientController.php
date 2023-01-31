@@ -72,24 +72,6 @@ class ClientController extends Controller
         $apartment['number']= $input['apartmentNumber'];
         $apartment->save();
 
-
-//        dump($$request);
-//        dd($client);
-
-/*        if ((Client::where('user_id', Auth::user()->id)->get())->isEmpty()) {
-            return response()->json("Нет прав", 403);
-        }*/
-
-//        $clientId = Client::where('user_id', Auth::user()->id)->first();
-//        $clientId = $clientId->id;
-//        $card = Card::create($request->all());
-//        $card->client_id = $clientId;
-//        $card->save();
-//        $photo = JsonResponse::class;
-//        if ($request->file()) {
-//            $photo = $this->uploadPhoto($request, $card);
-//        }
-
         return response()->json([
             'status' => 'ok',
             "message" => "Профиль клиента обновлён успешно!",
