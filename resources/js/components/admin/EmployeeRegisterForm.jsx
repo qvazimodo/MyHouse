@@ -95,7 +95,7 @@ export const EmployeeRegisterForm = ( { onChange, fields, sendForm } ) => {
                        ] }>
                 <Input/>
             </Form.Item>
-            <Button onClick={ (e) => sendForm(e) }>Зарегистрировать сотрудника</Button>
+            {/*<Button onClick={ (e) => sendForm(e) }>Зарегистрировать сотрудника</Button>*/}
         </Form>
     );
 };
