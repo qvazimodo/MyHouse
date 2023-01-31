@@ -61,4 +61,10 @@ class Client extends Authenticatable
     {
         return $this->belongsTo(Apartment::class);
     }
+
+    public function timetable(): belongsTo
+    {
+        return $this->belongsTo(Timetable::class);
+    }
+
 }

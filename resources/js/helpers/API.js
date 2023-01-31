@@ -1,4 +1,4 @@
-export const DOMEN = "http://localhost";
+export const DOMEN = "http://i-myhouse.ru";
 
 // маршрут получения CSRF-token текущего пользователя
 export const CSRF_URL = DOMEN + "/api/auth/csrf";
