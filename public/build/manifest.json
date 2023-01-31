@@ -1,0 +1,74 @@
+{
+  "resources/js/components/img/woman.jpeg": {
+    "file": "assets/woman.2934b78a.jpeg",
+    "src": "resources/js/components/img/woman.jpeg"
+  },
+  "resources/js/components/img/woman2.jpg": {
+    "file": "assets/woman2.d78367ac.jpg",
+    "src": "resources/js/components/img/woman2.jpg"
+  },
+  "resources/js/components/img/man.jpeg": {
+    "file": "assets/man.cd4dd75a.jpeg",
+    "src": "resources/js/components/img/man.jpeg"
+  },
+  "resources/js/components/img/sticker.png": {
+    "file": "assets/sticker.f0481e62.png",
+    "src": "resources/js/components/img/sticker.png"
+  },
+  "resources/js/components/img/phone.png": {
+    "file": "assets/phone.b92ee370.png",
+    "src": "resources/js/components/img/phone.png"
+  },
+  "resources/js/components/img/watching-bg.png": {
+    "file": "assets/watching-bg.abf54377.png",
+    "src": "resources/js/components/img/watching-bg.png"
+  },
+  "storage/app/public/images/Rectangle.png": {
+    "file": "assets/Rectangle.5d6f2564.png",
+    "src": "storage/app/public/images/Rectangle.png"
+  },
+  "resources/js/components/img/flat1.jpg": {
+    "file": "assets/flat1.40ef8a4f.jpg",
+    "src": "resources/js/components/img/flat1.jpg"
+  },
+  "resources/js/components/img/flat2.jpg": {
+    "file": "assets/flat2.f2434fde.jpg",
+    "src": "resources/js/components/img/flat2.jpg"
+  },
+  "resources/js/app.jsx": {
+    "file": "assets/app.bfdd086d.js",
+    "src": "resources/js/app.jsx",
+    "isEntry": true,
+    "css": [
+      "assets/app.5075d76f.css"
+    ],
+    "assets": [
+      "assets/watching-bg.abf54377.png",
+      "assets/woman.2934b78a.jpeg",
+      "assets/woman2.d78367ac.jpg",
+      "assets/man.cd4dd75a.jpeg",
+      "assets/sticker.f0481e62.png",
+      "assets/phone.b92ee370.png",
+      "assets/Rectangle.5d6f2564.png",
+      "assets/flat1.40ef8a4f.jpg",
+      "assets/flat2.f2434fde.jpg"
+    ]
+  },
+  "resources/js/app.css": {
+    "file": "assets/app.5075d76f.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/sass/app.scss": {
+    "file": "assets/app.2d53a95e.css",
+    "src": "resources/sass/app.scss",
+    "isEntry": true
+  },
+  "resources/js/components/img/flat3.jpg": {
+    "file": "assets/flat1.40ef8a4f.jpg",
+    "src": "resources/js/components/img/flat3.jpg"
+  },
+  "resources/js/components/img/flat4.jpg": {
+    "file": "assets/flat2.f2434fde.jpg",
+    "src": "resources/js/components/img/flat4.jpg"
+  }
+}
