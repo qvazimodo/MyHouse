@@ -40,6 +40,26 @@ export const putClientById = createAsyncThunk( 'client/putClient',
     }
 )
 
+export const deleteClient = createAsyncThunk( 'client/deleteClient',
+    ( clientId, thunkAPI ) => {
+        console.log( clientId )
+        let url = ADMIN_CLIENTS_ADVANCED_API_URL + '/' + `${ clientId }`
+        console.log( url )
+
+        const data = fetch( url,
+            {
+                method: "DELETE", // or "PUT" with the url changed to, e.g "https://reqres.in/api/users/2"
+                headers: {
+                    'Content-type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector( 'meta[name="csrf-token"]' )
+                        .getAttribute( 'content' ),
+                },
+            }
+        ).then( response => response.json() ).then( data => data )
+
+        return data
+    }
+)
 const clientSlice = createSlice( {
     name: 'client',
     initialState,
@@ -72,6 +92,20 @@ const clientSlice = createSlice( {
         } )
         builder.addCase( putClientById.rejected, ( state,
                                                    action ) => {
+            state.error = action.payload
+        } )
+
+        //удаление клиента
+        builder.addCase( deleteClient.pending, ( state ) => {
+            state.loading = true
+        } )
+        builder.addCase( deleteClient.fulfilled, ( state, action ) => {
+            state.array = action.payload
+            console.log( action.payload )
+            state.loading = false
+        } )
+        builder.addCase( deleteClient.rejected, ( state,
+                                                  action ) => {
             state.error = action.payload
         } )
     }

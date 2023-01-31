@@ -14,8 +14,8 @@ return new class extends Migration {
     {
         Schema::create('card_category', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('card_id')->constrained('cards', 'id');
-            $table->foreignId('category_id')->constrained('categories', 'id');
+            $table->foreignId('card_id')->constrained('cards', 'id')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('categories', 'id')->onDelete('cascade');
         });
     }
 

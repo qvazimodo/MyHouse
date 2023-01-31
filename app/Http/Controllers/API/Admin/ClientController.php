@@ -100,11 +100,13 @@ class ClientController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+
+    public function destroy(Client $client):JsonResponse
     {
-        //
+        $client->delete();
+        return response()->json(['status' => 'ok'], 204);
     }
 
     public function getClientsByAddress($streetId, $houseNumberId): JsonResponse
