@@ -5,7 +5,7 @@ import "./PasswordReq.css";
 import {PASSWORD_EMAIL_API_URL} from "../../helpers/API";
 
 const PasswordReq = () => {
-    const [email1, setEmail] = useState('');
+    const [email, setEmail] = useState('');
     const [linkcode, setLinkcode] = useState('');
     const [disableCode, setDisableCode] = useState(true);
     const [textMessageEmail, setTextMessageEmail] = useState('');
@@ -20,7 +20,7 @@ const PasswordReq = () => {
                     .getAttribute('content'),
             },
             body: JSON.stringify({
-                email: email1,
+                email: email,
             })
         })
             .then(response => response.json())
@@ -46,7 +46,7 @@ const PasswordReq = () => {
                 <FormItem>
                     <Input
                         placeholder="Введите почту:"
-                        name='email' value={email1}
+                        name='email' value={email}
                         type='email'
                         onChange={(e) => {
                             setEmail(e.target.value)
