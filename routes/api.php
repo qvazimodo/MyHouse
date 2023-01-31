@@ -93,6 +93,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/employees/by_address/{street_id}/{house_id}',
         [EmployeeAPIController::class, 'getEmployeesByAddress']);
 
+    Route::delete('/employees/{employee}', [EmployeeAPIController::class, 'destroy']);
+
     //Клиенты
     Route::get('/clients/by_address/{street_id}/{house_id}',
         [AdminClientController::class, 'getClientsByAddress']);

@@ -1,181 +1,350 @@
-import React, { useEffect, useState } from 'react';
-import { EMPLOYEES_API_URL } from '../../helpers/API';
-import { Button, Modal, Space, Table } from "antd";
-import ColumnGroup from "antd/es/table/ColumnGroup";
-import Column from "antd/es/table/Column";
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { deleteEmployee, fetchEmployees, putEmployeeById } from "../../features/employee/employeeSlice";
+import { Button, Form, Input, Popconfirm, Space, Table, Typography } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import Highlighter from 'react-highlight-words';
+import { EditableCell } from '../Editable/EditableCell';
+// import './styles/EmployeesList.css';
 
-export const EmployeesList = () => {
-    const [ employeesList, setEmployeesList ] = useState( [] )
-    const [ currentPageNumber, setCurrentPageNumber ] = useState( 1 )
-    const [ totalPages, setTotalPages ] = useState( 1 );
-    const [ pageSize, setPageSize ] = useState( 5 );
-    const [ loading, setLoading ] = useState( false );
-    const [ data, setData ] = useState( [] );
-
-    const [ links, setLinks ] = useState( {} );
-    const [ currentId, setCurrentId ] = useState( {} );
-
-    const [ open, setOpen ] = useState( false );
-    const [ confirmLoading, setConfirmLoading ] = useState( false );
-    const [ modalText, setModalText ] = useState( 'Content of the modal' );
-    const showModal = () => {
-        setOpen( true );
+const onChange = ( pagination, filters, sorter, extra ) => {
+    console.log( 'params', pagination, filters, sorter, extra );
+};
+export const EmployeesList = ( props ) => {
+    const [form] = Form.useForm();
+    const [employeeIsUpdated, setEmployeeIsUpdated ] = useState( false );
+    const [editingKey, setEditingKey] = useState('');
+    const isEditing = (record) => record.key === editingKey;
+    //функционал поиска по значениям в столбцах
+    const [ searchText, setSearchText ] = useState( '' );
+    const [ searchedColumn, setSearchedColumn ] = useState( '' );
+    const searchInput = useRef( null );
+    const handleSearch = ( selectedKeys, confirm, dataIndex ) => {
+        confirm();
+        setSearchText( selectedKeys[0] );
+        setSearchedColumn( dataIndex );
     };
-    const handleOk = () => {
-        setConfirmLoading( true );
-
-        deleteEmployee( currentId )
-        fetchEmployees( EMPLOYEES_API_URL + `?page=${ currentPageNumber }` )
-
-        setTimeout( () => {
-            setOpen( false );
-            setConfirmLoading( false );
-        }, 2000 );
+    const handleReset = ( clearFilters ) => {
+        clearFilters();
+        setSearchText( '' );
     };
-    const handleCancel = () => {
-        console.log( 'Clicked cancel button' );
-        setOpen( false );
-    };
+    const getColumnSearchProps = ( dataIndex ) => ({
+        filterDropdown: ( { setSelectedKeys, selectedKeys, confirm, clearFilters, close } ) => (
+            <div
+                style={ {
+                    padding: 8,
+                } }
+                onKeyDown={ ( e ) => e.stopPropagation() }
+            >
+                <Input
+                    ref={ searchInput }
+                    placeholder={ `Search ${ dataIndex }` }
+                    value={ selectedKeys[0] }
+                    onChange={ ( e ) => setSelectedKeys( e.target.value ? [ e.target.value ] : [] ) }
+                    onPressEnter={ () => handleSearch( selectedKeys, confirm, dataIndex ) }
+                    style={ {
+                        marginBottom: 8,
+                        display: 'block',
+                    } }
+                />
+                <Space>
+                    <Button
+                        type="primary"
+                        onClick={ () => handleSearch( selectedKeys, confirm, dataIndex ) }
+                        icon={ <SearchOutlined/> }
+                        size="small"
+                        style={ {
+                            width: 90,
+                        } }
+                    >
+                        Search
+                    </Button>
+                    <Button
+                        onClick={ () => clearFilters && handleReset( clearFilters ) }
+                        size="small"
+                        style={ {
+                            width: 90,
+                        } }
+                    >
+                        Reset
+                    </Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        onClick={ () => {
+                            confirm( {
+                                closeDropdown: false,
+                            } );
+                            setSearchText( selectedKeys[0] );
+                            setSearchedColumn( dataIndex );
+                        } }
+                    >
+                        Filter
+                    </Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        onClick={ () => {
+                            close();
+                        } }
+                    >
+                        close
+                    </Button>
+                </Space>
+            </div>
+        ),
+        filterIcon: ( filtered ) => (
+            <SearchOutlined
+                style={ {
+                    color: filtered ? '#1890ff' : undefined,
+                } }
+            />
+        ),
+        onFilter: ( value, record ) =>
+            record[dataIndex].toString().toLowerCase().includes( value.toLowerCase() ),
+        onFilterDropdownOpenChange: ( visible ) => {
+            if ( visible ) {
+                setTimeout( () => searchInput.current?.select(), 100 );
+            }
+        },
+        render: ( text ) =>
+            searchedColumn === dataIndex ? (
+                <Highlighter
+                    highlightStyle={ {
+                        backgroundColor: '#ffc069',
+                        padding: 0,
+                    } }
+                    searchWords={ [ searchText ] }
+                    autoEscape
+                    textToHighlight={ text ? text.toString() : '' }
+                />
+            ) : (
+                text
+            ),
+    });
 
-    const onPageChange = ( page ) => {
-        fetchEmployees( EMPLOYEES_API_URL + `?page=${ page }` )
-    }
 
+    const dispatch = useDispatch()
+    const selectedAddress = useSelector( (state => state.house.selectedAddress) )
+    const employeesArray = useSelector( state => state.employee.array )
 
     useEffect( () => {
-        fetchEmployees( EMPLOYEES_API_URL )
-    }, [] )
+        console.log( selectedAddress )
+        dispatch( fetchEmployees( selectedAddress ) ).then(()=>setEmployeeIsUpdated(false))
 
-    useEffect( () => {
-        setData( employeesList.map( item => {
-            return {
-                key: item.id,
-                held_position: item.held_position,
-                name: item.user.name,
-                patronymic: item.user.patronymic,
-                lastName: item.user['last_name'],
-                birthDate: new Date(item.user['birth_date']).toLocaleDateString(),
-                // age:(new Date().getTime() - new Date(item.user['birth_date']).getTime()).getFullYear()
-                age: new Date(Date.now() - new Date(item.user['birth_date']).getTime()).getFullYear() - 1970,
+    }, [ selectedAddress, employeeIsUpdated ] );
+
+
+    let data = employeesArray.map( item => {
+        return {
+            key: item['employee_id'],
+            employeeId: item['employee_id'],
+            userId: item['user_id'],
+            name: item['employee_name'],
+            patronymic: item['employee_patronymic'],
+            lastName: item['employee_last_name'],
+            birthDate: new Date( item['employee_birth_date'] ).toLocaleDateString( 'ru-Ru' ),
+            phone: item['employee_phone'],
+            email: item['employee_email'],
+            position: item['position'],
+        }
+    } )
+
+
+    const edit = (record) => {
+        form.setFieldsValue({
+            name: '',
+            age: '',
+            address: '',
+            ...record,
+        });
+        setEditingKey(record.key);
+    };
+    const cancel = () => {
+        setEditingKey('');
+    };
+
+    const save = async (key) => {
+        console.log(key)
+        try {
+            const row = await form.validateFields();
+            const newData = [...data];
+            console.log(newData)
+            const index = newData.findIndex((item) => key === item.key);
+            console.log(index)
+            if (index > -1) {
+                const item = newData[index];
+              const  newEmployeeData = {
+                    ...item,
+                    ...row,
+                }
+                dispatch(putEmployeeById( {...newEmployeeData, ...selectedAddress }))
+                    .then(()=>setEmployeeIsUpdated(true))
+                setEditingKey('');
+            } else {
+                newData.push(row);
+                // setData(newData);
+                // console.log(newData)
+                // dispatch(putEmployeeById(newData))
+                setEditingKey('');
             }
-        }))
-    }, [employeesList]);
+        } catch (errInfo) {
+            console.log('Validate Failed:', errInfo);
+        }
+    };
 
-
-    const fetchEmployees = (page) => {
-        setLoading(true)
-        fetch(page)
-            .then(response => response.json())
-            .catch(err => console.log(err))
-            .then(result => {
-                setEmployeesList(result.data)
-                setCurrentPageNumber(result.meta.current_page)
-                setTotalPages(result.meta.total)
-                setPageSize(result.meta.per_page)
-                setLinks(result.links)
-                setTotalPages(result.meta.total)
-                setLoading(false)
-            });
-    }
-
-    /* useEffect(() => {
-         fetch(EMPLOYEES_API_URL)
-             .then((response) => {
-                 if (!response.ok){
-                     throw new Error(Request failed with status ${response.status});
-                 }
-                 return response.json();
-             })
-             .then((result) => setGists(result))
-             .catch((err) => console.log(err));
-     }, []);*/
-
-    const deleteEmployee = (id) => {
-        fetch( EMPLOYEES_API_URL + '/' + `${ id }`, {
-            method: 'DELETE',
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector( 'meta[name="csrf-token"]' ).getAttribute( 'content' ),
-                'Accept': 'application/json'
-            }
-        } )
-            .then( response => response.json() )
-            .catch( ( error ) => console.log( `Backend delete Employee error: ${ error }` ) )
-            .then( ( message ) => console.log( message ) );
-    }
-
-    return (
-        <div className='container'>
-            <Table
-                loading={loading}
-                dataSource={data}
-                pagination={{
-                    pageSize,
-                    total: totalPages,
-                    onChange: onPageChange
-                    // showSizeChanger: true,
+    const columns = [
+        {
+            title: 'Должность',
+            dataIndex: 'position',
+            editable: true,
+            sorter: ( a, b ) => {
+                return a.apartmentNumber - b.apartmentNumber
+            },
+            defaultSortOrder: 'ascend',
+        },
+        {
+            title: 'Фамилия',
+            dataIndex: 'lastName',
+            editable: true,
+            ...getColumnSearchProps( 'lastName' ),
+            filters: [ ...data.map( item => {
+                return {
+                    text: item.lastName,
+                    value: item.lastName,
+                }
+            } )
+            ],
+            // specify the condition of filtering result
+            // here is that finding the name started with `value`
+            onFilter: ( value, record ) => record.lastName.indexOf( value ) === 0,
+            sorter: ( a, b ) => {
+                return (a.lastName.toLowerCase() < b.lastName.toLowerCase()) ? -1 : 1
+            },
+            defaultSortOrder: 'ascend',
+        },
+        {
+            title: 'Имя',
+            dataIndex: 'name',
+            editable: true,
+            filters: [ ...data.map( item => {
+                return {
+                    text: item.name,
+                    value: item.name,
+                }
+            } )
+            ],
+            // specify the condition of filtering result
+            // here is that finding the name started with `value`
+            onFilter: ( value, record ) => record.name.indexOf( value ) === 0,
+            sorter: ( a, b ) => {
+                return (a.name.toLowerCase() < b.name.toLowerCase()) ? -1 : 1
+            },
+            sortDirections: [ 'ascend' ],
+        },
+        {
+            title: 'Отчество',
+            dataIndex: 'patronymic',
+            editable: true,
+        },
+        {
+            title: 'Дата рождения',
+            dataIndex: 'birthDate',
+            editable: true,
+        },
+        {
+            title: 'Телефон',
+            dataIndex: 'phone',
+            editable: true,
+        },
+        {
+            title: 'Электронная почта',
+            dataIndex: 'email',
+            editable: true,
+        },
+        {
+            title: 'operation',
+            dataIndex: 'operation',
+            render: (_, record) => {
+                const editable = isEditing(record);
+                return editable ? (
+                    <span>
+            <Typography.Link
+                onClick={() => save(record.key)}
+                style={{
+                    marginRight: 8,
                 }}
             >
-                <ColumnGroup title="ФИО">
-                    <Column title="Фамилия" dataIndex="lastName" key="lastName"/>
-                    <Column title="Имя" dataIndex="name" key="name"/>
-                    <Column title="Отчество" dataIndex="patronymic" key="patronymic"/>
-                </ColumnGroup>
-                <Column title="Должность" dataIndex="held_position" key="held_position"/>
-                <Column title="Дата рождения" dataIndex="birthDate" key="birthDate"/>
-                <Column title="Возраст" dataIndex="age" key="age"/>
-                <ColumnGroup
-                title="Доступные действия">
-                    <Column
-                        key="action1"
-                        render={(_, record) => (
-                            <Space size="middle">
-                                {/*<Button>{record.lastName}</Button>*/}
-                                <Button type="primary">Задачи</Button>
-                            </Space>
-                        ) }
-                    />
-                    <Column
-                    key="action2"
-                    render={(_, record) => (
-                        <Space size="middle">
-                            {/*<Button>{record.lastName}</Button>*/}
-                            <Button>Премировать</Button>
-                        </Space>
-                    ) }
-                />
-                    <Column
-                    key="action3"
-                    render={(_, record) => (
-                        <Space size="middle">
-                            {/*<Button>{record.lastName}</Button>*/}
-                            <Button danger onClick={ () => {
-                                console.log( record )
-                                setOpen( true )
-                                setModalText(
-                                    `Производится увольнение сотрудника
-                                    ${ record.name }  ${ record.patronymic }  ${ record.lastName }
-                                    с должности ${ record.held_position } ` );
-                                setCurrentId( record.key )
-                            } }>Уволить</Button>
-                        </Space>
-                    ) }
-                />
-                </ColumnGroup>
-            </Table>
-            <Button type="primary" onClick={ () => {
-                console.log( employeesList, data )
+              Save
+            </Typography.Link>
+            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
+              <a>Cancel</a>
+            </Popconfirm>
+          </span>
+                ) : (
+                    <Typography.Link disabled={ editingKey !== '' } onClick={ () => edit( record ) }>
+                        Edit
+                    </Typography.Link>
+                );
+            },
+        },
+        {
+            title: 'operation',
+            dataIndex: 'operation',
+            render: ( _, record ) =>
+                data.length >= 1 ? (
+                    <Popconfirm title="Sure to delete?" onConfirm={ () => handleDelete( record.key ) }>
+                        <a>Delete</a>
+                    </Popconfirm>
+                ) : null,
+        },
+    ];
 
-            } }>Вывести данные в
-                консоль</Button>
-            <Modal
-                title="Title"
-                open={ open }
-                onOk={ handleOk }
-                confirmLoading={ confirmLoading }
-                onCancel={ handleCancel }
-            >
-                <p>{ modalText }</p>
-            </Modal>
-        </div>
-    )
+    const handleDelete = ( key ) => {
+        const selectedRow = data.filter( ( item ) => item.key === key );
+        console.log( selectedRow )
+        dispatch( deleteEmployee( selectedRow[0].employeeId ) )
+            .then( () => setEmployeeIsUpdated( true ) )
+    };
+
+    const mergedColumns = columns.map( ( col ) => {
+        if ( !col.editable ) {
+            return col;
+        }
+        return {
+            ...col,
+            onCell: ( record ) => ({
+                record,
+                inputType: col.dataIndex === 'age' ? 'number' : 'text',
+                dataIndex: col.dataIndex,
+                title: col.title,
+                editing: isEditing(record),
+            }),
+        };
+    });
+
+    return (
+        <Form form={form} component={false}>
+            <Table columns={mergedColumns}
+                   dataSource={ data }
+                   bordered
+                   onChange={ onChange }
+                   rowClassName="editable-row"
+                   pagination={ {
+                       hideOnSinglePage: true,
+                       onChange: cancel,
+                       // pageSize,
+                       // total: totalPages,
+                       // onChange: onPageChange
+                       // showSizeChanger: true,
+                   } }
+                   components={{
+                       body: {
+                           cell: EditableCell,
+                       },
+                   }}
+            />
+        </Form>
+    );
 }
+

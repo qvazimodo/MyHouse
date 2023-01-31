@@ -23,14 +23,20 @@ export const ADMIN_HOUSES_API_URL = DOMEN + "/api/admin/houses";
 //описание дома для администратора
 export const ADMIN_HOUSE_DESCRIPTION_API_URL = DOMEN + "/api/admin/houses/description";
 
+//Сотрудники для администратора
+export const ADMIN_EMPLOYEES_API_URL = DOMEN + "/api/admin/employees";
+
+//получение массива сотрудников организации по адресу обслуживаемого объекта
+export const ADMIN_EMPLOYEES_BY_ADDRESS_API_URL = DOMEN + "/api/admin/employees/by_address";
+
 //клиенты для администратора
 export const ADMIN_CLIENTS_ADVANCED_API_URL = DOMEN + "/api/admin/clients/advanced";
 
-// маршрут получения текущего пользователя
-export const AUTH_USER_API_URL = DOMEN + "/api/auth/auth_user";
-
 //получение массива клиентов по адресу проживания
 export const ADMIN_CLIENTS_BY_ADDRESS_API_URL = DOMEN + "/api/admin/clients/by_address";
+
+// маршрут получения текущего пользователя
+export const AUTH_USER_API_URL = DOMEN + "/api/auth/auth_user";
 
 // маршрут получения показаний всех счетчиков текущего клиента
 export const AUTH_METERS_LIST_API_URL = DOMEN + "/api/client_meters";

@@ -96,10 +96,9 @@ class EmployeeAPIController extends Controller
      * @param  Employee  $employee
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Employee $employee): JsonResponse
+    public function destroy(Employee $employee):JsonResponse
     {
         $employee->delete();
-//        return response()->json(null, 204);
         return response()->json(['status' => 'ok'], 204);
     }
 
@@ -118,7 +117,7 @@ class EmployeeAPIController extends Controller
                 'users.phone as employee_phone',
                 'users.email as employee_email',
                 'users.patronymic as employee_patronymic',
-                'users.last_name as employee.last_name',
+                'users.last_name as employee_last_name',
                 'employees.id as employee_id',
                 'employees.held_position as position',
             )

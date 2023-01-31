@@ -15,9 +15,9 @@ return new class extends Migration {
         Schema::create('employee_serviced_address', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('employee_id')->nullable(false)->comment('id сотрудника');
-            $table->foreign('employee_id')->references('id')->on('employees');
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->unsignedBigInteger('house_number_street_id')->nullable(false)->comment('id адреса объекта');
-            $table->foreign('house_number_street_id')->references('id')->on('house_number_street');
+            $table->foreign('house_number_street_id')->references('id')->on('house_number_street')->onDelete('cascade');
         });
     }
 

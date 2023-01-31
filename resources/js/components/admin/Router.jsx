@@ -4,6 +4,7 @@ import { MainPage } from "./MainPage";
 import { Employees } from "./Employees";
 import { HousesList } from "./HousesList";
 import { ClientsList } from "./ClientsList";
+import { EmployeesList } from "./EmployeesList";
 
 export const Router = createHashRouter(
     [
@@ -21,7 +22,7 @@ export const Router = createHashRouter(
                 },
                 {
                     path: "employees",
-                    element: <Employees/>
+                    element: <EmployeesList/>
                 },
                 {
                     path: "/meters",
