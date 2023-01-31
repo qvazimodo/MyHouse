@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class HouseNumberStreet extends Model
@@ -28,5 +29,9 @@ class HouseNumberStreet extends Model
     public function house(): HasOne
     {
         return $this->hasOne(House::class);
+    }
+
+    public function employees():BelongsToMany{
+        return $this->belongsToMany(Employee::class, 'employee_serviced_address', 'house_number_street_id', 'employee_id', 'id');
     }
 }
