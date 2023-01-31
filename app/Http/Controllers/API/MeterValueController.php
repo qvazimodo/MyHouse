@@ -27,7 +27,6 @@ class MeterValueController extends Controller
             ->where('client_id', '=', $id)
             ->get();
 
-
         return MeterResource::collection($meters->paginate(10));
     }
 
