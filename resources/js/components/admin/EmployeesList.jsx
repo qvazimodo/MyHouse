@@ -1,12 +1,15 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {deleteEmployee, fetchEmployees, putEmployeeById} from "../../features/employee/employeeSlice";
-import {Button, Form, Input, Modal, Popconfirm, Space, Table, Typography} from 'antd';
+import {Button, Form, Input, Modal, Popconfirm, Space, Table, Typography, message} from 'antd';
 import {SearchOutlined} from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import {EditableCell} from '../Editable/EditableCell';
 import './styles/EmployeesList.css';
 import {EmployeeRegistration} from "./EmployeeRegistration";
+import {EmployeeRegisterForm} from "./EmployeeRegisterForm";
+import {CSRF_URL, EMPLOYEES_API_URL} from "../../helpers/API";
+import {initialRegistrationFormFields} from "./helpers/initialRegistrationFormFields";
 
 const onChange = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra);
@@ -17,12 +20,10 @@ export const EmployeesList = (props) => {
     const [editingKey, setEditingKey] = useState('');
     const [loading, setLoading] = useState(false);
     const isEditing = (record) => record.key === editingKey;
+
     //функционал поиска по значениям в столбцах
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
-    const [open, setOpen] = useState(false);
-    const [confirmLoading, setConfirmLoading] = useState(false);
-    const [modalText, setModalText] = useState('Content of the modal');
     const searchInput = useRef(null);
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
@@ -333,10 +334,19 @@ export const EmployeesList = (props) => {
         };
     });
 
+
+
+
+    //Логика работы модального окна
+    const [open, setOpen] = useState(false);
+    const [confirmLoading, setConfirmLoading] = useState(false);
+    const [modalText, setModalText] = useState('Content of the modal');
+
     const showModal = () => {
         setOpen(true);
     };
-    const handleOk = () => {
+    const handleOk = (e) => {
+        sendForm(e)
         setModalText('The modal will be closed after two seconds');
         setConfirmLoading(true);
         setTimeout(() => {
@@ -349,6 +359,83 @@ export const EmployeesList = (props) => {
         setOpen(false);
     };
 
+
+
+
+
+    //логика формы добавления сотрудника
+    const [messageApi, contextHolder] = message.useMessage();
+    const [fields, setFields] = useState(initialRegistrationFormFields);
+    const [response, setResponse] = useState({});
+    const key = 'updatable';
+    const isInitialMount = useRef(true)
+    const getCSRFToken = (url) => {
+        return fetch(url)
+            .then((response) => response.json())
+            .catch((error) => console.log(error))
+            .then((data) => data)
+    }
+
+    const sendForm = (e) => {
+        e.preventDefault()
+        console.log(fields)
+        let registrationFormData = {}
+        fields.forEach((elem) => {
+            if (elem.errors?.length) {
+                return registrationFormData.status = 'error'
+            }
+            let obj = {}
+            obj[elem.name[0]] = elem.value
+            registrationFormData = {...registrationFormData, ...obj}
+        })
+
+        if (registrationFormData.status !== 'error') {
+            const CSRF_TOKEN = getCSRFToken(CSRF_URL).then((data) => {
+                console.log(data)
+            }).then(() =>
+                fetch(EMPLOYEES_API_URL, {
+                    method: 'POST',
+                    headers:
+                        {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            // 'X-CSRF-TOKEN1': CSRF_TOKEN,
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                        },
+                    body: JSON.stringify(registrationFormData)
+                }).then((response) => response.json())
+                    .catch((error) => console.log(error))
+                    .then(data => setResponse(data)))
+        }
+    }
+
+    useEffect(() => {
+        if(isInitialMount.current === true){
+            isInitialMount.current = false
+        }else{
+            openMessage()
+            if(response.status ==='ok') {
+                setShowRegistrationForm(false)
+            }
+        }
+    }, [response])
+
+    const openMessage = () => {
+        messageApi.open({
+            key,
+            type: 'loading',
+            content: 'Loading...',
+        });
+        setTimeout(() => {
+            messageApi.open({
+                key,
+                type: response.status == 'ok' ? 'success' : 'error',
+                content: response.status == 'ok' ? response.message : 'Возникла ошибка!',
+                duration: 2,
+            });
+        }, 1000);
+    };
+
     return (
         <div>
             <div className="add">
@@ -358,12 +445,12 @@ export const EmployeesList = (props) => {
                 width={620}
                 title="Title"
                 open={open}
-                onOk={handleOk}
+                // onOk={handleOk}
                 confirmLoading={confirmLoading}
                 onCancel={handleCancel}
                 footer={[
-                    <Popconfirm title="Уверены, что хотите отменить сохранение данных?" onConfirm={cancel}>
-                    <Button key="back" onClick={handleCancel}>
+                    <Popconfirm title="Уверены, что хотите отменить сохранение данных?" onConfirm={handleCancel}>
+                    <Button key="back">
                         Отмена
                     </Button>
                     </Popconfirm>,
@@ -379,8 +466,15 @@ export const EmployeesList = (props) => {
                     </Button>,
                 ]}
             >
-               <EmployeeRegistration/>
+                <EmployeeRegisterForm
+                    fields={fields}
+                    onChange={(newFields) => {
+                        setFields(newFields);
+                    }}
+                    sendForm={sendForm}
+                />
             </Modal>
+
             <Form form={form} component={false}>
                 <Table columns={mergedColumns}
                        dataSource={data}
