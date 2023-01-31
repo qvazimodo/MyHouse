@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('employee_serviced_addresses', function (Blueprint $table) {
+        Schema::create('employee_serviced_address', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('employee_id')->nullable(false)->comment('id сотрудника');
             $table->foreign('employee_id')->references('id')->on('employees');
@@ -28,7 +28,7 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::table('employee_serviced_addresses', function (Blueprint $table) {
+        Schema::table('employee_serviced_address', function (Blueprint $table) {
             $table->dropForeign(['employee_id']);
             $table->dropForeign(['house_number_street_id']);
         });
