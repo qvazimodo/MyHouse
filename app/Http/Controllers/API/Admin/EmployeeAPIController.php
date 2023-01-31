@@ -93,7 +93,7 @@ class EmployeeAPIController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Employee $employee
+     * @param  Employee  $employee
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Employee $employee): JsonResponse
@@ -101,5 +101,32 @@ class EmployeeAPIController extends Controller
         $employee->delete();
 //        return response()->json(null, 204);
         return response()->json(['status' => 'ok'], 204);
+    }
+
+    public function getEmployeesByAddress($streetId, $houseNumberId): JsonResponse
+    {
+        $clients = Employee::join('users', 'users.id', '=', 'employees.user_id')
+            ->join('employee_serviced_address', 'employee_serviced_address.employee_id', '=', 'employees.id')
+            ->join('house_number_street', 'house_number_street.id', '=',
+                'employee_serviced_address.house_number_street_id')
+            ->where('house_number_street.street_id', $streetId)
+            ->where('house_number_street.house_number_id', $houseNumberId)
+            ->select(
+                'users.id as user_id',
+                'users.name as employee_name',
+                'users.birth_date as employee_birth_date',
+                'users.phone as employee_phone',
+                'users.email as employee_email',
+                'users.patronymic as employee_patronymic',
+                'users.last_name as employee.last_name',
+                'employees.id as employee_id',
+                'employees.held_position as position',
+            )
+            ->get();
+
+        return response()->json([
+            'data' => $clients,
+            'status' => 'ok'
+        ], 200);
     }
 }

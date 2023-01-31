@@ -89,6 +89,10 @@ Route::prefix('admin')->group(function () {
     //описания домов
     Route::get('/houses/description/{street_id}/{house_id}', [HouseController::class, 'show']);
 
+    //Сотрудники
+    Route::get('/employees/by_address/{street_id}/{house_id}',
+        [EmployeeAPIController::class, 'getEmployeesByAddress']);
+
     //Клиенты
     Route::get('/clients/by_address/{street_id}/{house_id}',
         [AdminClientController::class, 'getClientsByAddress']);

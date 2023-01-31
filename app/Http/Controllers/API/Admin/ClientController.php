@@ -130,17 +130,6 @@ class ClientController extends Controller
                 'entrance', 'floor')
             ->get();
 
-        /*        $clients = HouseNumberStreet::query()
-                    ->select()
-                    ->where('street_id', $streetId)
-                    ->where('house_number_id', $houseNumberId)
-                    ->join('houses','house_number_street.id','=','house_number_street_id')
-                    ->join('house_number_street', 'house_number_street_id', '=', 'id')
-                    ->join('streets', 'street_id', '=', 'id')
-                    ->join('house_numbers', 'house_number_id', '=', 'id')
-                    ->get()*/
-
-
         return response()->json([
             'data' => $clients,
             'status' => 'ok'
