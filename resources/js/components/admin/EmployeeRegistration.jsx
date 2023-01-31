@@ -90,10 +90,6 @@ export const EmployeeRegistration = ({setShowRegistrationForm, messageApi, conte
                 }}
                 sendForm={sendForm}
             />
-
-            {/*     <Button type="primary" onClick={openMessage}>
-                Open the message box
-            </Button>*/}
         </>
 
     )

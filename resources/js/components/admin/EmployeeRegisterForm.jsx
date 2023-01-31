@@ -12,7 +12,7 @@ export const EmployeeRegisterForm = ( { onChange, fields, sendForm } ) => {
         <Form
             className={ styles.form }
             labelCol={ {
-                span: 4,
+                span: 7,
             } }
             wrapperCol={ {
                 span: 14,

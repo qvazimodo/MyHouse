@@ -1,11 +1,12 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {deleteEmployee, fetchEmployees, putEmployeeById} from "../../features/employee/employeeSlice";
-import {Button, Form, Input, Popconfirm, Space, Table, Typography} from 'antd';
+import {Button, Form, Input, Modal, Popconfirm, Space, Table, Typography} from 'antd';
 import {SearchOutlined} from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import {EditableCell} from '../Editable/EditableCell';
 import './styles/EmployeesList.css';
+import {EmployeeRegistration} from "./EmployeeRegistration";
 
 const onChange = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra);
@@ -14,10 +15,14 @@ export const EmployeesList = (props) => {
     const [form] = Form.useForm();
     const [employeeIsUpdated, setEmployeeIsUpdated] = useState(false);
     const [editingKey, setEditingKey] = useState('');
+    const [loading, setLoading] = useState(false);
     const isEditing = (record) => record.key === editingKey;
     //функционал поиска по значениям в столбцах
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
+    const [open, setOpen] = useState(false);
+    const [confirmLoading, setConfirmLoading] = useState(false);
+    const [modalText, setModalText] = useState('Content of the modal');
     const searchInput = useRef(null);
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
@@ -328,28 +333,76 @@ export const EmployeesList = (props) => {
         };
     });
 
+    const showModal = () => {
+        setOpen(true);
+    };
+    const handleOk = () => {
+        setModalText('The modal will be closed after two seconds');
+        setConfirmLoading(true);
+        setTimeout(() => {
+            setOpen(false);
+            setConfirmLoading(false);
+        }, 2000);
+    };
+    const handleCancel = () => {
+        console.log('Clicked cancel button');
+        setOpen(false);
+    };
+
     return (
-        <Form form={form} component={false}>
-            <Table columns={mergedColumns}
-                   dataSource={data}
-                   bordered
-                   onChange={onChange}
-                   rowClassName="editable-row"
-                   pagination={{
-                       hideOnSinglePage: true,
-                       onChange: cancel,
-                       // pageSize,
-                       // total: totalPages,
-                       // onChange: onPageChange
-                       // showSizeChanger: true,
-                   }}
-                   components={{
-                       body: {
-                           cell: EditableCell,
-                       },
-                   }}
-            />
-        </Form>
+        <div>
+            <div className="add">
+                <Button className="add__button" type="primary" onClick={showModal}>Зарегистрировать нового сотрудника</Button>
+            </div>
+            <Modal
+                width={620}
+                title="Title"
+                open={open}
+                onOk={handleOk}
+                confirmLoading={confirmLoading}
+                onCancel={handleCancel}
+                footer={[
+                    <Popconfirm title="Уверены, что хотите отменить сохранение данных?" onConfirm={cancel}>
+                    <Button key="back" onClick={handleCancel}>
+                        Отмена
+                    </Button>
+                    </Popconfirm>,
+
+                    <Button
+                        type="primary"
+                        key="submit"
+                        type="primary"
+                        loading={loading}
+                        onClick={handleOk}
+                    >
+                        Сохранить данные
+                    </Button>,
+                ]}
+            >
+               <EmployeeRegistration/>
+            </Modal>
+            <Form form={form} component={false}>
+                <Table columns={mergedColumns}
+                       dataSource={data}
+                       bordered
+                       onChange={onChange}
+                       rowClassName="editable-row"
+                       pagination={{
+                           hideOnSinglePage: true,
+                           onChange: cancel,
+                           // pageSize,
+                           // total: totalPages,
+                           // onChange: onPageChange
+                           // showSizeChanger: true,
+                       }}
+                       components={{
+                           body: {
+                               cell: EditableCell,
+                           },
+                       }}
+                />
+            </Form>
+        </div>
     );
 }
 
