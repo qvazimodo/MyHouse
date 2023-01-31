@@ -17,6 +17,7 @@ class MeterValueController extends Controller
     {
         $id = auth()->user()->getAuthIdentifier();
 
+
         $meters = Meter::query()
             ->select('number', 'type', 'months.name as month', 'value', 'client_id','parent_id', 'meter_id')
             ->join('meter_values', 'meter_values.meter_id', '=', 'meters.id' )
