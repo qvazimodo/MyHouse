@@ -25,10 +25,6 @@ export const HousesList = () => {
     const selectedAddress = useSelector( state => state.house.selectedAddress )
     const dispatch = useDispatch()
 
-    useEffect( () => {
-            dispatch( fetchAddresses() )
-        }, []
-    )
 
     useEffect(() => {
         console.log(selectedAddress)
