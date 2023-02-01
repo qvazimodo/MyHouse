@@ -18,6 +18,8 @@ export const CLIENT_CARDS_API_URL = DOMEN + "/api/client/cards";
 
 export const HOUSES_API_URL = DOMEN + "/api/houses";
 
+export const ADMIN_ADDRESSES_API_URL = DOMEN + "/api/admin/houses/addresses";
+
 export const ADMIN_HOUSES_API_URL = DOMEN + "/api/admin/houses";
 
 //описание дома для администратора

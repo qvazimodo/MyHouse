@@ -28,7 +28,6 @@ import { Header } from "./components/Identically/Header/Header";
 import Flats from "./components/Content/Flats";
 import LogoHeader from "./components/Identically/Menu/Logo-header";
 import PasswordReq from "./components/PasswordReq/PasswordReq";
-import { Main } from "./components/admin/HousesPage/Main";
 import {RouterProvider} from "react-router-dom";
 import {Router} from "./components/admin/Router"
 import { Provider } from "react-redux";
@@ -117,11 +116,6 @@ if ( document.getElementById( 'admin' ) ) {
 if ( document.getElementById( 'admin__meters' ) ) {
     const root = createRoot( document.getElementById( 'admin__meters' ) );
     root.render( <MetersList/> );
-}
-
-if ( document.getElementById( 'admin__houses' ) ) {
-    const root = createRoot( document.getElementById( 'admin__houses' ) );
-    root.render( <Main/> );
 }
 
 if ( document.getElementById( 'logo-header' ) ) {
