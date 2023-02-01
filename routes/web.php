@@ -67,13 +67,13 @@ Route::get('/passwordreq', function () {
     return view('passwordreq');
 })->name('passwordreq');
 
-Route::get('/passwordcode', function () {
-    return view('passwordcode');
-})->name('passwordcode');
-
-Route::get('/passwordnew', function () {
-    return view('passwordnew');
-})->name('passwordnew');
+//Route::get('/passwordcode', function () {
+//    return view('passwordcode');
+//})->name('passwordcode');
+//
+//Route::get('/passwordnew', function () {
+//    return view('passwordnew');
+//})->name('passwordnew');
 
 Route::get('/usercards', function () {
     return view('usercards');

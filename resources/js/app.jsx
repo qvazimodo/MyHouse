@@ -39,6 +39,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import CodePassword from "./components/PasswordReq/CodePassword";
 import NewPassword from "./components/PasswordReq/NewPassword";
+import {Routerpassword} from "./components/PasswordReq/Routerpassword";
 
 
 if ( document.getElementById( 'questions' ) ) {
@@ -71,15 +72,24 @@ if (document.getElementById('passwordreq')){
     root.render(<PasswordReq/>);
 }
 
-if (document.getElementById('passwordcode')){
-    const root=createRoot(document.getElementById('passwordcode'));
-    root.render(<CodePassword/>);
+
+if ( document.getElementById( 'passwordreq' ) ) {
+    const root = createRoot( document.getElementById( 'passwordreq' ) );
+    root.render( <Provider store={store}>
+        <RouterProvider router={Routerpassword}/>
+    </Provider> )
 }
 
-if (document.getElementById('passwordnew')){
-    const root=createRoot(document.getElementById('passwordnew'));
-    root.render(<NewPassword/>);
-}
+
+// if (document.getElementById('passwordcode')){
+//     const root=createRoot(document.getElementById('passwordcode'));
+//     root.render(<CodePassword/>);
+// }
+//
+// if (document.getElementById('passwordnew')){
+//     const root=createRoot(document.getElementById('passwordnew'));
+//     root.render(<NewPassword/>);
+// }
 
 if (document.getElementById('watch')) {
     const root = createRoot(document.getElementById('watch'));
