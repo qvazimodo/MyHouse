@@ -79,6 +79,9 @@ Route::prefix('admin')->group(function () {
     //api вывода показаний всех счетчиков всех пользователей
     Route::get('/meters/values', [AdminMeterController::class, 'allMetersValues']);
 
+    //список адресов домов, обслуживаемых компанией
+    Route::get('/houses/addresses', [HouseController::class, 'addresses']);
+
     //список всех домов, обслуживаемых компанией
     Route::get('/houses', [HouseController::class, 'index']);
 

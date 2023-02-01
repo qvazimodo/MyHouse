@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { ADMIN_HOUSE_DESCRIPTION_API_URL, ADMIN_HOUSES_API_URL } from '../../helpers/API'
+import { ADMIN_HOUSE_DESCRIPTION_API_URL, ADMIN_HOUSES_API_URL, ADMIN_ADDRESSES_API_URL } from '../../helpers/API'
 
 const initialState = {
     loading: false,
@@ -17,9 +17,13 @@ const initialState = {
     clients:[],
 }
 
-export const fetchHouses = createAsyncThunk( 'house/fetchHouses', () => {
-    return fetch( ADMIN_HOUSES_API_URL ).then( response => response.json() ).then( result => result.data )
+export const fetchAddresses = createAsyncThunk( 'house/fetchAddresses', () => {
+    return fetch( ADMIN_ADDRESSES_API_URL ).then( response => response.json() ).then( result => result.data )
 } )
+
+/*export const fetchHouses = createAsyncThunk( 'house/fetchHouses', () => {
+    return fetch( ADMIN_ADDRESSES_API_URL ).then( response => response.json() ).then( result => result.data )
+} )*/
 
 export const fetchDescription = createAsyncThunk( 'house/fetchDescription', ( address ) => {
     let url = ADMIN_HOUSE_DESCRIPTION_API_URL + "/" + `${ address.streetId }` + "/" + `${ address.houseNumberId }`
@@ -60,7 +64,18 @@ const houseSlice = createSlice( {
         }
     },
     extraReducers: (builder) => {
-        builder.addCase( fetchHouses.pending, ( state ) => {
+        builder.addCase( fetchAddresses.pending, ( state ) => {
+            state.loading = true
+        } )
+        builder.addCase( fetchAddresses.fulfilled, ( state, action ) => {
+            state.addressesArray = action.payload
+            state.loading = false
+        } )
+        builder.addCase( fetchAddresses.rejected, ( state, action ) => {
+            state.error = action.payload
+        } )
+
+/*        builder.addCase( fetchHouses.pending, ( state ) => {
             state.loading = true
         } )
         builder.addCase( fetchHouses.fulfilled, ( state, action ) => {
@@ -69,7 +84,7 @@ const houseSlice = createSlice( {
         } )
         builder.addCase( fetchHouses.rejected, ( state, action ) => {
             state.error = action.payload
-        } )
+        } )*/
 
         builder.addCase( fetchDescription.pending, ( state ) => {
             state.loading = true

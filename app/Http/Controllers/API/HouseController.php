@@ -18,7 +18,7 @@ class HouseController extends Controller
             ->join('house_number_street','houses.house_number_street_id', '=', 'house_number_street.id' )
             ->get();
 
-        return response()->json(['status'=>'ok', 'houses'=>new HouseCollection($houses)], 200);
+        return response()->json(['status'=>'ok', 'data'=>new HouseCollection($houses)], 200);
     }
 
     public function show($street_id, $house_number_id):JsonResponse
@@ -30,6 +30,18 @@ class HouseController extends Controller
             ->get();
 
         return response()->json(['status'=>'ok', 'data'=>$house], 200);
+    }
+
+    public function addresses(): ResourceCollection
+    {
+        /*        return HouseResource::collection(House::with('houseDescription', 'apartments')
+                    ->join('house_number_street', 'house_number_street.id', '=', 'houses.house_number_street_id')
+                    ->join('streets', 'streets.id', '=', 'house_number_street.street_id')
+                    ->join('house_numbers', 'house_numbers.id', '=', 'house_number_street.house_number_id')
+                    ->paginate(5));*/
+
+        return StreetResource::collection(Street::with('houseNumbers')->get());
+
     }
 
 }
