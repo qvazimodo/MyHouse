@@ -1,19 +1,20 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {deleteClient, fetchClients, putClientById} from "../../features/client/clientSlice";
-import {Button, Form, Input, Popconfirm, Space, Table, Typography} from 'antd';
-import {SearchOutlined} from '@ant-design/icons';
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { deleteClient, fetchClients, putClientById } from "../../features/client/clientSlice";
+import { Button, Form, Input, Popconfirm, Space, Spin, Table, Typography } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import {EditableCell} from '../Editable/EditableCell';
 import './styles/ClientsList.css';
+import { EditableCell } from "../Editable/EditableCell";
+import styles from "./styles/ClientsList.module.scss";
 
-const onChange = (pagination, filters, sorter, extra) => {
-    console.log('params', pagination, filters, sorter, extra);
+const onChange = ( pagination, filters, sorter, extra ) => {
+    console.log( 'params', pagination, filters, sorter, extra );
 };
-export const ClientsList = (props) => {
-    const [form] = Form.useForm();
-    const [clientIsUpdated, setClientIsUpdated] = useState(false);
-    const [editingKey, setEditingKey] = useState('');
+export const ClientsList = ( props ) => {
+    const [ form ] = Form.useForm();
+    const [ clientIsUpdated, setClientIsUpdated ] = useState( false );
+    const [ editingKey, setEditingKey ] = useState( '' );
     const isEditing = (record) => record.key === editingKey;
     //функционал поиска по значениям в столбцах
     const [searchText, setSearchText] = useState('');
@@ -125,17 +126,19 @@ export const ClientsList = (props) => {
 
 
     const dispatch = useDispatch()
-    const selectedAddress = useSelector((state => state.house.selectedAddress))
-    const clientsArray = useSelector(state => state.client.array)
-
-    useEffect(() => {
-        console.log(selectedAddress)
-        dispatch(fetchClients(selectedAddress)).then(() => setClientIsUpdated(false))
-
-    }, [selectedAddress, clientIsUpdated]);
+    const selectedAddress = useSelector( (state => state.house.selectedAddress) )
+    const clientsArray = useSelector( state => state.client.array )
+    const isLoading = useSelector( state => state.client.loading )
 
 
-    let data = clientsArray.map(item => {
+    useEffect( () => {
+        console.log( selectedAddress )
+        dispatch( fetchClients( selectedAddress ) ).then( () => setClientIsUpdated( false ) )
+
+    }, [ selectedAddress, clientIsUpdated ] );
+
+
+    let data = clientsArray.map( item => {
         return {
             key: item['client_id'],
             clientId: item['client_id'],
@@ -351,27 +354,30 @@ export const ClientsList = (props) => {
     });
 
     return (
-        <Form form={form} component={false}>
-            <Table columns={mergedColumns}
-                   dataSource={data}
-                   bordered
-                   onChange={onChange}
-                   rowClassName="editable-row"
-                   pagination={{
-                       hideOnSinglePage: true,
-                       onChange: cancel,
-                       // pageSize,
-                       // total: totalPages,
-                       // onChange: onPageChange
-                       // showSizeChanger: true,
-                   }}
-                   components={{
-                       body: {
-                           cell: EditableCell,
-                       },
-                   }}
-            />
-        </Form>
+        <div className={styles.table__screen}>
+            {isLoading && <Spin className={ styles.contentSpinner } size="large"/>}
+            {!isLoading &&         <Form form={form} component={false}>
+                <Table columns={mergedColumns}
+                       dataSource={data}
+                       bordered
+                       onChange={onChange}
+                       rowClassName="editable-row"
+                       pagination={{
+                           hideOnSinglePage: true,
+                           onChange: cancel,
+                           // pageSize,
+                           // total: totalPages,
+                           // onChange: onPageChange
+                           // showSizeChanger: true,
+                       }}
+                       components={{
+                           body: {
+                               cell: EditableCell,
+                           },
+                       }}
+                />
+            </Form>}
+        </div>
     );
 }
 

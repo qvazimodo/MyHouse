@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Outlet, useNavigate } from "react-router-dom"
 import { Layout, Menu, theme } from 'antd';
 import { adminHeaderMenuItems } from "./helpers/adminHeaderMenuItems"
 import { setSelectedAddress } from "../../features/house/houseSlice";
+import { isNull } from "lodash";
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -62,57 +63,66 @@ export const MainPage = () => {
             houseNumberId: selectedHouse.id
         }
         // console.log( selectedAddress )
-        dispatch( setSelectedAddress(selectedAddress) )
+        dispatch( setSelectedAddress( selectedAddress ) )
         return selectedAddress
     }
 
     const defaultSelectedMenuItem = '/addresses'
 
-    useEffect(() => {
-        navigate(defaultSelectedMenuItem)
+    useEffect( () => {
+        navigate( defaultSelectedMenuItem )
         return () => {
-            navigate(defaultSelectedMenuItem)
+            navigate( defaultSelectedMenuItem )
         };
-    }, []);
+    }, [] );
 
+    const selectedAddress = useSelector( state => state.house.selectedAddress )
+    const firstUpdate = useRef(true);
+    useEffect( () => {
+      if (!firstUpdate.current && isNull(selectedAddress.streetId) ){
+         console.log(openKeys)
+          setOpenKeys([])
+      }
+        firstUpdate.current = false
+    }, [ selectedAddress ] );
 
     return (
-        <Layout style={{
+        <Layout style={ {
             minHeight: '100vh',
-        }}
+        } }
         >
             <Sider collapsible
-                   collapsed={collapsed}
-                   onCollapse={(value) => setCollapsed(value)
+                   collapsed={ collapsed }
+                   onCollapse={ ( value ) => setCollapsed( value )
                    }>
                 <div
-                    style={{
+                    style={ {
                         height: 32,
                         margin: 16,
                         background: 'rgba(255, 255, 255, 0.2)',
-                    }}
+                    } }
                 />
                 <Menu
-                    onClick={({item, key, keyPath, domEvent}) => {
-                        console.log(keyPath)
-                        setSelectedMenuItem(getAddress(keyPath))
+                    onClick={ ( { item, key, keyPath, domEvent } ) => {
+                        console.log( keyPath )
+                        setSelectedMenuItem( getAddress( keyPath ) )
                         // console.log(selectedMenuItem)
-                    }}
-                    openKeys={openKeys}
-                    onOpenChange={onOpenChange}
-                    theme="dark" defaultSelectedKeys={['1']}
-                    mode="inline" items={sideMenuItems}
+                    } }
+                    openKeys={ openKeys }
+                    onOpenChange={ onOpenChange }
+                    theme="dark" defaultSelectedKeys={ [ '1' ] }
+                    mode="inline" items={ sideMenuItems }
                 />
             </Sider>
             <Layout className="site-layout">
                 <Header
-                    style={{
+                    style={ {
                         padding: 0,
                         background: colorBgContainer,
-                    }}
+                    } }
                 >
                     <Menu theme="dark" mode="horizontal"
-                          defaultSelectedKeys={[defaultSelectedMenuItem]}
+                          defaultSelectedKeys={ [ defaultSelectedMenuItem ] }
                           items={adminHeaderMenuItems}
                           onClick={clickOnHeaderMenu}
                     />
@@ -137,7 +147,6 @@ export const MainPage = () => {
                             background: colorBgContainer,
                         }}
                     >
-
                         <Outlet/>
 
                     </div>

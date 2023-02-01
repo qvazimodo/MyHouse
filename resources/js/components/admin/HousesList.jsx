@@ -64,8 +64,9 @@ export const HousesList = () => {
                                     Выберите номер дома!
                                 </Texty>
                             </div> }
-                        { isLoading && <div className={ styles.houseDescription__content }><Spin
-                            className={ styles.contentSpinner }/></div> }
+                        { isLoading && <div className={ styles.houseDescription__content }>
+                            <Spin className={ styles.contentSpinner } size="large"/>
+                        </div> }
                         { !isLoading && description.id != null && <HouseDescription description={ description }/> }
                     </Content>
                 </Layout> }

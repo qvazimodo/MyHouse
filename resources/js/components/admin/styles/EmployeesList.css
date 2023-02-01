@@ -17,10 +17,12 @@ button[type="button"].ant-btn-primary.ant-btn-dangerous{
     background-color: #ff4d4f;
 }
 
-.add{
+.add {
     @apply flex justify-between
 }
 
-.add__button{
+.add__button {
     @apply my-5;
 }
+
+

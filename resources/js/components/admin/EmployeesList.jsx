@@ -7,7 +7,7 @@ import {
     putEmployeeById
 } from "../../features/employee/employeeSlice";
 import { clearSelectedAddress } from "../../features/house/houseSlice"
-import { Button, Form, Input, message, Modal, Popconfirm, Space, Table, Typography } from 'antd';
+import { Button, Form, Input, message, Modal, Popconfirm, Space, Spin, Table, Typography } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import { EditableCell } from '../Editable/EditableCell';
@@ -17,6 +17,7 @@ import { CSRF_URL, EMPLOYEES_API_URL } from "../../helpers/API";
 import { initialRegistrationFormFields } from "./helpers/initialRegistrationFormFields";
 import { useLocation } from "react-router-dom";
 import { isNull } from "lodash";
+import styles from "./styles/EmployeesList.module.scss";
 
 const onChange = ( pagination, filters, sorter, extra ) => {
     console.log( 'params', pagination, filters, sorter, extra );
@@ -443,35 +444,36 @@ export const EmployeesList = ( props ) => {
     }, [response])
 
     const openMessage = () => {
-        messageApi.open({
+        messageApi.open( {
             key,
             type: 'loading',
             content: 'Loading...',
-        });
-        setTimeout(() => {
-            messageApi.open({
+        } );
+        setTimeout( () => {
+            messageApi.open( {
                 key,
                 type: response.status == 'ok' ? 'success' : 'error',
                 content: response.status == 'ok' ? response.message : 'Возникла ошибка!',
                 duration: 2,
-            });
-        }, 1000);
+            } );
+        }, 1000 );
     };
+
+    const isLoading = useSelector( state => state.employee.loading )
 
     return (
         <div>
-            <div className="add">
-                <div>
-                    { !isFullList &&
-                        <Button className="add__button" type="primary"
-                                onClick={ () => dispatch( clearSelectedAddress() ) }>
-                            Отобразить полный список сотрудников
-                        </Button> }
-                </div>
-                <Button className="add__button" type="primary" onClick={ showModal }>
-                    Зарегистрировать нового
-                    сотрудника
-                </Button>
+                <div className="add">
+                    <div>
+                        { !isFullList &&
+                            <Button className="add__button" type="primary"
+                                    onClick={ () => dispatch( clearSelectedAddress() ) }>
+                                Отобразить полный список сотрудников
+                            </Button> }
+                    </div>
+                    <Button className="add__button" type="primary" onClick={ showModal }>
+                        Зарегистрировать нового сотрудника
+                    </Button>
             </div>
             <Modal
                 width={ 620 }
@@ -499,35 +501,37 @@ export const EmployeesList = ( props ) => {
                 ]}
             >
                 <EmployeeRegisterForm
-                    fields={fields}
-                    onChange={(newFields) => {
-                        setFields(newFields);
-                    }}
-                    sendForm={sendForm}
+                    fields={ fields }
+                    onChange={ ( newFields ) => {
+                        setFields( newFields );
+                    } }
+                    sendForm={ sendForm }
                 />
             </Modal>
-
-            <Form form={form} component={false}>
-                <Table columns={mergedColumns}
-                       dataSource={data}
-                       bordered
-                       onChange={onChange}
-                       rowClassName="editable-row"
-                       pagination={{
-                           hideOnSinglePage: true,
-                           onChange: cancel,
-                           // pageSize,
-                           // total: totalPages,
-                           // onChange: onPageChange
-                           // showSizeChanger: true,
-                       }}
-                       components={{
-                           body: {
-                               cell: EditableCell,
-                           },
-                       }}
-                />
-            </Form>
+            <div className={styles.table__screen}>
+                { isLoading && <Spin size="large"/> }
+                { !isLoading &&
+                    <Form form={ form } component={ false }>
+                        <Table columns={ mergedColumns }
+                               dataSource={ data }
+                               bordered
+                               onChange={ onChange }
+                               rowClassName="editable-row"
+                               pagination={ {
+                                   hideOnSinglePage: true,
+                                   onChange: cancel,
+                                   // pageSize,
+                                   // total: totalPages,
+                                   // onChange: onPageChange
+                                   // showSizeChanger: true,
+                               } }
+                               components={ {
+                                   body: {
+                                       cell: EditableCell,
+                                   },
+                               } }
+                        />
+                    </Form> }</div>
         </div>
     );
 }
