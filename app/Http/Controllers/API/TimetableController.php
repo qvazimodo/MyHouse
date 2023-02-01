@@ -3,15 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Apartment;
 use App\Models\Client;
 use App\Models\Employee;
 use App\Models\Timetable;
-use App\Models\TimeWindow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use function PHPUnit\Framework\isEmpty;
 
 class TimetableController extends Controller
 {
@@ -29,7 +26,7 @@ class TimetableController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return int[]
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -62,12 +59,15 @@ class TimetableController extends Controller
             ->where('house_number_street.house_number_id', '=', $clientsAddressIds["house_id"])
             ->get()
             ->toArray();
-        foreach (Timetable::where('date', $mysqldate)->get()->toArray() as $item){
-            if(isEmpty($item)){
-                return $timeWindows;
-            }
-
-        };
+        $e = Timetable::where('date', $mysqldate)->get();
+        if($e->isEmpty()){
+            return $timeWindows;
+        }
+        $e2 = Timetable::where('date', $mysqldate)->get('time_window_id');
+        foreach ($e2 as $key => $item){
+            unset($timeWindows[$key]);
+        }
+        return $timeWindows;
     }
 
     /**
