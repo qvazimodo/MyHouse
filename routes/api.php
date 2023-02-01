@@ -1,5 +1,13 @@
 <?php
 
+use App\Http\Controllers\API\Admin\ClientController as AdminClientController;
+use App\Http\Controllers\API\Admin\EmployeeAPIController;
+use App\Http\Controllers\API\Admin\MeterController as AdminMeterController;
+use App\Http\Controllers\API\CardController;
+use App\Http\Controllers\API\ClientAnnouncementController;
+use App\Http\Controllers\API\HouseController;
+use App\Http\Controllers\API\MeterController;
+use App\Http\Controllers\API\MeterValueController;
 use App\Http\Controllers\API\TimetableController;
 use App\Http\Controllers\Auth\CodeCheckController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -7,15 +15,6 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\Admin\EmployeeAPIController;
-use App\Http\Controllers\API\Admin\ClientController as AdminClientController;
-use App\Http\Controllers\API\Admin\HouseDescriptionController as AdminHouseDescriptionController;
-use App\Http\Controllers\API\Admin\MeterController as AdminMeterController;
-use App\Http\Controllers\API\CardController;
-use App\Http\Controllers\API\ClientAnnouncementController;
-use App\Http\Controllers\API\MeterController;
-use App\Http\Controllers\API\MeterValueController;
-use App\Http\Controllers\API\HouseController;
 
 
 /*
@@ -90,6 +89,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/houses/description/{street_id}/{house_id}', [HouseController::class, 'show']);
 
     //Сотрудники
+    Route::get('/employees', [EmployeeAPIController::class, 'index']);
+
     Route::get('/employees/by_address/{street_id}/{house_id}',
         [EmployeeAPIController::class, 'getEmployeesByAddress']);
 

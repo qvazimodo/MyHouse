@@ -20,12 +20,26 @@ class EmployeeAPIController extends Controller
      *
      * @return ResourceCollection
      */
-    public function index(): ResourceCollection
+    public function index(): JsonResponse
     {
-//        return response()->json(Employee::select("id","user_id","held_position")->with('user:id,name,patronymic,last_name')->get());
-        return EmployeeResource::collection(
-            Employee::select("id", "user_id", "held_position")->with('user:id,name,patronymic,last_name,birth_date')->paginate(3)
-        );
+        $clients = Employee::join('users', 'users.id', '=', 'employees.user_id')
+            ->select(
+                'users.id as user_id',
+                'users.name as employee_name',
+                'users.birth_date as employee_birth_date',
+                'users.phone as employee_phone',
+                'users.email as employee_email',
+                'users.patronymic as employee_patronymic',
+                'users.last_name as employee_last_name',
+                'employees.id as employee_id',
+                'employees.held_position as position',
+            )
+            ->get();
+
+        return response()->json([
+            'data' => $clients,
+            'status' => 'ok'
+        ], 200);
     }
 
     /**
@@ -55,15 +69,6 @@ class EmployeeAPIController extends Controller
             ['status' => 'ok',
                 'message' => 'Учётная запись сотрудника успешно создана'],
             201);
-//        Employee::create($request->all());
-//        return response()->json($request, 201);
-//        Employee::firstOrCreate()
-//        if ((Client::where('user_id', $request->input('client_id'))->get())->isEmpty()) {
-//            return response()->json("Нет прав", 403);
-//        } else {
-//            $card = Card::create($request->all());
-//            return response()->json($card, 201);
-//        }
     }
 
     /**

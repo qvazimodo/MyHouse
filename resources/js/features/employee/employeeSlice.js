@@ -3,17 +3,22 @@ import { ADMIN_EMPLOYEES_API_URL, ADMIN_EMPLOYEES_BY_ADDRESS_API_URL, } from '..
 
 const initialState = {
     loading: false,
+
     array: [],
     current: {},
     error: '',
 }
 
-export const fetchEmployees = createAsyncThunk( 'employee/fetchEmployees', ( address ) => {
+export const fetchAllEmployees = createAsyncThunk( 'employee/fetchAllEmployees', () => {
+    let url = ADMIN_EMPLOYEES_API_URL
+    return fetch( url ).then( response => response.json() ).then( result => result.data )
+} )
+
+export const fetchEmployeesByAddress = createAsyncThunk( 'employee/fetchEmployeesByAddress', ( address ) => {
     // let address =  useSelector((state )=>state.house.selectedAddress)
     let url = ADMIN_EMPLOYEES_BY_ADDRESS_API_URL + "/" + `${ address.streetId }` + "/" + `${ address.houseNumberId }`
     console.log( url )
-    return fetch( url ).then( response => response.json() ).then( result => result.data
-    )
+    return fetch( url ).then( response => response.json() ).then( result => result.data )
 } )
 
 export const putEmployeeById = createAsyncThunk( 'employee/putEmployee',
@@ -69,19 +74,34 @@ const employeeSlice = createSlice( {
         }
     },
     extraReducers: ( builder ) => {
-        builder.addCase( fetchEmployees.pending, ( state ) => {
+
+        //получение списка всех сотрудников компании
+        builder.addCase( fetchAllEmployees.pending, ( state ) => {
             state.loading = true
         } )
-        builder.addCase( fetchEmployees.fulfilled, ( state, action ) => {
+        builder.addCase( fetchAllEmployees.fulfilled, ( state, action ) => {
             state.array = action.payload
             console.log( action.payload )
             state.loading = false
         } )
-        builder.addCase( fetchEmployees.rejected, ( state, action ) => {
+        builder.addCase( fetchAllEmployees.rejected, ( state, action ) => {
             state.error = action.payload
         } )
 
-//обновление данных клиента
+        //получение списка сотрудников по адресу обслуживаемого объекта
+        builder.addCase( fetchEmployeesByAddress.pending, ( state ) => {
+            state.loading = true
+        } )
+        builder.addCase( fetchEmployeesByAddress.fulfilled, ( state, action ) => {
+            state.array = action.payload
+            console.log( action.payload )
+            state.loading = false
+        } )
+        builder.addCase( fetchEmployeesByAddress.rejected, ( state, action ) => {
+            state.error = action.payload
+        } )
+
+//обновление данных сотрудника
         builder.addCase( putEmployeeById.pending, ( state ) => {
             state.loading = true
         } )

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Outlet, useNavigate } from "react-router-dom"
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
 import { adminHeaderMenuItems } from "./helpers/adminHeaderMenuItems"
 import { setSelectedAddress } from "../../features/house/houseSlice";
@@ -29,25 +28,25 @@ export const MainPage = () => {
             // icon: React.createElement( icon ),
             key: (index++).toString(),
             label: address.name,
-            children: [...address['house_numbers'].map(houseNumber => {
+            children: [ ...address['house_numbers'].map( houseNumber => {
                 return {
                     id: houseNumber.id,
                     key: (index++).toString(),
                     label: houseNumber.value
                 }
-            })]
+            } ) ]
         };
-    })
+    } )
 
-    const rootSubmenuKeys = sideMenuItems.map(item => item.key)
-    const [openKeys, setOpenKeys] = useState([]);
-    const onOpenChange = (keys) => {
-        const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+    const rootSubmenuKeys = sideMenuItems.map( item => item.key )
+    const [ openKeys, setOpenKeys ] = useState( [] );
+    const onOpenChange = ( keys ) => {
+        const latestOpenKey = keys.find( ( key ) => openKeys.indexOf( key ) === -1 );
         // console.log(keys)
-        if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-            setOpenKeys(keys);
+        if ( rootSubmenuKeys.indexOf( latestOpenKey ) === -1 ) {
+            setOpenKeys( keys );
         } else {
-            setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+            setOpenKeys( latestOpenKey ? [ latestOpenKey ] : [] );
         }
     };
     const getAddress = (keyPath) => {

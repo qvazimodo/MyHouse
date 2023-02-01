@@ -1,9 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import {
-    ADMIN_CLIENTS_BY_ADDRESS_API_URL,
-    ADMIN_HOUSE_DESCRIPTION_API_URL,
-    ADMIN_HOUSES_API_URL
-} from '../../helpers/API'
+import { ADMIN_HOUSE_DESCRIPTION_API_URL, ADMIN_HOUSES_API_URL } from '../../helpers/API'
 
 const initialState = {
     loading: false,
@@ -48,6 +44,9 @@ const houseSlice = createSlice( {
         setSelectedHouseNumberId: ( state, action ) => {
             state.selectedHouseNumberId = action.payload
         },
+        clearSelectedAddress: ( state, action ) => {
+            state.selectedAddress = { streetName: '', houseNumber: null, streetId: null, houseNumberId: null }
+        },
         clearDescription: ( state ) => {
             state.description = {}
         },
@@ -55,8 +54,8 @@ const houseSlice = createSlice( {
             state.selectedAddress = {
                 streetName: action.payload.streetName,
                 houseNumber: action.payload.houseNumber,
-                streetId:action.payload.streetId,
-                houseNumberId:action.payload.houseNumberId
+                streetId: action.payload.streetId,
+                houseNumberId: action.payload.houseNumberId
             }
         }
     },
@@ -87,4 +86,4 @@ const houseSlice = createSlice( {
 
 
 export default houseSlice.reducer
-export const {setHouses, setSelectedStreetId, setSelectedHouseNumberId, clearDescription, setSelectedAddress} = houseSlice.actions
+export const {setHouses, setSelectedStreetId, setSelectedHouseNumberId, clearDescription, setSelectedAddress, clearSelectedAddress} = houseSlice.actions

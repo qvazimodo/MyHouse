@@ -1,51 +1,58 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {deleteEmployee, fetchEmployees, putEmployeeById} from "../../features/employee/employeeSlice";
-import {Button, Form, Input, Modal, Popconfirm, Space, Table, Typography, message} from 'antd';
-import {SearchOutlined} from '@ant-design/icons';
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import {
+    deleteEmployee,
+    fetchAllEmployees,
+    fetchEmployeesByAddress,
+    putEmployeeById
+} from "../../features/employee/employeeSlice";
+import { clearSelectedAddress } from "../../features/house/houseSlice"
+import { Button, Form, Input, message, Modal, Popconfirm, Space, Table, Typography } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import {EditableCell} from '../Editable/EditableCell';
+import { EditableCell } from '../Editable/EditableCell';
 import './styles/EmployeesList.css';
-import {EmployeeRegistration} from "./EmployeeRegistration";
-import {EmployeeRegisterForm} from "./EmployeeRegisterForm";
-import {CSRF_URL, EMPLOYEES_API_URL} from "../../helpers/API";
-import {initialRegistrationFormFields} from "./helpers/initialRegistrationFormFields";
+import { EmployeeRegisterForm } from "./EmployeeRegisterForm";
+import { CSRF_URL, EMPLOYEES_API_URL } from "../../helpers/API";
+import { initialRegistrationFormFields } from "./helpers/initialRegistrationFormFields";
+import { useLocation } from "react-router-dom";
+import { isNull } from "lodash";
 
-const onChange = (pagination, filters, sorter, extra) => {
-    console.log('params', pagination, filters, sorter, extra);
+const onChange = ( pagination, filters, sorter, extra ) => {
+    console.log( 'params', pagination, filters, sorter, extra );
 };
-export const EmployeesList = (props) => {
-    const [form] = Form.useForm();
-    const [employeeIsUpdated, setEmployeeIsUpdated] = useState(false);
-    const [editingKey, setEditingKey] = useState('');
-    const [loading, setLoading] = useState(false);
-    const isEditing = (record) => record.key === editingKey;
+export const EmployeesList = ( props ) => {
+    const [ form ] = Form.useForm();
+    const [ employeeIsUpdated, setEmployeeIsUpdated ] = useState( false );
+    const [ editingKey, setEditingKey ] = useState( '' );
+    const [ loading, setLoading ] = useState( false );
+    const isEditing = ( record ) => record.key === editingKey;
 
     //функционал поиска по значениям в столбцах
-    const [searchText, setSearchText] = useState('');
-    const [searchedColumn, setSearchedColumn] = useState('');
-    const searchInput = useRef(null);
-    const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    const [ searchText, setSearchText ] = useState( '' );
+    const [ searchedColumn, setSearchedColumn ] = useState( '' );
+    const searchInput = useRef( null );
+    const handleSearch = ( selectedKeys, confirm, dataIndex ) => {
         confirm();
-        setSearchText(selectedKeys[0]);
-        setSearchedColumn(dataIndex);
+        setSearchText( selectedKeys[0] );
+        setSearchedColumn( dataIndex );
     };
-    const handleReset = (clearFilters) => {
+    const handleReset = ( clearFilters ) => {
         clearFilters();
-        setSearchText('');
+        setSearchText( '' );
     };
-    const getColumnSearchProps = (dataIndex) => ({
-        filterDropdown: ({setSelectedKeys, selectedKeys, confirm, clearFilters, close}) => (
+    const getColumnSearchProps = ( dataIndex ) => ({
+        filterDropdown: ( { setSelectedKeys, selectedKeys, confirm, clearFilters, close } ) => (
             <div
-                style={{
+                style={ {
                     padding: 8,
-                }}
-                onKeyDown={(e) => e.stopPropagation()}
+                } }
+                onKeyDown={ ( e ) => e.stopPropagation() }
             >
                 <Input
-                    ref={searchInput}
-                    placeholder={`Search ${dataIndex}`}
-                    value={selectedKeys[0]}
+                    ref={ searchInput }
+                    placeholder={ `Search ${ dataIndex }` }
+                    value={ selectedKeys[0] }
                     onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
                     onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
                     style={{
@@ -122,7 +129,7 @@ export const EmployeesList = (props) => {
                     }}
                     searchWords={[searchText]}
                     autoEscape
-                    textToHighlight={text ? text.toString() : ''}
+                    textToHighlight={ text ? text.toString() : '' }
                 />
             ) : (
                 text
@@ -131,17 +138,28 @@ export const EmployeesList = (props) => {
 
 
     const dispatch = useDispatch()
-    const selectedAddress = useSelector((state => state.house.selectedAddress))
-    const employeesArray = useSelector(state => state.employee.array)
+    const selectedAddress = useSelector( (state => state.house.selectedAddress) )
+    const employeesArray = useSelector( state => state.employee.array )
+    const location = useLocation()
 
-    useEffect(() => {
-        console.log(selectedAddress)
-        dispatch(fetchEmployees(selectedAddress)).then(() => setEmployeeIsUpdated(false))
+    useEffect( () => {
+        if ( isNull( selectedAddress.streetId ) ) {
+            console.log( selectedAddress )
+            dispatch( fetchAllEmployees() )
+        }
+    }, [ selectedAddress ] );
 
-    }, [selectedAddress, employeeIsUpdated]);
+    useEffect( () => {
+        if ( !isNull( selectedAddress.houseNumberId ) ) {
+            console.log( selectedAddress )
+            console.log( location )
+            dispatch( fetchEmployeesByAddress( selectedAddress ) ).then( () => setEmployeeIsUpdated( false ) )
+        }
+
+    }, [ selectedAddress, employeeIsUpdated ] );
 
 
-    let data = employeesArray.map(item => {
+    let data = employeesArray.map( item => {
         return {
             key: item['employee_id'],
             employeeId: item['employee_id'],
@@ -149,7 +167,7 @@ export const EmployeesList = (props) => {
             name: item['employee_name'],
             patronymic: item['employee_patronymic'],
             lastName: item['employee_last_name'],
-            birthDate: new Date(item['employee_birth_date']).toLocaleDateString('ru-Ru'),
+            birthDate: new Date( item['employee_birth_date'] ).toLocaleDateString( 'ru-Ru' ),
             phone: item['employee_phone'],
             email: item['employee_email'],
             position: item['position'],
@@ -439,17 +457,20 @@ export const EmployeesList = (props) => {
     return (
         <div>
             <div className="add">
-                <Button className="add__button" type="primary" onClick={showModal}>Зарегистрировать нового сотрудника</Button>
+                <Button className="add__button" type="primary" onClick={ () => dispatch( clearSelectedAddress() ) }>
+                    Отобразить полный список сотрудников</Button>
+                <Button className="add__button" type="primary" onClick={ showModal }>Зарегистрировать нового
+                    сотрудника</Button>
             </div>
             <Modal
-                width={620}
+                width={ 620 }
                 title="Title"
-                open={open}
+                open={ open }
                 // onOk={handleOk}
-                confirmLoading={confirmLoading}
-                onCancel={handleCancel}
-                footer={[
-                    <Popconfirm title="Уверены, что хотите отменить сохранение данных?" onConfirm={handleCancel}>
+                confirmLoading={ confirmLoading }
+                onCancel={ handleCancel }
+                footer={ [
+                    <Popconfirm title="Уверены, что хотите отменить сохранение данных?" onConfirm={ handleCancel }>
                     <Button key="back">
                         Отмена
                     </Button>
