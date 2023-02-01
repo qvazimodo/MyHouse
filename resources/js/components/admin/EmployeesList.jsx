@@ -26,6 +26,7 @@ export const EmployeesList = ( props ) => {
     const [ employeeIsUpdated, setEmployeeIsUpdated ] = useState( false );
     const [ editingKey, setEditingKey ] = useState( '' );
     const [ loading, setLoading ] = useState( false );
+    const [ isFullList, setIsFullList ] = useState( false );
     const isEditing = ( record ) => record.key === editingKey;
 
     //функционал поиска по значениям в столбцах
@@ -145,7 +146,7 @@ export const EmployeesList = ( props ) => {
     useEffect( () => {
         if ( isNull( selectedAddress.streetId ) ) {
             console.log( selectedAddress )
-            dispatch( fetchAllEmployees() )
+            dispatch( fetchAllEmployees() ).then( () => setIsFullList( true ) )
         }
     }, [ selectedAddress ] );
 
@@ -153,7 +154,10 @@ export const EmployeesList = ( props ) => {
         if ( !isNull( selectedAddress.houseNumberId ) ) {
             console.log( selectedAddress )
             console.log( location )
-            dispatch( fetchEmployeesByAddress( selectedAddress ) ).then( () => setEmployeeIsUpdated( false ) )
+            dispatch( fetchEmployeesByAddress( selectedAddress ) ).then( () => {
+                setEmployeeIsUpdated( false )
+                setIsFullList( false )
+            } )
         }
 
     }, [ selectedAddress, employeeIsUpdated ] );
@@ -457,10 +461,17 @@ export const EmployeesList = ( props ) => {
     return (
         <div>
             <div className="add">
-                <Button className="add__button" type="primary" onClick={ () => dispatch( clearSelectedAddress() ) }>
-                    Отобразить полный список сотрудников</Button>
-                <Button className="add__button" type="primary" onClick={ showModal }>Зарегистрировать нового
-                    сотрудника</Button>
+                <div>
+                    { !isFullList &&
+                        <Button className="add__button" type="primary"
+                                onClick={ () => dispatch( clearSelectedAddress() ) }>
+                            Отобразить полный список сотрудников
+                        </Button> }
+                </div>
+                <Button className="add__button" type="primary" onClick={ showModal }>
+                    Зарегистрировать нового
+                    сотрудника
+                </Button>
             </div>
             <Modal
                 width={ 620 }
