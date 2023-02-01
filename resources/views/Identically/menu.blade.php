@@ -1,9 +1,11 @@
 <nav class="relative px-4 py-4 flex justify-between items-center bg-white"
      style="background: #242B33;
+     display: flex;
+     justify-content: space-between;
       position: fixed;
       overflow: hidden;
       top: 0;
-       right: 0;
+      right: 0;
       width: 100%;
       z-index: 1;
     ">
@@ -19,10 +21,21 @@
     </div>
 
     <ul style="height: 50px;
-    padding-right: 185px;
+    padding-right: 195px;
 "
 {{--        1185--}}
-        class="hidden absolute top-1/2 left-3/4 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
+        class="hidden absolute
+        top-1/2 left-3/4
+         transform -translate-y-1/2 -translate-x-1/2
+{{--          lg:flex--}}
+{{--          lg:mx-auto--}}
+
+          lg:flex
+          lg:jc
+          lg:items-center
+{{--          lg:w-auto--}}
+{{--          lg:space-x-6--}}
+">
         <li class="mb-1">
             <a style="color: #FFFFFF;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';"
             class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="news">Новости</a>
@@ -39,16 +52,11 @@
             <a style="color: #FFFFFF;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';"
                class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="announcement">Объявления</a>
         </li>
-        <li style="width: 89px" class="mb-1">
+        <li style="width: 72px" class="mb-1">
             <a style="color: #FFFFFF;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';"
                class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="about">О нас</a>
         </li>
-{{--    </ul>--}}
 
-{{--        <ul style="height: 50px;--}}
-{{--    /*padding-right: 934px;*/--}}
-"
-{{--            class="hidden absolute top-1/2 left-3/4 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">--}}
             @guest
             @if (Route::has('login'))
                 <li class="mb-1">

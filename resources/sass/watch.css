@@ -39,8 +39,8 @@
     display: block;
     text-align: center;
 }
-    input{
-        margin-bottom: 5px;
+    .input-name{
+        margin-bottom: 10px;
     }
     .input_button {
         padding: 8px 0 8px 0;
