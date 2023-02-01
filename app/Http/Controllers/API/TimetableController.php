@@ -11,6 +11,7 @@ use App\Models\TimeWindow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use function PHPUnit\Framework\isEmpty;
 
 class TimetableController extends Controller
 {
@@ -28,51 +29,45 @@ class TimetableController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return int[]
      */
     public function store(Request $request)
     {
+        $timeWindows = [1, 2, 3, 4,];
         $date = strtotime($request->get('date'));
-        //$mysqldate = date('Y-m-d', $date);
+        $mysqldate = date('Y-m-d', $date);
         $date = explode('.', $request->get('date'), 3);
         $response = Http::get("https://isdayoff.ru/api/getdata?year=" . $date[2] . '&month=' . $date[1] . '&day=' . $date[0]);
         $id = Auth::user()->id;
         if ($response->body()) {
             return response()->json(["message: Выходной день", $id]);
         }
-        //dd(Apartment::addSelect('house_id')->where('apartment_id', Client::select('apartment_id')->where('user_id', $id))->get());
-        dd(Apartment::select([('apartment_id')=> Client::select('apartment_id')->where('user_id', $id)])->first('house_id'));
-        /*$clientHouseId = Client::join('users', 'users.id','=', 'clients.user_id')
-            ->join('apartments','apartments.id','=','clients.apartment_id')
-            ->join('houses', 'houses.id', '=', 'apartments.house_id')
+        $clientsAddressIds = Client::where('user_id', '=', $id)
+            ->join('apartments', 'apartments.id', '=', 'clients.apartment_id')
+            ->join('houses', 'apartments.house_id', '=', 'houses.id')
             ->join('house_number_street', 'houses.house_number_street_id', '=', 'house_number_street.id')
-            ->where('house_number_street.street_id', $streetId)
-            ->where('house_number_street.house_number_id', $houseNumberId)
+            ->join('house_numbers', 'house_number_street.house_number_id', '=', 'house_numbers.id')
+            ->join('streets', 'house_number_street.street_id', '=', 'streets.id')
             ->select(
-                'users.id as user_id',
-                'users.name as client_name',
-                'users.birth_date as client_birth_date',
-                'users.phone as client_phone',
-                'users.email as client_email',
-                'users.patronymic as client_patronymic',
-                'users.last_name as client.last_name',
-                'clients.id as client_id', 'apartment_id',
-                'number as apartment_number',
-                'entrance', 'floor')
-            ->get();*/
-        /*$employeeId =
-            Employee::
-            where('held_position', $request->proffesion)
-                ->get('id');
+                'house_numbers.id as house_id',
+                'streets.id as street_id'
+            )
+            ->get()
+            ->toArray();
+        $clientsAddressIds = $clientsAddressIds[0];
+        $employeeObjectIds = Employee::where('held_position', '=', $request->proffesion)
+            ->join('employee_serviced_address', 'employees.id', '=', 'employee_serviced_address.employee_id')
+            ->join('house_number_street', 'employee_serviced_address.house_number_street_id', '=', 'house_number_street.id')
+            ->where('house_number_street.street_id', '=', $clientsAddressIds["street_id"])
+            ->where('house_number_street.house_number_id', '=', $clientsAddressIds["house_id"])
+            ->get()
+            ->toArray();
+        foreach (Timetable::where('date', $mysqldate)->get()->toArray() as $item){
+            if(isEmpty($item)){
+                return $timeWindows;
+            }
 
-        $timetable =
-            dd(Timetable::
-            where('date', $mysqldate)
-                ->whereIn('employer_id',
-                    Employee::
-                    where('held_position', $request->proffesion)
-                        ->get('id'))
-                ->get('id'));*/
+        };
     }
 
     /**

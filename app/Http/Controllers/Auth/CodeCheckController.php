@@ -20,6 +20,6 @@ class CodeCheckController extends ApiController
             return $this->jsonResponse(null, trans('passwords.code_is_expire'), 422);
         }
 
-        return $this->jsonResponse(['code' => $passwordReset->code], trans('passwords.code_is_valid'), 200)->cookie($request->code);
+        return $this->jsonResponse(['code' => $passwordReset->code], trans('passwords.code_is_valid'), 200)/*->cookie($request->code)*/;
     }
 }
