@@ -1,31 +1,75 @@
 import React from 'react';
+import {Avatar, ConfigProvider, List, theme} from 'antd';
 import style from "../../css/houses_list.css";
-import {Card, List, Space, Table, Tag} from 'antd';
-import { Typography } from 'antd';
 
-const { Text } = Typography;
-
-const columns = [
+const houses = [
     {
-        title: 'Номер дома',
-        dataIndex: 'name',
-        key: 'name',
+        address: "Адрес дома",
+        description: "Описание дома",
+        residents: "23 жителя",
     },
     {
-        title: 'Lorem',
-        dataIndex: 'age',
-        key: 'age',
+        address: "Адрес дома",
+        description: "Описание дома",
+        residents: "23 жителя",
     },
     {
-        title: 'Lorem',
-        dataIndex: 'address',
-        key: 'address',
+        address: "Адрес дома",
+        description: "Описание дома",
+        residents: "23 жителя",
     },
-
+    {
+        address: "Адрес дома",
+        description: "Описание дома",
+        residents: "23 жителя",
+    },
 ];
-const HousesList = () =>
-<>
-        <h2 className="title_name" style={{ style }}>Мы обслуживаем дома</h2>
-        <Table columns={columns}  />;
-</>
+
+class HousesList extends React.Component {
+
+
+
+    render() {
+        return (
+            <>
+                <h2 className="title_name" style={{style}}>Мы обслуживаем дома</h2>
+                <ConfigProvider
+                    theme={{ algorithm: theme.darkAlgorithm,
+                    }}
+                >
+                    <List
+                        itemLayout="vertical"
+                        size="large"
+                        pagination={{
+                            onChange: (page) => {
+                                console.log(page);
+                            },
+                            pageSize: 3,
+                        }}
+                        dataSource={houses}
+                        renderItem={(item) => (
+                            <List.Item
+                                key={item.title}
+                                extra={
+                                    <img
+                                        width={272}
+                                        alt="logo"
+                                        src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                                    />
+                                }
+                            >
+                                <List.Item.Meta
+                                    title={<a href="#">{item.address}</a>}
+                                    description={item.residents}
+                                />
+                                {item.description}
+                            </List.Item>
+                        )}
+                    />
+                </ConfigProvider>
+            </>
+        )
+    }
+}
+
 export default HousesList;

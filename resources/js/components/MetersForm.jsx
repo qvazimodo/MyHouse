@@ -1,5 +1,5 @@
 import React from 'react';
-import { Collapse, App, Button, Form, Input, Select, Typography, Divider, Table, notification, Space, Modal  } from 'antd';
+import { Collapse, App, Button, Form, Input, Select, Typography, Divider, Table, notification, Space, Modal, Spin   } from 'antd';
 import {AUTH_METERS_API_URL, AUTH_METERS_LIST_API_URL, AUTH_USER_API_URL, METER_VALUE_API_URL} from "../helpers/API";
 
 import DocumentRender from "./DocumentRender";
@@ -79,6 +79,7 @@ class MetersForm extends React.Component {
         this.valueInputChange = this.valueInputChange.bind(this);
     }
 
+
     openNotification = () => {
         notification.open({
             message: 'Данные приняты',
@@ -102,7 +103,6 @@ class MetersForm extends React.Component {
 
     componentDidMount() {
         /* Код get запроса для получения user_id */
-
         fetch(AUTH_USER_API_URL)
             .then(response => response.json())
                 .catch(e => console.log(e))
@@ -144,14 +144,7 @@ class MetersForm extends React.Component {
                         })
                     })
                 }
-/*
-                let values = new Map();
-                for (let key in meterInfo) {
-                    meterInfo[key].meter_month_year.forEach((item) => {
-                        values.set(item.id, item.value);
-                    })
-                }
-*/
+
                 let iterForTable = 1;
                 for (let key in meterInfo) {
 
@@ -169,6 +162,7 @@ class MetersForm extends React.Component {
                     })
                 }
             });
+
     }
 
     generateSelectTypes = () => {
@@ -254,7 +248,9 @@ class MetersForm extends React.Component {
                     <Collapse accordion>
                     <Panel header="Ввести показания счетчиков" key="1" className="cabinet-txt">
                         <Text mark className="cabinet-color-txt">Показания счетчиков за прошлый период</Text>
-                        <Table columns={ columns } dataSource={ this.state.info } locale={ locale }
+                        <Table columns={ columns }
+                               dataSource={ this.state.info }
+                               locale={ locale }
                                className="meter-table"/>
                         <Button onClick={ this.showModal } className="addMeter-btn">Отправить заявку на добавление
                             нового счетчика</Button>
