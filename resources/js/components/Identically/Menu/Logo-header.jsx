@@ -1,6 +1,6 @@
 import React from 'react';
 import { Space, Typography } from 'antd';
-import style from "../../../../css/Identically/menu.css";
+import style from "../../../../css/Identically/header.css";
 
 const { Link } = Typography;
 

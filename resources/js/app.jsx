@@ -25,7 +25,6 @@ import Contacts from "./components/Contacts";
 import News from "./components/News";
 import { MetersList } from "./components/admin/MetersList";
 import { Header } from "./components/Identically/Header/Header";
-import { Footer } from "./components/Identically/Footer/Footer";
 import Flats from "./components/Content/Flats";
 import LogoHeader from "./components/Identically/Menu/Logo-header";
 import PasswordReq from "./components/PasswordReq/PasswordReq";
@@ -123,11 +122,6 @@ if ( document.getElementById( 'logo-header' ) ) {
 if ( document.getElementById( 'header' ) ) {
     const root = createRoot( document.getElementById( 'header' ) );
     root.render( <Header/> );
-}
-
-if ( document.getElementById( 'footer' ) ) {
-    const root = createRoot( document.getElementById( 'footer' ) );
-    root.render( <Footer/> );
 }
 
 if ( document.getElementById( 'flats' ) ) {

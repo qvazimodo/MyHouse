@@ -1,11 +1,9 @@
-Footer {
+footer{
+    align-items: center;
     display: flex;
     justify-content: space-between;
 }
-#footer {
-    height: 100px;
 
-}
 .house-footer {
     text-decoration: none;
     color: #FFFFFF;
@@ -27,28 +25,4 @@ Footer {
     height: 14px;
     width: 167px;
     text-align: center;
-}
-.Menu-logo-footer {
-    color: #d7d7d7;
-    margin-left: 443px;
-    margin-top: -46px;
-    font-size: 14px;
-    width: 380px;
-}
-.weather {
-    margin-top: 24px;
-    margin-bottom: 36px;
-    margin-left: 335px;
-}
-
-@media (max-width:767px) {
-    .Menu-logo-footer {
-        display: none;
-    }
-    #footer{
-        display: none;
-    }
-    .weather{
-        margin: 0 auto;
-    }
 }
