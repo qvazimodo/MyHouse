@@ -21,7 +21,7 @@ const NewPassword = () => {
                     .getAttribute('content'),
             },
             body: JSON.stringify({
-                code: 103513,
+                code: 805225,
                 password: password,
             })
         })
