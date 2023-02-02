@@ -118,5 +118,6 @@ Route::post('password/email', ForgotPasswordController::class);
 Route::post('password/code/check', CodeCheckController::class);
 Route::post('password/reset', ResetPasswordController::class);
 
-//
+//Вызов работника
 Route::apiResource('timetable', TimetableController::class);
+Route::get('check/timetable', [TimetableController::class, 'checkFreeTime']);

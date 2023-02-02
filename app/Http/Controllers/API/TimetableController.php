@@ -6,104 +6,55 @@ use App\Http\Controllers\Controller;
 use App\Models\Client;
 use App\Models\Employee;
 use App\Models\Timetable;
+use App\Repositories\TimetableRepository;
+use App\Services\TimetableService;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class TimetableController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function index()
+    public function index(): Collection
     {
         return Timetable::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function store(Request $request)
+    public function store(): JsonResponse
+    {
+
+    }
+
+    public function show($id)
+    {
+        //
+    }
+
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    public function destroy($id)
+    {
+        //
+    }
+
+    public function checkFreeTime(Request $request, TimetableService $timetableService, TimetableRepository $timetableRepository): JsonResponse
     {
         $timeWindows = [1, 2, 3, 4,];
-        $date = strtotime($request->get('date'));
-        $mysqldate = date('Y-m-d', $date);
-        $date = explode('.', $request->get('date'), 3);
-        $response = Http::get("https://isdayoff.ru/api/getdata?year=" . $date[2] . '&month=' . $date[1] . '&day=' . $date[0]);
-        $id = Auth::user()->id;
-        if ($response->body()) {
-            return response()->json(["message: Выходной день", $id]);
-        }
-        $clientsAddressIds = Client::where('user_id', '=', $id)
-            ->join('apartments', 'apartments.id', '=', 'clients.apartment_id')
-            ->join('houses', 'apartments.house_id', '=', 'houses.id')
-            ->join('house_number_street', 'houses.house_number_street_id', '=', 'house_number_street.id')
-            ->join('house_numbers', 'house_number_street.house_number_id', '=', 'house_numbers.id')
-            ->join('streets', 'house_number_street.street_id', '=', 'streets.id')
-            ->select(
-                'house_numbers.id as house_id',
-                'streets.id as street_id'
-            )
-            ->get()
-            ->toArray();
-        $clientsAddressIds = $clientsAddressIds[0];
-        $employeeObjectIds = Employee::where('held_position', '=', $request->proffesion)
-            ->join('employee_serviced_address', 'employees.id', '=', 'employee_serviced_address.employee_id')
-            ->join('house_number_street', 'employee_serviced_address.house_number_street_id', '=', 'house_number_street.id')
-            ->where('house_number_street.street_id', '=', $clientsAddressIds["street_id"])
-            ->where('house_number_street.house_number_id', '=', $clientsAddressIds["house_id"])
-            ->get()
-            ->toArray();
-        $e = Timetable::where('date', $mysqldate)->get();
-        if($e->isEmpty()){
-            return $timeWindows;
-        }
-        $e2 = Timetable::where('date', $mysqldate)->get('time_window_id');
-        foreach ($e2 as $key => $item){
-            unset($timeWindows[$key]);
-        }
-        return $timeWindows;
-    }
+        $employeeTimeWindows = [];
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public
-    function show($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public
-    function update(Request $request, $id)
-    {
-        //
-    }
+        $date = $request->get('date');
+        $checkDate = $timetableService->checkDate($date);
+        $mysqlDate = $timetableService->convertDate($date);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public
-    function destroy($id)
-    {
-        //
+        if($checkDate["flag"]){
+            return response()->json(['message:' . $checkDate["message"]]);
+        }
+        $employee = $timetableRepository->getEmployeeByObject($request->profession);
+        dd($employee);
     }
 }
