@@ -4,6 +4,7 @@ import ruRu from "antd/lib/locale/ru_RU";
 import {Option} from "antd/es/mentions";
 import {ALL_METERS_VALUES_API_URL} from "../../helpers/API";
 import {OldHousesList} from "./OldHousesList";
+import {Chart} from "./Chart"
 
 const {Header, Content, Footer, Sider} = Layout;
 export const MetersList = () => {
@@ -52,6 +53,7 @@ export const MetersList = () => {
 
         >
             <>
+                <Chart/>
                 <OldHousesList/>
                 <Input.Group compact>
                     <Select defaultValue="Год">
