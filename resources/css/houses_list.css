@@ -2,5 +2,19 @@
     margin-top: 20px;
     padding: 40px;
  }
+.images-wrp {
+    position: relative;
+    height: 180px;
+    width: 250px;
+}
+.slide-image {
+    display: block;
+    width: 250px;
+    height: 180px;
+}
+
+.ant-carousel .slick-dots li.slick-active button {
+    background: rgba(255, 255, 255, 0.85);
+}
 
 
