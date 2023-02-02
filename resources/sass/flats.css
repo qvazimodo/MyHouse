@@ -1,0 +1,53 @@
+.flats-items {
+    max-width: 1100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    list-style-type: none;
+    margin: 0 auto;
+}
+.flats-item {
+    width: 535px;
+    height: 320px;
+    margin: 0 0 30px;
+}
+.flats-photo {
+    position: absolute;
+    border-radius: 10px;
+}
+.flats-text {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    color: #FFFFFF;
+    position: relative;
+    top: 220px;
+    left: 52px;
+}
+
+@media (max-width:1250px) {
+.flats-photo{
+    position: absolute;
+    display: block;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+.flats-text {
+    top: 70px;
+    left: 130px;
+}
+.flats-items{
+    margin-top: 185px;
+}
+}
+
+@media (min-width: 1070px) and (max-width: 1250px) {
+    .flats-text {
+display: none;
+    }
+}
+
+

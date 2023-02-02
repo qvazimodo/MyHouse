@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 //use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -22,8 +24,13 @@ class User extends Authenticatable
         'name',
         'patronymic',
         'last_name',
+        'birth_date',
+        'is_admin',
+        'phone',
         'email',
+        'email_verified_at',
         'password',
+        'rememberToken',
     ];
 
     /**
@@ -45,12 +52,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function client()
+    public function client():HasOne
     {
         return $this->hasOne(Client::class);
     }
 
-    public function employee()
+    public function employee():HasOne
     {
         return $this->hasOne(Employee::class);
     }

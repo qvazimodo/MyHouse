@@ -1,0 +1,27 @@
+.houses__box {
+    @apply flex
+}
+
+.houseNumber__buttons{
+    @apply flex flex-col justify-center}
+
+.houseNumber__button {
+
+}
+
+.houseDescription__content {
+    @apply flex justify-center h-2/3}
+
+.contentSpinner {
+    @apply self-center
+}
+
+.contentLayout {
+    @apply min-h-screen
+}
+.content{
+    @apply h-2/3
+}
+.content__message{
+    @apply h-full text-2xl flex justify-center  items-center h-2/3}
+

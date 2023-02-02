@@ -17,13 +17,14 @@ class EmployeeFactory extends Factory
      */
     public function definition()
     {
-        $profession = [
-            'директор', 'бухгалтер', 'мастер', 'электрик', 'сантехник', 'дворник', 'уборщица'
+        $held_position = [
+            /* 'директор', 'бухгалтер', 'мастер', */
+            'электрик', 'сантехник', 'дворник', 'уборщица'
         ];
 
         return [
             'user_id' => User::factory()->create(),
-            'profession' => $profession[array_rand($profession)],
+            'held_position' => $held_position[array_rand($held_position)],
             'created_at' => now(),
             'updated_at' => now(),
         ];

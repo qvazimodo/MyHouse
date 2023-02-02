@@ -2,29 +2,25 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\ResetsPasswords;
+use App\Http\Controllers\ApiController;
+use App\Models\PasswordReset;
+use Illuminate\Foundation\Auth\User;
+use App\Http\Requests\Auth\ResetPasswordRequest;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Hash;
 
-class ResetPasswordController extends Controller
+class ResetPasswordController extends ApiController
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reset Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller is responsible for handling password reset requests
-    | and uses a simple trait to include this behavior. You're free to
-    | explore this trait and override any methods you wish to tweak.
-    |
-    */
-
-    use ResetsPasswords;
-
-    /**
-     * Where to redirect users after resetting their password.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    public function __invoke(ResetPasswordRequest $request)
+    {
+        $passwordReset = PasswordReset::firstWhere('code', $request->code/*Cookie::get('code')*/);
+        if ($passwordReset->isExpire()) {
+            return $this->jsonResponse(null, trans('passwords.code_is_expire'), 422);
+        }
+        $user = User::firstWhere('email', $passwordReset->email);
+        $user->password = Hash::make($request->get('password'));
+        $user->save();
+        PasswordReset::where('code', $request->code/*Cookie::get('code')*/)->delete();
+        return $this->jsonResponse(null, trans('site.password_has_been_successfully_reset'), 200);
+    }
 }

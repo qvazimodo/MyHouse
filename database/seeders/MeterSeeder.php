@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Client;
 use App\Models\Meter;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class MeterSeeder extends Seeder
@@ -15,6 +15,10 @@ class MeterSeeder extends Seeder
      */
     public function run()
     {
-        Meter::factory(100)->create();
+        $clients = Client::all();
+        $clients->each(function ($client) {
+            $meters = Meter::factory(rand(1, 3))->make(['client_id' => $client->get('id')]);
+            $client->meters()->saveMany($meters);
+        });
     }
 }

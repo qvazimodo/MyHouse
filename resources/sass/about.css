@@ -1,16 +1,5 @@
-.about-title {
-    font-family: 'Playfair Display', sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 36px;
-    line-height: 48px;
-    color: #D4C17F;
-    margin-left: 237px;
-}
-
-.about-text {
-    color: #cbd5e0;
-    margin-left: 163px;
-    margin-right: 0;
-    margin-bottom: 100px;
+.about {
+    margin-top: 80px;
+    padding: 0 10px 10px 10px;
+    color: #FFFFFF;
 }

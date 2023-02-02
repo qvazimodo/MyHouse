@@ -2,14 +2,20 @@
 
 @section('title', 'My House Управляющая компания')
 
-@section('header')
-    @include('header')
+@section('menu')
+    <div id="wrapper">
+        @include('Identically.menu')
+    </div>
 @endsection
 
+{{--@section('header')--}}
+{{--    @include('Identically.header')--}}
+{{--@endsection--}}
+
 @section('content')
-<div class="login-form">
-    <div class="container">
-        <h2 class="title-2">Вход в личный кабинет</h2>
+    <div id="wrapper">
+    <div class="login-form">
+        <h2 class="title_name">Вход в личный кабинет</h2>
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -57,8 +63,8 @@
                     {{ __('Войти') }}
                 </button>
 
-                @if (Route::has('password.request'))
-                    <a class="password-txt" href="{{ route('password.request') }}">
+                @if (Route::has('passwordreq'))
+                    <a class="password-txt" href="passwordreq">
                         {{ __('Забыли пароль?') }}
                     </a>
                 @endif
@@ -66,11 +72,13 @@
             </div>
         </form>
     </div>
-    <div id="example"></div>
+
 </div>
 
 @endsection
 
 @section('footer')
-    @include('footer')
+    <div id="wrapper">
+        @include('Identically.footer')
+    </div>
 @endsection
