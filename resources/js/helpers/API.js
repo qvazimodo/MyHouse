@@ -13,6 +13,8 @@ export const PASSWORD_CHECK_EMAIL_API_URL =  DOMEN + "/api/password/code/check";
 
 export const PASSWORD_RESET_EMAIL_API_URL =  DOMEN + "/api/password/reset";
 
+export const CHECK_TIMETABLE_API_URL = DOMEN + "/check/timetable";
+
 //все объявления текущего клиента
 export const CLIENT_CARDS_API_URL = DOMEN + "/api/client/cards";
 

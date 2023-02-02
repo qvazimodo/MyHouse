@@ -3,6 +3,7 @@ import {Button, Form, Input} from "antd";
 import FormItem from "antd/es/form/FormItem";
 import {PASSWORD_CHECK_EMAIL_API_URL, PASSWORD_RESET_EMAIL_API_URL} from "../../helpers/API";
 import passwordReq from "./PasswordReq";
+import {useLocation} from "react-router-dom";
 
 const NewPassword = () => {
 
@@ -10,6 +11,8 @@ const NewPassword = () => {
     const [linkcode, setLinkcode] = useState('');
     const [disableCode, setDisableCode] = useState(true);
     const [textMessageEmail, setTextMessageEmail] = useState('');
+
+    let emailCode = useLocation();
 
     const sendForm = (e) => {
         fetch(PASSWORD_RESET_EMAIL_API_URL, {
@@ -21,7 +24,7 @@ const NewPassword = () => {
                     .getAttribute('content'),
             },
             body: JSON.stringify({
-                code: 805225,
+                code: emailCode.state.code,
                 password: password,
             })
         })
@@ -35,8 +38,6 @@ const NewPassword = () => {
                 } else {
                     alert("Пароль не установлен")
                 }
-                console.log(result)
-
             })
 
     }

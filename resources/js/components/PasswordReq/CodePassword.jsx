@@ -69,7 +69,7 @@ const CodePassword = () => {
                 <h2 className="text-accept-code">{textMessageEmail}</h2>
                 <FormItem>
                     <FormItem hidden={disableCode}>
-                        <Link to="/passwordnew" className="link-password">Далее</Link>
+                        <Link to="/passwordnew" state={{code:code}} className="link-password">Далее</Link>
                     </FormItem>
                 </FormItem>
             </Form>

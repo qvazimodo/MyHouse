@@ -71,16 +71,6 @@ if ( document.getElementById( 'passwordreq' ) ) {
 }
 
 
-// if (document.getElementById('passwordcode')){
-//     const root=createRoot(document.getElementById('passwordcode'));
-//     root.render(<CodePassword/>);
-// }
-//
-// if (document.getElementById('passwordnew')){
-//     const root=createRoot(document.getElementById('passwordnew'));
-//     root.render(<NewPassword/>);
-// }
-
 if (document.getElementById('listCards')) {
     const root = createRoot(document.getElementById('listCards'));
     root.render(<ListCards />);
