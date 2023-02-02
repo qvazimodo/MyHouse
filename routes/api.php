@@ -113,6 +113,12 @@ Route::prefix('admin')->group(function () {
 
 });
 
+Route::prefix('')->group(function () {
+//api вывода информации обо всех домах для гл страницы
+    Route::get('/houses', [HouseController::class, 'showAllHouses']);
+});
+
+
 // Password reset routes
 Route::post('password/email', ForgotPasswordController::class);
 Route::post('password/code/check', CodeCheckController::class);

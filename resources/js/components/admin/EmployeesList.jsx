@@ -492,7 +492,6 @@ export const EmployeesList = ( props ) => {
                     <Button
                         type="primary"
                         key="submit"
-                        type="primary"
                         loading={loading}
                         onClick={handleOk}
                     >
