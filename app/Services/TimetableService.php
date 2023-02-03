@@ -16,7 +16,7 @@ class TimetableService
 {
     public function checkDate($requestDate): array
     {
-        $date = explode('.', $requestDate, 3);
+        $date = explode('-', $requestDate, 3);
         $response = Http::get("https://isdayoff.ru/api/getdata?year=" . $date[2] . '&month=' . $date[1] . '&day=' . $date[0])->body();
         if ($response == '1') {
             return [

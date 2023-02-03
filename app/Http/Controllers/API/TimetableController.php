@@ -43,18 +43,14 @@ class TimetableController extends Controller
 
     public function checkFreeTime(Request $request, TimetableService $timetableService, TimetableRepository $timetableRepository): JsonResponse
     {
-        $timeWindows = [1, 2, 3, 4,];
-        $employeeTimeWindows = [];
-
-
         $date = $request->get('date');
         $checkDate = $timetableService->checkDate($date);
-        $mysqlDate = $timetableService->convertDate($date);
+        //$mysqlDate = $timetableService->convertDate($date);
 
         if($checkDate["flag"]){
             return response()->json(['message:' . $checkDate["message"]]);
         }
-        $employee = $timetableRepository->getEmployeeByObject($request->profession);
-        dd($employee);
+        $result = $timetableRepository->getFreeTimeEmployeeById($request->profession);
+        return response()->json($result, 200);
     }
 }

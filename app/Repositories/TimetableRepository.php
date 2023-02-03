@@ -6,11 +6,14 @@ namespace App\Repositories;
 
 use App\Models\Client;
 use App\Models\Employee;
+use App\Models\Timetable;
 use Illuminate\Support\Facades\Auth;
 
 class TimetableRepository
 {
     protected array $clientsAddressIds;
+    protected array $timeWindows = [1, 2, 3, 4,];
+
 
     public function getClientsAddressIds(): void
     {
@@ -32,7 +35,7 @@ class TimetableRepository
         $this->clientsAddressIds = $clientsAddressIds[0];
     }
 
-    public function getEmployeeByObject($profession): array
+    public function getEmployeeByObject($profession)
     {
         $this->getClientsAddressIds();
         return Employee::where('held_position', '=', $profession)
@@ -40,7 +43,22 @@ class TimetableRepository
             ->join('house_number_street', 'employee_serviced_address.house_number_street_id', '=', 'house_number_street.id')
             ->where('house_number_street.street_id', '=', $this->clientsAddressIds["street_id"])
             ->where('house_number_street.house_number_id', '=', $this->clientsAddressIds["house_id"])
-            ->get()
-            ->toArray();
+            ->get();
+    }
+
+    public function getFreeTimeEmployeeById($profession): array
+    {
+        $busyTimes = [];
+        $employee = $this->getEmployeeByObject($profession);
+        $plucked = $employee->pluck('employee_id');
+        foreach ($plucked->all() as $employee) {
+            $array = [];
+            foreach (Timetable::where('employer_id', $employee)->get('time_window_id')->toArray() as $item){
+                $array[] = $item['time_window_id'];
+            }
+            $array = array_diff($this->timeWindows, $array);
+            $busyTimes[$employee] = $array;
+        }
+        return $busyTimes;
     }
 }
