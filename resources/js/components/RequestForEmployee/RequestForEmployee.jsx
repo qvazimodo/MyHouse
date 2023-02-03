@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Alert, Button, Calendar, Collapse, ConfigProvider, Select, theme} from 'antd';
-import {CHECK_TIMETABLE_API_URL, PASSWORD_EMAIL_API_URL} from "../helpers/API";
+import {CHECK_TIMETABLE_API_URL, PASSWORD_EMAIL_API_URL} from "../../helpers/API";
+import './RequestForEmployee.css'
 
 const OPTIONS = ['дворник', 'сантехник', 'электрик'];
 
