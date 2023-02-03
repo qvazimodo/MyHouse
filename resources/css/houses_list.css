@@ -16,5 +16,15 @@
 .ant-carousel .slick-dots li.slick-active button {
     background: rgba(255, 255, 255, 0.85);
 }
+.title_name.house-title {
+    margin-bottom: 50px;
+}
+
+.ant-spin-nested-loading >div>.ant-spin-lg .ant-spin-text {
+    color: #FFFFFF;
+}
+.ant-spin {
+    color: #FFFFFF;
+}
 
 
