@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Outlet, useNavigate } from "react-router-dom"
 import { Layout, Menu, theme } from 'antd';
 import { adminHeaderMenuItems } from "./helpers/adminHeaderMenuItems"
-import { fetchAddresses, setSelectedAddress, fetchHouses } from "../../features/house/houseSlice";
+import { clearSelectedAddress, fetchAddresses, fetchHouses, setSelectedAddress } from "../../features/house/houseSlice";
 import { isNull } from "lodash";
 
 
@@ -18,7 +18,8 @@ export const MainPage = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const clickOnHeaderMenu = ({key}) => {
-        navigate(key)
+        dispatch( clearSelectedAddress() )
+        navigate( key )
     }
 
     useEffect( () => {

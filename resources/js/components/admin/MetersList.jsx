@@ -55,7 +55,7 @@ export const MetersList = () => {
         >
             <>
                 <HousesChart/>
-                <ExampleChart/>
+                {/*<ExampleChart/>*/}
                 <OldHousesList/>
                 <Input.Group compact>
                     <Select defaultValue="Год">

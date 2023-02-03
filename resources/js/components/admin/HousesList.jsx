@@ -8,6 +8,7 @@ import styles from "./styles/HousesList.module.scss"
 import { Content } from "antd/es/layout/layout";
 import { HouseDescription } from "./HouseDescription";
 import Texty from 'rc-texty';
+import { HousesChart } from "./HousesChart";
 
 const { Panel } = Collapse;
 
@@ -49,10 +50,13 @@ export const HousesList = () => {
 
                     <Content className={styles.content} onClick={ () => console.log( selectedAddress ) }>
                         { selectedAddress.streetName === '' &&
-                            <div className={ styles.content__message }>
-                                <Texty>
-                                    Выберите улицу и номер дома!
-                                </Texty>
+                            <div>
+                                <HousesChart/>
+                                <div className={ styles.content__message }>
+                                    <Texty>
+                                        Выберите улицу и номер дома!
+                                    </Texty>
+                                </div>
                             </div> }
                         { selectedAddress.houseNumber === '' &&
                             <div className={ styles.content__message }>
@@ -60,6 +64,7 @@ export const HousesList = () => {
                                     Выберите номер дома!
                                 </Texty>
                             </div> }
+
                         { isLoading && <div className={ styles.houseDescription__content }>
                             <Spin className={ styles.contentSpinner } size="large"/>
                         </div> }
