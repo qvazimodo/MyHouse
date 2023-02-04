@@ -48,10 +48,7 @@
             <a style="color: #FFFFFF;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';"
                class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="serviced_houses">Дома</a>
         </li>
-        <li class="mb-1">
-            <a style="color: #FFFFFF;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';"
-               class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="announcement">Объявления</a>
-        </li>
+
         <li style="width: 72px" class="mb-1">
             <a style="color: #FFFFFF;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';"
                class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="about">О нас</a>
@@ -77,13 +74,17 @@
                        class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="{{ route('admin.index') }}" role="button" aria-expanded="false">Панель администратора</a>
                 </li>
             @else
+                <li class="mb-1">
+                    <a style="color: #FFFFFF;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';"
+                       class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="announcement">Объявления</a>
+                </li>
                 <li style="width: 151px" class="mb-1">
                     <a style="color: #FFFFFF;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';"
                        class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="{{ route('usercards') }}">Мои объявления</a>
                 </li>
                 <li style="width: 128px" class="mb-1">
                     <a style="color: #FFFFFF;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';"
-                       class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="{{ route('userProfile') }}">Мои профиль</a>
+                       class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="{{ route('userProfile') }}">Мой профиль</a>
                 </li>
                 <li class="mb-1">
                     <a style="color: #FFFFFF;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';"
@@ -136,9 +137,7 @@
                 <li class="mb-1">
                     <a style="color: black" class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="serviced_houses">Дома</a>
                 </li>
-                <li class="mb-1">
-                    <a style="color: black" class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="announcement">Объявления</a>
-                </li>
+
                 <li class="mb-1">
                     <a style="color: black" class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="about">О нас</a>
                 </li>
@@ -161,6 +160,9 @@
                             <a style="color: black" class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="{{ route('admin.index') }}" role="button" aria-expanded="false">Панель администратора</a>
                         </li>
                     @else
+                        <li class="mb-1">
+                            <a style="color: black" class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="announcement">Объявления</a>
+                        </li>
                         <li class="mb-1">
                             <a style="color: black" class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="{{ route('usercards') }}">Мои объявления</a>
                         </li>
