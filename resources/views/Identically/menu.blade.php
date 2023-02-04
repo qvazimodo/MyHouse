@@ -23,22 +23,11 @@
     <ul style="height: 50px;
     padding-right: 195px;
 "
-{{--        1185--}}
-        class="hidden absolute
-        top-1/2 left-3/4
-         transform -translate-y-1/2 -translate-x-1/2
-{{--          lg:flex--}}
-{{--          lg:mx-auto--}}
 
-          lg:flex
-          lg:jc
-          lg:items-center
-{{--          lg:w-auto--}}
-{{--          lg:space-x-6--}}
-">
+        class="hidden absolute top-1/2 left-3/4 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:jc">
         <li class="mb-1">
             <a style="color: #FFFFFF;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';"
-            class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="news">Новости</a>
+            class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="{{ route('news.index') }}">Новости</a>
         </li>
         <li class="mb-1">
             <a style="color: #FFFFFF;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';"
@@ -184,4 +173,3 @@
         </div>
     </nav>
 </div>
-

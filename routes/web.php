@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\News\NewsController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -88,4 +89,10 @@ Route::get('/news', function (){
 })->name('news');
 
 
-
+//News
+Route::name('news.')
+    ->prefix('news')
+    ->group(function() {
+        Route::get('/', [NewsController::class, 'index'])->name('index');
+        Route::get('/{id}', [NewsController::class, 'show'])->name('show')->where('id', '[0-9]+');
+    });

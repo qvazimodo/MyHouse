@@ -22,7 +22,6 @@ import { Employees } from "./components/admin/Employees";
 import UserCards from "./components/UserCards/UserCards";
 import HousesList from "./components/HousesList";
 import Contacts from "./components/Contacts";
-import News from "./components/News";
 import { MetersList } from "./components/admin/MetersList";
 import { Header } from "./components/Identically/Header/Header";
 import Flats from "./components/Content/Flats";
@@ -89,11 +88,6 @@ if (document.getElementById('contacts')){
 if (document.getElementById('housesList')){
     const root=createRoot(document.getElementById('housesList'));
     root.render(<HousesList />);
-}
-
-if ( document.getElementById( 'news' ) ) {
-    const root = createRoot( document.getElementById( 'news' ) );
-    root.render( <News/> );
 }
 
 if ( document.getElementById( 'admin' ) ) {

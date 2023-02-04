@@ -1,6 +1,6 @@
 @extends('layouts.landing_layout')
 
-@section('title', 'My House Управляющая компания')
+@section('title', 'Объявления')
 
 @section('menu')
     <div id="wrapper">
