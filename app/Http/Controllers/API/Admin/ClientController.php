@@ -35,7 +35,9 @@ class ClientController extends Controller
                 'clients.id as client_id', 'apartment_id',
                 'number as apartment_number',
                 'entrance', 'floor',
+                'streets.id as street_id',
                 'streets.name as street_name',
+                'house_numbers.id as house_number_id',
                 'house_numbers.value as house_number'
             )
             ->get();

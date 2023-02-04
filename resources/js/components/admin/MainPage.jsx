@@ -42,7 +42,6 @@ export const MainPage = () => {
     )
 
     let index = 0
-    const address = useSelector(state => state.house.selectedAddress)
     const addresses = useSelector(state => state.house.addressesArray)
     const sideMenuItems = addresses.map(address => {
         return {
@@ -64,13 +63,15 @@ export const MainPage = () => {
     const [ openKeys, setOpenKeys ] = useState( [] );
     const onOpenChange = ( keys ) => {
         const latestOpenKey = keys.find( ( key ) => openKeys.indexOf( key ) === -1 );
-        // console.log(keys)
+        console.log( keys )
         if ( rootSubmenuKeys.indexOf( latestOpenKey ) === -1 ) {
             setOpenKeys( keys );
         } else {
             setOpenKeys( latestOpenKey ? [ latestOpenKey ] : [] );
         }
     };
+
+
     const getAddress = (keyPath) => {
         // console.log(keyPath, sideMenuItems)
         let selectedStreetWithHouses = sideMenuItems.find( street => street.key === keyPath[1] )
@@ -88,6 +89,7 @@ export const MainPage = () => {
         return selectedAddress
     }
 
+
     const defaultSelectedMenuItem = '/addresses'
 
     useEffect( () => {
@@ -98,14 +100,25 @@ export const MainPage = () => {
     }, [] );
 
     const selectedAddress = useSelector( state => state.house.selectedAddress )
-    const firstUpdate = useRef(true);
+    const firstUpdate = useRef( true );
     useEffect( () => {
-      if (!firstUpdate.current && isNull(selectedAddress.streetId) ){
-         console.log(openKeys)
-          setOpenKeys([])
-      }
+        if ( !firstUpdate.current && isNull( selectedAddress.streetId ) ) {
+            console.log( openKeys )
+            setOpenKeys( [] )
+        }
         firstUpdate.current = false
     }, [ selectedAddress ] );
+
+    useEffect( () => {
+        console.log( selectedAddress )
+        setSelectedMenuItem( selectedAddress
+/*            getAddress(
+            [ selectedAddress.streetId.toString(),
+                selectedAddress.houseNumberId.toString()
+            ] )*/
+        )
+    }, [ selectedAddress ] );
+
 
     return (
         <Layout style={ {
@@ -125,9 +138,9 @@ export const MainPage = () => {
                 />
                 <Menu
                     onClick={ ( { item, key, keyPath, domEvent } ) => {
-                        console.log( keyPath )
+                        console.log(item, keyPath )
                         setSelectedMenuItem( getAddress( keyPath ) )
-                        // console.log(selectedMenuItem)
+                        console.log( getAddress( keyPath ) )
                     } }
                     openKeys={ openKeys }
                     onOpenChange={ onOpenChange }

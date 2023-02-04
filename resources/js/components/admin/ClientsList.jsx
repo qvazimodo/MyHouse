@@ -7,6 +7,7 @@ import Highlighter from 'react-highlight-words';
 import './styles/ClientsList.css';
 import { EditableCell } from "../Editable/EditableCell";
 import styles from "./styles/ClientsList.module.scss";
+import { setSelectedAddress } from "../../features/house/houseSlice";
 
 const onChange = ( pagination, filters, sorter, extra ) => {
     console.log( 'params', pagination, filters, sorter, extra );
@@ -158,6 +159,10 @@ export const ClientsList = ( props ) => {
             floor: item.floor,
             apartmentId: item['apartment_id'],
             apartmentNumber: item['apartment_number'],
+            streetId: item['street_id'],
+            streetName: item['street_name'],
+            houseNumberId: item['house_number_id'],
+            houseNumber: item['house_number']
         }
     })
 
@@ -374,6 +379,23 @@ export const ClientsList = ( props ) => {
                            // total: totalPages,
                            // onChange: onPageChange
                            // showSizeChanger: true,
+                       }}
+                       onRow={(record, rowIndex) => {
+                           return {
+                               onClick: (event) => {
+                                   console.log(record)
+                                   dispatch(setSelectedAddress({
+                                       streetName: record.streetName,
+                                       houseNumber: record.houseNumber,
+                                       streetId: record.streetId,
+                                       houseNumberId: record.houseNumberId
+                                   }))
+                               }, // click row
+                               onDoubleClick: (event) => {}, // double click row
+                               onContextMenu: (event) => {}, // right button click row
+                               onMouseEnter: (event) => {}, // mouse enter row
+                               onMouseLeave: (event) => {}, // mouse leave row
+                           };
                        }}
                        components={{
                            body: {

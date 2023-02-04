@@ -17,7 +17,9 @@ const initialState = {
             "apartment_number": null,
             "entrance": null,
             "floor": null,
+            "street_id": null,
             "street_name": "",
+            "house_number_id": null,
             "house_number": ""
         }
     ],
