@@ -15,7 +15,7 @@
 @section('content')
     <div id="wrapper">
         <h2 class="title_name">Личный кабинет</h2>
-        <p class="cabinet-txt">Добро пожаловать, {{ $user }}!</p>
+        <p class="cabinet-txt-title">Добро пожаловать, {{ $user }}!</p>
 
     <div id="request"></div>
 
