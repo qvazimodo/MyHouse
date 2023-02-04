@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { deleteClient, fetchClients, putClientById } from "../../features/client/clientSlice";
+import { deleteClient, fetchClientsByAddress, putClientById } from "../../features/client/clientSlice";
 import { Button, Form, Input, Popconfirm, Space, Spin, Table, Typography } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
@@ -133,7 +133,7 @@ export const ClientsList = ( props ) => {
 
     useEffect( () => {
         console.log( selectedAddress )
-        dispatch( fetchClients( selectedAddress ) ).then( () => setClientIsUpdated( false ) )
+        dispatch( fetchClientsByAddress( selectedAddress ) ).then( () => setClientIsUpdated( false ) )
 
     }, [ selectedAddress, clientIsUpdated ] );
 
