@@ -8,8 +8,12 @@ const initialState = {
     error: '',
 }
 
+export const fetchClients = createAsyncThunk( 'client/fetchClients', () => {
+    return fetch( ADMIN_CLIENTS_API_URL ).then( response => response.json() ).then( result => result.data
+    )
+} )
+
 export const fetchClientsByAddress = createAsyncThunk( 'client/fetchClientsByAddress', ( address ) => {
-    // let address =  useSelector((state )=>state.house.selectedAddress)
     let url = ADMIN_CLIENTS_BY_ADDRESS_API_URL + "/" + `${ address.streetId }` + "/" + `${ address.houseNumberId }`
     console.log( url )
     return fetch( url ).then( response => response.json() ).then( result => result.data
@@ -69,6 +73,21 @@ const clientSlice = createSlice( {
         }
     },
     extraReducers: ( builder ) => {
+//получение списка всех клиентов компании
+        builder.addCase( fetchClients.pending, ( state ) => {
+            state.loading = true
+        } )
+        builder.addCase( fetchClients.fulfilled, ( state, action ) => {
+            state.array = action.payload
+            console.log( action.payload )
+            state.loading = false
+        } )
+        builder.addCase( fetchClients.rejected, ( state, action ) => {
+            state.error = action.payload
+            state.loading = false
+        } )
+
+//получение списка клиентов по указанному адресу
         builder.addCase( fetchClientsByAddress.pending, ( state ) => {
             state.loading = true
         } )
