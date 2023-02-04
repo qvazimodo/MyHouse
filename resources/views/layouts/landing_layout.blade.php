@@ -21,6 +21,7 @@
           rel="stylesheet">
 
     <!-- Scripts -->
+
     @viteReactRefresh
     @vite(['resources/sass/app.scss','resources/js/app.jsx'])
 

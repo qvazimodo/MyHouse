@@ -43,13 +43,12 @@
         "Экотехпром", на 2022 год»</p>
     <p>Информируем вас о тарифах и ставках на жилищно-коммунальные услуги
         предоставляемые ООО УК «Свиблов ГРАД» с 01 декабря 2022 г. по 31 декабря 2023 г.</p>
-    <p class="rates-name">Коммунальные услуги:</p>
 
 
     <div class="container mx-auto px-4 sm:px-8">
         <div class="py-8">
             <div>
-                <h2 class="text-2xl font-semibold leading-tight">Таблица</h2>
+                <h2 class="text-2xl font-semibold leading-tight">Коммунальные услуги:</h2>
             </div>
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                 <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
