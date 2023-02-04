@@ -34,7 +34,7 @@ export const ADMIN_EMPLOYEES_API_URL = DOMEN + "/api/admin/employees";
 export const ADMIN_EMPLOYEES_BY_ADDRESS_API_URL = DOMEN + "/api/admin/employees/by_address";
 
 //клиенты для администратора
-export const ADMIN_CLIENTS_API_URL = DOMEN + "/api/admin/clients/advanced";
+export const ADMIN_CLIENTS_API_URL = DOMEN + "/api/admin/clients";
 
 //получение массива клиентов по адресу проживания
 export const ADMIN_CLIENTS_BY_ADDRESS_API_URL = DOMEN + "/api/admin/clients/by_address";

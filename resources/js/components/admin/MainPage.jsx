@@ -11,6 +11,7 @@ import {
     setSelectedAddress
 } from "../../features/house/houseSlice";
 import { isNull } from "lodash";
+import { clearClientsArray } from "../../features/client/clientSlice";
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -25,7 +26,8 @@ export const MainPage = () => {
     const dispatch = useDispatch()
     const clickOnHeaderMenu = ({key}) => {
         dispatch( clearSelectedAddress() )
-        dispatch((clearDescription()))
+        dispatch(clearDescription())
+        dispatch(clearClientsArray())
         navigate( key )
     }
 

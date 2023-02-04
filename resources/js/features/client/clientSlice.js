@@ -3,8 +3,24 @@ import { ADMIN_CLIENTS_API_URL, ADMIN_CLIENTS_BY_ADDRESS_API_URL, } from '../../
 
 const initialState = {
     loading: false,
-    array: [],
-    current: {},
+    array: [
+        {
+            "user_id": null,
+            "client_name": "",
+            "client_birth_date": "",
+            "client_phone": "",
+            "client_email": "",
+            "client_patronymic": "",
+            "client.last_name": "",
+            "client_id": null,
+            "apartment_id": null,
+            "apartment_number": null,
+            "entrance": null,
+            "floor": null,
+            "street_name": "",
+            "house_number": ""
+        }
+    ],
     error: '',
 }
 
@@ -68,8 +84,8 @@ const clientSlice = createSlice( {
     name: 'client',
     initialState,
     reducers: {
-        setCurrent: ( state, action ) => {
-            state.current = action.payload
+        clearClientsArray: ( state ) => {
+            state.array = []
         }
     },
     extraReducers: ( builder ) => {
@@ -134,4 +150,4 @@ const clientSlice = createSlice( {
 })
 
 export default clientSlice.reducer
-export const {setCurrent}=clientSlice.actions
+export const { clearClientsArray}=clientSlice.actions
