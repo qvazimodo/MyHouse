@@ -2,10 +2,14 @@ import React, {useState} from 'react';
 import {Alert, Button, Calendar, Collapse, ConfigProvider, Select, theme} from 'antd';
 import {CHECK_TIMETABLE_API_URL, PASSWORD_EMAIL_API_URL} from "../../helpers/API";
 import './RequestForEmployee.css'
+import {Link, useNavigate} from "react-router-dom";
+
 
 const OPTIONS = ['дворник', 'сантехник', 'электрик'];
 
 function RequestForEmployee() {
+
+    const navigate = useNavigate();
 
     const {Panel} = Collapse;
 
@@ -49,23 +53,27 @@ function RequestForEmployee() {
         })
             .then(response => response.json())
             .catch(e => console.log('Request failed', e))
-            .then(result =>{}
+            .then(result =>{
+                navigate("passwordCode");
+                console.log(result)
+                }
             )
 
     }
 
+
     return (
         <div className="container">
             <Collapse accordion>
-                <Panel header="Оформить заявку на вызов сотрудника" key="1" className="cabinet-txt">
+                <Panel header="Оформить заявку на вызов сотрудника" key="1" className="cabinet-txt cabinet-txt-time">
 
-                        <div style={{display: "flex", justifyContent: "space-around", alignItems:"top"}}>
+                        <div className='request-for-employ' style={{display: "flex", justifyContent: "space-around", alignItems: "top"}}>
                             <div style={wrapperStyle}>
                                 <Calendar fullscreen={false} onSelect={onSelect} onPanelChange={onPanelChange}/>
                             </div>
                             <div style={{display:"flex", flexDirection: "column", width:'100%', maxWidth:400}}>
                                 {/*mode="multiple"*/}
-                                <Select
+                                    <Select
                                     placeholder="Выберите кто вам нужен:"
                                     value={selectedItems}
                                     onChange={setSelectedItems}
@@ -84,7 +92,6 @@ function RequestForEmployee() {
                         </div>
                 </Panel>
             </Collapse>
-
         </div>
     );
 }

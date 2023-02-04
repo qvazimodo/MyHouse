@@ -32,14 +32,14 @@ import {RouterProvider} from "react-router-dom";
 import {Router} from "./components/admin/Router"
 import { Provider } from "react-redux";
 import store from "./store";
-import CodePassword from "./components/PasswordReq/CodePassword";
-import NewPassword from "./components/PasswordReq/NewPassword";
 import {Routerpassword} from "./components/PasswordReq/Routerpassword";
-
+import {RouterRequestForEmployee} from "./components/RequestForEmployee/RouterRequestForEmployee";
 
 if ( document.getElementById( 'request' ) ) {
     const root = createRoot( document.getElementById( 'request' ) );
-    root.render( <RequestForEmployee/> );
+    root.render( <Provider store={store}>
+        <RouterProvider router={RouterRequestForEmployee}/>
+    </Provider> )
 }
 
 if (document.getElementById('meters')) {
