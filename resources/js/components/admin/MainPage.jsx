@@ -3,7 +3,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { Outlet, useNavigate } from "react-router-dom"
 import { Layout, Menu, theme } from 'antd';
 import { adminHeaderMenuItems } from "./helpers/adminHeaderMenuItems"
-import { clearSelectedAddress, fetchAddresses, fetchHouses, setSelectedAddress } from "../../features/house/houseSlice";
+import {
+    clearDescription,
+    clearSelectedAddress,
+    fetchAddresses,
+    fetchHouses,
+    setSelectedAddress
+} from "../../features/house/houseSlice";
 import { isNull } from "lodash";
 
 
@@ -19,6 +25,7 @@ export const MainPage = () => {
     const dispatch = useDispatch()
     const clickOnHeaderMenu = ({key}) => {
         dispatch( clearSelectedAddress() )
+        dispatch((clearDescription()))
         navigate( key )
     }
 

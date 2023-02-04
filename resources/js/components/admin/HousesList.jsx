@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAddresses, fetchDescription, } from "../../features/house/houseSlice"
+import { fetchDescription, } from "../../features/house/houseSlice"
 import { Collapse, ConfigProvider, Layout, Spin, theme } from 'antd';
 import ruRu from "antd/lib/locale/ru_RU";
 import "./styles/HousesList.css";
@@ -28,8 +28,10 @@ export const HousesList = () => {
 
 
     useEffect(() => {
-        console.log(selectedAddress)
-        dispatch(fetchDescription(selectedAddress))
+        console.log( selectedAddress )
+        if ( selectedAddress.streetId !== null  ) {
+            dispatch( fetchDescription( selectedAddress ) )
+        }
     }, [selectedAddress])
 
     const onChange = ( key ) => {
@@ -49,26 +51,26 @@ export const HousesList = () => {
                 { <Layout className={ styles.contentLayout }>
 
                     <Content className={styles.content} onClick={ () => console.log( selectedAddress ) }>
-                        { selectedAddress.streetName === '' &&
+                        { !isLoading && selectedAddress.streetName === '' &&
                             <div>
                                 <HousesChart/>
-                                <div className={ styles.content__message }>
+                                <div className={ styles.content__message + ' mt-20' }>
                                     <Texty>
                                         Выберите улицу и номер дома!
                                     </Texty>
                                 </div>
-                            </div> }
-                        { selectedAddress.houseNumber === '' &&
-                            <div className={ styles.content__message }>
-                                <Texty>
-                                    Выберите номер дома!
-                                </Texty>
-                            </div> }
+                            </div>
+                        }
 
-                        { isLoading && <div className={ styles.houseDescription__content }>
-                            <Spin className={ styles.contentSpinner } size="large"/>
-                        </div> }
-                        { !isLoading && description.id != null && <HouseDescription description={ description }/> }
+                        { isLoading &&
+                            <div className={ styles.houseDescription__content }>
+                                <Spin className={ styles.contentSpinner } size="large"/>
+                            </div>
+                        }
+
+                        { !isLoading &&
+                            description.id != null &&
+                            <HouseDescription description={ description }/> }
                     </Content>
                 </Layout> }
             </div>

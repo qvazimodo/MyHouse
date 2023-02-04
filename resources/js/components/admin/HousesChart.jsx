@@ -22,7 +22,7 @@ export const HousesChart = () => {
         let currentAddress = streets[house["street_id"]] + ', ' + housesNumbers[house["house_number_id"]]
         let totalArea = {
             address: currentAddress,
-            type: "общая площадь",
+            type: "общая площадь, м2",
             value: house["house_description"]["total_area"],
         }
         let commissioningYear = {
@@ -33,7 +33,7 @@ export const HousesChart = () => {
         let serviceStartDate = {
             address: currentAddress,
             type: "дата начала обслуживания",
-            value: house["house_description"]["service_start_date"],
+            value: new Date( house["house_description"]["service_start_date"] ).toLocaleDateString( 'ru-Ru' ),
         }
         let yearOfNextOverhaul = {
             address: currentAddress,
