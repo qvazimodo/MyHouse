@@ -14,7 +14,7 @@ class HouseController extends Controller
 {
     public function index():JsonResponse
     {
-        $houses =  House:: with('houseDescription')
+        $houses =  House:: with(['houseDescription','meters'])
             ->join('house_number_street','houses.house_number_street_id', '=', 'house_number_street.id' )
             ->get();
 
@@ -25,6 +25,7 @@ class HouseController extends Controller
     {
         $houses =  House:: with('houseDescription')
             ->with('apartments')
+            ->join('meters','houses.id', '=', 'meters.house_id')
             ->join('house_number_street','houses.house_number_street_id', '=', 'house_number_street.id' )
             ->join('streets','house_number_street.street_id', '=', 'streets.id' )
             ->join('house_numbers','house_number_street.house_number_id', '=', 'house_numbers.id' )
