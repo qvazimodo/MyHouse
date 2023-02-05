@@ -7,6 +7,8 @@ const data = Array.from({
 }).map((_, i) => ({
     title: `ant design part ${i}`,
     content:
+        'We supply a series of design principles, practical patterns and high quality design resources prototypes beautifully and efficiently.' +
+        'We supply a series of design principles, practical patterns and high quality design resources prototypes beautifully and efficiently.' +
         'We supply a series of design principles, practical patterns and high quality design resources prototypes beautifully and efficiently.',
 }));
 
