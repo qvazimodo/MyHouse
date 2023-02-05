@@ -1,4 +1,4 @@
-import { Avatar, List, Space } from 'antd';
+import {Avatar, ConfigProvider, List, Space, theme} from 'antd';
 import React from 'react';
 import style from "../../css/news.css";
 
@@ -11,7 +11,7 @@ const data = Array.from({
 }));
 
 const News = () => (
-    <>
+<>
     <h2 className="title_name">Новости</h2>
     <List
         itemLayout="vertical"
@@ -34,6 +34,6 @@ const News = () => (
             </List.Item>
         )}
     />
-    </>
+</>
 );
 export default News;
