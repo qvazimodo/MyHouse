@@ -1,7 +1,6 @@
 import { Avatar, List, Space } from 'antd';
 import React from 'react';
-import {LikeOutlined, MessageOutlined, StarOutlined} from "@ant-design/icons";
-import style from "../../css/houses_list.css";
+import style from "../../css/news.css";
 const data = Array.from({
     length: 23,
 }).map((_, i) => ({
@@ -21,7 +20,7 @@ const IconText = ({ icon, text }) => (
 );
 const News = () => (
     <>
-    <h2 className="title_name house-title" style={{style}}>Ноости</h2>
+    <h2 className="title_name house-title" style={{style}}>Новости</h2>
     <List
         itemLayout="vertical"
         size="large"
@@ -32,19 +31,9 @@ const News = () => (
             pageSize: 3,
         }}
         dataSource={data}
-        footer={
-            <div>
-                <b>ant design</b> footer part
-            </div>
-        }
         renderItem={(item) => (
             <List.Item
                 key={item.title}
-                actions={[
-                    <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
-                    <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
-                    <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
-                ]}
                 extra={
                     <img
                         width={272}
