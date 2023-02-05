@@ -22,16 +22,9 @@ class MeterFactory extends Factory
      */
     public function definition()
     {
-        $faker = Faker\Factory::create('ru_Ru');
-        $type = [
-            'горячая вода', 'холодная вода', 'электроэнергия', 'тепловая энергия', 'газ'
-        ];
-        $month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-        $number = [1111111, 2222222, 3333333, 4444444, 5555555, 6666666, 7777777, 8888888];
         return [
-            'client_id' => Client::factory(),
-            'type' => $type[array_rand($type)],
-            'number' => $number[array_rand($number)],
+
+            'number' => rand(102030405060, 304050607080),
             'created_at' => now(),
             'updated_at' => now(),
         ];

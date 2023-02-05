@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('type', ['горячая вода', 'холодная вода', 'электроэнергия', 'тепловая энергия', 'газ'])
                 ->default('горячая вода')
                 ->comment('тип счетчика');
-            $table->integer('number')->default(0)->comment('заводской номер счетчика');
+            $table->unsignedBigInteger('number')->comment('заводской номер счетчика');
             $table->timestamps();
         });
         }

@@ -43,4 +43,8 @@ class House extends Model
         return $this->hasManyThrough(HouseNumber::class, HouseNumberStreet::class, 'house_number_id', 'id', 'house_number_street_id', 'id');
     }
 
+    public function meters():HasMany
+    {
+        return $this->hasMany(Meter::class,'house_id','id');
+    }
 }

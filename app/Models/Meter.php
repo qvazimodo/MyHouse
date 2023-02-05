@@ -15,6 +15,7 @@ class Meter extends Model
 
     protected $fillable = [
         'client_id',
+        'house_id',
         'type',
         'number',
     ];
