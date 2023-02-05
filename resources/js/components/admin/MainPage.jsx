@@ -1,10 +1,17 @@
-import React, { useEffect, useState, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Outlet, useNavigate } from "react-router-dom"
 import { Layout, Menu, theme } from 'antd';
 import { adminHeaderMenuItems } from "./helpers/adminHeaderMenuItems"
-import { fetchAddresses, setSelectedAddress, fetchHouses } from "../../features/house/houseSlice";
+import {
+    clearDescription,
+    clearSelectedAddress,
+    fetchAddresses,
+    fetchHouses,
+    setSelectedAddress
+} from "../../features/house/houseSlice";
 import { isNull } from "lodash";
+import { clearClientsArray } from "../../features/client/clientSlice";
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -18,7 +25,10 @@ export const MainPage = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const clickOnHeaderMenu = ({key}) => {
-        navigate(key)
+        dispatch( clearSelectedAddress() )
+        dispatch(clearDescription())
+        dispatch(clearClientsArray())
+        navigate( key )
     }
 
     useEffect( () => {
@@ -32,7 +42,6 @@ export const MainPage = () => {
     )
 
     let index = 0
-    const address = useSelector(state => state.house.selectedAddress)
     const addresses = useSelector(state => state.house.addressesArray)
     const sideMenuItems = addresses.map(address => {
         return {
@@ -54,13 +63,15 @@ export const MainPage = () => {
     const [ openKeys, setOpenKeys ] = useState( [] );
     const onOpenChange = ( keys ) => {
         const latestOpenKey = keys.find( ( key ) => openKeys.indexOf( key ) === -1 );
-        // console.log(keys)
+        console.log( keys )
         if ( rootSubmenuKeys.indexOf( latestOpenKey ) === -1 ) {
             setOpenKeys( keys );
         } else {
             setOpenKeys( latestOpenKey ? [ latestOpenKey ] : [] );
         }
     };
+
+
     const getAddress = (keyPath) => {
         // console.log(keyPath, sideMenuItems)
         let selectedStreetWithHouses = sideMenuItems.find( street => street.key === keyPath[1] )
@@ -78,6 +89,7 @@ export const MainPage = () => {
         return selectedAddress
     }
 
+
     const defaultSelectedMenuItem = '/addresses'
 
     useEffect( () => {
@@ -88,14 +100,25 @@ export const MainPage = () => {
     }, [] );
 
     const selectedAddress = useSelector( state => state.house.selectedAddress )
-    const firstUpdate = useRef(true);
+    const firstUpdate = useRef( true );
     useEffect( () => {
-      if (!firstUpdate.current && isNull(selectedAddress.streetId) ){
-         console.log(openKeys)
-          setOpenKeys([])
-      }
+        if ( !firstUpdate.current && isNull( selectedAddress.streetId ) ) {
+            console.log( openKeys )
+            setOpenKeys( [] )
+        }
         firstUpdate.current = false
     }, [ selectedAddress ] );
+
+    useEffect( () => {
+        console.log( selectedAddress )
+        setSelectedMenuItem( selectedAddress
+/*            getAddress(
+            [ selectedAddress.streetId.toString(),
+                selectedAddress.houseNumberId.toString()
+            ] )*/
+        )
+    }, [ selectedAddress ] );
+
 
     return (
         <Layout style={ {
@@ -115,9 +138,9 @@ export const MainPage = () => {
                 />
                 <Menu
                     onClick={ ( { item, key, keyPath, domEvent } ) => {
-                        console.log( keyPath )
+                        console.log(item, keyPath )
                         setSelectedMenuItem( getAddress( keyPath ) )
-                        // console.log(selectedMenuItem)
+                        console.log( getAddress( keyPath ) )
                     } }
                     openKeys={ openKeys }
                     onOpenChange={ onOpenChange }

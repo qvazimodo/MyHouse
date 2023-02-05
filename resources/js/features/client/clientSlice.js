@@ -1,15 +1,37 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ADMIN_CLIENTS_ADVANCED_API_URL, ADMIN_CLIENTS_BY_ADDRESS_API_URL, } from '../../helpers/API'
+import { ADMIN_CLIENTS_API_URL, ADMIN_CLIENTS_BY_ADDRESS_API_URL, } from '../../helpers/API'
 
 const initialState = {
     loading: false,
-    array: [],
-    current: {},
+    array: [
+        {
+            "user_id": null,
+            "client_name": "",
+            "client_birth_date": "",
+            "client_phone": "",
+            "client_email": "",
+            "client_patronymic": "",
+            "client.last_name": "",
+            "client_id": null,
+            "apartment_id": null,
+            "apartment_number": null,
+            "entrance": null,
+            "floor": null,
+            "street_id": null,
+            "street_name": "",
+            "house_number_id": null,
+            "house_number": ""
+        }
+    ],
     error: '',
 }
 
-export const fetchClients = createAsyncThunk( 'client/fetchClients', ( address ) => {
-    // let address =  useSelector((state )=>state.house.selectedAddress)
+export const fetchClients = createAsyncThunk( 'client/fetchClients', () => {
+    return fetch( ADMIN_CLIENTS_API_URL ).then( response => response.json() ).then( result => result.data
+    )
+} )
+
+export const fetchClientsByAddress = createAsyncThunk( 'client/fetchClientsByAddress', ( address ) => {
     let url = ADMIN_CLIENTS_BY_ADDRESS_API_URL + "/" + `${ address.streetId }` + "/" + `${ address.houseNumberId }`
     console.log( url )
     return fetch( url ).then( response => response.json() ).then( result => result.data
@@ -19,7 +41,7 @@ export const fetchClients = createAsyncThunk( 'client/fetchClients', ( address )
 export const putClientById = createAsyncThunk( 'client/putClient',
     ( newClientData, thunkAPI ) => {
         console.log( newClientData )
-        let url = ADMIN_CLIENTS_ADVANCED_API_URL
+        let url = ADMIN_CLIENTS_API_URL
         console.log( url )
 
         const data = fetch( url,
@@ -43,7 +65,7 @@ export const putClientById = createAsyncThunk( 'client/putClient',
 export const deleteClient = createAsyncThunk( 'client/deleteClient',
     ( clientId, thunkAPI ) => {
         console.log( clientId )
-        let url = ADMIN_CLIENTS_ADVANCED_API_URL + '/' + `${ clientId }`
+        let url = ADMIN_CLIENTS_API_URL + '/' + `${ clientId }`
         console.log( url )
 
         const data = fetch( url,
@@ -64,11 +86,12 @@ const clientSlice = createSlice( {
     name: 'client',
     initialState,
     reducers: {
-        setCurrent: ( state, action ) => {
-            state.current = action.payload
+        clearClientsArray: ( state ) => {
+            state.array = []
         }
     },
     extraReducers: ( builder ) => {
+//получение списка всех клиентов компании
         builder.addCase( fetchClients.pending, ( state ) => {
             state.loading = true
         } )
@@ -79,6 +102,21 @@ const clientSlice = createSlice( {
         } )
         builder.addCase( fetchClients.rejected, ( state, action ) => {
             state.error = action.payload
+            state.loading = false
+        } )
+
+//получение списка клиентов по указанному адресу
+        builder.addCase( fetchClientsByAddress.pending, ( state ) => {
+            state.loading = true
+        } )
+        builder.addCase( fetchClientsByAddress.fulfilled, ( state, action ) => {
+            state.array = action.payload
+            console.log( action.payload )
+            state.loading = false
+        } )
+        builder.addCase( fetchClientsByAddress.rejected, ( state, action ) => {
+            state.error = action.payload
+            state.loading = false
         } )
 
 //обновление данных клиента
@@ -93,6 +131,7 @@ const clientSlice = createSlice( {
         builder.addCase( putClientById.rejected, ( state,
                                                    action ) => {
             state.error = action.payload
+            state.loading = false
         } )
 
         //удаление клиента
@@ -107,9 +146,10 @@ const clientSlice = createSlice( {
         builder.addCase( deleteClient.rejected, ( state,
                                                   action ) => {
             state.error = action.payload
+            state.loading = false
         } )
     }
 })
 
 export default clientSlice.reducer
-export const {setCurrent}=clientSlice.actions
+export const { clearClientsArray}=clientSlice.actions

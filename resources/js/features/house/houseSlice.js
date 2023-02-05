@@ -109,6 +109,7 @@ const houseSlice = createSlice( {
         } )
         builder.addCase( fetchAddresses.rejected, ( state, action ) => {
             state.error = action.payload
+            state.loading = false
         } )
 
         builder.addCase( fetchHouses.pending, ( state ) => {
@@ -120,6 +121,7 @@ const houseSlice = createSlice( {
         } )
         builder.addCase( fetchHouses.rejected, ( state, action ) => {
             state.error = action.payload
+            state.loading = false
         } )
 
         builder.addCase( fetchDescription.pending, ( state ) => {
@@ -131,6 +133,7 @@ const houseSlice = createSlice( {
         } )
         builder.addCase( fetchDescription.rejected, ( state, action ) => {
             state.error = action.payload
+            state.loading = false
         } )
     },
 })

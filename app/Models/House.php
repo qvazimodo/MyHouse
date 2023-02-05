@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class House extends Model
 {
@@ -41,6 +42,11 @@ class House extends Model
     public function housesNumbers(): HasManyThrough
     {
         return $this->hasManyThrough(HouseNumber::class, HouseNumberStreet::class, 'house_number_id', 'id', 'house_number_street_id', 'id');
+    }
+
+    public function meters(): MorphMany
+    {
+        return $this->morphMany(Meter::class, 'measurable');
     }
 
 }

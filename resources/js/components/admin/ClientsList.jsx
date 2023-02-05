@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { deleteClient, fetchClients, putClientById } from "../../features/client/clientSlice";
+import { deleteClient, fetchClients, fetchClientsByAddress, putClientById } from "../../features/client/clientSlice";
 import { Button, Form, Input, Popconfirm, Space, Spin, Table, Typography } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import './styles/ClientsList.css';
 import { EditableCell } from "../Editable/EditableCell";
 import styles from "./styles/ClientsList.module.scss";
+import { setSelectedAddress } from "../../features/house/houseSlice";
 
 const onChange = ( pagination, filters, sorter, extra ) => {
     console.log( 'params', pagination, filters, sorter, extra );
@@ -133,7 +134,12 @@ export const ClientsList = ( props ) => {
 
     useEffect( () => {
         console.log( selectedAddress )
-        dispatch( fetchClients( selectedAddress ) ).then( () => setClientIsUpdated( false ) )
+        if ( selectedAddress.streetId == null ) {
+            dispatch( fetchClients() ).then( () => setClientIsUpdated( false ) )
+        } else {
+            dispatch( fetchClientsByAddress( selectedAddress ) ).then( () => setClientIsUpdated( false ) )
+        }
+
 
     }, [ selectedAddress, clientIsUpdated ] );
 
@@ -153,6 +159,10 @@ export const ClientsList = ( props ) => {
             floor: item.floor,
             apartmentId: item['apartment_id'],
             apartmentNumber: item['apartment_number'],
+            streetId: item['street_id'],
+            streetName: item['street_name'],
+            houseNumberId: item['house_number_id'],
+            houseNumber: item['house_number']
         }
     })
 
@@ -369,6 +379,23 @@ export const ClientsList = ( props ) => {
                            // total: totalPages,
                            // onChange: onPageChange
                            // showSizeChanger: true,
+                       }}
+                       onRow={(record, rowIndex) => {
+                           return {
+                               onClick: (event) => {
+                                   console.log(record)
+                                   dispatch(setSelectedAddress({
+                                       streetName: record.streetName,
+                                       houseNumber: record.houseNumber,
+                                       streetId: record.streetId,
+                                       houseNumberId: record.houseNumberId
+                                   }))
+                               }, // click row
+                               onDoubleClick: (event) => {}, // double click row
+                               onContextMenu: (event) => {}, // right button click row
+                               onMouseEnter: (event) => {}, // mouse enter row
+                               onMouseLeave: (event) => {}, // mouse leave row
+                           };
                        }}
                        components={{
                            body: {

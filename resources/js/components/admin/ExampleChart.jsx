@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Column } from '@ant-design/plots';
 
-export const Chart = () => {
+export const ExampleChart = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {

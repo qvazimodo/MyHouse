@@ -102,6 +102,9 @@ Route::prefix('admin')->group(function () {
     Route::delete('/employees/{employee}', [EmployeeAPIController::class, 'destroy']);
 
     //Клиенты
+    Route::get('/clients',
+        [AdminClientController::class, 'index']);
+
     Route::get('/clients/by_address/{street_id}/{house_id}',
         [AdminClientController::class, 'getClientsByAddress']);
 
