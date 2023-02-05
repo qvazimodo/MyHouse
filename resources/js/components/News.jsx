@@ -1,21 +1,27 @@
-import {List} from 'antd';
+import { Avatar, List, Space } from 'antd';
 import React from 'react';
-import style from "../../css/news.css";
+import {LikeOutlined, MessageOutlined, StarOutlined} from "@ant-design/icons";
+import style from "../../css/houses_list.css";
 const data = Array.from({
-    length: 15,
+    length: 23,
 }).map((_, i) => ({
     href: 'https://ant.design',
-    title: `Название новости`,
+    title: `ant design part ${i}`,
+    avatar: 'https://joeschmoe.io/api/v1/random',
     description:
-        'Примерное содержимое новости',
+        'Ant Design, a design language for background applications, is refined by Ant UED Team.',
     content:
-        'Текст новости.',
+        'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
 }));
-
+const IconText = ({ icon, text }) => (
+    <Space>
+        {React.createElement(icon)}
+        {text}
+    </Space>
+);
 const News = () => (
     <>
-    <h2 className="title_name">Новости</h2>
-
+    <h2 className="title_name house-title" style={{style}}>Ноости</h2>
     <List
         itemLayout="vertical"
         size="large"
@@ -23,22 +29,33 @@ const News = () => (
             onChange: (page) => {
                 console.log(page);
             },
-            pageSize: 5,
+            pageSize: 3,
         }}
         dataSource={data}
-
+        footer={
+            <div>
+                <b>ant design</b> footer part
+            </div>
+        }
         renderItem={(item) => (
             <List.Item
+                key={item.title}
+                actions={[
+                    <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
+                    <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
+                    <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
+                ]}
                 extra={
                     <img
-                        width={250}
+                        width={272}
                         alt="logo"
                         src="/images/mh.png"
                     />
                 }
             >
                 <List.Item.Meta
-                    title={item.title}
+                    avatar={<Avatar src={item.avatar} />}
+                    title={<a href={item.href}>{item.title}</a>}
                     description={item.description}
                 />
                 {item.content}
