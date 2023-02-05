@@ -1,47 +1,71 @@
-import {Avatar, ConfigProvider, List, Space, theme} from 'antd';
 import React from 'react';
+import {ConfigProvider, List, theme, Carousel, Spin } from 'antd';
 import style from "./css/news.css";
+import {NEWS_API_URL} from "../helpers/API";
 
-const data = Array.from({
-    length: 15,
-}).map((_, i) => ({
-    title: `Ant design part ${i}`,
-    content:
-        'We supply a series of design principles, practical patterns and high quality design resources prototypes beautifully and efficiently.' +
-        'We supply a series of design principles, practical patterns and high quality design resources prototypes beautifully and efficiently.' +
-        'We supply a series of design principles, practical patterns and high quality design resources prototypes beautifully and efficiently.',
-}));
 
-const News = () => (
-<>
-    <h2 className="title_name">Новости</h2>
-    <ConfigProvider
-        theme={{ algorithm: theme.darkAlgorithm,
-        }}
-    >
-    <List
-        itemLayout="vertical"
-        size="large"
-        pagination={{
-            onChange: (page) => {
-                console.log(page);
-            },
-            pageSize: 5,
-        }}
-        dataSource={data}
-        renderItem={(item) => (
-            <List.Item
-                key={item.title}
-            >
+class News extends React.Component {
 
-                <List.Item.Meta
-                    title={item.title}
-                />
-                {item.content}
-            </List.Item>
-        )}
-    />
-</ConfigProvider>
-</>
-);
+    state = {
+        title: [],
+        content: [],
+        created_at: [],
+        loading: true,
+    }
+
+    componentDidMount() {
+
+        fetch(NEWS_API_URL)
+            .then(res => res.json())
+            .then((data) => {
+                this.setState({title: data.data, loading: false});
+            })
+
+    }
+
+    render() {
+        return (
+            <>
+                <h2 className="title_name">Новости</h2>
+                <ConfigProvider
+                    theme={{ algorithm: theme.darkAlgorithm,
+                    }}
+                >
+                    {this.state.loading ? (<Spin tip="Идет загрузка..." size="large">
+                        <div className="content" />
+                    </Spin>) : (
+                        <List
+                            itemLayout="vertical"
+                            size="large"
+                            pagination={{
+                                pageSize: 5,
+                            }}
+                            dataSource={this.state.title}
+                            renderItem={(item) => (
+                                <List.Item
+                                    key={item.id}
+                                    // extra={
+                                    //     <div className="images-wrp">
+                                    //         <Carousel autoplay>
+                                    //             {this.state.images.map((image, number) => (
+                                    //                 <div><img alt="image" src={image} key={number} className="slide-image" /></div>
+                                    //             ))}
+                                    //         </Carousel>
+                                    //     </div>
+                                    // }
+                                >
+                                    <List.Item.Meta
+                                        title={item.title}
+                                    />
+                                    {item.content}<br/><br/>
+                                    {item.created_at}
+                                </List.Item>
+                            )}
+                        />)}
+                </ConfigProvider>
+            </>
+        )
+    }
+}
+
 export default News;
