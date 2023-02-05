@@ -20,7 +20,7 @@ const IconText = ({ icon, text }) => (
 );
 const News = () => (
     <>
-    <h2 className="title_name house-title" style={{style}}>Новости</h2>
+    <h2 className="title_name">Новости</h2>
     <List
         itemLayout="vertical"
         size="large"
@@ -28,7 +28,7 @@ const News = () => (
             onChange: (page) => {
                 console.log(page);
             },
-            pageSize: 3,
+            pageSize: 5,
         }}
         dataSource={data}
         renderItem={(item) => (
