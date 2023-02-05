@@ -80,17 +80,22 @@ Route::prefix('admin')->group(function () {
     //api вывода показаний всех счетчиков всех пользователей
     Route::get('/meters/values', [AdminMeterController::class, 'allMetersValues']);
 
+    //список технических характеристик и счётчиков всех домов, обслуживаемых компанией
+    Route::get('/houses', [HouseController::class, 'index']);
+
     //список адресов домов, обслуживаемых компанией
     Route::get('/houses/addresses', [HouseController::class, 'addresses']);
-
-    //список всех домов, обслуживаемых компанией
-    Route::get('/houses', [HouseController::class, 'index']);
 
     //дома с адресами клиентов
     Route::get('/houses/{street_id}/{house_number_id}', [HouseController::class, 'show']);
 
     //описания домов
-    Route::get('/houses/description/{street_id}/{house_id}', [HouseController::class, 'show']);
+    Route::get('/houses/descriptions/{street_id}/{house_id}', [HouseController::class, 'show']);
+
+    //общедомовые счётчики
+//    Route::get('/houses/meters', [HouseController::class, 'meters']);
+
+
 
     //Сотрудники
     Route::get('/employees', [EmployeeAPIController::class, 'index']);

@@ -24,10 +24,11 @@ export const HOUSES_API_URL = DOMEN + "/api/houses";
 
 export const ADMIN_ADDRESSES_API_URL = DOMEN + "/api/admin/houses/addresses";
 
+//информация обо всех домах для администратора
 export const ADMIN_HOUSES_API_URL = DOMEN + "/api/admin/houses";
 
 //описание дома для администратора
-export const ADMIN_HOUSE_DESCRIPTION_API_URL = DOMEN + "/api/admin/houses/description";
+export const ADMIN_HOUSE_DESCRIPTION_API_URL = DOMEN + "/api/admin/houses/descriptions";
 
 //Сотрудники для администратора
 export const ADMIN_EMPLOYEES_API_URL = DOMEN + "/api/admin/employees";

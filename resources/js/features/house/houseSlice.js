@@ -40,23 +40,46 @@ const initialState = {
             }
         }
     ],
+    meters: {
+        client_id: {
+            id: null,
+            client_id: null,
+            type: "",
+            number: null,
+            created_at: "",
+            updated_at: "",
+            house_id: null
+        }
+    },
     error: '',
     // selectedStreetId: null,
     // selectedHouseNumberId: null,
-    description: {},
+    description: {
+        id: null,
+        total_area: null,
+        commissioning_year: null,
+        service_start_date: "",
+        year_of_next_overhaul: null,
+        entrances_amount: null,
+        floors_amount: null,
+        apartments_amount: null,
+        created_at: "",
+        updated_at: ""
+    },
     selectedAddress: {
         streetName: '',
         houseNumber: null,
         streetId: null,
         houseNumberId: null
     },
-    clients:[],
+    clients: [],
 }
 
 export const fetchAddresses = createAsyncThunk( 'house/fetchAddresses', () => {
     return fetch( ADMIN_ADDRESSES_API_URL ).then( response => response.json() ).then( result => result.data )
 } )
 
+//техническая информация обо всех домах
 export const fetchHouses = createAsyncThunk( 'house/fetchHouses', () => {
     return fetch( ADMIN_HOUSES_API_URL ).then( response => response.json() ).then( result => result.data )
 } )
