@@ -1,4 +1,4 @@
-import {Avatar, ConfigProvider, List, Space, theme} from 'antd';
+import {List} from 'antd';
 import React from 'react';
 import style from "../../css/news.css";
 const data = Array.from({
