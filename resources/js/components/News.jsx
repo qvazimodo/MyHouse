@@ -28,7 +28,7 @@ const News = () => (
                 key={item.title}
             >
                 <List.Item.Meta
-                    title={<a href={item.href}>{item.title}</a>}
+                    title={item.title}
                 />
                 {item.content}
             </List.Item>
