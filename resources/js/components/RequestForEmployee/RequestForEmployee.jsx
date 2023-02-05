@@ -63,7 +63,7 @@ function RequestForEmployee() {
 
 
     return (
-        <div className="container">
+        <div className="container cabinet">
             <Collapse accordion>
                 <Panel header="Оформить заявку на вызов сотрудника" key="1" className="cabinet-txt cabinet-txt-time">
 

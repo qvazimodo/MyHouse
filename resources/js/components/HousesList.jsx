@@ -45,7 +45,7 @@ class HousesList extends React.Component {
                                 key={item.id}
                                 extra={
                                     <div className="images-wrp">
-                                        <Carousel>
+                                        <Carousel autoplay>
                                             {this.state.images.map((image, number) => (
                                                 <div><img alt="image" src={image} key={number} className="slide-image" /></div>
                                             ))}
