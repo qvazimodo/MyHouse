@@ -14,7 +14,7 @@
     color: #FFFFFF;
 }
 
-.addValue-btn.ant-btn-primary {
+button[type="button"].addValue-btn.ant-btn-primary {
     background-color: #ffe58f;
     color: #000000;
 }
@@ -64,4 +64,11 @@ body > div:nth-child(2) > div > div.ant-modal-wrap > div > div.ant-modal-content
 
 .title_name {
     margin-top: 100px;
+}
+.ant-modal .ant-modal-footer button[type="button"].ant-btn-primary {
+    background-color: #ffe58f;
+    color: #000000;
+}
+.ant-collapse>.ant-collapse-item >.ant-collapse-header {
+    color: #FFFFFF;
 }

@@ -9,52 +9,6 @@ const { Panel } = Collapse;
 const { Text } = Typography;
 const { Option } = Select;
 
-const columns = [
-    {
-        title: 'Номер счетчика',
-        dataIndex: 'number',
-        key: 'number',
-        sorter: (a, b) => a.number - b.number,
-        render: (text) => <p>{text}</p>,
-    },
-    {
-        title: 'Тип счетчика',
-        dataIndex: 'type',
-        key: 'type',
-        render: (text) => <p>{text}</p>,
-    },
-    {
-        title: 'Месяц',
-        dataIndex: 'name',
-        key: 'name',
-        render: (text) => <p>{text}</p>,
-    },
-    {
-        title: 'Год',
-        dataIndex: 'year',
-        key: 'year',
-        sorter: (a, b) => a.year - b.year,
-        render: (text) => <p>{text}</p>,
-    },
-    {
-        title: 'Прошлые показания',
-        dataIndex: 'lastValue',
-        key: 'lastValue',
-        render: (text) => <p>{text}</p>,
-    },
-    {
-        title: 'Введенные показания',
-        dataIndex: 'value',
-        key: 'value',
-        render: (text) => <p>{text}</p>,
-    },
-    {
-        title: '',
-        key: 'payment',
-        render: (_, record) => (<DocumentRender last={record.lastValue ? record.lastValue : 0} now={record.value} tax={2} month={record.name} year={record.year} type={record.type}/>)
-    },
-];
-
 
 let locale = {
     emptyText: 'У Вас нет данных по счетчикам, оформите заявку администратору для добавления счетчика',
@@ -68,6 +22,7 @@ class MetersForm extends React.Component {
             number: '',
             now: '',
             userId: '',
+            userName: '',
             month: '',
             info: [],
             userMeters: {},
@@ -79,6 +34,51 @@ class MetersForm extends React.Component {
         this.valueInputChange = this.valueInputChange.bind(this);
     }
 
+    columns = [
+        {
+            title: 'Номер счетчика',
+            dataIndex: 'number',
+            key: 'number',
+            sorter: (a, b) => a.number - b.number,
+            render: (text) => <p>{text}</p>,
+        },
+        {
+            title: 'Тип счетчика',
+            dataIndex: 'type',
+            key: 'type',
+            render: (text) => <p>{text}</p>,
+        },
+        {
+            title: 'Месяц',
+            dataIndex: 'name',
+            key: 'name',
+            render: (text) => <p>{text}</p>,
+        },
+        {
+            title: 'Год',
+            dataIndex: 'year',
+            key: 'year',
+            sorter: (a, b) => a.year - b.year,
+            render: (text) => <p>{text}</p>,
+        },
+        {
+            title: 'Прошлые показания',
+            dataIndex: 'lastValue',
+            key: 'lastValue',
+            render: (text) => <p>{text}</p>,
+        },
+        {
+            title: 'Введенные показания',
+            dataIndex: 'value',
+            key: 'value',
+            render: (text) => <p>{text}</p>,
+        },
+        {
+            title: '',
+            key: 'payment',
+            render: (_, record) => (<DocumentRender last={record.lastValue ? record.lastValue : 0} now={record.value} tax={2} month={record.name} year={record.year} type={record.type} name={this.state.userName}/>)
+        },
+    ];
 
     openNotification = () => {
         notification.open({
@@ -106,63 +106,67 @@ class MetersForm extends React.Component {
         fetch(AUTH_USER_API_URL)
             .then(response => response.json())
                 .catch(e => console.log(e))
-            .then(data => this.state.userId = data.id);
-
-        /* Получение информации по счетчикам пользователя */
-
-        fetch(AUTH_METERS_LIST_API_URL)
-            .then(response => response.json())
-                .catch(e => console.log(e))
-            .then( (data) => {
-                this.setState({ userMeters: data.data });
-            })
-
-        fetch(AUTH_METERS_API_URL)
-            .then(response => response.json())
-                .catch(e => console.log(e))
-            .then( (data) => {
-
-                let months = new Map();
-                for (let item in data.meta.months) {
-                    months.set(data.meta.months[item].id, data.meta.months[item].name);
-                }
+            .then(data => {
                 this.setState({
-                    month: months.get((new Date().getMonth() + 1)),
-                });
+                    userId: data.id,
+                    userName: (data.last_name + " " + data.name + " " + data.patronymic),
+                })
 
-                let years = new Map();
-                for (let item in data.meta.years) {
-                    years.set(data.meta.years[item].id, data.meta.years[item].number);
-                }
+                /* Получение информации по счетчикам пользователя */
 
-                let meterInfo = data.data.data;
+                fetch(AUTH_METERS_LIST_API_URL)
+                    .then(response => response.json())
+                    .catch(e => console.log(e))
+                    .then((data) => {
+                        this.setState({userMeters: data.data});
+                    })
 
-                for (let key in meterInfo) {
-                    meterInfo[key].meter_month_year.forEach((item) => {
+                fetch(AUTH_METERS_API_URL)
+                    .then(response => response.json())
+                    .catch(e => console.log(e))
+                    .then((data) => {
+
+                        let months = new Map();
+                        for (let item in data.meta.months) {
+                            months.set(data.meta.months[item].id, data.meta.months[item].name);
+                        }
                         this.setState({
-                            values: this.state.values.set(item.id, item.value),
-                        })
-                    })
-                }
+                            month: months.get((new Date().getMonth() + 1)),
+                        });
 
-                let iterForTable = 1;
-                for (let key in meterInfo) {
+                        let years = new Map();
+                        for (let item in data.meta.years) {
+                            years.set(data.meta.years[item].id, data.meta.years[item].number);
+                        }
 
-                    meterInfo[key].meter_month_year.forEach((item, index) => {
-                        item.type = meterInfo[key].type;
-                        item.number = meterInfo[key].number;
-                        item.key = iterForTable++;
-                        item.name = months.get(meterInfo[key].month_year[index].month_id);
-                        item.year = years.get(meterInfo[key].month_year[index].year_id);
-                        item.lastValue = this.state.values.get(item.parent_id);
+                        let meterInfo = data.data.data;
 
-                        this.setState(prevState => ({
-                            info: [...prevState.info, item]
-                        }))
-                    })
-                }
-            });
+                        for (let key in meterInfo) {
+                            meterInfo[key].meter_month_year.forEach((item) => {
+                                this.setState({
+                                    values: this.state.values.set(item.id, item.value),
+                                })
+                            })
+                        }
 
+                        let iterForTable = 1;
+                        for (let key in meterInfo) {
+
+                            meterInfo[key].meter_month_year.forEach((item, index) => {
+                                item.type = meterInfo[key].type;
+                                item.number = meterInfo[key].number;
+                                item.key = iterForTable++;
+                                item.name = months.get(meterInfo[key].month_year[index].month_id);
+                                item.year = years.get(meterInfo[key].month_year[index].year_id);
+                                item.lastValue = this.state.values.get(item.parent_id);
+
+                                this.setState(prevState => ({
+                                    info: [...prevState.info, item]
+                                }))
+                            })
+                        }
+                    });
+            })
     }
 
     generateSelectTypes = () => {
@@ -192,7 +196,7 @@ class MetersForm extends React.Component {
             .then(response => response.json())
                 .catch(e => console.log(e))
             .then((data) => {
-                console.log(data);
+
                 data.key = this.state.info.length + 1;
                 data.type = this.state.type;
                 data.number = this.state.number;
@@ -248,7 +252,7 @@ class MetersForm extends React.Component {
                     <Collapse accordion>
                     <Panel header="Ввести показания счетчиков" key="1" className="cabinet-txt">
                         <Text mark className="cabinet-color-txt">Показания счетчиков за прошлый период</Text>
-                        <Table columns={ columns }
+                        <Table columns={ this.columns }
                                dataSource={ this.state.info }
                                locale={ locale }
                                className="meter-table"/>

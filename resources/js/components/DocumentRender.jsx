@@ -56,7 +56,7 @@ const MyDoc = (props) => (
         <Page size="A4" style={styles.page}>
             <View style={styles.section}>
                 <Text style={styles.text}>За расчетный период - {props.month} {props.year}</Text>
-                <Text style={styles.text}>Ф.И.О. плательщика/собственника: </Text>
+                <Text style={styles.text}>Ф.И.О. плательщика/собственника: {props.name}</Text>
                 <Text style={styles.text}>Адрес помещения: </Text>
                 <Text style={styles.text}>Общая площадь, кв.м.:      Жилая площадь, кв.м.:     Количество зарегистрированных, чел.:  </Text>
             </View>
