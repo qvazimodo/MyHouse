@@ -24,7 +24,7 @@ class HouseController extends Controller
     public function showAllHouses():JsonResponse
     {
         $houses =  House:: with('houseDescription')
-            ->with('apartments')
+            ->with(['apartments'])
             ->join('house_number_street','houses.house_number_street_id', '=', 'house_number_street.id' )
             ->join('streets','house_number_street.street_id', '=', 'streets.id' )
             ->join('house_numbers','house_number_street.house_number_id', '=', 'house_numbers.id' )

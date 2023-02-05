@@ -15,6 +15,6 @@ class YearSeeder extends Seeder
      */
     public function run()
     {
-        Year::factory(3)->create();
+        Year::factory(1)->create();
     }
 }

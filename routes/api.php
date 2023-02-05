@@ -8,6 +8,7 @@ use App\Http\Controllers\API\ClientAnnouncementController;
 use App\Http\Controllers\API\HouseController;
 use App\Http\Controllers\API\MeterController;
 use App\Http\Controllers\API\MeterValueController;
+use App\Http\Controllers\API\NewsController;
 use App\Http\Controllers\API\TimetableController;
 use App\Http\Controllers\Auth\CodeCheckController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -120,6 +121,13 @@ Route::prefix('')->group(function () {
 //api вывода информации обо всех домах для гл страницы
     Route::get('/houses', [HouseController::class, 'showAllHouses']);
 });
+
+Route::prefix('')->group(function () {
+//api вывода всех новостей
+    Route::get('/news', [NewsController::class, 'index']);
+});
+
+
 
 
 // Password reset routes
