@@ -41,24 +41,29 @@ class TimetableRepository
         return Employee::where('held_position', '=', $profession)
             ->join('employee_serviced_address', 'employees.id', '=', 'employee_serviced_address.employee_id')
             ->join('house_number_street', 'employee_serviced_address.house_number_street_id', '=', 'house_number_street.id')
+/*            ->join('timetables', 'employees.id', '=', 'timetables.employer_id')
+            ->where('timetables.date', '=', $mysqlDate)*/
             ->where('house_number_street.street_id', '=', $this->clientsAddressIds["street_id"])
             ->where('house_number_street.house_number_id', '=', $this->clientsAddressIds["house_id"])
             ->get();
     }
 
-    public function getFreeTimeEmployeeById($profession): array
+    public function getFreeTimeEmployeeById($profession, $mysqlDate): array
     {
-        $busyTimes = [];
+        $freeTimes = [];
         $employee = $this->getEmployeeByObject($profession);
         $plucked = $employee->pluck('employee_id');
         foreach ($plucked->all() as $employee) {
             $array = [];
-            foreach (Timetable::where('employer_id', $employee)->get('time_window_id')->toArray() as $item){
+            foreach (Timetable::where('employer_id', $employee)
+                         ->where('date', $mysqlDate)
+                         ->get('time_window_id')
+                         ->toArray() as $item){
                 $array[] = $item['time_window_id'];
             }
             $array = array_diff($this->timeWindows, $array);
-            $busyTimes[$employee] = $array;
+            $freeTimes[$employee] = $array;
         }
-        return $busyTimes;
+        return $freeTimes;
     }
 }
