@@ -29,7 +29,7 @@
         <li class="mb-1">
             <a style="color: #FFFFFF;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';"
                class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-               href="{{ route('news.index') }}">Новости</a>
+               href="news">Новости</a>
         </li>
         <li class="mb-1">
             <a style="color: #FFFFFF;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';"
@@ -146,7 +146,7 @@
                 <li class="mb-1">
                     <a style="color: black"
                        class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                       href="{{ route('news.index') }}">Новости</a>
+                       href="news">Новости</a>
                 </li>
                 <li class="mb-1">
                     <a style="color: black"

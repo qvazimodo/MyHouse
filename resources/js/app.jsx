@@ -32,6 +32,7 @@ import {Provider} from "react-redux";
 import store from "./store";
 import {Routerpassword} from "./components/PasswordReq/Routerpassword";
 import {RouterRequestForEmployee} from "./components/RequestForEmployee/RouterRequestForEmployee";
+import News from "./components/News";
 
 if (document.getElementById('request')) {
     const root = createRoot(document.getElementById('request'));
@@ -107,4 +108,9 @@ if (document.getElementById('header')) {
 if (document.getElementById('flats')) {
     const root = createRoot(document.getElementById('flats'));
     root.render(<Flats/>);
+}
+
+if (document.getElementById('news')) {
+    const root = createRoot(document.getElementById('news'));
+    root.render(<News/>);
 }

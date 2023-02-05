@@ -86,10 +86,3 @@ Route::get('/news', function () {
 })->name('news');
 
 
-//News
-Route::name('news.')
-    ->prefix('news')
-    ->group(function () {
-        Route::get('/', [NewsController::class, 'index'])->name('index');
-        Route::get('/{id}', [NewsController::class, 'show'])->name('show')->where('id', '[0-9]+');
-    });
