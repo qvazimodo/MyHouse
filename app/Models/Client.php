@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -52,9 +53,9 @@ class Client extends Authenticatable
         return $this->hasMany(Card::class);
     }
 
-    public function meters(): HasMany
+    public function meters(): MorphMany
     {
-        return $this->hasMany(Meter::class);
+        return $this->morphMany(Meter::class, 'measurable', 'measurable_type','measurable_id','id');
     }
 
     public function apartment(): BelongsTo
