@@ -10,7 +10,7 @@
 
 @section('content')
     <div id="wrapper">
-    <div id="housesList"></div>
+        <div id="housesList"></div>
     </div>
 @endsection
 

@@ -13,106 +13,104 @@ import './bootstrap';
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 import React from "react";
-import { createRoot } from 'react-dom/client';
+import {createRoot} from 'react-dom/client';
 import RequestForEmployee from './components/RequestForEmployee/RequestForEmployee';
 import MetersForm from "./components/MetersForm";
 import Reviews from "./components/Content/Reviews";
 import ListCards from "./components/ListCards/ListCards";
-import { Employees } from "./components/admin/Employees";
+import {Employees} from "./components/admin/Employees";
 import UserCards from "./components/UserCards/UserCards";
 import HousesList from "./components/HousesList";
 import Contacts from "./components/Contacts";
-import { MetersList } from "./components/admin/MetersList";
-import { Header } from "./components/Identically/Header/Header";
+import {MetersList} from "./components/admin/MetersList";
+import {Header} from "./components/Identically/Header/Header";
 import Flats from "./components/Content/Flats";
 import LogoHeader from "./components/Identically/Menu/Logo-header";
 import PasswordReq from "./components/PasswordReq/PasswordReq";
 import {RouterProvider} from "react-router-dom";
 import {Router} from "./components/admin/Router"
-import { Provider } from "react-redux";
+import {Provider} from "react-redux";
 import store from "./store";
 import {Routerpassword} from "./components/PasswordReq/Routerpassword";
 import {RouterRequestForEmployee} from "./components/RequestForEmployee/RouterRequestForEmployee";
 
-if ( document.getElementById( 'request' ) ) {
-    const root = createRoot( document.getElementById( 'request' ) );
-    root.render( <Provider store={store}>
+if (document.getElementById('request')) {
+    const root = createRoot(document.getElementById('request'));
+    root.render(<Provider store={store}>
         <RouterProvider router={RouterRequestForEmployee}/>
-    </Provider> )
+    </Provider>)
 }
 
 if (document.getElementById('meters')) {
     const root = createRoot(document.getElementById('meters'));
-    root.render(<MetersForm />);
- }
+    root.render(<MetersForm/>);
+}
 
 if (document.getElementById('reviews')) {
     const root = createRoot(document.getElementById('reviews'));
-    root.render(<Reviews />);
+    root.render(<Reviews/>);
 }
 
-if (document.getElementById('usercards')){
-    const root=createRoot(document.getElementById('usercards'));
+if (document.getElementById('usercards')) {
+    const root = createRoot(document.getElementById('usercards'));
     root.render(<UserCards/>);
 }
 
-if (document.getElementById('passwordreq')){
-    const root=createRoot(document.getElementById('passwordreq'));
+if (document.getElementById('passwordreq')) {
+    const root = createRoot(document.getElementById('passwordreq'));
     root.render(<PasswordReq/>);
 }
 
-
-if ( document.getElementById( 'passwordreq' ) ) {
-    const root = createRoot( document.getElementById( 'passwordreq' ) );
-    root.render( <Provider store={store}>
+if (document.getElementById('passwordreq')) {
+    const root = createRoot(document.getElementById('passwordreq'));
+    root.render(<Provider store={store}>
         <RouterProvider router={Routerpassword}/>
-    </Provider> )
+    </Provider>)
 }
-
 
 if (document.getElementById('listCards')) {
     const root = createRoot(document.getElementById('listCards'));
-    root.render(<ListCards />);
+    root.render(<ListCards/>);
 }
 
-if (document.getElementById('employees')){
-    const root=createRoot(document.getElementById('employees'));
+if (document.getElementById('employees')) {
+    const root = createRoot(document.getElementById('employees'));
     root.render(<Employees/>);
 }
 
-if (document.getElementById('contacts')){
-    const root=createRoot(document.getElementById('contacts'));
-    root.render(<Contacts />);
+if (document.getElementById('contacts')) {
+    const root = createRoot(document.getElementById('contacts'));
+    root.render(<Contacts/>);
 }
 
-if (document.getElementById('housesList')){
-    const root=createRoot(document.getElementById('housesList'));
-    root.render(<HousesList />);
+if (document.getElementById('housesList')) {
+    const root = createRoot(document.getElementById('housesList'));
+    root.render(<HousesList/>);
 }
 
-if ( document.getElementById( 'admin' ) ) {
-    const root = createRoot( document.getElementById( 'admin' ) );
-    root.render( <Provider store={store}>
+if (document.getElementById('admin')) {
+    const root = createRoot(document.getElementById('admin'));
+    root.render(<Provider store={store}>
         <RouterProvider router={Router}/>
-    </Provider> )
+    </Provider>)
 }
 
-if ( document.getElementById( 'admin__meters' ) ) {
-    const root = createRoot( document.getElementById( 'admin__meters' ) );
-    root.render( <MetersList/> );
+if (document.getElementById('admin__meters')) {
+    const root = createRoot(document.getElementById('admin__meters'));
+    root.render(<MetersList/>);
 }
 
-if ( document.getElementById( 'logo-header' ) ) {
-    const root = createRoot( document.getElementById( 'logo-header' ) );
-    root.render( <LogoHeader/> );
+if (document.getElementById('logo-header')) {
+    const root = createRoot(document.getElementById('logo-header'));
+    root.render(<LogoHeader/>);
 }
 
-if ( document.getElementById( 'header' ) ) {
-    const root = createRoot( document.getElementById( 'header' ) );
-    root.render( <Header/> );
+if (document.getElementById('header')) {
+    const root = createRoot(document.getElementById('header'));
+    root.render(<Header/>);
 }
 
-if ( document.getElementById( 'flats' ) ) {
-    const root = createRoot( document.getElementById( 'flats' ) );
-    root.render( <Flats/> );
+if (document.getElementById('flats')) {
+    const root = createRoot(document.getElementById('flats'));
+    root.render(<Flats/>);
 }

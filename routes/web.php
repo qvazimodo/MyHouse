@@ -12,14 +12,13 @@ Route::get('/', function () {
     return view('landing');
 });
 
-Route::get('/landing', function (){
+Route::get('/landing', function () {
     return view('landing');
 });
 
 Route::get('/about', function () {
     return view('about');
 });
-
 
 
 //Добавляет CRUD для маршрутов регистрации, аутентификации и сброса пароля
@@ -29,7 +28,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //middleware будут выполняться в той последовательности, в которой они перечислены в массиве.
 Route::name('admin.')->prefix('admin')->middleware(['auth', 'is_admin'])
-    ->group(function(){
+    ->group(function () {
         Route::get('/', function () {
             return view('admin.index');
         })->name('index');
@@ -44,9 +43,7 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'is_admin'])
         Route::get('/houses', function () {
             return view('admin.houses');
         })->name('houses');
-});
-
-
+    });
 
 
 Route::match(['get', 'post'], '/userprofile', [UserProfileController::class, 'index'])->name('userProfile')->middleware('auth');
@@ -80,11 +77,11 @@ Route::get('/usercards', function () {
     return view('usercards');
 })->name('usercards');
 
-Route::get('/serviced_houses', function (){
+Route::get('/serviced_houses', function () {
     return view('serviced_houses');
 })->name('serviced_houses');
 
-Route::get('/news', function (){
+Route::get('/news', function () {
     return view('news');
 })->name('news');
 
@@ -92,7 +89,7 @@ Route::get('/news', function (){
 //News
 Route::name('news.')
     ->prefix('news')
-    ->group(function() {
+    ->group(function () {
         Route::get('/', [NewsController::class, 'index'])->name('index');
         Route::get('/{id}', [NewsController::class, 'show'])->name('show')->where('id', '[0-9]+');
     });
