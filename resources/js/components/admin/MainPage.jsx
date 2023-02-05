@@ -133,9 +133,10 @@ export const MainPage = () => {
                     style={ {
                         height: 32,
                         margin: 16,
-                        background: 'rgba(255, 255, 255, 0.2)',
+                        // background: 'rgba(255, 255, 255, 0.2)',
                     } }
-                />
+                    className={'text-blue-500 text-base text-white text-center'}
+                >Адреса</div>
                 <Menu
                     onClick={ ( { item, key, keyPath, domEvent } ) => {
                         console.log(item, keyPath )
@@ -189,8 +190,10 @@ export const MainPage = () => {
                     style={{
                         textAlign: 'center',
                     }}
+                    className={'flex justify-between'}
                 >
-                    Ant Design ©2023 Created by Ant UED
+                    <div>Created by MyHouse ©2023 </div>
+                    <div>Powered by Ant Design</div>
                 </Footer>
             </Layout>
         </Layout>
