@@ -9,7 +9,11 @@ class News extends React.Component {
     state = {
         title: [],
         content: [],
-        created_at: [],
+
+        images: ["https://fikiwiki.com/uploads/posts/2022-02/1645060421_1-fikiwiki-com-p-kartinki-windows-2.jpg",
+                 "https://fikiwiki.com/uploads/posts/2022-02/1645060477_4-fikiwiki-com-p-kartinki-windows-5.jpg",
+                  "https://fikiwiki.com/uploads/posts/2022-02/1645060422_11-fikiwiki-com-p-kartinki-windows-15.jpg"],
+
         loading: true,
     }
 
@@ -44,21 +48,21 @@ class News extends React.Component {
                             renderItem={(item) => (
                                 <List.Item
                                     key={item.id}
-                                    // extra={
-                                    //     <div className="images-wrp">
-                                    //         <Carousel autoplay>
-                                    //             {this.state.images.map((image, number) => (
-                                    //                 <div><img alt="image" src={image} key={number} className="slide-image" /></div>
-                                    //             ))}
-                                    //         </Carousel>
-                                    //     </div>
-                                    // }
+                                    extra={
+                                        <div className="images-wrp">
+                                            <Carousel autoplay>
+                                                {this.state.images.map((image, number) => (
+                                                    <div><img alt="image" src={image} key={number} className="slide-image" /></div>
+                                                ))}
+                                            </Carousel>
+                                        </div>
+                                    }
                                 >
                                     <List.Item.Meta
                                         title={item.title}
                                     />
                                     {item.content}<br/><br/>
-                                    {item.created_at}
+
                                 </List.Item>
                             )}
                         />)}
