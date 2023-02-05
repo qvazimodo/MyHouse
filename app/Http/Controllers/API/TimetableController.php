@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Client;
 use App\Models\Timetable;
 use App\Repositories\TimetableRepository;
 use App\Services\TimetableService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TimetableController extends Controller
 {
@@ -17,9 +19,19 @@ class TimetableController extends Controller
         return Timetable::all();
     }
 
-    public function store()
+    public function store(Request $request, TimetableService $timetableService)
     {
+        $clientId = Client::where('user_id', Auth::user()->id)->first();
+        $clientId = $clientId->id;
 
+        $timetable = Timetable::create([
+            'date' => $timetableService->convertDate($request->get('date')),
+            'client_id' => $clientId,
+            'employer_id' => $request->get('employer_id'),
+            'time_window_id' => $request->get('time_window_id')
+        ]);
+
+        $timetable->save();
     }
 
     public function show($id)
