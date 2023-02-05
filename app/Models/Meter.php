@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Meter extends Model
 {
@@ -35,9 +33,9 @@ class Meter extends Model
         );
     }
 
-    public function measurable():MorphTo
+    public function client(): BelongsTo
     {
-        return $this->morphTo('measurable','measurable_type','measurable_id','id');
+        return $this->belongsTo(Client::class, 'client_id', 'id');
     }
 
     public function meterMonthYear(): HasMany

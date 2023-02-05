@@ -3,16 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Client;
-use App\Models\House;
 use App\Models\Meter;
 use Illuminate\Database\Seeder;
 
 class MeterSeeder extends Seeder
 {
-    private $types = [
-        'горячая вода', 'холодная вода', 'электроэнергия', 'тепловая энергия', 'газ'
-    ];
-
     /**
      * Run the database seeds.
      *
@@ -22,22 +17,8 @@ class MeterSeeder extends Seeder
     {
         $clients = Client::all();
         $clients->each(function ($client) {
-            $clientMeters = [];
-            foreach ($this->types as $type) {
-                $clientMeter = Meter::factory()->make(['measurable_id' => $client->get('id'), 'type' => $type]);
-                $clientMeters[] = $clientMeter;
-            };
-            $client->meters()->saveMany($clientMeters);
-        });
-
-        $houses = House::all();
-        $houses->each(function ($house) {
-            $houseMeters = [];
-            foreach ($this->types as $type) {
-                $houseMeter = Meter::factory()->make(['measurable_id' => $house->get('id'), 'type' => $type]);
-                $houseMeters[]=$houseMeter;
-            };
-            $house->meters()->saveMany($houseMeters);
+            $meters = Meter::factory(rand(1, 3))->make(['client_id' => $client->get('id')]);
+            $client->meters()->saveMany($meters);
         });
     }
 }

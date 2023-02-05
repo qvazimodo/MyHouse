@@ -15,12 +15,18 @@ return new class extends Migration
     {
         Schema::create('meters', function (Blueprint $table) {
             $table->id();
-            $table->morphs('measurable');
-            $table->enum('type', ['горячая вода', 'холодная вода', 'электроэнергия', 'тепловая энергия', 'газ'])
+            $table->unsignedBigInteger('client_id')->nullable(false)->comment('id клиента');
+            $table->enum('type', ['горячая вода', 'холодная вода', 'электричество', 'тепловая энергия', 'газ'])
                 ->default('горячая вода')
                 ->comment('тип счетчика');
-            $table->unsignedBigInteger('number')->nullable(false)->comment('заводской номер счетчика');
+            $table->integer('number')->default(0)->comment('заводской номер счетчика');
             $table->timestamps();
+
+
+        });
+
+        Schema::table('meters', function (Blueprint $table) {
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
         });
         }
 
@@ -34,7 +40,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('meters', function (Blueprint $table) {
-            $table->dropMorphs('measurable');
+            $table->dropForeign(['client_id']);
         });
         Schema::dropIfExists('meters');
     }
