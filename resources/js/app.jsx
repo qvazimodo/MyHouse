@@ -16,7 +16,6 @@ import React from "react";
 import {createRoot} from 'react-dom/client';
 import RequestForEmployee from './components/RequestForEmployee/RequestForEmployee';
 import MetersForm from "./components/MetersForm";
-import Reviews from "./components/Content/Reviews";
 import ListCards from "./components/ListCards/ListCards";
 import {Employees} from "./components/admin/Employees";
 import UserCards from "./components/UserCards/UserCards";
@@ -44,11 +43,6 @@ if (document.getElementById('request')) {
 if (document.getElementById('meters')) {
     const root = createRoot(document.getElementById('meters'));
     root.render(<MetersForm/>);
-}
-
-if (document.getElementById('reviews')) {
-    const root = createRoot(document.getElementById('reviews'));
-    root.render(<Reviews/>);
 }
 
 if (document.getElementById('usercards')) {
