@@ -57,6 +57,7 @@ export const ALL_METERS_VALUES_API_URL = DOMEN + "/api/admin/meters/values";
 //маршрут передачи показаний счетчика методом POST
 export const METER_VALUE_API_URL = DOMEN + "/api/meters";
 
+//маршрут передачи новостей
 export const NEWS_API_URL = DOMEN + "/api/news";
 
 
