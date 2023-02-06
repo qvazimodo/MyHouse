@@ -92,10 +92,13 @@
                        class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
                        href="{{ route('userProfile') }}">Мой профиль</a>
                 </li>
+                <li style="width: 128px; margin-right: -80px;" class="mb-1">
+                    <img style="width: 50px; border-radius: 50%" src="/images/avatar.png" />
+                </li>
                 <li class="mb-1">
-                    <a style="color: #FFFFFF;" onmouseover="this.style.color='black';"
-                       onmouseout="this.style.color='white';"
-                       class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded">{{ Auth::user()->name }}</a>
+                    <a style="color: #FFFFFF;"
+                       class="block p-4 text-sm font-semibold text-gray-400">
+                       {{ Auth::user()->name }}</a>
                 </li>
 
 
