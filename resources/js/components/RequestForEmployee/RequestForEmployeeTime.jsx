@@ -44,7 +44,8 @@ const RequestForEmployeeTime = () => {
                     objschildren = {};
                     returnedTarget = {};
                     navigate("/");
-                    // console.log(result);
+                    console.log('result',result);
+                    console.log('profTime.state',profTime.state)
                 }
             )
 
@@ -71,8 +72,8 @@ const RequestForEmployeeTime = () => {
         }
         arraychildren = [];
         console.log(profTime.state.result[key][1])
-        for (let valuechildren of profTime.state.result[key][1]) {
-            switch (valuechildren) {
+        for (let valuechildren in profTime.state.result[key][1]) {
+            switch (profTime.state.result[key][1][valuechildren]) {
                 case 1:
                     timework = '9:00-11:00';
                     break;
