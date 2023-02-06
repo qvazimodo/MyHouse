@@ -54,10 +54,7 @@ class TimetableRepository
         $plucked = $employee->pluck('employee_id');
         foreach ($plucked->all() as $employee) {
             $array = [];
-            var_dump(Timetable::where('employer_id', $employee)
-                ->where('date', $mysqlDate)
-                ->get('time_window_id')
-                ->toArray());
+
             foreach (Timetable::where('employer_id', $employee)
                          ->where('date', $mysqlDate)
                          ->get('time_window_id')
