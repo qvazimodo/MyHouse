@@ -9,6 +9,7 @@ const OPTIONS = ['дворник', 'сантехник', 'электрик'];
 
 function RequestForEmployee() {
 
+
     const navigate = useNavigate();
 
     const {Panel} = Collapse;
@@ -54,8 +55,9 @@ function RequestForEmployee() {
             .then(response => response.json())
             .catch(e => console.log('Request failed', e))
             .then(result =>{
-                navigate("passwordCode");
-                console.log(result)
+                navigate("/foremployee", {state: {result,dateCall}});
+                // date: dateCall
+                // console.log(result)
                 }
             )
 
