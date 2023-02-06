@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {Alert, Button, Calendar, Collapse, ConfigProvider, Select, theme} from 'antd';
-import {CHECK_TIMETABLE_API_URL, PASSWORD_EMAIL_API_URL} from "../../helpers/API";
+import {Alert, Button, Calendar, Collapse, Select, theme} from 'antd';
+import {CHECK_TIMETABLE_API_URL} from "../../helpers/API";
 import './RequestForEmployee.css'
-import {Link, useNavigate} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 
 const OPTIONS = ['дворник', 'сантехник', 'электрик'];
@@ -55,9 +55,14 @@ function RequestForEmployee() {
             .then(response => response.json())
             .catch(e => console.log('Request failed', e))
             .then(result =>{
-                navigate("/foremployee", {state: {result,dateCall}});
-                // date: dateCall
-                // console.log(result)
+                if(result[0] === 'message:Выходной день'){
+                    alert('Выходной день')
+                } else if(result.length >= 0) {
+                    alert(`На этот дом не назначен ${selectedItems}`)
+                } else {
+                    navigate("/foremployee", {state: {result,dateCall}});
+                }
+                console.log(result)
                 }
             )
 

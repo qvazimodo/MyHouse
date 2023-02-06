@@ -1,17 +1,19 @@
-import React, {useEffect, useState} from 'react';
-import {Button, Calendar, Cascader, Collapse, Select, Space, Table, Tag} from "antd";
-import {ALL_METERS_VALUES_API_URL, CHECK_TIMETABLE_API_URL, TIMETABLE_API_URL} from "../../helpers/API";
+import React, {useState} from 'react';
+import {Button, Cascader, Collapse} from "antd";
+import {TIMETABLE_API_URL} from "../../helpers/API";
 
 import './RequestForEmployee.css'
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 
 const RequestForEmployeeTime = () => {
 
     const profTime = useLocation();
+    const navigate = useNavigate();
+
+    console.log(profTime.state)
 
     const [valueProfTime, setValueProfTime] = useState([]);
-    // const [options, setOptions] = [];
 
     const {Panel} = Collapse;
 
@@ -35,7 +37,14 @@ const RequestForEmployeeTime = () => {
             .then(response => response.json())
             .catch(e => console.log('Request failed', e))
             .then(result => {
-                    console.log(result)
+                    arraychildren = [];
+                    objkeys = {};
+                    objchildren = {};
+                    timework = '';
+                    objschildren = {};
+                    returnedTarget = {};
+                    navigate("/");
+                    // console.log(result);
                 }
             )
 
@@ -58,11 +67,11 @@ const RequestForEmployeeTime = () => {
 
         objkeys = {
             value: key,
-            label: `Работник под номером: ${key}`,
+            label: `${profTime.state.result[key][0].name} ${profTime.state.result[key][0].last_name}`,
         }
-
         arraychildren = [];
-        for (let valuechildren of profTime.state.result[key]) {
+        console.log(profTime.state.result[key][1])
+        for (let valuechildren of profTime.state.result[key][1]) {
             switch (valuechildren) {
                 case 1:
                     timework = '9:00-11:00';
@@ -93,7 +102,6 @@ const RequestForEmployeeTime = () => {
         }
         returnedTarget = Object.assign(objkeys, objschildren);
     }
-
 
 
     return (
