@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Col, Layout, Row } from 'antd';
 import "./styles/MeterList.css";
+import { NavLink } from "react-router-dom";
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -30,7 +31,7 @@ export const MetersList = () => {
                                                     type="inner"
                                                     hoverable
                                                     title={ meter.type }
-                                                    extra={ <Button href="#">Показания</Button> }
+                                                    extra={ <NavLink to={`/meters/${key}/${meter.id}`}>Показания</NavLink> }
                                                     style={ {
                                                         width: 300,
                                                     } }
