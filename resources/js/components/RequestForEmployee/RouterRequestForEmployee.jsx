@@ -10,7 +10,7 @@ export const RouterRequestForEmployee = createHashRouter(
             element: <RequestForEmployee/>,
         },
         {
-            path: "passwordCode",
+            path: "foremployee",
             element: <RequestForEmployeeTime/>
         }
     ]
