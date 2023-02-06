@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Calendar, Cascader, Collapse, Select, Space, Table, Tag} from "antd";
-import {ALL_METERS_VALUES_API_URL, CHECK_TIMETABLE_API_URL, TIMETABLE_API_URL} from "../../helpers/API";
+import {METERS_VALUES_API_URL, CHECK_TIMETABLE_API_URL, TIMETABLE_API_URL} from "../../helpers/API";
 
 import './RequestForEmployee.css'
 import {useLocation} from "react-router-dom";
