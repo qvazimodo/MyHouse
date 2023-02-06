@@ -380,7 +380,7 @@ export const ClientsList = ( props ) => {
                            // onChange: onPageChange
                            // showSizeChanger: true,
                        }}
-                       onRow={(record, rowIndex) => {
+/*                       onRow={(record, rowIndex) => {
                            return {
                                onClick: (event) => {
                                    console.log(record)
@@ -396,7 +396,7 @@ export const ClientsList = ( props ) => {
                                onMouseEnter: (event) => {}, // mouse enter row
                                onMouseLeave: (event) => {}, // mouse leave row
                            };
-                       }}
+                       }}*/
                        components={{
                            body: {
                                cell: EditableCell,
