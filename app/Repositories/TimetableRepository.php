@@ -7,6 +7,7 @@ namespace App\Repositories;
 use App\Models\Client;
 use App\Models\Employee;
 use App\Models\Timetable;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class TimetableRepository
@@ -41,8 +42,8 @@ class TimetableRepository
         return Employee::where('held_position', '=', $profession)
             ->join('employee_serviced_address', 'employees.id', '=', 'employee_serviced_address.employee_id')
             ->join('house_number_street', 'employee_serviced_address.house_number_street_id', '=', 'house_number_street.id')
-/*            ->join('timetables', 'employees.id', '=', 'timetables.employer_id')
-            ->where('timetables.date', '=', $mysqlDate)*/
+            /*            ->join('timetables', 'employees.id', '=', 'timetables.employer_id')
+                        ->where('timetables.date', '=', $mysqlDate)*/
             ->where('house_number_street.street_id', '=', $this->clientsAddressIds["street_id"])
             ->where('house_number_street.house_number_id', '=', $this->clientsAddressIds["house_id"])
             ->get();
@@ -58,11 +59,14 @@ class TimetableRepository
             foreach (Timetable::where('employer_id', $employee)
                          ->where('date', $mysqlDate)
                          ->get('time_window_id')
-                         ->toArray() as $item){
+                         ->toArray() as $item) {
                 $array[] = $item['time_window_id'];
             }
             $array = array_diff($this->timeWindows, $array);
-            $freeTimes[$employee] = $array;
+            $name = User::where('id', $employee)
+                ->get(['name', 'last_name']);
+            $name[] = $array;
+            $freeTimes[$employee] = $name;
         }
         return $freeTimes;
     }

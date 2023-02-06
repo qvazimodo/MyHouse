@@ -32,6 +32,7 @@ class TimetableController extends Controller
         ]);
 
         $timetable->save();
+        return response()->json("$timetable", 200);
     }
 
     public function show($id)
