@@ -86,6 +86,7 @@ const employeeSlice = createSlice( {
         } )
         builder.addCase( fetchAllEmployees.rejected, ( state, action ) => {
             state.error = action.payload
+            state.loading = false
         } )
 
         //получение списка сотрудников по адресу обслуживаемого объекта
@@ -99,6 +100,7 @@ const employeeSlice = createSlice( {
         } )
         builder.addCase( fetchEmployeesByAddress.rejected, ( state, action ) => {
             state.error = action.payload
+            state.loading = false
         } )
 
 //обновление данных сотрудника
@@ -113,6 +115,7 @@ const employeeSlice = createSlice( {
         builder.addCase( putEmployeeById.rejected, ( state,
                                                    action ) => {
             state.error = action.payload
+            state.loading = false
         } )
 
         //удаление клиента
@@ -127,6 +130,7 @@ const employeeSlice = createSlice( {
         builder.addCase( deleteEmployee.rejected, ( state,
                                                   action ) => {
             state.error = action.payload
+            state.loading = false
         } )
     }
 })
