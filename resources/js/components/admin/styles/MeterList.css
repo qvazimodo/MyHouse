@@ -1,0 +1,13 @@
+.bg-neutral-200 .ant-card-head {
+    background-color: rgb(115 115 115);
+    @apply text-white
+}
+
+.inner__card .ant-card-hoverable .ant-card-body {
+    background-color: rgb(212 212 212);
+
+}
+
+.inner__card .ant-card-hoverable .ant-card-head {
+    background-color: rgb(163 163 163);
+}

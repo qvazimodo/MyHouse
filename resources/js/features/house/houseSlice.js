@@ -40,15 +40,41 @@ const initialState = {
             }
         }
     ],
-    meters: {
+    addresses: {
         client_id: {
             id: null,
-            client_id: null,
-            type: "",
-            number: null,
+            houseNumberStreetId: null,
+            houseDescriptionsId: null,
+            streetId: null,
+            houseNumberId: null,
+            streetName: "",
+            houseNumber: "",
+        }
+    },
+    meters: {
+        client_id:
+            [ {
+                id: null,
+                client_id: null,
+                type: "",
+                number: null,
+                created_at: "",
+                updated_at: "",
+                house_id: null
+            } ],
+    },
+    descriptions: {
+        client_id: {
+            id: null,
+            total_area: null,
+            commissioning_year: null,
+            service_start_date: "",
+            year_of_next_overhaul: null,
+            entrances_amount: null,
+            floors_amount: null,
+            apartments_amount: null,
             created_at: "",
-            updated_at: "",
-            house_id: null
+            updated_at: ""
         }
     },
     error: '',
@@ -140,6 +166,24 @@ const houseSlice = createSlice( {
         } )
         builder.addCase( fetchHouses.fulfilled, ( state, action ) => {
             state.array = action.payload
+            state.descriptions = {}
+            state.meters = {}
+            state.addresses = {}
+
+
+            action.payload.forEach( item => {
+                state.descriptions[item.id] = item[`house_description`]
+                state.meters[item.id] = item[`meters`]
+                state.addresses[item.id] = {
+                    id: item['id'],
+                    houseNumberStreetId: item[`house_number_street_id`],
+                    houseDescriptionsId: item[`house_descriptions_id`],
+                    streetId: item[`street_id`],
+                    houseNumberId: item[`house_number_id`],
+                    streetName: item['name'],
+                    houseNumber: item['value'],
+                }
+            } )
             state.loading = false
         } )
         builder.addCase( fetchHouses.rejected, ( state, action ) => {

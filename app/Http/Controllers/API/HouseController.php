@@ -14,11 +14,13 @@ class HouseController extends Controller
 {
     public function index():JsonResponse
     {
-        $houses =  House:: with(['houseDescription','meters'])
-            ->join('house_number_street','houses.house_number_street_id', '=', 'house_number_street.id' )
+        $houses = House:: with(['houseDescription', 'meters'])
+            ->join('house_number_street', 'houses.house_number_street_id', '=', 'house_number_street.id')
+            ->join('streets', 'streets.id', '=', 'house_number_street.street_id')
+            ->join('house_numbers', 'house_numbers.id', '=', 'house_number_street.house_number_id')
             ->get();
 
-        return response()->json(['status'=>'ok', 'data'=>new HouseCollection($houses)], 200);
+        return response()->json(['status' => 'ok', 'data' => new HouseCollection($houses)], 200);
     }
 
     public function showAllHouses():JsonResponse
