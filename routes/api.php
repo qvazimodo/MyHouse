@@ -77,7 +77,9 @@ Route::prefix('admin')->group(function () {
     //api вывода информации обо всех счетчиках всех пользователей
     Route::get('/meters', [AdminMeterController::class, 'index']);
 
-    //api вывода показаний всех счетчиков всех пользователей
+    //api вывода показаний выбранного счётчика
+    Route::get('/meters/values/{id}', [AdminMeterController::class, 'selectedMeterValues']);
+
     Route::get('/meters/values', [AdminMeterController::class, 'allMetersValues']);
 
     //список технических характеристик и счётчиков всех домов, обслуживаемых компанией

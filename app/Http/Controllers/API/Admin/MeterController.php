@@ -31,4 +31,19 @@ class MeterController extends Controller
             'meta' => ['monthYears' => $monthYears, 'years' => $years, 'months' => $months]
         ], 200);
     }
+
+    public function selectedMeterValues(int $id): JsonResponse
+    {
+        $meterValues = Meter::query()
+            ->join('meter_month_year', 'meters.id', '=', 'meter_month_year.meter_id')
+            ->join('month_year', 'meter_month_year.month_year_id', '=', 'month_year.id')
+            ->join('months', 'month_year.month_id', '=', 'months.id')
+            ->join('years', 'month_year.year_id', '=', 'years.id')
+            ->where('meters.id', $id)
+            ->get();
+
+        return response()->json([
+            'data' => $meterValues,
+        ], 200);
+    }
 }
