@@ -1,5 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { ADMIN_ADDRESSES_API_URL, ADMIN_HOUSE_DESCRIPTION_API_URL, ADMIN_HOUSES_API_URL } from '../../helpers/API'
+import {
+    ADMIN_ADDRESSES_API_URL,
+    ADMIN_HOUSE_DESCRIPTION_API_URL,
+    ADMIN_HOUSES_API_URL,
+    METERS_VALUES_API_URL
+} from '../../helpers/API'
 
 const initialState = {
     loading: false,
@@ -106,10 +111,11 @@ const initialState = {
         number: null,
         created_at: "",
         updated_at: "",
-        house_id: null
-    }
+        house_id: null,
+    },
+    currentMeterValues: { yearNumber: [] }
 }
-
+//получение адресов домов
 export const fetchAddresses = createAsyncThunk( 'house/fetchAddresses', () => {
     return fetch( ADMIN_ADDRESSES_API_URL ).then( response => response.json() ).then( result => result.data )
 } )
@@ -123,6 +129,12 @@ export const fetchDescription = createAsyncThunk( 'house/fetchDescription', ( ad
     let url = ADMIN_HOUSE_DESCRIPTION_API_URL + "/" + `${ address.streetId }` + "/" + `${ address.houseNumberId }`
     console.log( url )
     return fetch( url ).then( response => response.json() ).then( result => result.data[0]['house_description'] )
+} )
+
+export const fetchMeterValues = createAsyncThunk( 'house/fetchMeterValues', ( meterId ) => {
+    let url = METERS_VALUES_API_URL + "/" + `${ meterId }`
+    console.log( url )
+    return fetch( url ).then( response => response.json() ).then( result => result.data )
 } )
 
 const houseSlice = createSlice( {
@@ -211,6 +223,18 @@ const houseSlice = createSlice( {
             state.loading = false
         } )
         builder.addCase( fetchDescription.rejected, ( state, action ) => {
+            state.error = action.payload
+            state.loading = false
+        } )
+
+        builder.addCase( fetchMeterValues.pending, ( state ) => {
+            state.loading = true
+        } )
+        builder.addCase( fetchMeterValues.fulfilled, ( state, action ) => {
+            state.currentMeterValues = action.payload
+            state.loading = false
+        } )
+        builder.addCase( fetchMeterValues.rejected, ( state, action ) => {
             state.error = action.payload
             state.loading = false
         } )

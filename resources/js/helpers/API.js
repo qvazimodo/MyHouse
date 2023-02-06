@@ -52,7 +52,7 @@ export const AUTH_METERS_LIST_API_URL = DOMEN + "/api/client_meters";
 export const AUTH_METERS_API_URL = DOMEN + "/api/client_meters/values";
 
 // маршрут получения показаний всех счетчиков всех клиентов
-export const ALL_METERS_VALUES_API_URL = DOMEN + "/api/admin/meters/values";
+export const METERS_VALUES_API_URL = DOMEN + "/api/admin/meters/values";
 
 //маршрут передачи показаний счетчика методом POST
 export const METER_VALUE_API_URL = DOMEN + "/api/meters";
