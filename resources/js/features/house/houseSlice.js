@@ -99,6 +99,15 @@ const initialState = {
         houseNumberId: null
     },
     clients: [],
+    currentMeter: {
+        id: null,
+        client_id: null,
+        type: "",
+        number: null,
+        created_at: "",
+        updated_at: "",
+        house_id: null
+    }
 }
 
 export const fetchAddresses = createAsyncThunk( 'house/fetchAddresses', () => {
@@ -146,7 +155,10 @@ const houseSlice = createSlice( {
                 streetId: action.payload.streetId,
                 houseNumberId: action.payload.houseNumberId
             }
-        }
+        },
+        setCurrentMeter:(state, action)=>{
+            state.currentMeter = action.payload
+}
     },
     extraReducers: (builder) => {
         builder.addCase( fetchAddresses.pending, ( state ) => {
@@ -207,4 +219,10 @@ const houseSlice = createSlice( {
 
 
 export default houseSlice.reducer
-export const {setHouses, setSelectedStreetId, setSelectedHouseNumberId, clearDescription, setSelectedAddress, clearSelectedAddress} = houseSlice.actions
+export const {setHouses,
+    setSelectedStreetId,
+    setSelectedHouseNumberId,
+    clearDescription,
+    setSelectedAddress,
+    clearSelectedAddress,
+    setCurrentMeter} = houseSlice.actions

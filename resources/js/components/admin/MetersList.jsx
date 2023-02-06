@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Col, Layout, Row } from 'antd';
 import "./styles/MeterList.css";
 import { NavLink } from "react-router-dom";
+import {setCurrentMeter} from '../../features/house/houseSlice'
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -31,7 +32,11 @@ export const MetersList = () => {
                                                     type="inner"
                                                     hoverable
                                                     title={ meter.type }
-                                                    extra={ <NavLink to={`/meters/${key}/${meter.id}`}>Показания</NavLink> }
+                                                    extra={
+                                                    <Button onClick={()=>dispatch(setCurrentMeter(meter))}>
+                                                        <NavLink to={`/meters/${key}/${meter.id}`}>Показания</NavLink>
+                                                    </Button>
+                                                    }
                                                     style={ {
                                                         width: 300,
                                                     } }
