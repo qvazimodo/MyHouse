@@ -65,3 +65,20 @@
 .reset-btn {
     margin-top: 50px;
 }
+
+// New style
+
+.login-form-container {
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.login-title {
+    font-family: 'Raleway', sans-serif;
+}
+.login-end-form {
+    margin-bottom: 200px;
+}
+
