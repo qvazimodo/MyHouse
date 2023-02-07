@@ -39,8 +39,8 @@ class EmployeeAdminstratorSeeder extends Seeder
                 'remember_token' => Str::random(10),
                 'is_admin' => '1',
             ];
-            dump($parameters);
             $user = User::create($parameters);
+            //Employee belongsTo User
             $employee->user()->associate($user);
             $employee['held_position'] = $position;
             $employee->save();
