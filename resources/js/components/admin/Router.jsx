@@ -6,6 +6,7 @@ import { HousesList } from "./HousesList";
 import { ClientsList } from "./ClientsList";
 import { EmployeesList } from "./EmployeesList";
 import { MeterValuesTable } from "./MeterValuesTable";
+import {EmployeesListForSelectedAddress} from './EmployeesListForSelectedAddress'
 
 export const Router = createHashRouter(
     [
@@ -24,6 +25,10 @@ export const Router = createHashRouter(
                 {
                     path: "employees",
                     element: <EmployeesList/>
+                },
+                {
+                    path: "employees/:streetId/:houseId",
+                    element: <EmployeesListForSelectedAddress/>
                 },
                 {
                     path: "meters",

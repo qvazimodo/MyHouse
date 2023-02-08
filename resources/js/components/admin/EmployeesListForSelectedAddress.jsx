@@ -22,7 +22,7 @@ import styles from "./styles/EmployeesList.module.scss";
 const onChange = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra);
 };
-export const EmployeesList = (props) => {
+export const EmployeesListForSelectedAddress = (props) => {
     const [form] = Form.useForm();
     const [employeeIsUpdated, setEmployeeIsUpdated] = useState(false);
     const [editingKey, setEditingKey] = useState('');
@@ -472,38 +472,7 @@ export const EmployeesList = (props) => {
                     Зарегистрировать нового сотрудника
                 </Button>
             </div>
-            <Modal
-                width={620}
-                title="Title"
-                open={open}
-                // onOk={handleOk}
-                confirmLoading={confirmLoading}
-                onCancel={handleCancel}
-                footer={[
-                    <Popconfirm title="Уверены, что хотите отменить сохранение данных?" onConfirm={handleCancel}>
-                        <Button key="back">
-                            Отмена
-                        </Button>
-                    </Popconfirm>,
 
-                    <Button
-                        type="primary"
-                        key="submit"
-                        loading={loading}
-                        onClick={handleOk}
-                    >
-                        Сохранить данные
-                    </Button>,
-                ]}
-            >
-                <EmployeeRegisterForm
-                    fields={fields}
-                    onChange={(newFields) => {
-                        setFields(newFields);
-                    }}
-                    sendForm={sendForm}
-                />
-            </Modal>
             <div className={styles.table__screen}>
                 {isLoading && <Spin size="large"/>}
                 {!isLoading &&
@@ -527,7 +496,8 @@ export const EmployeesList = (props) => {
                                    },
                                }}
                         />
-                    </Form>}</div>
+                    </Form>}
+            </div>
         </div>
     );
 }
