@@ -63,6 +63,9 @@ const initialState = {
                 client_id: null,
                 type: "",
                 number: null,
+                accuracy_class: null,
+                manufacturing_date: "",
+                next_verification_date: "",
                 created_at: "",
                 updated_at: "",
                 house_id: null

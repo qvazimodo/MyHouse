@@ -38,7 +38,7 @@ export const MetersList = () => {
                                                     </Button>
                                                     }
                                                     style={ {
-                                                        width: 300,
+                                                        width: 400,
                                                     } }
                                                 >
                                                     <Row className={ 'flex justify-between' }>
@@ -47,15 +47,15 @@ export const MetersList = () => {
                                                     </Row>
                                                     <Row className={ 'flex justify-between' }>
                                                         <Col>Класс точности:</Col>
-                                                        <Col> { }</Col>
+                                                        <Col> {meter['accuracy_class'] }</Col>
                                                     </Row>
                                                     <Row className={ 'flex justify-between' }>
                                                         <Col>Дата изготовления:</Col>
-                                                        <Col> { }</Col>
+                                                        <Col> {meter['manufacturing_date'] }</Col>
                                                     </Row>
                                                     <Row className={ 'flex justify-between' }>
                                                         <Col>Дата следующей поверки:</Col>
-                                                        <Col> { }</Col>
+                                                        <Col> {meter['next_verification_date'] }</Col>
                                                     </Row>
                                                 </Card>
                                             </div>
