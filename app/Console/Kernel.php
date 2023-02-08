@@ -2,8 +2,12 @@
 
 namespace App\Console;
 
+use App\Http\Controllers\NewsCreateController;
+use App\Models\News;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
+
 
 class Kernel extends ConsoleKernel
 {
@@ -16,6 +20,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->call(new NewsCreateController)->hourly()->before(function(){
+            DB::table('news')->delete();
+        });
     }
 
     /**

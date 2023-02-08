@@ -31,6 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TimeWindowSeeder::class);
         $this->call(EmployeeServicedAddressSeeder::class);
         $this->call(EmployeeAdminstratorSeeder::class);
-        $this->call(NewsSeeder::class);
+        //$this->call(NewsSeeder::class);
     }
 }

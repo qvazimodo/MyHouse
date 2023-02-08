@@ -22,10 +22,12 @@ class NewsSeeder extends Seeder
     private function getData() {
         $data = [];
         $faker = Faker\Factory::create('ru_RU');
-        for ($i = 0; $i < 15 ; $i++) {
+        for ($i = 0; $i < 10 ; $i++) {
             $data[] = [
                 'title' => $faker->realText(rand(10, 20)),
                 'content' => $faker->realText(rand(100, 300)),
+                'link' => $faker->url(),
+                'image'=> $faker->url(),
                 'created_at' => $faker->date(),
                 'updated_at' => $faker->date(),
             ];

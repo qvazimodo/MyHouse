@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title')->comment('Заголовок новости');
             $table->text('content');
+            $table->string('link')->comment('Ссылка на новость');
+            $table->string('image')->comment('Ссылка на изображение ');
             $table->timestamps();
         });
     }

@@ -8,6 +8,7 @@ use App\Models\News;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Orchestra\Parser\Xml\Facade as XmlParser;
 
 class NewsController extends Controller
 {
@@ -30,7 +31,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
