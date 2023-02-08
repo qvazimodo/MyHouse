@@ -14,64 +14,13 @@ a:hover {
 html,
 body {
     height: 100%;
-    /*text-align:left;*/
-    font-family: Raleway, sans-serif;
+    /*font-family: Raleway, sans-serif;*/
+    font-family: 'Roboto', sans-serif;
     background: #242B33;
 }
-
 #wrapper{
     max-width: 1350px;
     margin: 0 auto;
-
-}
-
-/*Секция меню*/
-.container{
-    max-width: 1350px;
-    margin: 0 auto;
-    padding: 0 10px;
-}
-.header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 50;
-    color: white;
-    font-family: Post No Bills Jaffna SemiBold, sans-serif;
-    font-size: 14px;
-}
-.header:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #242B33;
-    z-index: 2;
-}
-.header__body{
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    height: 80px;
-    align-items: center;
-}
-.header__list{
-    display: flex;
-    position: relative;
-    z-index: 2;
-}
-.header__list li{
-  list-style: none;
-    margin: 0 0 0 20px;
-}
-.header__link{
-    color: #FFFFFF;
-}
-.header__burger {
-    display: none;
 }
 
 /*Логотип верхний*/
@@ -89,7 +38,7 @@ body {
 .residential {
     margin-left: -3px;
     font-weight: 400;
-    font-size: 11px;
+    font-size: 13px;
     line-height: 14px;
     letter-spacing: 0.12em;
     color: #FFFFFF;
@@ -99,7 +48,8 @@ body {
     margin-bottom: 10px;
 }
 .title_name {
-    font-family: 'Playfair Display', serif;
+    /*font-family: 'Playfair Display', serif;*/
+    font-family: 'Roboto', sans-serif;
     font-weight: 700;
     font-size: 36px;
     line-height: 1.33;
@@ -113,94 +63,11 @@ body {
     z-index: 3;
 }
 
-@media (max-width:767px) {
-
+@media (max-width:1250px) {
     .title_name {
         font-size: 30px;
     }
-    body.lock{
-        overflow: hidden;
-    }
-    #logo-header{
-        margin-left: -30px;
-    }
-    .house {
-        font-size: 27px;
-    }
-    .residential {
-        font-size: 8px;
-    }
-    .header__body{
-        height: 50px;
-    }
-   .header__burger {
-        display: block;
-        position: relative;
-        width: 30px;
-        height: 20px;
-        z-index: 3;
-    }
-    .header__burger span{
-        position: absolute;
-        background-color: #FFFFFF;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        top: 9px;
-        transition: all 0.3s ease 0s;
-    }
-    .header__burger:before,
-    .header__burger:after{
-        content: '';
-        background-color: #FFFFFF;
-        position: absolute;
-        width: 100%;
-        height: 2px;
-        left: 0;
-        transition: all 0.3s ease 0s;
-    }
-    .header__burger:before{
-        top: 0;
-    }
-    .header__burger:after{
-        bottom: 0;
-    }
-    .header__burger.active:before{
-        transform: rotate(45deg);
-        top: 9px;
-    }
-    .header__burger.active:after{
-        transform: rotate(-45deg);
-        bottom: 9px;
-    }
-    .header__burger.active span{
-        transform: scale(0);
 
-    }
-    .header__menu{
-        position: fixed;
-        top: -100%;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: #242B33;
-        padding: 70px 10px 20px 10px;
-        transition: all 0.3s ease 0s;
-    }
-    .header__menu.active{
-        top: 0;
-    }
-    .header__list{
-        display: block;
-        text-align: left;
-    }
-    .header__list li{
-        margin: 0 0 10px 0;
-    }
-    .map-bottom{
-        padding: 0 2px;
-    }
 
 }
 

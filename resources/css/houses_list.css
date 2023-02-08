@@ -27,6 +27,13 @@
     color: #FFFFFF;
 }
 
+@media (max-width: 1250px) {
+    .ant-list-vertical .ant-list-item .ant-list-item-extra {
+        margin-inline-start: 0;
+    }
+
+}
+
 
 
 

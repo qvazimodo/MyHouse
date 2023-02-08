@@ -9,19 +9,19 @@
     <ul class="hidden absolute transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
         <li class="mb-1">
             <a style="color: #FFFFFF;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';"
-               class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="rates">Тарифы</a>
+               class="block p-4 text-sm font-roboto text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="rates">Тарифы</a>
         </li>
         <li class="mb-1">
             <a style="color: #FFFFFF;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';"
-               class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="serviced_houses">Дома</a>
+               class="block p-4 text-sm font-roboto text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="serviced_houses">Дома</a>
         </li>
         <li class="mb-1">
             <a style="color: #FFFFFF;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';"
-               class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="contacts">Контакты</a>
+               class="block p-4 text-sm font-roboto text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="contacts">Контакты</a>
         </li>
         <li style="width: 72px" class="mb-1">
             <a style="color: #FFFFFF;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';"
-               class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="about">О нас</a>
+               class="block p-4 text-sm font-roboto text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="about">О нас</a>
         </li>
         </ul>
 </div>

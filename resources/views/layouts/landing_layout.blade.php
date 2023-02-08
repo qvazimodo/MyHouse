@@ -10,7 +10,9 @@
     <title>@section('title')@show</title>
 
     <!-- Fonts -->
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/post-no-bills-jaffna" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,9 +23,7 @@
           rel="stylesheet">
 
     <!-- Scripts -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    @viteReactRefresh
+     @viteReactRefresh
     @vite(['resources/sass/app.scss','resources/js/app.jsx'])
 
 </head>

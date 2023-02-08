@@ -3,17 +3,27 @@
     background: url('/storage/app/public/images/Rectangle.png') center / cover no-repeat;
 }
 .bottom {
-    max-width: 582px;
+    max-width: 600px;
     width: 100%;
     margin: 0 auto;
     padding-top: 294px;
 }
-.bottom-top {
-    font-family: 'Playfair Display', sans-serif;
+
+.bottom-mh {
     font-style: normal;
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 64px;
+    font-weight: 600;
+    font-size: 52px;
+    line-height: 48px;
+    text-align: center;
+    color: #D4C17F;
+}
+.bottom-top {
+    /*font-family: 'Playfair Display', sans-serif;*/
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 44px;
+    line-height: 48px;
     text-align: center;
     color: #D4C17F;
 }
@@ -43,8 +53,9 @@
     .bottom{
         position: relative;
     }
-    .bottom-top {
-        font-size: 30px;
+    .bottom-top,
+    .bottom-mh {
+        font-size: 34px;
     }
     .bottom-contacts {
         display: block;

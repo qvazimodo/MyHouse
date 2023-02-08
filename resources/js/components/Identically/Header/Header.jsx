@@ -6,6 +6,7 @@ import style from "../../../../css/Identically/header.css";
 export const Header = () => (
     <div className="img-header">
         <div className="bottom">
+            <div className="bottom-mh" style={{ style }}>My House<br/>управляющая компания</div><br/>
             <div className="bottom-top" style={{ style }}>Ваше доверие -<br />наш профессионализм</div>
             <div className="bottom-contacts">
                 <div className="sticker">
