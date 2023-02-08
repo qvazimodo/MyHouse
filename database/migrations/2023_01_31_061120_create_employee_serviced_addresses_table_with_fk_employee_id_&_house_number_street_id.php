@@ -16,8 +16,10 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('employee_id')->nullable(false)->comment('id сотрудника');
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
-            $table->unsignedBigInteger('house_number_street_id')->nullable(false)->comment('id адреса объекта');
-            $table->foreign('house_number_street_id')->references('id')->on('house_number_street')->onDelete('cascade');
+            $table->unsignedBigInteger('addresses_street_id')->nullable(false)->comment('id улицы адреса объекта');
+            $table->foreign('addresses_street_id')->references('street_id')->on('addresses')->onDelete('cascade');
+            $table->unsignedBigInteger('addresses_house_number_id')->nullable(false)->comment('id номера дома адреса объекта');
+            $table->foreign('addresses_house_number_id')->references('house_number_id')->on('addresses')->onDelete('cascade');
         });
     }
 
@@ -30,7 +32,8 @@ return new class extends Migration {
     {
         Schema::table('employee_serviced_address', function (Blueprint $table) {
             $table->dropForeign(['employee_id']);
-            $table->dropForeign(['house_number_street_id']);
+            $table->dropForeign(['addresses_street_id']);
+            $table->dropForeign(['addresses_house_number_id']);
         });
 
         Schema::dropIfExists('employee_serviced_addresses');

@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\HouseDescription;
-use App\Models\HouseNumberStreet;
+use App\Models\Address;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

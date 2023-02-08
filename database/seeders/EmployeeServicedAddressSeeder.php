@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Employee;
-use App\Models\HouseNumberStreet;
+use App\Models\Address;
 use Illuminate\Database\Seeder;
 
 class EmployeeServicedAddressSeeder extends Seeder
@@ -15,7 +15,7 @@ class EmployeeServicedAddressSeeder extends Seeder
      */
     public function run()
     {
-        $addresses = HouseNumberStreet::all();
+        $addresses = Address::all();
         $addresses->each(function ($address) {
             $employees = Employee::query()->inRandomOrder()->limit(rand(3, 5))->get();
             $address->employees()->saveMany($employees);

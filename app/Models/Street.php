@@ -15,9 +15,9 @@ class Street extends Model
 
     public $timestamps = false;
 
-    public function houseNumberStreets():HasMany
+    public function addresses():HasMany
     {
-        return $this->hasMany(HouseNumberStreet::class, 'street_id', 'id');
+        return $this->hasMany(Address::class, 'street_id', 'id');
     }
 
     public function houseNumbers():BelongsToMany

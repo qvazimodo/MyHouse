@@ -8,7 +8,7 @@ use App\Models\Client;
 use App\Models\House;
 use App\Models\HouseAddress;
 use App\Models\HouseDescription;
-use App\Models\HouseNumberStreet;
+use App\Models\Address;
 use App\Models\Meter;
 use App\Models\MeterValue;
 use App\Models\MonthYear;

@@ -7,7 +7,7 @@ use App\Models\Street;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\HouseNumberStreet>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Address>
  */
 class HouseNumberStreetFactory extends Factory
 {

@@ -8,29 +8,25 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class HouseNumberStreet extends Model
+class Address extends Model
 {
     use HasFactory;
 
-    protected $table = 'house_number_street';
+    protected $table = 'addresses';
     protected $fillable = ['street_id', 'house_number_id'];
     public $timestamps = false;
 
-    public function houseNumber(): BelongsTo
+
+    public function street(): BelongsToMany
     {
-        return $this->belongsTo(HouseNumber::class, 'id', 'house_number_id');
+        return $this->belongsToMany(Street::class, 'id','street_id');
     }
 
-    public function street(): BelongsTo
+    public function houseNumber(): BelongsToMany
     {
-        return $this->belongsTo(Street::class, 'id','street_id');
+        return $this->belongsToMany(HouseNumber::class, 'id', 'house_number_id');
     }
-
-    public function house(): HasOne
-    {
-        return $this->hasOne(House::class);
-    }
-
+//////////////////////
     public function employees():BelongsToMany{
         return $this->belongsToMany(Employee::class, 'employee_serviced_address', 'house_number_street_id', 'employee_id', 'id');
     }

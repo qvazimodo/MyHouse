@@ -28,7 +28,7 @@ export const HousesList = () => {
 
 
     useEffect(() => {
-        console.log( selectedAddress )
+        // console.log( selectedAddress )
         if ( selectedAddress.streetId !== null  ) {
             dispatch( fetchDescription( selectedAddress ) )
         }

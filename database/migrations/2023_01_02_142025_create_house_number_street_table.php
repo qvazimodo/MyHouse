@@ -13,8 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('house_number_street', function (Blueprint $table) {
-            $table->id();
+        Schema::create('addresses', function (Blueprint $table) {
             $table->unsignedBigInteger('street_id')->nullable(false);
             $table->foreign(['street_id'])->references('id')->on('streets');
             $table->unsignedBigInteger('house_number_id')->nullable(false);
@@ -29,10 +28,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('house_number_street', function (Blueprint $table){
+        Schema::table('addresses', function (Blueprint $table){
             $table->dropForeign(['street_id']);
             $table->dropForeign(['house_number_id']);
         });
-        Schema::dropIfExists('house_number_street');
+        Schema::dropIfExists('addresses');
     }
 };

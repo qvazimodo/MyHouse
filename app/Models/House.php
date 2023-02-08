@@ -18,11 +18,6 @@ class House extends Model
     public $timestamps = false;
     protected $fillable = ['house_number_street_id', 'houses_description_id'];
 
-    public function houseNumberStreet(): BelongsTo
-    {
-        return $this->belongsTo(HouseNumberStreet::class);
-    }
-
     public function houseDescription(): BelongsTo
     {
         return $this->belongsTo(HouseDescription::class, 'house_descriptions_id');
@@ -35,12 +30,12 @@ class House extends Model
 
     public function streets(): HasManyThrough
     {
-        return $this->hasManyThrough(Street::class, HouseNumberStreet::class, 'street_id', 'id', 'house_number_street_id', 'id');
+        return $this->hasManyThrough(Street::class, Address::class, 'street_id', 'id', 'house_number_street_id', 'id');
     }
 
     public function housesNumbers(): HasManyThrough
     {
-        return $this->hasManyThrough(HouseNumber::class, HouseNumberStreet::class, 'house_number_id', 'id', 'house_number_street_id', 'id');
+        return $this->hasManyThrough(HouseNumber::class, Address::class, 'house_number_id', 'id', 'house_number_street_id', 'id');
     }
 
     public function meters():HasMany

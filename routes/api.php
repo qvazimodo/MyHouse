@@ -113,6 +113,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/clients',
         [AdminClientController::class, 'index']);
 
+    Route::get('/clients/new',
+        [AdminClientController::class, 'getNewClients']);
+
     Route::get('/clients/by_address/{street_id}/{house_id}',
         [AdminClientController::class, 'getClientsByAddress']);
 

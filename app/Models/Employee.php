@@ -47,7 +47,7 @@ class Employee extends Model
     }
 
     public function servicedAddresses():BelongsToMany{
-        return $this->belongsToMany(HouseNumberStreet::class, 'employee_serviced_address', 'employee_id', 'house_number_street_id', 'id');
+        return $this->belongsToMany(Address::class, 'employee_serviced_address', 'employee_id', 'house_number_street_id', 'id');
     }
 
     public function timetable():BelongsTo
