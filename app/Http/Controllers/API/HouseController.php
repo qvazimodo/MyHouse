@@ -9,19 +9,27 @@ use App\Models\House;
 use App\Models\Street;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\DB;
 
 class HouseController extends Controller
 {
     public function index():JsonResponse
     {
-        $houses = House:: with(['houseDescription', 'meters'])
+        $houses = House::with('houseDescription')
             ->join('house_number_street', 'houses.house_number_street_id', '=', 'house_number_street.id')
-            ->join('streets', 'streets.id', '=', 'house_number_street.street_id')
-            ->join('house_numbers', 'house_numbers.id', '=', 'house_number_street.house_number_id')
+            ->join('streets', 'house_number_street.street_id', '=', 'streets.id')
+            ->join('house_numbers', 'house_number_street.house_number_id', '=', 'house_numbers.id')
             ->get();
 
-        return response()->json(['status' => 'ok', 'data' => new HouseCollection($houses)], 200);
+        $sortedHouses=[];
+
+        forEach($houses as $house){
+            $sortedHouses[$house->street_id][] = $house;
+        }
+        return response()->json(['status' => 'ok', 'data' => $houses], 200);
     }
+
+
 
     public function showAllHouses():JsonResponse
     {

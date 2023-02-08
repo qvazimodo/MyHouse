@@ -123,7 +123,7 @@ export const fetchAddresses = createAsyncThunk( 'house/fetchAddresses', () => {
     return fetch( ADMIN_ADDRESSES_API_URL ).then( response => response.json() ).then( result => result.data )
 } )
 
-//техническая информация обо всех домах
+//адреса и техническая информация обо всех домах
 export const fetchHouses = createAsyncThunk( 'house/fetchHouses', () => {
     return fetch( ADMIN_HOUSES_API_URL ).then( response => response.json() ).then( result => result.data )
 } )
@@ -192,25 +192,34 @@ const houseSlice = createSlice( {
             state.loading = true
         } )
         builder.addCase( fetchHouses.fulfilled, ( state, action ) => {
+            action.payload.forEach( house => {
+
+                console.log(house)
+               /* state.descriptions[house['street_id']] = [...state.descriptions[house['street_id']], house['house_description']]
+                state.meters = {}
+                state.addresses = {}*/
+
+            })
+
             state.array = action.payload
             state.descriptions = {}
             state.meters = {}
             state.addresses = {}
 
 
-            action.payload.forEach( item => {
-                state.descriptions[item.id] = item[`house_description`]
-                state.meters[item.id] = item[`meters`]
-                state.addresses[item.id] = {
-                    id: item['id'],
-                    houseNumberStreetId: item[`house_number_street_id`],
-                    houseDescriptionsId: item[`house_descriptions_id`],
-                    streetId: item[`street_id`],
-                    houseNumberId: item[`house_number_id`],
-                    streetName: item['name'],
-                    houseNumber: item['value'],
-                }
-            } )
+            // action.payload.forEach( item => {
+            //     state.descriptions[item.id] = item[`house_description`]
+            //     state.meters[item.id] = item[`meters`]
+            //     state.addresses[item.id] = {
+            //         id: item['id'],
+            //         houseNumberStreetId: item[`house_number_street_id`],
+            //         houseDescriptionsId: item[`house_descriptions_id`],
+            //         streetId: item[`street_id`],
+            //         houseNumberId: item[`house_number_id`],
+            //         streetName: item['name'],
+            //         houseNumber: item['value'],
+            //     }
+            // } )
             state.loading = false
         } )
         builder.addCase( fetchHouses.rejected, ( state, action ) => {
