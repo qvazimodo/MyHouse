@@ -1,12 +1,12 @@
 import { createHashRouter } from "react-router-dom";
 import { MetersList } from "./MetersList";
 import { MainPage } from "./MainPage";
-import { Employees } from "./Employees";
 import { HousesList } from "./HousesList";
 import { ClientsList } from "./ClientsList";
 import { EmployeesList } from "./EmployeesList";
 import { MeterValuesTable } from "./MeterValuesTable";
-import {EmployeesListForSelectedAddress} from './EmployeesListForSelectedAddress'
+import { EmployeesListForSelectedAddress } from './EmployeesListForSelectedAddress'
+import { HouseDescripiton } from "./HouseDescripiton";
 
 export const Router = createHashRouter(
     [
@@ -19,13 +19,12 @@ export const Router = createHashRouter(
                     element: <HousesList/>
                 },
                 {
-                    path: "clients",
-                    element: <ClientsList/>
+                    path: "addresses/:streetId/:houseId",
+                    element: <HouseDescripiton/>
                 },
                 {
                     path: "employees",
                     element: <EmployeesList/>
-                    // element: <EmployeesListForSelectedAddress/>
                 },
                 {
                     path: "employees/:streetId/:houseId",

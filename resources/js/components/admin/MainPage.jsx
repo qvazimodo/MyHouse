@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react"
 import {useDispatch, useSelector} from "react-redux"
-import {Outlet, useNavigate} from "react-router-dom"
+import { Outlet, useNavigate, redirect, useLocation } from "react-router-dom"
 import {Layout, Menu, theme} from 'antd';
 import {adminHeaderMenuItems} from "./helpers/adminHeaderMenuItems"
 import {
@@ -22,12 +22,15 @@ export const MainPage = () => {
     const {
         token: {colorBgContainer},
     } = theme.useToken();
+
     const navigate = useNavigate()
+    const location = useLocation()
+
     const dispatch = useDispatch()
     const clickOnHeaderMenu = ({key}) => {
-        dispatch(clearSelectedAddress())
+/*        dispatch(clearSelectedAddress())
         dispatch(clearDescription())
-        dispatch(clearClientsArray())
+        dispatch(clearClientsArray())*/
         navigate(key)
     }
 
@@ -102,7 +105,7 @@ export const MainPage = () => {
         };
     }, []);
 
-    const selectedAddress = useSelector(state => state.house.selectedAddress)
+    const selectedAddress = useSelector(state => state.house.selectedAddress)/**/
     const firstUpdate = useRef(true);
     useEffect(() => {
         if (!firstUpdate.current && isNull(selectedAddress.streetId)) {
@@ -112,15 +115,15 @@ export const MainPage = () => {
         firstUpdate.current = false
     }, [selectedAddress]);
 
-    useEffect(() => {
+/*    useEffect(() => {
         console.log(selectedAddress)
         setSelectedMenuItem(selectedAddress
-            /*            getAddress(
+            /!*            getAddress(
                         [ selectedAddress.streetId.toString(),
                             selectedAddress.houseNumberId.toString()
-                        ] )*/
+                        ] )*!/
         )
-    }, [selectedAddress]);
+    }, [selectedAddress]);*/
 
 
     return (
@@ -145,7 +148,12 @@ export const MainPage = () => {
                     onClick={({item, key, keyPath, domEvent}) => {
                         console.log(item, keyPath)
                         setSelectedMenuItem(getAddress(keyPath))
-                        console.log(getAddress(keyPath))
+                        const address = getAddress(keyPath)
+                        console.log(address)
+                        console.log(location)
+                        const path = location.pathname + `/${address.streetId}/${address.houseNumberId}`
+                        console.log(path)
+                        navigate(path)
                     }}
                     openKeys={openKeys}
                     onOpenChange={onOpenChange}
