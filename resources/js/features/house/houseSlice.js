@@ -63,6 +63,9 @@ const initialState = {
                 client_id: null,
                 type: "",
                 number: null,
+                accuracy_class: null,
+                manufacturing_date: "",
+                next_verification_date: "",
                 created_at: "",
                 updated_at: "",
                 house_id: null
@@ -141,18 +144,9 @@ const houseSlice = createSlice( {
     name: 'house',
     initialState,
     reducers: {
-        setHouses: ( state, action ) => {
-            state.array = action.payload
-        },
         //добавление дома в список (для примера) - мутирует состояние
         addHouse: ( state, action ) => {
             state.array.push( action.payload )
-        },
-        setSelectedStreetId: ( state, action ) => {
-            state.selectedStreetId = action.payload
-        },
-        setSelectedHouseNumberId: ( state, action ) => {
-            state.selectedHouseNumberId = action.payload
         },
         clearSelectedAddress: ( state, action ) => {
             state.selectedAddress = { streetName: '', houseNumber: null, streetId: null, houseNumberId: null }
@@ -243,9 +237,7 @@ const houseSlice = createSlice( {
 
 
 export default houseSlice.reducer
-export const {setHouses,
-    setSelectedStreetId,
-    setSelectedHouseNumberId,
+export const {
     clearDescription,
     setSelectedAddress,
     clearSelectedAddress,

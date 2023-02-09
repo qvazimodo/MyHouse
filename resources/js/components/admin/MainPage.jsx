@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { Outlet, useNavigate } from "react-router-dom"
-import { Layout, Menu, theme } from 'antd';
-import { adminHeaderMenuItems } from "./helpers/adminHeaderMenuItems"
+import React, {useEffect, useRef, useState} from "react"
+import {useDispatch, useSelector} from "react-redux"
+import { Outlet, useNavigate, redirect, useLocation } from "react-router-dom"
+import {Layout, Menu, theme} from 'antd';
+import {adminHeaderMenuItems} from "./helpers/adminHeaderMenuItems"
 import {
     clearDescription,
     clearSelectedAddress,
@@ -10,11 +10,12 @@ import {
     fetchHouses,
     setSelectedAddress
 } from "../../features/house/houseSlice";
-import { isNull } from "lodash";
-import { clearClientsArray } from "../../features/client/clientSlice";
+import {isNull} from "lodash";
+import {useBasePath} from "../../hooks/useBasePath";
+import {clearClientsArray} from "../../features/client/clientSlice";
 
 
-const { Header, Content, Footer, Sider } = Layout;
+const {Header, Content, Footer, Sider} = Layout;
 
 export const MainPage = () => {
     const [selectedMenuItem, setSelectedMenuItem] = useState({})
@@ -22,22 +23,27 @@ export const MainPage = () => {
     const {
         token: {colorBgContainer},
     } = theme.useToken();
+
     const navigate = useNavigate()
+    const location = useLocation()
+    const basePath = useBasePath()
+
     const dispatch = useDispatch()
     const clickOnHeaderMenu = ({key}) => {
-        dispatch( clearSelectedAddress() )
-        dispatch(clearDescription())
-        dispatch(clearClientsArray())
-        navigate( key )
+        setOpenKeys([])
+        navigate(key)
     }
 
-    useEffect( () => {
-            dispatch( fetchHouses() )
+    useEffect(() => {
+            dispatch(fetchHouses())
+            return () =>
+                dispatch(fetchHouses())
         }, []
     )
 
-    useEffect( () => {
-            dispatch( fetchAddresses() )
+    useEffect(() => {
+            dispatch(fetchAddresses())
+            return () => dispatch(fetchAddresses())
         }, []
     )
 
@@ -49,34 +55,34 @@ export const MainPage = () => {
             // icon: React.createElement( icon ),
             key: (index++).toString(),
             label: address.name,
-            children: [ ...address['house_numbers'].map( houseNumber => {
+            children: [...address['house_numbers'].map(houseNumber => {
                 return {
                     id: houseNumber.id,
                     key: (index++).toString(),
                     label: houseNumber.value
                 }
-            } ) ]
+            })]
         };
-    } )
+    })
 
-    const rootSubmenuKeys = sideMenuItems.map( item => item.key )
-    const [ openKeys, setOpenKeys ] = useState( [] );
-    const onOpenChange = ( keys ) => {
-        const latestOpenKey = keys.find( ( key ) => openKeys.indexOf( key ) === -1 );
-        console.log( keys )
-        if ( rootSubmenuKeys.indexOf( latestOpenKey ) === -1 ) {
-            setOpenKeys( keys );
+    const rootSubmenuKeys = sideMenuItems.map(item => item.key)
+    const [openKeys, setOpenKeys] = useState([]);
+    const onOpenChange = (keys) => {
+        const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+        console.log(keys)
+        if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+            setOpenKeys(keys);
         } else {
-            setOpenKeys( latestOpenKey ? [ latestOpenKey ] : [] );
+            setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
         }
     };
 
 
     const getAddress = (keyPath) => {
         // console.log(keyPath, sideMenuItems)
-        let selectedStreetWithHouses = sideMenuItems.find( street => street.key === keyPath[1] )
+        let selectedStreetWithHouses = sideMenuItems.find(street => street.key === keyPath[1])
         // console.log( selectedStreetWithHouses )
-        let selectedHouse = selectedStreetWithHouses.children.find( house => house.key === keyPath[0] )
+        let selectedHouse = selectedStreetWithHouses.children.find(house => house.key === keyPath[0])
         // console.log( selectedHouse )
         const selectedAddress = {
             streetName: selectedStreetWithHouses.label,
@@ -85,79 +91,63 @@ export const MainPage = () => {
             houseNumberId: selectedHouse.id
         }
         // console.log( selectedAddress )
-        dispatch( setSelectedAddress( selectedAddress ) )
+        dispatch(setSelectedAddress(selectedAddress))
         return selectedAddress
     }
 
 
     const defaultSelectedMenuItem = '/addresses'
 
-    useEffect( () => {
-        navigate( defaultSelectedMenuItem )
+    useEffect(() => {
+        navigate(defaultSelectedMenuItem)
         return () => {
-            navigate( defaultSelectedMenuItem )
+            navigate(defaultSelectedMenuItem)
         };
-    }, [] );
-
-    const selectedAddress = useSelector( state => state.house.selectedAddress )
-    const firstUpdate = useRef( true );
-    useEffect( () => {
-        if ( !firstUpdate.current && isNull( selectedAddress.streetId ) ) {
-            console.log( openKeys )
-            setOpenKeys( [] )
-        }
-        firstUpdate.current = false
-    }, [ selectedAddress ] );
-
-    useEffect( () => {
-        console.log( selectedAddress )
-        setSelectedMenuItem( selectedAddress
-/*            getAddress(
-            [ selectedAddress.streetId.toString(),
-                selectedAddress.houseNumberId.toString()
-            ] )*/
-        )
-    }, [ selectedAddress ] );
-
+    }, []);
 
     return (
-        <Layout style={ {
+        <Layout style={{
             minHeight: '100vh',
-        } }
+        }}
         >
             <Sider collapsible
-                   collapsed={ collapsed }
-                   onCollapse={ ( value ) => setCollapsed( value )
+                   collapsed={collapsed}
+                   onCollapse={(value) => setCollapsed(value)
                    }>
                 <div
-                    style={ {
+                    style={{
                         height: 32,
                         margin: 16,
                         // background: 'rgba(255, 255, 255, 0.2)',
-                    } }
+                    }}
                     className={'text-blue-500 text-base text-white text-center'}
-                >Адреса</div>
+                >Адреса
+                </div>
                 <Menu
-                    onClick={ ( { item, key, keyPath, domEvent } ) => {
-                        console.log(item, keyPath )
-                        setSelectedMenuItem( getAddress( keyPath ) )
-                        console.log( getAddress( keyPath ) )
-                    } }
-                    openKeys={ openKeys }
-                    onOpenChange={ onOpenChange }
-                    theme="dark" defaultSelectedKeys={ [ '1' ] }
-                    mode="inline" items={ sideMenuItems }
+                    onClick={({item, key, keyPath, domEvent}) => {
+                        console.log(keyPath)
+                        setSelectedMenuItem(getAddress(keyPath))
+                        const address = getAddress(keyPath)
+                        console.log(basePath)
+                        const path = basePath + `/${address.streetId}/${address.houseNumberId}`
+                        console.log(path)
+                        navigate(path)
+                    }}
+                    openKeys={openKeys}
+                    onOpenChange={onOpenChange}
+                    theme="dark" defaultSelectedKeys={['1']}
+                    mode="inline" items={sideMenuItems}
                 />
             </Sider>
             <Layout className="site-layout">
                 <Header
-                    style={ {
+                    style={{
                         padding: 0,
                         background: colorBgContainer,
-                    } }
+                    }}
                 >
                     <Menu theme="dark" mode="horizontal"
-                          defaultSelectedKeys={ [ defaultSelectedMenuItem ] }
+                          defaultSelectedKeys={[defaultSelectedMenuItem]}
                           items={adminHeaderMenuItems}
                           onClick={clickOnHeaderMenu}
                     />
@@ -167,7 +157,7 @@ export const MainPage = () => {
                         margin: '0 16px',
                     }}
                 >
-  {/*                  <Breadcrumb
+                    {/*                  <Breadcrumb
                         style={{
                             margin: '16px 0',
                         }}
@@ -192,7 +182,7 @@ export const MainPage = () => {
                     }}
                     className={'flex justify-between'}
                 >
-                    <div>Created by MyHouse ©2023 </div>
+                    <div>Created by MyHouse ©2023</div>
                     <div>Powered by Ant Design</div>
                 </Footer>
             </Layout>

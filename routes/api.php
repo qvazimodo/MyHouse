@@ -102,8 +102,8 @@ Route::prefix('admin')->group(function () {
     //Сотрудники
     Route::get('/employees', [EmployeeAPIController::class, 'index']);
 
-    Route::get('/employees/by_address/{street_id}/{house_id}',
-        [EmployeeAPIController::class, 'getEmployeesByAddress']);
+    Route::get('/employees/by_address/{street_id}/{houseNumberId}',
+        [EmployeeAPIController::class, 'showEmployeesByAddress']);
 
     Route::put('/employees', [EmployeeAPIController::class, 'update']);
 
@@ -119,7 +119,7 @@ Route::prefix('admin')->group(function () {
     Route::put('/clients/advanced/',
         [AdminClientController::class, 'update']);
 
-    Route::delete('/clients/advanced/{client}',
+    Route::delete('/clients/{client}',
         [AdminClientController::class, 'destroy']);
 
 });

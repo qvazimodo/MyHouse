@@ -139,9 +139,8 @@ const clientSlice = createSlice( {
             state.loading = true
         } )
         builder.addCase( deleteClient.fulfilled, ( state, action ) => {
-            state.array = action.payload
             console.log( action.payload )
-            state.loading = false
+            // state.loading = false
         } )
         builder.addCase( deleteClient.rejected, ( state,
                                                   action ) => {

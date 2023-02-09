@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDescription, } from "../../features/house/houseSlice"
-import { Collapse, ConfigProvider, Layout, theme } from 'antd';
+import { Collapse, ConfigProvider, Layout, Spin, theme } from 'antd';
 import ruRu from "antd/lib/locale/ru_RU";
 import "./styles/HousesList.css";
 import styles from "./styles/HousesList.module.scss"
 import { Content } from "antd/es/layout/layout";
+import { HouseDescription } from "./HouseDescription";
 import Texty from 'rc-texty';
 import { HousesChart } from "./HousesChart";
 import { useLocation } from "react-router-dom";
 
 const { Panel } = Collapse;
 
-export const HousesList = () => {
+export const HouseDescripiton = () => {
     const [ address, setAddress ] = useState( {
         streetId: null,
         streetName: '',
@@ -51,17 +52,17 @@ export const HousesList = () => {
 
                 { <Layout className={ styles.contentLayout }>
 
-                    <Content className={styles.content} onClick={ () => console.log( selectedAddress ) }>
-                        { !isLoading && location.pathname === "/addresses" &&
-                            <div>
-                                <HousesChart/>
-                                <div className={ styles.content__message + ' mt-20' }>
-                                    <Texty>
-                                        Чтобы узнать технические характеристики объекта, выберите нужный адрес
-                                    </Texty>
-                                </div>
+                    <Content className={styles.content} >
+
+                        { isLoading &&
+                            <div className={ styles.houseDescription__content }>
+                                <Spin className={ styles.contentSpinner } size="large"/>
                             </div>
                         }
+
+                        { !isLoading &&
+                            description.id != null &&
+                            <HouseDescription description={ description }/> }
                     </Content>
                 </Layout> }
             </div>
