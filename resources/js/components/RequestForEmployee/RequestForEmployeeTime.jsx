@@ -11,9 +11,11 @@ const RequestForEmployeeTime = () => {
     const profTime = useLocation();
     const navigate = useNavigate();
 
-    console.log(profTime.state)
-
     const [valueProfTime, setValueProfTime] = useState([]);
+
+    const options = [];
+    let arraychildren = [];
+    let objkeys = {};
 
     const {Panel} = Collapse;
 
@@ -39,13 +41,9 @@ const RequestForEmployeeTime = () => {
             .then(result => {
                     arraychildren = [];
                     objkeys = {};
-                    objchildren = {};
-                    timework = '';
-                    objschildren = {};
-                    returnedTarget = {};
                     navigate("/");
-                    console.log('result',result);
-                    console.log('profTime.state',profTime.state)
+                    console.log('result', result);
+                    console.log('profTime.state', profTime.state)
                 }
             )
 
@@ -56,24 +54,12 @@ const RequestForEmployeeTime = () => {
         console.log(value);
     };
 
-    const options = [];
-    let arraychildren = [];
-    let objkeys = {};
-    let objchildren = {};
-    let timework = '';
-    let objschildren = {};
-    let returnedTarget = {};
-
-    for (let key in profTime.state.result) {
-
-        objkeys = {
-            value: key,
-            label: `${profTime.state.result[key][0].name} ${profTime.state.result[key][0].last_name}`,
-        }
-        arraychildren = [];
-        console.log(profTime.state.result[key][1])
-        for (let valuechildren in profTime.state.result[key][1]) {
-            switch (profTime.state.result[key][1][valuechildren]) {
+    const checkTimes = (e) => {
+        let countchildren = [];
+        let objchildren = {};
+        let timework = '';
+        for (let valuechildren in e) {
+            switch (e[valuechildren]) {
                 case 1:
                     timework = '9:00-11:00';
                     break;
@@ -87,21 +73,32 @@ const RequestForEmployeeTime = () => {
                     timework = '15:00-17:00';
                     break;
                 default:
-                    alert('Всё занято');
+                    return alert('Всё занято');
                     break;
             }
             objchildren = {
-                value: valuechildren,
+                value: +valuechildren + 1,
                 label: timework
             }
-            arraychildren.push(objchildren)
+            countchildren.push(objchildren);
+        }
+        return countchildren = {
+            children: countchildren
+        };
+    };
 
+
+    for (let key in profTime.state.result) {
+        arraychildren = [];
+        objkeys = {
+            value: key,
+            label: `${profTime.state.result[key][0].name} ${profTime.state.result[key][0].last_name}`,
         }
+
+        arraychildren = checkTimes(profTime.state.result[key][1]);
+
+        Object.assign(objkeys, arraychildren);
         options.push(objkeys);
-        objschildren = {
-            children: arraychildren
-        }
-        returnedTarget = Object.assign(objkeys, objschildren);
     }
 
 

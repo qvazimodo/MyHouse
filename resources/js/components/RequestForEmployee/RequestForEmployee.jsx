@@ -59,10 +59,15 @@ function RequestForEmployee() {
                     alert('Выходной день')
                 } else if(result.length >= 0) {
                     alert(`На этот дом не назначен ${selectedItems}`)
-                } else {
+                }
+                // else if (Object.keys(result.result[key][1]).length === 0){
+                //     alert(`Все записи ${selectedItems} на этот день заняты`)
+                // }
+
+                else{
                     navigate("/foremployee", {state: {result,dateCall}});
                 }
-                console.log(result)
+
                 }
             )
 
