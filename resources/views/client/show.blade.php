@@ -3,17 +3,10 @@
 @section('title', 'My House Управляющая компания')
 
 @section('menu')
-    <div id="wrapper">
         @include('Identically.menu')
-    </div>
 @endsection
 
-{{--@section('header')--}}
-{{--    @include('Identically.header')--}}
-{{--@endsection--}}
-
 @section('content')
-    <div id="wrapper" >
     <div class="card container-lg d-flex align-items-center justify-content-center py-5 client" style="background: #242B33">
         <div class="card text-center col-md-8 client" style="background: #242B33">
             <div class="card-header title_name">Профиль клиента компании</div>
@@ -46,11 +39,8 @@
             </div>
         </div>
     </div>
-    </div>
 @endsection
 
 @section('footer')
-    <div id="wrapper">
         @include('Identically.footer')
-    </div>
 @endsection

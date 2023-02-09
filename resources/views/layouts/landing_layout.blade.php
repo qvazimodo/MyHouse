@@ -23,16 +23,17 @@
           rel="stylesheet">
 
     <!-- Scripts -->
-     @viteReactRefresh
+    @viteReactRefresh
     @vite(['resources/sass/app.scss','resources/js/app.jsx'])
 
 </head>
 
 <body>
-        @yield('menu')
-        @yield('header')
-        @yield('content')
-        @yield('footer')
-
+<div id="wrapper">
+@yield('menu')
+@yield('header')
+@yield('content')
+@yield('footer')
+</div>
 </body>
 </html>

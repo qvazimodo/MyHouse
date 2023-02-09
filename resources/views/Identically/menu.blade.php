@@ -1,4 +1,3 @@
-
 <nav class="navbar">
     <div class="navbar__wrap">
         <div class="hamb">
@@ -6,7 +5,6 @@
                 <span class="bar"></span> <span class="bar"></span>
                 <span class="bar"></span>
             </div>
-
         </div>
         <a href="landing">
             <div id="logo-header"></div>
@@ -27,7 +25,6 @@
 
                 @if (Auth::user()->is_admin )
                     <li><a href="{{ route('admin.index') }}">Панель администратора</a></li>
-
                 @else
                     <li><a href="announcement">Объявления</a></li>
                     <li><a href="{{ route('usercards') }}">Мои объявления</a></li>

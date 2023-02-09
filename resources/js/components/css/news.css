@@ -1,3 +1,6 @@
+#news {
+    flex: 1 1 auto;
+}
 .ant-list-vertical .ant-list-item .ant-list-item-meta .ant-list-item-meta-title {
     font-size: 24px;
 }

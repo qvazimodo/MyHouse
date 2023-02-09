@@ -3,23 +3,13 @@
 @section('title', 'Объявления')
 
 @section('menu')
-    <div id="wrapper">
         @include('Identically.menu')
-    </div>
 @endsection
 
-{{--@section('header')--}}
-{{--    @include('Identically.header')--}}
-{{--@endsection--}}
-
 @section('content')
-    <div id="wrapper">
     <div id="usercards"></div>
-    </div>
 @endsection
 
 @section('footer')
-    <div id="wrapper">
         @include('Identically.footer')
-    </div>
 @endsection
