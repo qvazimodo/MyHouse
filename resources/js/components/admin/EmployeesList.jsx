@@ -12,7 +12,7 @@ import { useLocation } from "react-router-dom";
 import styles from "./styles/EmployeesList.module.scss";
 
 const onChange = ( pagination, filters, sorter, extra ) => {
-    console.log( 'params', pagination, filters, sorter, extra );
+    // console.log( 'params', pagination, filters, sorter, extra );
 };
 export const EmployeesList = ( props ) => {
     const [ form ] = Form.useForm();
@@ -359,7 +359,7 @@ export const EmployeesList = ( props ) => {
         setOpen(false);
     };
 
-
+    ///////////////////////////////////////////////
     //логика формы добавления сотрудника
     const [messageApi, contextHolder] = message.useMessage();
     const [fields, setFields] = useState(initialRegistrationFormFields);
@@ -372,6 +372,7 @@ export const EmployeesList = ( props ) => {
             .catch((error) => console.log(error))
             .then((data) => data)
     }
+
 
     const sendForm = (e) => {
         e.preventDefault()
@@ -421,6 +422,9 @@ export const EmployeesList = ( props ) => {
             });
         }, 1000);
     };
+    ///////////////////////////////////////////////
+
+
 
     const isLoading = useSelector(state => state.employee.loading)
 

@@ -58,7 +58,7 @@ export const HousesChart = () => {
         formattedData = [...formattedData, totalArea, commissioningYear, serviceStartDate, yearOfNextOverhaul, entrancesAmount, floorsAmount, apartmentsAmount]
     })
 
-    console.log(formattedData,)
+    // console.log(formattedData,)
 
     const config = {
         data: formattedData,

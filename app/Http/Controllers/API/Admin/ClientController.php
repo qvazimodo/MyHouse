@@ -96,7 +96,7 @@ class ClientController extends Controller
         return response()->json([
             'status' => 'ok',
             "message" => "Профиль клиента обновлён успешно!",
-        ], 204);
+        ], 200);
     }
 
     /**
