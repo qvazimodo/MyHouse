@@ -1,12 +1,16 @@
 <div class="section">
-    <h2 class="title_name">Хотите присоединить свой дом к нашей УК?</h2>
-    <p class="section_text">Наша компания предлагает программу предоставления полного спектра услуг по профессиональному
-        управлению и техническому обслуживанию жилищного фонда.</p>
-    <div class="form-section">
-        <Input class="input-name" type="text" placeholder="Ваше имя"></Input>
-        <Input class="input-name" type="tel" placeholder="Ваш телефон"></Input>
+    <h1 class="title_name">Хотите присоединить свой дом к нашей УК?</h1>
+    <div class="input-table">
+        <div class="input-text">
+            <p class="section_text">Наша компания предлагает программу предоставления полного спектра услуг по <br> профессиональному
+                управлению и техническому обслуживанию жилищного фонда.</p>
+            <p class="bottom_text">*Мы никому не передаем ваши данные. И не сохраняем ваш номер в базу.</p>
+        </div>
+    <div class="input-group">
+        <Input class="input-name" type="text" placeholder="Ваше имя"></Input><br>
+        <Input class="input-name" type="tel" placeholder="Ваш телефон"></Input><br>
         <button class="input_button" type="button">Отправить заявку</button>
-        <p class="bottom_text">*Мы никому не передаем ваши данные.<br/> И не сохраняем ваш номер в базу.</p>
     </div>
 
+    </div>
 </div>
