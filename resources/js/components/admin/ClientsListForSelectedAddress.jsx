@@ -1,17 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { deleteClient, fetchClients, putClientById } from "../../features/client/clientSlice";
+import { deleteClient, fetchClients, fetchClientsByAddress, putClientById } from "../../features/client/clientSlice";
 import { Button, Form, Input, Popconfirm, Space, Spin, Table, Typography } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import './styles/ClientsList.css';
 import { EditableCell } from "../Editable/EditableCell";
 import styles from "./styles/ClientsList.module.scss";
+import { setSelectedAddress } from "../../features/house/houseSlice";
 
 const onChange = ( pagination, filters, sorter, extra ) => {
-    // console.log( 'params', pagination, filters, sorter, extra );
+    console.log( 'params', pagination, filters, sorter, extra );
 };
-export const ClientsList = ( props ) => {
+export const ClientsListForSelectedAddress = ( props ) => {
     const [ form ] = Form.useForm();
     const [ clientIsUpdated, setClientIsUpdated ] = useState( false );
     const [ editingKey, setEditingKey ] = useState( '' );
@@ -126,15 +127,21 @@ export const ClientsList = ( props ) => {
 
 
     const dispatch = useDispatch()
-    // const selectedAddress = useSelector( (state => state.house.selectedAddress) )
+    const selectedAddress = useSelector( (state => state.house.selectedAddress) )
     const clientsArray = useSelector( state => state.client.array )
     const isLoading = useSelector( state => state.client.loading )
 
 
     useEffect( () => {
-        dispatch( fetchClients() ).then( () => setClientIsUpdated( false ) )
-        return () => dispatch( fetchClients() )
-    }, [ clientIsUpdated ] );
+        console.log( selectedAddress )
+        if ( selectedAddress.streetId == null ) {
+            dispatch( fetchClients() ).then( () => setClientIsUpdated( false ) )
+        } else {
+            dispatch( fetchClientsByAddress( selectedAddress ) ).then( () => setClientIsUpdated( false ) )
+        }
+
+
+    }, [ selectedAddress, clientIsUpdated ] );
 
 
     let data = clientsArray.map( item => {
@@ -357,20 +364,20 @@ export const ClientsList = ( props ) => {
     });
 
     return (
-        <div className={ styles.table__screen }>
-            { isLoading && <Spin className={ styles.contentSpinner } size="large"/> }
-            { !isLoading &&
-                <Form form={ form } component={ false }>
-                    <Table columns={ mergedColumns }
-                           dataSource={ data }
-                           bordered
-                           onChange={ onChange }
-                           rowClassName="editable-row"
-                           pagination={ {
-                               hideOnSinglePage: true,
-                               onChange: cancel,
-                               // pageSize,
-                               // total: totalPages,
+        <div className={styles.table__screen}>
+            <h1>Selected</h1>
+            {isLoading && <Spin className={ styles.contentSpinner } size="large"/>}
+            {!isLoading &&         <Form form={form} component={false}>
+                <Table columns={mergedColumns}
+                       dataSource={data}
+                       bordered
+                       onChange={onChange}
+                       rowClassName="editable-row"
+                       pagination={{
+                           hideOnSinglePage: true,
+                           onChange: cancel,
+                           // pageSize,
+                           // total: totalPages,
                            // onChange: onPageChange
                            // showSizeChanger: true,
                        }}
