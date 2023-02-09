@@ -82,7 +82,7 @@ flex: 1 1 auto;
     line-height: 1.33;
     color: #D4C17F;
     text-align: center;
-    margin: 0 0 50px 0;
+    margin: 50px 0;
     text-shadow: #fff -1px -1px 0, #333 1px 1px 0;
 }
 #logo-header{
@@ -93,6 +93,9 @@ flex: 1 1 auto;
 @media (max-width:1250px) {
     .title_name {
         font-size: 30px;
+    }
+    #logo-header{
+        padding-right: 40px;
     }
 
 

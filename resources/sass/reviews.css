@@ -1,0 +1,32 @@
+.container {
+    width: 75%;
+    border: 2px solid #ccc;
+    background-color: #242B33;
+    border-radius: 5px;
+    padding: 16px;
+    margin: 16px auto;
+}
+
+.container img {
+    float: left;
+    margin-right: 20px;
+    border-radius: 50%;
+    width: 80px;
+}
+
+.container span {
+    font-size: 22px;
+    margin-right: 15px;
+}
+
+@media (max-width: 1250px) {
+    .container {
+        text-align: center;
+    }
+
+    .container img {
+        margin: auto;
+        float: none;
+        display: block;
+    }
+}

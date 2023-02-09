@@ -38,7 +38,21 @@
     margin-left: 15px;
 }
 
-@media (max-width:767px) {
+@media (max-width:1250px) {
+    .logo-header {
+        font-size: 33px;
+        text-align: center;
+    }
+    .quote-header {
+        font-size: 30px;
+        text-align: center;
+    }
+    .contacts-header {
+        display: block;
+        width: 100%;
+        margin-left: 50px;
+
+    }
 
 }
 
