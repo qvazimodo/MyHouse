@@ -34,9 +34,9 @@ class MeterController extends Controller
 
     public function selectedMeterValues(int $id): JsonResponse
     {
-        $meterValues =[];
-        foreach (Year::all() as $year){
-            $meterValues[$year['number']]   = Meter::query()
+        $meterValues = [];
+        foreach (Year::all() as $year) {
+            $meterValues[$year['number']] = Meter::query()
                 ->join('meter_month_year', 'meters.id', '=', 'meter_month_year.meter_id')
                 ->join('month_year', 'meter_month_year.month_year_id', '=', 'month_year.id')
                 ->join('months', 'month_year.month_id', '=', 'months.id')
@@ -48,6 +48,45 @@ class MeterController extends Controller
 
         return response()->json([
             'data' => $meterValues,
+        ], 200);
+    }
+
+    public function collectiveMeters(): JsonResponse
+    {
+        $meters = Meter::whereNotNull('house_id')->get();
+
+        return response()->json([
+            'data' => $meters,
+        ], 200);
+    }
+
+    public function collectiveMetersByAddress($streetId, $houseNumberId): JsonResponse
+    {
+        $meters = Meter::join('houses', 'meters.house_id', '=', 'houses.id')
+            ->join('house_number_street', 'houses.house_number_street_id', '=', 'house_number_street.id')
+            ->where('house_number_street.street_id', $streetId)
+            ->where('house_number_street.house_number_id', $houseNumberId)
+            ->get();
+
+        return response()->json([
+            'data' => $meters,
+            'status' => 'ok'
+        ], 200);
+    }
+
+    public function clientMetersByAddress($streetId, $houseNumberId): JsonResponse
+    {
+        $meters = Meter::join('clients', 'meters.client_id', '=', 'clients.id')
+            ->join('apartments', 'apartments.id', '=', 'clients.apartment_id')
+            ->join('houses', 'houses.id', '=', 'apartments.house_id')
+            ->join('house_number_street', 'houses.house_number_street_id', '=', 'house_number_street.id')
+            ->where('house_number_street.street_id', $streetId)
+            ->where('house_number_street.house_number_id', $houseNumberId)
+            ->get();
+
+        return response()->json([
+            'data' => $meters,
+            'status' => 'ok'
         ], 200);
     }
 }

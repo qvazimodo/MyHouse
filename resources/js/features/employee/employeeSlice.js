@@ -96,7 +96,6 @@ const employeeSlice = createSlice({
         })
         builder.addCase(fetchEmployeesByAddress.fulfilled, (state, action) => {
             state.array = action.payload
-            console.log(action.payload)
             state.loading = false
         })
         builder.addCase(fetchEmployeesByAddress.rejected, (state, action) => {

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector, } from "react-redux";
 import { Badge, Card, Col, Divider, Row, Tag } from "antd";
-import { fetchMeterValues } from "../../features/house/houseSlice";
+import { fetchMeterValues } from "../../features/meter/meterSlice";
 
 export const MeterValuesTable = () => {
     let { houseAddressId, meterId } = useParams()
