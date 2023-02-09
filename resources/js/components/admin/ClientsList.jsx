@@ -138,6 +138,7 @@ export const ClientsList = ( props ) => {
 
 
     let data = clientsArray.map( item => {
+        console.log(item)
         return {
             key: item['client_id'],
             clientId: item['client_id'],
