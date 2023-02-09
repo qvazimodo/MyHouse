@@ -16,6 +16,7 @@ export const ClientsList = ( props ) => {
     const [ clientIsUpdated, setClientIsUpdated ] = useState( false );
     const [ editingKey, setEditingKey ] = useState( '' );
     const isEditing = (record) => record.key === editingKey;
+
     //функционал поиска по значениям в столбцах
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
@@ -126,13 +127,14 @@ export const ClientsList = ( props ) => {
 
 
     const dispatch = useDispatch()
-    // const selectedAddress = useSelector( (state => state.house.selectedAddress) )
+    const selectedAddress = useSelector( (state => state.house.selectedAddress) )
     const clientsArray = useSelector( state => state.client.array )
     const isLoading = useSelector( state => state.client.loading )
 
-
+//Получение списка клиентов при изменении данных и при первоначальной загрузке страницы
     useEffect( () => {
-        dispatch( fetchClients() ).then( () => setClientIsUpdated( false ) )
+        dispatch( fetchClients() )
+        setClientIsUpdated( false )
         return () => dispatch( fetchClients() )
     }, [ clientIsUpdated ] );
 

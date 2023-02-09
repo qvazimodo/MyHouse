@@ -119,7 +119,7 @@ Route::prefix('admin')->group(function () {
     Route::put('/clients/advanced/',
         [AdminClientController::class, 'update']);
 
-    Route::delete('/clients/advanced/{client}',
+    Route::delete('/clients/{client}',
         [AdminClientController::class, 'destroy']);
 
 });

@@ -7,7 +7,6 @@ import Highlighter from 'react-highlight-words';
 import './styles/ClientsList.css';
 import { EditableCell } from "../Editable/EditableCell";
 import styles from "./styles/ClientsList.module.scss";
-import { setSelectedAddress } from "../../features/house/houseSlice";
 
 const onChange = ( pagination, filters, sorter, extra ) => {
     console.log( 'params', pagination, filters, sorter, extra );
