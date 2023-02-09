@@ -30,9 +30,7 @@ export const MainPage = () => {
 
     const dispatch = useDispatch()
     const clickOnHeaderMenu = ({key}) => {
-/*        dispatch(clearSelectedAddress())
-        dispatch(clearDescription())
-        dispatch(clearClientsArray())*/
+        setOpenKeys([])
         navigate(key)
     }
 
@@ -106,27 +104,6 @@ export const MainPage = () => {
             navigate(defaultSelectedMenuItem)
         };
     }, []);
-
-    const selectedAddress = useSelector(state => state.house.selectedAddress)/**/
-    const firstUpdate = useRef(true);
-    useEffect(() => {
-        if (!firstUpdate.current && isNull(selectedAddress.streetId)) {
-            console.log(openKeys)
-            setOpenKeys([])
-        }
-        firstUpdate.current = false
-    }, [selectedAddress]);
-
-/*    useEffect(() => {
-        console.log(selectedAddress)
-        setSelectedMenuItem(selectedAddress
-            /!*            getAddress(
-                        [ selectedAddress.streetId.toString(),
-                            selectedAddress.houseNumberId.toString()
-                        ] )*!/
-        )
-    }, [selectedAddress]);*/
-
 
     return (
         <Layout style={{
