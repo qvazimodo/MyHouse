@@ -114,7 +114,7 @@ class EmployeeAPIController extends Controller
         return response()->json([
             'status' => 'ok',
             "message" => "Профиль сотрудника обновлён успешно!",
-        ], 204);
+        ], 200);
     }
 
     /**
@@ -125,8 +125,8 @@ class EmployeeAPIController extends Controller
      */
     public function destroy(Employee $employee):JsonResponse
     {
-        $employee->delete();
-        return response()->json(['status' => 'ok'], 204);
+        $result = $employee->delete();
+        return response()->json(['status' => 'ok', 'data' => $result], 202);
     }
 
     public function getEmployeesByAddress($streetId, $houseNumberId): JsonResponse

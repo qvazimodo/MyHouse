@@ -1,34 +1,39 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {
-    deleteEmployee,
-    fetchAllEmployees,
-    fetchEmployeesByAddress,
-    putEmployeeById
-} from "../../features/employee/employeeSlice";
-import {clearSelectedAddress} from "../../features/house/houseSlice"
-import {Button, Form, Input, message, Modal, Popconfirm, Space, Spin, Table, Typography} from 'antd';
-import {SearchOutlined} from '@ant-design/icons';
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { deleteEmployee, fetchAllEmployees, putEmployeeById } from "../../features/employee/employeeSlice";
+import { Button, Form, Input, message, Popconfirm, Space, Spin, Table, Typography } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import {EditableCell} from '../Editable/EditableCell';
+import { EditableCell } from '../Editable/EditableCell';
 import './styles/EmployeesList.css';
-import {EmployeeRegisterForm} from "./EmployeeRegisterForm";
-import {CSRF_URL, EMPLOYEES_API_URL} from "../../helpers/API";
-import {initialRegistrationFormFields} from "./helpers/initialRegistrationFormFields";
-import {useLocation} from "react-router-dom";
-import {isNull} from "lodash";
+import { CSRF_URL, EMPLOYEES_API_URL } from "../../helpers/API";
+import { initialRegistrationFormFields } from "./helpers/initialRegistrationFormFields";
+import { useLocation } from "react-router-dom";
 import styles from "./styles/EmployeesList.module.scss";
 
-const onChange = (pagination, filters, sorter, extra) => {
-    console.log('params', pagination, filters, sorter, extra);
+const onChange = ( pagination, filters, sorter, extra ) => {
+    console.log( 'params', pagination, filters, sorter, extra );
 };
-export const EmployeesList = (props) => {
-    const [form] = Form.useForm();
-    const [employeeIsUpdated, setEmployeeIsUpdated] = useState(false);
-    const [editingKey, setEditingKey] = useState('');
-    const [loading, setLoading] = useState(false);
-    const [isFullList, setIsFullList] = useState(false);
+export const EmployeesList = ( props ) => {
+    const [ form ] = Form.useForm();
+    const [ employeeIsUpdated, setEmployeeIsUpdated ] = useState( false );
+    const [ editingKey, setEditingKey ] = useState( '' );
+
     const isEditing = (record) => record.key === editingKey;
+    const dispatch = useDispatch()
+    const selectedAddress = useSelector( (state => state.house.selectedAddress) )
+    const employeesArray = useSelector( state => state.employee.array )
+    const location = useLocation()
+//Получение списка сотрудников при изменении данных и при первоначальной загрузке страницы
+    useEffect( () => {
+        dispatch( fetchAllEmployees() )
+        setEmployeeIsUpdated(false)
+        return () => {
+            dispatch( fetchAllEmployees() )
+        };
+    }, [ employeeIsUpdated ] );
+
+
 
     //функционал поиска по значениям в столбцах
     const [searchText, setSearchText] = useState('');
@@ -138,33 +143,6 @@ export const EmployeesList = (props) => {
             ),
     });
 
-
-    const dispatch = useDispatch()
-    const selectedAddress = useSelector((state => state.house.selectedAddress))
-    const employeesArray = useSelector(state => state.employee.array)
-    const location = useLocation()
-
-    useEffect(() => {
-        if (isNull(selectedAddress.streetId)) {
-            console.log(selectedAddress)
-            dispatch(fetchAllEmployees()).then(() => setIsFullList(true))
-        }
-        return () => dispatch(fetchAllEmployees())
-    }, [selectedAddress]);
-
-    useEffect(() => {
-        if (!isNull(selectedAddress.houseNumberId)) {
-            console.log(selectedAddress)
-            console.log(location)
-            dispatch(fetchEmployeesByAddress(selectedAddress)).then(() => {
-                setEmployeeIsUpdated(false)
-                setIsFullList(false)
-            })
-        }
-        return () => dispatch(fetchEmployeesByAddress(selectedAddress))
-    }, [selectedAddress, employeeIsUpdated]);
-
-
     let data = employeesArray.map(item => {
         return {
             key: item['employee_id'],
@@ -209,7 +187,6 @@ export const EmployeesList = (props) => {
                     ...row,
                 }
                 dispatch(putEmployeeById({...newEmployeeData, ...selectedAddress}))
-                    .then(() => setEmployeeIsUpdated(true))
                 setEditingKey('');
             } else {
                 newData.push(row);
@@ -218,6 +195,7 @@ export const EmployeesList = (props) => {
                 // dispatch(putEmployeeById(newData))
                 setEditingKey('');
             }
+            setEmployeeIsUpdated(true)
         } catch (errInfo) {
             console.log('Validate Failed:', errInfo);
         }
@@ -292,47 +270,47 @@ export const EmployeesList = (props) => {
             dataIndex: 'email',
             editable: true,
         },
-        {
-            title: 'Доступные действия',
-            children: [
-                {
-                    dataIndex: 'edit',
-                    render: (_, record) => {
-                        const editable = isEditing(record);
-                        return editable ? (
-                            <span className="flex">
-            <Typography.Link
-                onClick={() => save(record.key)}
-                style={{
-                    marginRight: 8,
-                }}
-            >
-              <Button>Сохранить</Button>
-            </Typography.Link>
-            <Popconfirm title="Уверены, что хотите отменить?" onConfirm={cancel}>
-                <Button>Отмена</Button>
-            </Popconfirm>
-          </span>
-                        ) : (
-                            <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
-                                <Button type="primary">Редактировать</Button>
-                            </Typography.Link>
-                        );
-                    },
-                },
-                {
+               {
+                   title: 'Доступные действия',
+                   children: [
+                       {
+                           dataIndex: 'edit',
+                           render: (_, record) => {
+                               const editable = isEditing(record);
+                               return editable ? (
+                                   <span className="flex">
+                   <Typography.Link
+                       onClick={() => save(record.key)}
+                       style={{
+                           marginRight: 8,
+                       }}
+                   >
+                     <Button>Сохранить</Button>
+                   </Typography.Link>
+                   <Popconfirm title="Уверены, что хотите отменить?" onConfirm={cancel}>
+                       <Button>Отмена</Button>
+                   </Popconfirm>
+                 </span>
+                               ) : (
+                                   <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
+                                       <Button type="primary">Редактировать</Button>
+                                   </Typography.Link>
+                               );
+                           },
+                       },
+                       {
 
-                    dataIndex: 'delete',
-                    render: (_, record) =>
-                        data.length >= 1 ? (
-                            <Popconfirm title="Вы уверены, что хотите удалить учётную запись данного сотрудника?"
-                                        onConfirm={() => handleDelete(record.key)}>
-                                <Button type="primary" danger>Удалить</Button>
-                            </Popconfirm>
-                        ) : null,
-                },
-            ]
-        }
+                           dataIndex: 'delete',
+                           render: (_, record) =>
+                               data.length >= 1 ? (
+                                   <Popconfirm title="Вы уверены, что хотите удалить учётную запись данного сотрудника?"
+                                               onConfirm={() => handleDelete(record.key)}>
+                                       <Button type="primary" danger>Удалить</Button>
+                                   </Popconfirm>
+                               ) : null,
+                       },
+                   ]
+               }
     ];
 
     const handleDelete = (key) => {
@@ -428,18 +406,6 @@ export const EmployeesList = (props) => {
         }
     }
 
-    useEffect(() => {
-        if (isInitialMount.current === true) {
-            isInitialMount.current = false
-        } else {
-            openMessage()
-            if (response.status === 'ok') {
-                setShowRegistrationForm(false)
-            }
-        }
-        return () => setShowRegistrationForm(false)
-    }, [response])
-
     const openMessage = () => {
         messageApi.open({
             key,
@@ -460,7 +426,7 @@ export const EmployeesList = (props) => {
 
     return (
         <div>
-            <div className="add">
+            {/*           <div className="add">
                 <div>
                     {!isFullList &&
                         <Button className="add__button" type="primary"
@@ -471,39 +437,8 @@ export const EmployeesList = (props) => {
                 <Button className="add__button" type="primary" onClick={showModal}>
                     Зарегистрировать нового сотрудника
                 </Button>
-            </div>
-            <Modal
-                width={620}
-                title="Title"
-                open={open}
-                // onOk={handleOk}
-                confirmLoading={confirmLoading}
-                onCancel={handleCancel}
-                footer={[
-                    <Popconfirm title="Уверены, что хотите отменить сохранение данных?" onConfirm={handleCancel}>
-                        <Button key="back">
-                            Отмена
-                        </Button>
-                    </Popconfirm>,
+            </div>*/ }
 
-                    <Button
-                        type="primary"
-                        key="submit"
-                        loading={loading}
-                        onClick={handleOk}
-                    >
-                        Сохранить данные
-                    </Button>,
-                ]}
-            >
-                <EmployeeRegisterForm
-                    fields={fields}
-                    onChange={(newFields) => {
-                        setFields(newFields);
-                    }}
-                    sendForm={sendForm}
-                />
-            </Modal>
             <div className={styles.table__screen}>
                 {isLoading && <Spin size="large"/>}
                 {!isLoading &&
@@ -527,7 +462,8 @@ export const EmployeesList = (props) => {
                                    },
                                }}
                         />
-                    </Form>}</div>
+                    </Form>}
+            </div>
         </div>
     );
 }
