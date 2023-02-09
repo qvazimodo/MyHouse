@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { deleteEmployee, fetchAllEmployees, putEmployeeById } from "../../features/employee/employeeSlice";
+import {
+    deleteEmployee,
+    fetchEmployeesByAddress,
+    putEmployeeById
+} from "../../features/employee/employeeSlice";
 import { Button, Form, Input, message, Popconfirm, Space, Spin, Table, Typography } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
@@ -26,10 +30,10 @@ export const EmployeesListForSelectedAddress = ( props ) => {
     const location = useLocation()
 //Получение списка сотрудников при изменении данных и при первоначальной загрузке страницы
     useEffect( () => {
-        dispatch( fetchAllEmployees() )
+        dispatch( fetchEmployeesByAddress() )
         setEmployeeIsUpdated(false)
         return () => {
-            dispatch( fetchAllEmployees() )
+            dispatch( fetchEmployeesByAddress() )
         };
     }, [ employeeIsUpdated ] );
 

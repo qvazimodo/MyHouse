@@ -129,7 +129,7 @@ class EmployeeAPIController extends Controller
         return response()->json(['status' => 'ok', 'data' => $result], 202);
     }
 
-    public function getEmployeesByAddress($streetId, $houseNumberId): JsonResponse
+    public function showEmployeesByAddress($streetId, $houseNumberId): JsonResponse
     {
         $clients = Employee::join('users', 'users.id', '=', 'employees.user_id')
             ->join('employee_serviced_address', 'employee_serviced_address.employee_id', '=', 'employees.id')

@@ -103,7 +103,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/employees', [EmployeeAPIController::class, 'index']);
 
     Route::get('/employees/by_address/{street_id}/{house_id}',
-        [EmployeeAPIController::class, 'getEmployeesByAddress']);
+        [EmployeeAPIController::class, 'showEmployeesByAddress']);
 
     Route::put('/employees', [EmployeeAPIController::class, 'update']);
 

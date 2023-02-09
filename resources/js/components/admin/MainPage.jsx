@@ -11,6 +11,7 @@ import {
     setSelectedAddress
 } from "../../features/house/houseSlice";
 import {isNull} from "lodash";
+import {useBasePath} from "../../hooks/useBasePath";
 import {clearClientsArray} from "../../features/client/clientSlice";
 
 
@@ -25,6 +26,7 @@ export const MainPage = () => {
 
     const navigate = useNavigate()
     const location = useLocation()
+    const basePath = useBasePath()
 
     const dispatch = useDispatch()
     const clickOnHeaderMenu = ({key}) => {
@@ -146,12 +148,11 @@ export const MainPage = () => {
                 </div>
                 <Menu
                     onClick={({item, key, keyPath, domEvent}) => {
-                        console.log(item, keyPath)
+                        console.log(keyPath)
                         setSelectedMenuItem(getAddress(keyPath))
                         const address = getAddress(keyPath)
-                        console.log(address)
-                        console.log(location)
-                        const path = location.pathname + `/${address.streetId}/${address.houseNumberId}`
+                        console.log(basePath)
+                        const path = basePath + `/${address.streetId}/${address.houseNumberId}`
                         console.log(path)
                         navigate(path)
                     }}
