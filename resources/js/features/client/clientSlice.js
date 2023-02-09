@@ -97,7 +97,6 @@ const clientSlice = createSlice({
         })
         builder.addCase(fetchClients.fulfilled, (state, action) => {
             state.array = action.payload
-            console.log(action.payload)
             state.loading = false
         })
         builder.addCase(fetchClients.rejected, (state, action) => {
@@ -127,6 +126,7 @@ const clientSlice = createSlice({
             console.log(action.payload)
             //Чтобы loader демонстрировался непрерывно до окончания загрузки данных в компоненте
             // state.loading = false
+            setTimeout(()=>state.loading = false, 500)
         })
         builder.addCase(putClientById.rejected, (state, action) => {
             state.error = action.payload
@@ -140,6 +140,7 @@ const clientSlice = createSlice({
         builder.addCase(deleteClient.fulfilled, (state, action) => {
             console.log(action.payload)
             // state.loading = false
+            setTimeout(()=>state.loading = false, 500)
         })
         builder.addCase(deleteClient.rejected, (state,
                                                 action) => {

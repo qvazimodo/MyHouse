@@ -112,6 +112,7 @@ const employeeSlice = createSlice({
             console.log(action.payload)
             //Чтобы loader демонстрировался непрерывно до окончания загрузки данных в компоненте
             // state.loading = false
+            setTimeout(()=>state.loading = false, 500)
         })
         builder.addCase(putEmployeeById.rejected, (state, action) => {
             state.error = action.payload
@@ -124,6 +125,7 @@ const employeeSlice = createSlice({
         })
         builder.addCase(deleteEmployee.fulfilled, (state, action) => {
             // state.loading = false
+            setTimeout(()=>state.loading = false, 500)
         })
         builder.addCase(deleteEmployee.rejected, (state,
                                                   action) => {
