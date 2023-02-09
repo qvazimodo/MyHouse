@@ -1,5 +1,6 @@
 .wrapperusercard{
     text-align: center;
+    flex: 1 1 auto;
 }
 
 .wrapperusercard div div{

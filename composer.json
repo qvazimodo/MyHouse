@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.1",
+        "laravolt/avatar": "^4.1",
         "orchestra/parser": "^7.0"
     },
     "require-dev": {

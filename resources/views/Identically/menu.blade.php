@@ -29,8 +29,10 @@
                     <li><a href="announcement">Объявления</a></li>
                     <li><a href="{{ route('usercards') }}">Мои объявления</a></li>
                     <li><a href="{{ route('userProfile') }}">Мой профиль</a></li>
-                    <li><a href="#"><img style="width: 50px; border-radius: 50%" src="/images/avatar.png"/></a></li>
-                    <li><a href="#">{{ Auth::user()->name }}</a></li>
+                    <li><a href="{{ route('userProfile') }}">
+                            <img style="width: 50px; border-radius: 50%" src="{{ Avatar::create(Auth::user()->name)->toGravatar(['d' => 'wavatar', 'r' => 'pg', 's' => 100])  }}"/>
+                            {{ Auth::user()->name }}
+                        </a></li>
                 @endif
                 <li><a href="{{ route('logout') }}"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Выход</a>
