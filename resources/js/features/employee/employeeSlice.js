@@ -18,8 +18,7 @@ export const fetchAllEmployees = createAsyncThunk( 'employee/fetchAllEmployees',
 } )
 
 export const fetchEmployeesByAddress = createAsyncThunk( 'employee/fetchEmployeesByAddress', ( address ) => {
-    // let address =  useSelector((state )=>state.house.selectedAddress)
-    let url = ADMIN_EMPLOYEES_BY_ADDRESS_API_URL + "/" + `${ address.streetId }` + "/" + `${ address.houseNumberId }`
+     let url = ADMIN_EMPLOYEES_BY_ADDRESS_API_URL + "/" + `${ address.streetId }` + "/" + `${ address.houseNumberId }`
     console.log( url )
     return fetch( url ).then( response => response.json() ).then( result => result.data )
 } )

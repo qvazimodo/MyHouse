@@ -22,7 +22,7 @@ class EmployeeAPIController extends Controller
      */
     public function index(): JsonResponse
     {
-        $clients = Employee::join('users', 'users.id', '=', 'employees.user_id')
+        $employees = Employee::join('users', 'users.id', '=', 'employees.user_id')
             ->select(
                 'users.id as user_id',
                 'users.name as employee_name',
@@ -37,7 +37,7 @@ class EmployeeAPIController extends Controller
             ->get();
 
         return response()->json([
-            'data' => $clients,
+            'data' => $employees,
             'status' => 'ok'
         ], 200);
     }
@@ -131,7 +131,7 @@ class EmployeeAPIController extends Controller
 
     public function showEmployeesByAddress($streetId, $houseNumberId): JsonResponse
     {
-        $clients = Employee::join('users', 'users.id', '=', 'employees.user_id')
+        $employees = Employee::join('users', 'users.id', '=', 'employees.user_id')
             ->join('employee_serviced_address', 'employee_serviced_address.employee_id', '=', 'employees.id')
             ->join('house_number_street', 'house_number_street.id', '=',
                 'employee_serviced_address.house_number_street_id')
@@ -147,11 +147,13 @@ class EmployeeAPIController extends Controller
                 'users.last_name as employee_last_name',
                 'employees.id as employee_id',
                 'employees.held_position as position',
+                'house_number_street.street_id',
+                'house_number_street.house_number_id'
             )
             ->get();
 
         return response()->json([
-            'data' => $clients,
+            'data' => $employees,
             'status' => 'ok'
         ], 200);
     }

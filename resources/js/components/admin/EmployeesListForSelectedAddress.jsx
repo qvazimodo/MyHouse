@@ -12,7 +12,7 @@ import { EditableCell } from '../Editable/EditableCell';
 import './styles/EmployeesList.css';
 import { CSRF_URL, EMPLOYEES_API_URL } from "../../helpers/API";
 import { initialRegistrationFormFields } from "./helpers/initialRegistrationFormFields";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import styles from "./styles/EmployeesList.module.scss";
 
 const onChange = ( pagination, filters, sorter, extra ) => {
@@ -28,14 +28,17 @@ export const EmployeesListForSelectedAddress = ( props ) => {
     const selectedAddress = useSelector( (state => state.house.selectedAddress) )
     const employeesArray = useSelector( state => state.employee.array )
     const location = useLocation()
+    const pathParams = useParams()
+    console.log(pathParams)
+
 //Получение списка сотрудников при изменении данных и при первоначальной загрузке страницы
     useEffect( () => {
-        dispatch( fetchEmployeesByAddress() )
+        dispatch( fetchEmployeesByAddress(pathParams) )
         setEmployeeIsUpdated(false)
         return () => {
             dispatch( fetchEmployeesByAddress() )
         };
-    }, [ employeeIsUpdated ] );
+    }, [ employeeIsUpdated, pathParams] );
 
 
 

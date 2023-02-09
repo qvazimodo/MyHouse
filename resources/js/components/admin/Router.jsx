@@ -27,7 +27,7 @@ export const Router = createHashRouter(
                     element: <EmployeesList/>
                 },
                 {
-                    path: "employees/:streetId/:houseId",
+                    path: "employees/:streetId/:houseNumberId",
                     element: <EmployeesListForSelectedAddress/>
                 },
                 {

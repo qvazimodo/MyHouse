@@ -102,7 +102,7 @@ Route::prefix('admin')->group(function () {
     //Сотрудники
     Route::get('/employees', [EmployeeAPIController::class, 'index']);
 
-    Route::get('/employees/by_address/{street_id}/{house_id}',
+    Route::get('/employees/by_address/{street_id}/{houseNumberId}',
         [EmployeeAPIController::class, 'showEmployeesByAddress']);
 
     Route::put('/employees', [EmployeeAPIController::class, 'update']);
