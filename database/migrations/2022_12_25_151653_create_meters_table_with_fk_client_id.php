@@ -21,6 +21,9 @@ return new class extends Migration
                 ->default('горячая вода')
                 ->comment('тип счетчика');
             $table->unsignedBigInteger('number')->comment('заводской номер счетчика');
+            $table->float('accuracy_class', '3', '2')->comment('класс точности');
+            $table->timestamp('manufacturing_date')->comment('дата изготовления');
+            $table->timestamp('next_verification_date',)->comment('дата следующей поверки');
             $table->timestamps();
         });
         }

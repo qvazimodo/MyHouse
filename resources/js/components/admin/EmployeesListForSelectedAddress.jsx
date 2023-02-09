@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { deleteEmployee, fetchAllEmployees, putEmployeeById } from "../../features/employee/employeeSlice";
+import {
+    deleteEmployee,
+    fetchEmployeesByAddress,
+    putEmployeeById
+} from "../../features/employee/employeeSlice";
 import { Button, Form, Input, message, Popconfirm, Space, Spin, Table, Typography } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
@@ -8,13 +12,13 @@ import { EditableCell } from '../Editable/EditableCell';
 import './styles/EmployeesList.css';
 import { CSRF_URL, EMPLOYEES_API_URL } from "../../helpers/API";
 import { initialRegistrationFormFields } from "./helpers/initialRegistrationFormFields";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import styles from "./styles/EmployeesList.module.scss";
 
 const onChange = ( pagination, filters, sorter, extra ) => {
     console.log( 'params', pagination, filters, sorter, extra );
 };
-export const EmployeesList = ( props ) => {
+export const EmployeesListForSelectedAddress = ( props ) => {
     const [ form ] = Form.useForm();
     const [ employeeIsUpdated, setEmployeeIsUpdated ] = useState( false );
     const [ editingKey, setEditingKey ] = useState( '' );
@@ -24,14 +28,17 @@ export const EmployeesList = ( props ) => {
     const selectedAddress = useSelector( (state => state.house.selectedAddress) )
     const employeesArray = useSelector( state => state.employee.array )
     const location = useLocation()
+    const pathParams = useParams()
+    console.log(pathParams)
+
 //Получение списка сотрудников при изменении данных и при первоначальной загрузке страницы
     useEffect( () => {
-        dispatch( fetchAllEmployees() )
+        dispatch( fetchEmployeesByAddress(pathParams) )
         setEmployeeIsUpdated(false)
         return () => {
-            dispatch( fetchAllEmployees() )
+            dispatch( fetchEmployeesByAddress() )
         };
-    }, [ employeeIsUpdated ] );
+    }, [ employeeIsUpdated, pathParams] );
 
 
 
@@ -142,6 +149,30 @@ export const EmployeesList = ( props ) => {
                 text
             ),
     });
+
+
+
+
+    /*    useEffect(() => {
+            if (isNull(selectedAddress.streetId)) {
+                console.log(selectedAddress)
+                dispatch(fetchAllEmployees()).then(() => setIsFullList(true))
+            }
+            return () => dispatch(fetchAllEmployees())
+        }, [selectedAddress]);*/
+
+    /*    useEffect(() => {
+            if (!isNull(selectedAddress.houseNumberId)) {
+                console.log(selectedAddress)
+                console.log(location)
+                dispatch(fetchEmployeesByAddress(selectedAddress)).then(() => {
+                    setEmployeeIsUpdated(false)
+                    setIsFullList(false)
+                })
+            }
+            return () => dispatch(fetchEmployeesByAddress(selectedAddress))
+        }, [selectedAddress, employeeIsUpdated]);*/
+
 
     let data = employeesArray.map(item => {
         return {
@@ -406,6 +437,18 @@ export const EmployeesList = ( props ) => {
         }
     }
 
+/*    useEffect(() => {
+        if (isInitialMount.current === true) {
+            isInitialMount.current = false
+        } else {
+            openMessage()
+            if (response.status === 'ok') {
+                setShowRegistrationForm(false)
+            }
+        }
+        return () => setShowRegistrationForm(false)
+    }, [response])*/
+
     const openMessage = () => {
         messageApi.open({
             key,
@@ -426,6 +469,7 @@ export const EmployeesList = ( props ) => {
 
     return (
         <div>
+            <h1>Selected</h1>
             {/*           <div className="add">
                 <div>
                     {!isFullList &&

@@ -11,12 +11,14 @@ const initialState = {
 
 export const fetchAllEmployees = createAsyncThunk( 'employee/fetchAllEmployees', () => {
     let url = ADMIN_EMPLOYEES_API_URL
-    return fetch( url ).then( response => response.json() ).then( result => result.data )
+    return fetch( url ).then( response => response.json() ).then( result => {
+        console.log( result );
+        return result.data
+    } )
 } )
 
 export const fetchEmployeesByAddress = createAsyncThunk( 'employee/fetchEmployeesByAddress', ( address ) => {
-    // let address =  useSelector((state )=>state.house.selectedAddress)
-    let url = ADMIN_EMPLOYEES_BY_ADDRESS_API_URL + "/" + `${ address.streetId }` + "/" + `${ address.houseNumberId }`
+     let url = ADMIN_EMPLOYEES_BY_ADDRESS_API_URL + "/" + `${ address.streetId }` + "/" + `${ address.houseNumberId }`
     console.log( url )
     return fetch( url ).then( response => response.json() ).then( result => result.data )
 } )
@@ -71,7 +73,7 @@ const employeeSlice = createSlice( {
     reducers: {
         setCurrent: ( state, action ) => {
             state.current = action.payload
-        }
+        },
     },
     extraReducers: ( builder ) => {
 
@@ -108,7 +110,6 @@ const employeeSlice = createSlice( {
             state.loading = true
         } )
         builder.addCase( putEmployeeById.fulfilled, ( state, action ) => {
-            state.array = action.payload
             console.log( action.payload )
             state.loading = false
         } )
@@ -123,14 +124,13 @@ const employeeSlice = createSlice( {
             state.loading = true
         } )
         builder.addCase( deleteEmployee.fulfilled, ( state, action ) => {
-            state.array = action.payload
-            console.log( action.payload )
-            state.loading = false
+            // state.loading = false
         } )
         builder.addCase( deleteEmployee.rejected, ( state,
                                                   action ) => {
             state.error = action.payload
             state.loading = false
+
         } )
     }
 })
