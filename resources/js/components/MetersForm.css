@@ -62,9 +62,6 @@ body > div:nth-child(2) > div > div.ant-modal-wrap > div > div.ant-modal-content
     text-align: left;
 }
 
-.title_name {
-    margin-top: 100px;
-}
 .ant-modal .ant-modal-footer button[type="button"].ant-btn-primary {
     background-color: #ffe58f;
     color: #000000;

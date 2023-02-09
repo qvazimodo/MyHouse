@@ -3,7 +3,7 @@
 @section('title', 'My House Управляющая компания')
 
 @section('menu')
-         @include('Identically.menu')
+    @include('Identically.menu')
 @endsection
 
 @section('header')
@@ -12,12 +12,12 @@
 
 @section('content')
     <div class="main">
-    @include('Content.flats')
-    @include('Content.watch')
-    @include('Content.video')
-    @include('Content.reviews')
-    @include('Content.map')
-    @include('Content.questions')
+        @include('Content.flats')
+        @include('Content.watch')
+        @include('Content.video')
+        @include('Content.reviews')
+        @include('Content.map')
+        @include('Content.questions')
     </div>
 @endsection
 
