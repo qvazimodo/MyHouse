@@ -3,7 +3,7 @@
 background: #242B33;
 color: #FFFFFF"
         class="md:flex bg-slate-100 rounded-xl p-8 md:p-0 dark:bg-slate-800">
-    <img style="border-radius: 50%" class="w-24 h-24 md:w-48 md:h-auto md:rounded-none rounded-full mx-auto" src="/images/woman.jpeg">
+    <img style="border-radius: 50%" class="w-24 h-24 md:w-48 md:h-auto md:rounded-none rounded-full mx-auto" src="/Images/woman.jpeg">
     <div class="pt-6 md:p-8 text-center md:text-left space-y-4">
         <blockquote>
             <p class="text-lg font-medium">
@@ -26,7 +26,7 @@ color: #FFFFFF"
 <figure style="
 background: #242B33;
 color: #FFFFFF" class="md:flex bg-slate-100 rounded-xl p-8 md:p-0 dark:bg-slate-800">
-    <img style="border-radius: 50%" class="w-24 h-24 md:w-48 md:h-auto md:rounded-none rounded-full mx-auto" src="/images/woman2.jpg">
+    <img style="border-radius: 50%" class="w-24 h-24 md:w-48 md:h-auto md:rounded-none rounded-full mx-auto" src="/Images/woman2.jpg">
     <div class="pt-6 md:p-8 text-center md:text-left space-y-4">
         <blockquote>
             <p class="text-lg font-medium">
@@ -48,7 +48,7 @@ color: #FFFFFF" class="md:flex bg-slate-100 rounded-xl p-8 md:p-0 dark:bg-slate-
 <figure style="
 background: #242B33;
 color: #FFFFFF" class="md:flex bg-slate-100 rounded-xl p-8 md:p-0 dark:bg-slate-800">
-    <img style="border-radius: 50%" class="w-24 h-24 md:w-48 md:h-auto md:rounded-none rounded-full mx-auto" src="/images/man.jpeg">
+    <img style="border-radius: 50%" class="w-24 h-24 md:w-48 md:h-auto md:rounded-none rounded-full mx-auto" src="/Images/man.jpeg">
     <div class="pt-6 md:p-8 text-center md:text-left space-y-4">
         <blockquote>
             <p class="text-lg font-medium">

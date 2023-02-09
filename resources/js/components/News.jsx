@@ -9,11 +9,7 @@ class News extends React.Component {
     state = {
         title: [],
         content: [],
-
-        images: ["https://fikiwiki.com/uploads/posts/2022-02/1645060421_1-fikiwiki-com-p-kartinki-windows-2.jpg",
-                 "https://fikiwiki.com/uploads/posts/2022-02/1645060477_4-fikiwiki-com-p-kartinki-windows-5.jpg",
-                  "https://fikiwiki.com/uploads/posts/2022-02/1645060422_11-fikiwiki-com-p-kartinki-windows-15.jpg"],
-
+        images: [],
         loading: true,
     }
 
@@ -46,15 +42,11 @@ class News extends React.Component {
                             }}
                             dataSource={this.state.title}
                             renderItem={(item) => (
-                                <List.Item
+                                <List.Item style={{ fontFamily: 'Oswald' }}
                                     key={item.id}
                                     extra={
                                         <div className="images-wrp">
-                                            <Carousel autoplay>
-                                                {this.state.images.map((image, number) => (
-                                                    <div><img alt="image" src={image} key={number} className="slide-image" /></div>
-                                                ))}
-                                            </Carousel>
+                                            <img alt="image" src={item.image} key={item.number} />
                                         </div>
                                     }
                                 >

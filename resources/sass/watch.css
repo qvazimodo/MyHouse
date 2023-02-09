@@ -1,10 +1,8 @@
 .section {
     background: url('/resources/js/components/img/watching-bg.png') center / cover no-repeat;
-    padding: 180px 0;
-    box-sizing: border-box;
+    padding: 150px 0;
 }
 .section_text {
-    font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 15px;
     line-height: 1.5;
@@ -13,7 +11,6 @@
     margin-bottom: 10px;
 }
 .bottom_text {
-    font-family: 'Roboto', sans-serif;
     color: #FFFFFF;
     font-size: 12px;
 }
@@ -32,7 +29,7 @@
 }
 .form-section{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
 }
 
