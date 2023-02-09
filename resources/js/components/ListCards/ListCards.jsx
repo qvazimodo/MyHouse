@@ -64,7 +64,6 @@ const ListCards = () => {
 
     return (
         <div className="container" style={{
-            marginTop: 20,
             padding: 40,
         }}>
             <ConfigProvider

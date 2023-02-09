@@ -14,7 +14,7 @@
             @csrf
             <div class="md:flex md:items-center mb-6">
                 <div class="md:w-1/3">
-                    <label class="block text-gray-500 dark:text-white font-bold md:text-right mb-1 md:mb-0 pr-4"
+                    <label class="block text-gray-500 dark:text-white font-bold md:text-left mb-1 md:mb-0 pr-4"
                            for="email">
                         Email&nbsp;&nbsp;&nbsp;&nbsp;
                     </label>
@@ -33,7 +33,7 @@
             </div>
             <div class="md:flex md:items-center mb-6">
                 <div class="md:w-1/3">
-                    <label class="block text-gray-500 dark:text-white font-bold md:text-right mb-1 md:mb-0 pr-4"
+                    <label class="block text-gray-500 dark:text-white font-bold md:text-left mb-1 md:mb-0 pr-4"
                            for="password">
                         Пароль
                     </label>
@@ -79,6 +79,7 @@
     </div>
     <div class="login-end-form"></div>
     </div>
+
 @endsection
 
 @section('footer')

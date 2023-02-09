@@ -42,7 +42,7 @@ class News extends React.Component {
                             }}
                             dataSource={this.state.title}
                             renderItem={(item) => (
-                                <List.Item style={{ fontFamily: 'Oswald' }}
+                                <List.Item style={{ fontFamily: 'Inter' }}
                                     key={item.id}
                                     extra={
                                         <div className="images-wrp">

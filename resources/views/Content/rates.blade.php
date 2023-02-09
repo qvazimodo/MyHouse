@@ -1,4 +1,5 @@
 <div class="rates">
+    <div class="container">
     <div class="title_name">Тарифы и услуги</div>
     <p class="rates-name">Тарифы на коммунальные и иные услуги на 2022-2023гг.</p>
     <p> ООО УК «Свиблов ГРАД» является организацией, управляющей
@@ -110,6 +111,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 
