@@ -61,11 +61,14 @@ class TimetableRepository
                          ->toArray() as $item) {
                 $array[] = $item['time_window_id'];
             }
-            $array = (object)array_diff($this->timeWindows, $array);
+            $array = array_diff($this->timeWindows, $array);
+            if(empty($array)){
+               $array = "All time are busy";
+            }
             $name = User::where('id', $employee)
                 ->get(['name', 'last_name'])
                 ->toArray();
-            $name[] = $array;
+            $name[] = (object)$array;
 
             $freeTimes[$employee] = (array)$name;
         }
