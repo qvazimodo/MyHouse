@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {Button, Card, Col, Layout, Row} from 'antd';
+import { Button, Card, Col, Layout, Row, Typography } from 'antd';
 import "./styles/MeterList.css";
 import {NavLink, useParams} from "react-router-dom";
 import {setCurrentMeter} from '../../features/house/houseSlice'
@@ -29,7 +29,16 @@ export const MetersListForSelectedAddress = () => {
 
     return (
         <>
-            <h2>Selected</h2>
+            <Typography.Title
+                level={ 2 }
+                className={ 'm-0 pt-10 text-center' }
+            >Коллективные приборы учёта, установленные по адресу:
+            </Typography.Title>
+            <Typography.Title
+                level={ 2 }
+                className={ 'my-0-0 pb-5 text-center' }
+            >{'улица ' + addresses[searchedKey]['streetName'] + ', дом №' + addresses[searchedKey]['houseNumber']}
+            </Typography.Title>
             <Row gutter={[16, 32]}>
                 {!meters[searchedKey] && <h2>По данному адресу приборы учёта не зарегистрированы</h2>}
                 {meters[searchedKey] &&

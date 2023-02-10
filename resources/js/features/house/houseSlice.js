@@ -188,12 +188,12 @@ const houseSlice = createSlice( {
             state.meters = {}
             state.addresses = {}
 
-
+console.log(action.payload)
             action.payload.forEach( item => {
-                state.descriptions[item.id] = item[`house_description`]
-                state.meters[item.id] = item[`meters`]
-                state.addresses[item.id] = {
-                    id: item['id'],
+                state.descriptions[item.house_id] = item[`house_description`]
+                state.meters[item.house_id] = item[`meters`]
+                state.addresses[item.house_id] = {
+                    id: item['house_id'],
                     houseNumberStreetId: item[`house_number_street_id`],
                     houseDescriptionsId: item[`house_descriptions_id`],
                     streetId: item[`street_id`],
