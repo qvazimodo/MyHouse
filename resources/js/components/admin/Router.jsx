@@ -54,7 +54,7 @@ export const Router = createHashRouter(
                     element: <MeterValuesTable/>,
                 },
                 {
-                    path: "meters/:meterId",
+                    path: "meters/values/:meterId",
                     element: <MeterValuesTable/>,
                 }
 

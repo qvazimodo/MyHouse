@@ -51,7 +51,7 @@ export const MetersListForSelectedAddress = () => {
                                                 extra={
                                                     <Button onClick={() => dispatch(setCurrentMeter(meter))}>
                                                         <NavLink
-                                                            to={`/meters/${searchedKey}/${meter.id}`}>Показания</NavLink>
+                                                            to={`/meters/values/${meter.id}`}>Показания</NavLink>
                                                     </Button>
                                                 }
                                                 style={{

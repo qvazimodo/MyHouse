@@ -14,7 +14,7 @@ export const MetersList = () => {
 
     return (
         <>
-            <h2>Selected</h2>
+            <h2>Полный перечень коллективных приборов учёта</h2>
             <Row gutter={ [ 16, 32 ] }>
                 { Object.keys( meters ).map( key => {
                     return (
@@ -35,7 +35,7 @@ export const MetersList = () => {
                                                     title={ meter.type }
                                                     extra={
                                                         <Button onClick={()=>dispatch(setCurrentMeter(meter))}>
-                                                            <NavLink to={`/meters/${key}/${meter.id}`}>Показания</NavLink>
+                                                            <NavLink to={`/meters/values/${meter.id}`}>Показания</NavLink>
                                                         </Button>
                                                     }
                                                     style={ {

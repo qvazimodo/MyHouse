@@ -5,8 +5,8 @@ import { Badge, Card, Col, Divider, Row, Tag } from "antd";
 import { fetchMeterValues } from "../../features/meter/meterSlice";
 
 export const MeterValuesTable = () => {
-    let { houseAddressId, meterId } = useParams()
-    const houseAddress = useSelector( state => state.house.addresses[houseAddressId] )
+    let { meterId } = useParams()
+    // const houseAddress = useSelector( state => state.house.addresses[houseAddressId] )
     const currentMeter = useSelector( state => state.house.currentMeter )
     const currentMeterValues = useSelector( state => state.house.currentMeterValues )
     console.log( currentMeter, currentMeterValues )
@@ -47,9 +47,9 @@ export const MeterValuesTable = () => {
     return (
         <div className={ 'w-full ' }>
 
-            <Row className={ 'bg-neutral-400 text-white p-10 w-full text-xl rounded-t-xl' }>
+{/*            <Row className={ 'bg-neutral-400 text-white p-10 w-full text-xl rounded-t-xl' }>
                 { 'Улица ' + houseAddress['streetName'] + ', дом №' + houseAddress['houseNumber'] }
-            </Row>
+            </Row>*/}
             <Row className={ 'flex w-full py-10' }>
                 <Col span={ 4 } offset={ 1 } className={ 'flex justify-between items-center' }>
                     <Tag className={ 'p-3' } color="#3b5999">Вид энергоресурса:</Tag>
