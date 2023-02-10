@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card, ConfigProvider, Form, Image, Input, List, Switch, theme, Typography, Upload} from "antd";
-import {AUTH_USER_API_URL, CARDS_API_URL, CLIENT_CARDS_API_URL} from "../../helpers/API";
+import {AUTH_USER_API_URL, CARDS_API_URL, CLIENT_CARDS_API_URL, PHOTO_PATH} from "../../helpers/API";
 import s from './UserCards.module.css';
 import {red} from "@ant-design/colors";
 import {UploadOutlined} from "@ant-design/icons";
@@ -17,7 +17,6 @@ const UserCards = () => {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
     const [links, setLinks] = useState({});
-    const [current, setCurrent] = useState(1);
 
     //--------------Для формы хуки
     const [title, setTitle] = useState('');
@@ -224,7 +223,7 @@ const UserCards = () => {
                                     <Image.PreviewGroup
                                     >
                                         <div>{item.img.map((photopath) => <Image
-                                            src={`http://[::1]:5174/storage/app/${photopath.path}`}
+                                            src={`${PHOTO_PATH + photopath.path}`}
                                             width={200}
                                             height={200}
                                         />)}</div>

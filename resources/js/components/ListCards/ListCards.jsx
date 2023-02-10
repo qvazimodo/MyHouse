@@ -6,7 +6,7 @@ import {
     List,
     theme,
 } from "antd";
-import {CARDS_API_URL, EMPLOYEES_API_URL} from "../../helpers/API";
+import {CARDS_API_URL, EMPLOYEES_API_URL, PHOTO_PATH} from "../../helpers/API";
 import ColumnGroup from "antd/es/table/ColumnGroup";
 import Column from "antd/es/table/Column";
 import style from './ListCards.module.css';
@@ -22,7 +22,6 @@ const ListCards = () => {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
     const [links, setLinks] = useState({});
-    const [visible, setVisible] = useState(false);
 
 
     const onPageChange = (page) => {
@@ -143,11 +142,13 @@ const ListCards = () => {
                                                 src="https://gw.alipayobjects.com/zos/antfincdn/x43I27A55%26/photo-1438109491414-7198515b166b.webp"/>
                                         </div>
 
+
                                         {/*<div>{item.img.map((photopath) => <Image*/}
-                                        {/*    src={`http://[::1]:5174/storage/app/${photopath.path}`}*/}
+                                        {/*    src={`${PHOTO_PATH + photopath.path}`}*/}
                                         {/*    width={200}*/}
                                         {/*    height={200}*/}
-                                        {/*/>)}</div>*/}
+                                        {/*/>)}*/}
+                                        {/*</div>*/}
 
 
                                     </Image.PreviewGroup>
