@@ -8,11 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PasswordReset extends Model
 {
     use HasFactory;
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
+
     protected $table = 'password_resets';
     protected $fillable = [
         'email',
@@ -21,12 +17,7 @@ class PasswordReset extends Model
     ];
 
 
-    /**
-     * check if the code is expire then delete
-     *
-     * @return void
-     */
-    public function isExpire()
+    public function isExpire():void
     {
         if ($this->created_at > now()->addHour()) {
             $this->delete();

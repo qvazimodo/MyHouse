@@ -1,17 +1,10 @@
 <?php
-
-
 namespace App\Services;
 
-
-use Illuminate\Http\Client\Response;
-use Illuminate\Http\JsonResponse;
+use App\Models\Client;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use JetBrains\PhpStorm\ArrayShape;
 
-/**
- * @method body()
- */
 class TimetableService
 {
     public function checkDate($requestDate): array
@@ -35,4 +28,10 @@ class TimetableService
         $date = strtotime($requestDate);
         return date('Y-m-d', $date);
     }
+
+    public function getClientId(): int
+    {
+        return Client::where('user_id', Auth::user()->id)->first()->id;
+    }
 }
+
