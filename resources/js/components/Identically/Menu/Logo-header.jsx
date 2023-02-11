@@ -1,8 +1,7 @@
 import React from 'react';
-import { Space, Typography } from 'antd';
-import style from "../../../../css/Identically/header.css";
+import { Space } from 'antd';
+import style from "../../../../sass/header.css";
 
-const { Link } = Typography;
 
 const LogoHeader = () => (
     <Space>

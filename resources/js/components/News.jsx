@@ -46,7 +46,7 @@ class News extends React.Component {
                                     key={item.id}
                                     extra={
                                         <div className="images-wrp">
-                                            <img alt="image" src={item.image} key={item.number} />
+                                            <img style={{ borderRadius: 10 }} alt="image" src={item.image} key={item.number} />
                                         </div>
                                     }
                                 >

@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 815px;
+    width: 100%;
     background: url('/storage/app/public/images/Rectangle.png') center / cover no-repeat;
 }
 
@@ -16,16 +17,6 @@
     font-size: 40px;
     color: #D4C17F;
     text-shadow: #fff -1px -1px 0, #333 1px 1px 0;
-}
-.contacts-header {
-    display: flex;
-    justify-content: space-around;
-    color: #FFFFFF;
-    width: 30%;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 21px;
-    text-align: center;
 }
 .name_street {
     margin-left: 18px;
@@ -46,12 +37,6 @@
     .quote-header {
         font-size: 30px;
         text-align: center;
-    }
-    .contacts-header {
-        display: block;
-        width: 100%;
-        margin-left: 50px;
-
     }
 
 }

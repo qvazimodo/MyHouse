@@ -22,7 +22,6 @@ import UserCards from "./components/UserCards/UserCards";
 import HousesList from "./components/HousesList";
 import Contacts from "./components/Contacts";
 import {MetersList} from "./components/admin/MetersList";
-import {Header} from "./components/Identically/Header/Header";
 import LogoHeader from "./components/Identically/Menu/Logo-header";
 import PasswordReq from "./components/PasswordReq/PasswordReq";
 import {RouterProvider} from "react-router-dom";
@@ -99,10 +98,6 @@ if (document.getElementById('logo-header')) {
     root.render(<LogoHeader/>);
 }
 
-if (document.getElementById('header')) {
-    const root = createRoot(document.getElementById('header'));
-    root.render(<Header/>);
-}
 
 if (document.getElementById('news')) {
     const root = createRoot(document.getElementById('news'));

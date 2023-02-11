@@ -26,7 +26,6 @@ body {
     height: 100%;
     line-height: 1;
     color: #FFFFFF;
-    /*font-family: 'Oswald', sans-serif;*/
     font-family: 'Inter', sans-serif;
     background: #242B33;
     margin: 0;
@@ -82,9 +81,8 @@ flex: 1 1 auto;
         font-size: 30px;
     }
     #logo-header{
-        padding-right: 10px;
+        padding-right: 5px;
     }
-
 
 }
 
