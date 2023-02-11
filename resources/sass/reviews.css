@@ -13,10 +13,10 @@
     width: 80px;
 }
 
-/*.container span {*/
-/*    font-size: 22px;*/
-/*    margin-right: 15px;*/
-/*}*/
+.container span {
+    font-size: 22px;
+    margin-right: 15px;
+}
 
 @media (max-width: 1250px) {
     .container {

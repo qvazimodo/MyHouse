@@ -23,7 +23,6 @@ import HousesList from "./components/HousesList";
 import Contacts from "./components/Contacts";
 import {MetersList} from "./components/admin/MetersList";
 import {Header} from "./components/Identically/Header/Header";
-import Flats from "./components/Content/Flats";
 import LogoHeader from "./components/Identically/Menu/Logo-header";
 import PasswordReq from "./components/PasswordReq/PasswordReq";
 import {RouterProvider} from "react-router-dom";
@@ -103,11 +102,6 @@ if (document.getElementById('logo-header')) {
 if (document.getElementById('header')) {
     const root = createRoot(document.getElementById('header'));
     root.render(<Header/>);
-}
-
-if (document.getElementById('flats')) {
-    const root = createRoot(document.getElementById('flats'));
-    root.render(<Flats/>);
 }
 
 if (document.getElementById('news')) {

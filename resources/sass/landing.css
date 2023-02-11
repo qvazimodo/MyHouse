@@ -18,19 +18,6 @@ li {
     list-style: none;
 }
 
-img {
-    vertical-align: top;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: inherit;
-    font-size: inherit;
-}
 a:hover {
     color: white;
 }
@@ -95,7 +82,7 @@ flex: 1 1 auto;
         font-size: 30px;
     }
     #logo-header{
-        padding-right: 40px;
+        padding-right: 100px;
     }
 
 
