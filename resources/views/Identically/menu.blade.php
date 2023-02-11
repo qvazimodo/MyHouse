@@ -30,7 +30,7 @@
                     <li><a href="{{ route('usercards') }}">Мои объявления</a></li>
                     <li><a href="{{ route('userProfile') }}">Мой кабинет</a></li>
                     <li><a href="{{ route('userProfile') }}">
-                            <img style="width: 50px; border-radius: 50%" src="{{ Avatar::create(Auth::user()->name)->toGravatar(['d' => 'wavatar', 'r' => 'pg', 's' => 100])  }}"/>
+                            <img style="width: 50px; border-radius: 50%; margin-right: 20px" src="{{ Avatar::create(Auth::user()->name)->toGravatar(['d' => 'wavatar', 'r' => 'pg', 's' => 100])  }}"/>
                             {{ Auth::user()->name }}
                         </a></li>
                 @endif
