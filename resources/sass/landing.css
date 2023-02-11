@@ -44,10 +44,11 @@ flex: 1 1 auto;
 #usercards,
 #listCards,
 .userprofil,
-#news
+#news,
 .rates,
 #housesList,
-.about{
+.about,
+#contacts{
     flex: 1 1 auto;
 }
 
