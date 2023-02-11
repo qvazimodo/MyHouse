@@ -207,7 +207,7 @@ const UserCards = () => {
                     xxl: 2,
                 }}
                 pagination={{
-                    style:{textAlign:'center'},
+                    style:{textAlign:'right'},
                     pageSize,
                     total: totalPages,
                     onChange: onPageChange
