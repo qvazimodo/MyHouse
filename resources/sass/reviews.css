@@ -1,3 +1,11 @@
+.container{
+    width: 75%;
+    background-color: #242B33;
+    border-radius: 5px;
+    padding: 16px;
+    margin: 16px auto;
+}
+
 .container-rev {
     width: 75%;
     background-color: #242B33;
