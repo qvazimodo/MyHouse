@@ -1,4 +1,4 @@
-.container {
+.container-rev {
     width: 75%;
     background-color: #242B33;
     border-radius: 5px;
@@ -6,24 +6,24 @@
     margin: 16px auto;
 }
 
-.container img {
+.container-rev img {
     float: left;
     margin-right: 20px;
     border-radius: 50%;
     width: 80px;
 }
 
-.container span {
+.container-rev span {
     font-size: 22px;
     margin-right: 15px;
 }
 
 @media (max-width: 1250px) {
-    .container {
+    .container-rev {
         text-align: center;
     }
 
-    .container img {
+    .container-rev img {
         margin: auto;
         float: none;
         display: block;
