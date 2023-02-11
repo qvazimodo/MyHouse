@@ -61,7 +61,7 @@ export const METER_VALUE_API_URL = DOMEN + "/api/meters";
 export const NEWS_API_URL = DOMEN + "/api/news";
 
 //маршрут для фото
-export const PHOTO_PATH = DOMEN + "/storage/app/";
+export const PHOTO_PATH = DOMEN + "/storage/";
 
 
 

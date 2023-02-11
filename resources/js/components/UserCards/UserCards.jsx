@@ -223,7 +223,7 @@ const UserCards = () => {
                                     <Image.PreviewGroup
                                     >
                                         <div>{item.img.map((photopath) => <Image
-                                            src={`${PHOTO_PATH + photopath.path}`}
+                                            src={`${PHOTO_PATH}` + `${photopath.path}`}
                                             width={200}
                                             height={200}
                                         />)}</div>
