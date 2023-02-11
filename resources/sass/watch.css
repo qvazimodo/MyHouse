@@ -43,8 +43,9 @@
     .input-group{
         text-align: center;
     }
-    .input-name{
-        width: 100%;
+    .input-name,
+    .input_button{
+        width: 50%;
     }
 }
 
