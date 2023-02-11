@@ -41,6 +41,18 @@ body {
 flex: 1 1 auto;
 }
 
+#usercards,
+#listCards,
+.userprofil,
+#news
+.rates,
+#housesList,
+.about{
+    flex: 1 1 auto;
+}
+
+
+
 /*Логотип верхний*/
 .house {
     font-family: 'Inter', sans-serif;

@@ -72,7 +72,6 @@ const PasswordReq = () => {
                     <Link to="passwordcode" className="link-password">Далее</Link>
                 </FormItem>
             </Form>
-
         </div>
     );
 }

@@ -106,7 +106,6 @@ const UserCards = () => {
     }
 
 
-
     const props = {
         onRemove: (file) => {
             const index = fileList.indexOf(file);
@@ -124,123 +123,114 @@ const UserCards = () => {
     return (
         <div className='container'>
             <ConfigProvider
-                theme={{
-                    algorithm: theme.darkAlgorithm,
-                }}
-
+                theme={{algorithm: theme.darkAlgorithm,}}
             >
-                <div style={{display:"flex", marginTop:150}}>
-                <Text style={{
+                <div style={{display: "flex", marginTop: 150}}>
+                    <Text style={{
+                        color: '#D4C17F',
+                        display: 'block',
+                        fontSize: 24,
+                        fontFamily: "Inter"
+                    }}>Добавить объявление:</Text>
+                    <Switch
+                        style={{backgroundColor: "darkgray", marginTop: 9, marginLeft: 12}}
+                        defaultChecked
+                        onChange={(value) => {
+                            setCurrentValue(value)
+                        }}
+                    />
+                </div>
+
+                {/*Форма*/}
+
+                <Form
+                    layout={'vertical'}
+                    size={'middle'}
+                    disabled={currentValue}
+                >
+                <span style={{
+                    fontSize: 18,
                     color: '#D4C17F',
-                    display: 'block',
-                    fontSize: 24,
-                    fontFamily: "Railway"
-                }}>Добавить объявление:</Text>
-                <Switch
-                    style={{backgroundColor: "darkgray", marginTop:9, marginLeft:12}}
-                    defaultChecked
-                    onChange={(value) => {
-                        setCurrentValue(value)
-                    }}
-                />
-        </div>
-
-            {/*Форма*/}
-
-            <Form
-                layout={'vertical'}
-                size={'middle'}
-                disabled={currentValue}
-            >
-                <span style={{
-                    fontSize:18,
-                    color:'#D4C17F',
-                    fontFamily: 'Railway'
+                    fontFamily: "Inter"
                 }}>Введите заголовок:</span>
-                <Form.Item>
-                    <Input name='title' value={title} onChange={(e) => {
-                        setTitle(e.target.value)
-                    }}/>
-                </Form.Item>
+                    <Form.Item>
+                        <Input name='title' value={title} onChange={(e) => {
+                            setTitle(e.target.value)
+                        }}/>
+                    </Form.Item>
 
-                <span style={{
-                    fontSize:18,
-                    color:'#D4C17F',
-                    fontFamily: "Railway"
-                }}>Введите описание:</span>
-                <Form.Item>
-                    <Input name='description' value={description} onChange={(e) => {
-                        setDescription(e.target.value)
-                    }}/>
-                </Form.Item>
+                    <span style={{
+                        fontSize: 18,
+                        color: '#D4C17F',
+                        fontFamily: "Inter"
+                    }}>Введите описание:</span>
+                    <Form.Item>
+                        <Input name='description' value={description} onChange={(e) => {
+                            setDescription(e.target.value)
+                        }}/>
+                    </Form.Item>
 
-                <span style={{fontSize:18, color:'#D4C17F', fontFamily: "Railway"}}>Введите цену:</span>
-                <Form.Item>
-                    <Input name='price' value={price} type='number' onChange={(e) => {
-                        setPrice(e.target.value)
-                    }}/>
-                </Form.Item>
+                    <span style={{fontSize: 18, color: '#D4C17F', fontFamily: "Inter"}}>Введите цену:</span>
+                    <Form.Item>
+                        <Input name='price' value={price} type='number' onChange={(e) => {
+                            setPrice(e.target.value)
+                        }}/>
+                    </Form.Item>
 
-                <span style={{fontSize:18, color:'#D4C17F'}}>Отправить фото:</span>
-                <Form.Item>
-                    <Upload {...props}>
-                        <Button icon={<UploadOutlined />}>Select File</Button>
-                    </Upload>
-                </Form.Item>
+                    <span style={{fontSize: 18, color: '#D4C17F'}}>Отправить фото:</span>
+                    <Form.Item>
+                        <Upload {...props}>
+                            <Button icon={<UploadOutlined />}>Select File</Button>
+                        </Upload>
+                    </Form.Item>
 
-                <Form.Item>
-                    <Button type="primary" style={{backgroundColor:'#D4C17F'}} onClick={sendForm}>Отправить</Button>
-                </Form.Item>
-            </Form>
-
-            {/*Карточки*/}
+                    <Form.Item>
+                        <Button type="primary" style={{backgroundColor: '#D4C17F'}}
+                                onClick={sendForm}>Отправить</Button>
+                    </Form.Item>
+                </Form>
 
                 <h2 className={s.mycards}>Ваши карточки</h2>
-            <List
-                grid={{
-                    gutter: 16,
-                    xs: 1,
-                    sm: 2,
-                    md: 2,
-                    lg: 2,
-                    xl: 2,
-                    xxl: 2,
-                }}
-                pagination={{
-                    style:{textAlign:'right'},
-                    pageSize,
-                    total: totalPages,
-                    onChange: onPageChange
-                    // showSizeChanger: true,
-                }}
-                style={{marginBottom:90}}
-                loading={loading}
-                dataSource={data}
-                renderItem={(item) => (
-                    <List.Item>
-                        <Card title={`Заголовок: ${item.title} client_id: ${item.client_id}`}>
-                            <div className="wrapperusercard">
-                                    <Image.PreviewGroup
-                                    >
+                <List
+                    grid={{
+                        gutter: 16,
+                        xs: 1,
+                        sm: 2,
+                        md: 2,
+                        lg: 2,
+                        xl: 2,
+                        xxl: 2,
+                    }}
+                    pagination={{
+                        style: {textAlign: 'right'},
+                        pageSize,
+                        total: totalPages,
+                        onChange: onPageChange,
+                        // showSizeChanger: true,
+                    }}
+                    style={{marginBottom: 90}}
+                    loading={loading}
+                    dataSource={data}
+                    renderItem={(item) => (
+                        <List.Item>
+                            <Card title={`Заголовок: ${item.title} client_id: ${item.client_id}`}>
+                                <div className="wrapperusercard">
+                                    <Image.PreviewGroup>
                                         <div>{item.img.map((photopath) => <Image
                                             src={`${PHOTO_PATH}` + `${photopath.path}`}
                                             width={200}
                                             height={200}
                                         />)}</div>
-
-
                                     </Image.PreviewGroup>
-                            </div>
-                            <br/>
-
-                            Номер объявления: {item.id} <br/><br/> Текст: {item.description}<br/><br/>Цена: {item.price}$
-
-                        </Card>
-                    </List.Item>
-
-                )}
-            />
-                </ConfigProvider>
+                                </div>
+                                <br/>
+                                Номер объявления: {item.id}
+                                <br/><br/> Текст: {item.description}<br/><br/>Цена: {item.price}$
+                            </Card>
+                        </List.Item>
+                    )}
+                />
+            </ConfigProvider>
         </div>
     );
 }
