@@ -2,6 +2,12 @@
     padding: 0 10px 10px 10px;
     flex: 1 1 auto;
 }
-.rates-name{
-    color: goldenrod;
+
+
+@media (max-width:1250px) {
+    .rates-name {
+        text-align: left;
+        font-size: 14px;
+    }
+
 }

@@ -1,6 +1,12 @@
 .about {
-
     padding: 0 10px 10px 10px;
     color: #FFFFFF;
     flex: 1 1 auto;
+}
+
+@media (max-width:768px) {
+    .container p{
+        text-align: left;
+        font-size: 14px;
+    }
 }
