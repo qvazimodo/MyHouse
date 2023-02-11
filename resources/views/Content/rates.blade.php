@@ -83,7 +83,7 @@
                                     </div>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap text-center">0</p>
+                                    <p class="text-gray-900 whitespace-no-wrap text-center">35</p>
                                 </td>
 
                             </tr>
@@ -103,7 +103,7 @@
                                     </div>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap text-center">0</p>
+                                    <p class="text-gray-900 whitespace-no-wrap text-center">86</p>
                                 </td>
                             </tr>
                             </tbody>
