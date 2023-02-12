@@ -19,8 +19,8 @@ class ClientController extends Controller
 
     public function index(): JsonResponse
     {
-        $clients = Client::join('users', 'users.id','=', 'clients.user_id')
-            ->join('apartments','apartments.id','=','clients.apartment_id')
+        $clients = Client::join('users', 'users.id', '=', 'clients.user_id')
+            ->join('apartments', 'apartments.id', '=', 'clients.apartment_id')
             ->join('houses', 'houses.id', '=', 'apartments.house_id')
             ->join('house_number_street', 'houses.house_number_street_id', '=', 'house_number_street.id')
             ->select(
@@ -67,8 +67,8 @@ class ClientController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request)
@@ -88,15 +88,15 @@ class ClientController extends Controller
         $user->save();
 
         $apartment = Apartment::where('id', $apartmentId)->first();
-        $apartment['entrance']= $input['entrance'];
-        $apartment['floor']= $input['floor'];
-        $apartment['number']= $input['apartmentNumber'];
+        $apartment['entrance'] = $input['entrance'];
+        $apartment['floor'] = $input['floor'];
+        $apartment['number'] = $input['apartmentNumber'];
         $apartment->save();
 
         return response()->json([
             'status' => 'ok',
             "message" => "Профиль клиента обновлён успешно!",
-        ], 204);
+        ], 200);
     }
 
     /**
@@ -106,16 +106,17 @@ class ClientController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function destroy(Client $client):JsonResponse
+    public function destroy(Client $client): JsonResponse
     {
+        $client->user()->delete();
         $result = $client->delete();
         return response()->json(['status' => 'ok', 'data' => $result], 202);
     }
 
     public function getClientsByAddress($streetId, $houseNumberId): JsonResponse
     {
-        $clients = Client::join('users', 'users.id','=', 'clients.user_id')
-            ->join('apartments','apartments.id','=','clients.apartment_id')
+        $clients = Client::join('users', 'users.id', '=', 'clients.user_id')
+            ->join('apartments', 'apartments.id', '=', 'clients.apartment_id')
             ->join('houses', 'houses.id', '=', 'apartments.house_id')
             ->join('house_number_street', 'houses.house_number_street_id', '=', 'house_number_street.id')
             ->where('house_number_street.street_id', $streetId)

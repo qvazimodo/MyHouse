@@ -51,8 +51,20 @@ export const AUTH_METERS_LIST_API_URL = DOMEN + "/api/client_meters";
 // маршрут получения показаний всех счетчиков текущего клиента
 export const AUTH_METERS_API_URL = DOMEN + "/api/client_meters/values";
 
-// маршрут получения показаний всех счетчиков всех клиентов
-export const METERS_VALUES_API_URL = DOMEN + "/api/admin/meters/values";
+// маршрут получения всех общедомовых счетчиков
+export const ADMIN_COLLECTIVE_METERS_API_URL = DOMEN + "/api/admin/collective_meters";
+
+// маршрут получения общедомовых счетчиков по указанному адресу
+export const ADMIN_COLLECTIVE_METERS_BY_ADDRESS_API_URL = DOMEN + "/api/admin/collective_meters/by_address";
+
+// маршрут получения счетчиков клиентов по указанному адресу
+export const ADMIN_CLIENTS_METERS_BY_ADDRESS_API_API_URL = DOMEN + "/api/admin/clients_meters/by_address";
+
+// маршрут получения показаний счётчика
+export const ADMIN_METER_BY_ID_VALUES_API_URL = DOMEN + "/api/admin/meters/values";
+
+// маршрут получения предыдущих показаний счётчика
+export const ADMIN_PARENT_METER_VALUE_API_URL = DOMEN + "/api/admin/meters/parent/";
 
 //маршрут передачи показаний счетчика методом POST
 export const METER_VALUE_API_URL = DOMEN + "/api/meters";

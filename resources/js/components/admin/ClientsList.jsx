@@ -140,7 +140,6 @@ export const ClientsList = ( props ) => {
 
 
     let data = clientsArray.map( item => {
-        console.log(item)
         return {
             key: item['client_id'],
             clientId: item['client_id'],
@@ -191,7 +190,7 @@ export const ClientsList = ( props ) => {
                     ...row,
                 }
                 dispatch(putClientById({...newClientData, ...selectedAddress}))
-                    .then(() => setClientIsUpdated(true))
+                    // .then(() => setClientIsUpdated(true))
                 setEditingKey('');
             } else {
                 newData.push(row);
@@ -200,6 +199,7 @@ export const ClientsList = ( props ) => {
                 // dispatch(putClientById(newData))
                 setEditingKey('');
             }
+            setClientIsUpdated(true)
         } catch (errInfo) {
             console.log('Validate Failed:', errInfo);
         }

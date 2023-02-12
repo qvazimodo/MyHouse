@@ -1,8 +1,9 @@
 import {Button, Modal, Popconfirm} from "antd";
 import {EmployeeRegisterForm} from "./EmployeeRegisterForm";
-import React from "react";
+import React, {useState} from "react";
 
-export const EmployeeAddPopup = () => {
+export const EmployeeAddPopup = ({children, open, handleOk, handleCancel, confirmLoading}) => {
+
     return (
         <Modal
             width={620}
@@ -21,20 +22,21 @@ export const EmployeeAddPopup = () => {
                 <Button
                     type="primary"
                     key="submit"
-                    loading={loading}
+                    // loading={loading}
                     onClick={handleOk}
                 >
                     Сохранить данные
                 </Button>,
             ]}
         >
-            <EmployeeRegisterForm
+            {children}
+{/*            <EmployeeRegisterForm
                 fields={fields}
                 onChange={(newFields) => {
                     setFields(newFields);
                 }}
                 sendForm={sendForm}
-            />
+            />*/}
         </Modal>
     )
 }
