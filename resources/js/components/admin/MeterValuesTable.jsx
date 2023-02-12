@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector, } from "react-redux";
-import { Badge, Card, Col, Divider, Row, Tag } from "antd";
+import { Card, Col, Divider, Row, Tag } from "antd";
 import { fetchMeterValues } from "../../features/meter/meterSlice";
+import { isNull } from "lodash";
+import { ADMIN_PARENT_METER_VALUE_API_URL } from "../../helpers/API"
 
 export const MeterValuesTable = () => {
     let { meterId } = useParams()
     // const houseAddress = useSelector( state => state.house.addresses[houseAddressId] )
     const currentMeter = useSelector( state => state.house.currentMeter )
-    const currentMeterValues = useSelector( state => state.house.currentMeterValues )
+    const currentMeterValues = useSelector( state => state.meter.currentMeterValues )
     console.log( currentMeter, currentMeterValues )
     const dispatch = useDispatch()
 
     useEffect( () => {
-        dispatch( fetchMeterValues( currentMeter.id ) )
-    }, [ currentMeter ] );
+        dispatch( fetchMeterValues( meterId ) )
+    }, [] );
 
     const tablist = Object.keys( currentMeterValues ).map( key => {
         return {
@@ -44,18 +46,57 @@ export const MeterValuesTable = () => {
     )
     console.log( contentList )
 
+    const getClassNameByMonth = ( monthId ) => {
+        console.log( monthId )
+        switch ( monthId ) {
+            case  12:
+            case  1:
+            case  2:
+                return 'bg-blue-500'
+            case  3:
+            case  4:
+            case  5:
+                return 'bg-green-500'
+            case  6:
+            case  7:
+            case  8:
+                return 'bg-red-500'
+            case  9:
+            case  10:
+            case  11:
+                return 'bg-yellow-500'
+
+        }
+
+    }
+
+    const getConsumption =
+        async ( month ) => {
+            // return month.value - await getPreviousReadings( month )
+        }
+
+    const getPreviousReadings = async ( month ) => {
+        if ( isNull( month['parent_id'] ) ) {
+            console.log( null )
+            return 0
+        }
+        let response = await fetch( ADMIN_PARENT_METER_VALUE_API_URL + month['parent_id'] )
+        let answer = await response.json();
+        console.log( answer.data.value )
+        return answer.data.value
+    }
     return (
         <div className={ 'w-full ' }>
 
-{/*            <Row className={ 'bg-neutral-400 text-white p-10 w-full text-xl rounded-t-xl' }>
+            {/*            <Row className={ 'bg-neutral-400 text-white p-10 w-full text-xl rounded-t-xl' }>
                 { 'Улица ' + houseAddress['streetName'] + ', дом №' + houseAddress['houseNumber'] }
-            </Row>*/}
-            <Row className={ 'flex w-full py-10' }>
+            </Row>*/ }
+            <Row className={ 'flex py-10' }>
                 <Col span={ 4 } offset={ 1 } className={ 'flex justify-between items-center' }>
                     <Tag className={ 'p-3' } color="#3b5999">Вид энергоресурса:</Tag>
                     <span> { currentMeter.type }</span>
                 </Col>
-                <Col span={ 4 } offset={ 2 } className={ 'flex justify-between items-center' }>
+                <Col span={ 4 } offset={ 3 } className={ 'flex justify-between items-center' }>
                     <Tag className={ 'p-3' } color="#55acee">Номер счётчика:</Tag>
                     <span> { currentMeter.number }</span>
                 </Col>
@@ -79,19 +120,46 @@ export const MeterValuesTable = () => {
                 >
                     {Object.keys( currentMeterValues ).map( key => {
                         return (
-                            <div className={'flex justify-between w-full'}>
-                                <div className={'align-self-center pr-5 text-2xl'}>{key}</div>
-                                {currentMeterValues[key].map(month=>{
-                                console.log(month.value)
-                                return(
-                                    <Col span={2} >
-                                        <Divider/>
-                                        <Badge className={'text-md'}>{ month.name }</Badge>
-                                        <div className={'text-lg'}>{ month.value }</div>
+                            <Row span={ 24 }>
+                                <Col span={ 1 } className={ 'flex justify-items-center items-center pr-5' +
+                                    ' text-2xl' }>
+                                    <div className={ '-rotate-90' }>{ key }</div>
+                                </Col>
 
-                                    </Col>
-                                )
-                            })}</div>
+                                <Col span={ 2 }>
+                                    <div className={ 'text-md py-2 text-center mb-2' }>
+                                        Месяц
+                                    </div>
+                                    <div className={
+                                        'text-lg text-center' }>Показания
+                                    </div>
+                                    <div className={
+                                        'text-lg text-center' }>Расход
+                                    </div>
+                                    <Divider/>
+                                </Col>
+                                <Col span={ 21 }>
+                                    <Row span={ 24 }>
+                                        { currentMeterValues[key].map( month => {
+                                            // console.log( month )
+                                            return (
+                                                <Col span={ 2 }>
+                                                    <div
+                                                        className={ getClassNameByMonth( month['month_id'] ) + ' ' +
+                                                            'text-md py-2 text-center mb-2' }>{ month.name }</div>
+                                                    <div className={
+                                                        'text-lg text-center' }>{ month.value }
+                                                    </div>
+                                                    <div className={
+                                                        'text-lg text-center' }>{  }
+                                                    </div>
+                                                    <Divider/>
+                                                </Col>
+                                            )
+                                        } ) }
+                                    </Row>
+                                </Col>
+                            </Row>
                         )
                     })}
                 </Card>

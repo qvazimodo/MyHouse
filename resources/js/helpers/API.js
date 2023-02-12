@@ -61,7 +61,10 @@ export const ADMIN_COLLECTIVE_METERS_BY_ADDRESS_API_URL = DOMEN + "/api/admin/co
 export const ADMIN_CLIENTS_METERS_BY_ADDRESS_API_API_URL = DOMEN + "/api/admin/clients_meters/by_address";
 
 // маршрут получения показаний счётчика
-export const ADMIN_METER_BY_ID_VALUES_API_URL = DOMEN + "/api/admin/meters/values/";
+export const ADMIN_METER_BY_ID_VALUES_API_URL = DOMEN + "/api/admin/meters/values";
+
+// маршрут получения предыдущих показаний счётчика
+export const ADMIN_PARENT_METER_VALUE_API_URL = DOMEN + "/api/admin/meters/parent/";
 
 //маршрут передачи показаний счетчика методом POST
 export const METER_VALUE_API_URL = DOMEN + "/api/meters";

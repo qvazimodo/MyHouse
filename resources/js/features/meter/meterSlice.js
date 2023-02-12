@@ -1,12 +1,10 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
-import {
-    ADMIN_COLLECTIVE_METERS_API_URL,
-    ADMIN_METER_BY_ID_VALUES_API_URL
-} from '../../helpers/API'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { ADMIN_COLLECTIVE_METERS_API_URL, ADMIN_METER_BY_ID_VALUES_API_URL } from '../../helpers/API'
 
 const initialState = {
     loading: false,
     collectiveMetersArray: [],
+    currentMeterValues: {},
     /*    meters: {
             client_id:
                 [ {

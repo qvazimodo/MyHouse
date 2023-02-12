@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\MeterResource;
 use App\Models\Meter;
+use App\Models\MeterMonthYear;
 use App\Models\Month;
 use App\Models\MonthYear;
 use App\Models\Year;
@@ -46,6 +47,15 @@ class MeterController extends Controller
                 ->get();
         }
 
+/*        $meterValues = Meter::where('meters.id', $id)
+            ->join('meter_month_year', 'meters.id', '=', 'meter_month_year.meter_id')
+            ->join('month_year', 'meter_month_year.month_year_id', '=', 'month_year.id')
+            ->select('meter_month_year.value',
+                'meter_month_year.parent_id',
+                'month_year.year_id',
+                'month_year.month_id')
+            ->get();*/
+
         return response()->json([
             'data' => $meterValues,
         ], 200);
@@ -86,6 +96,17 @@ class MeterController extends Controller
 
         return response()->json([
             'data' => $meters,
+            'status' => 'ok'
+        ], 200);
+    }
+
+    public function meterReadingsById($meterReadingsId): JsonResponse
+    {
+        $value = MeterMonthYear::where('id', '=', $meterReadingsId)
+            ->first('value');
+
+        return response()->json([
+            'data' => $value,
             'status' => 'ok'
         ], 200);
     }

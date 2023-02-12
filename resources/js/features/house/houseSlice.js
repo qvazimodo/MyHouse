@@ -188,7 +188,6 @@ const houseSlice = createSlice( {
             state.meters = {}
             state.addresses = {}
 
-console.log(action.payload)
             action.payload.forEach( item => {
                 state.descriptions[item.house_id] = item[`house_description`]
                 state.meters[item.house_id] = item[`meters`]

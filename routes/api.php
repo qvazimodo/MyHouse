@@ -105,6 +105,10 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/meters/values', [AdminMeterController::class, 'allMetersValues']);
 
+    //показания счётчика по id показаний (для получения предыдущих показаний счётчика)
+    Route::get('meters/parent/{meterReadingsId}',
+        [AdminMeterController::class, 'meterReadingsById']);
+
     //Сотрудники
     Route::get('/employees', [EmployeeAPIController::class, 'index']);
 
