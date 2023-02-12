@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector, } from "react-redux";
 import { Card, Col, Divider, Row, Spin, Tag } from "antd";
 import { fetchMeterValues } from "../../features/meter/meterSlice";
+import { MetersChart } from "./MetersChart";
 
 export const MeterValuesTable = () => {
     let { meterId } = useParams()
@@ -143,7 +144,7 @@ export const MeterValuesTable = () => {
                         } ) }
                     </Card>
                 </Row> }
-
+            <MetersChart/>
         </div>
     )
 }
