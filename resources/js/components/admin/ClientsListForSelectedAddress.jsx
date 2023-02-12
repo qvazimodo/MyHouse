@@ -352,59 +352,66 @@ export const ClientsListForSelectedAddress = ( props ) => {
         }
         return {
             ...col,
-            onCell: (record) => ({
+            onCell: ( record ) => ({
                 record,
                 inputType: col.dataIndex === 'age' ? 'number' : 'text',
                 dataIndex: col.dataIndex,
                 title: col.title,
-                editing: isEditing(record),
+                editing: isEditing( record ),
             }),
         };
-    });
+    } );
 
     return (
-        <div className={styles.table__screen}>
-            <h1>Selected</h1>
-            {isLoading && <Spin className={ styles.contentSpinner } size="large"/>}
-            {!isLoading &&         <Form form={form} component={false}>
-                <Table columns={mergedColumns}
-                       dataSource={data}
-                       bordered
-                       onChange={onChange}
-                       rowClassName="editable-row"
-                       pagination={{
-                           hideOnSinglePage: true,
-                           onChange: cancel,
-                           // pageSize,
-                           // total: totalPages,
-                           // onChange: onPageChange
-                           // showSizeChanger: true,
-                       }}
-/*                       onRow={(record, rowIndex) => {
-                           return {
-                               onClick: (event) => {
-                                   console.log(record)
-                                   dispatch(setSelectedAddress({
-                                       streetName: record.streetName,
-                                       houseNumber: record.houseNumber,
-                                       streetId: record.streetId,
-                                       houseNumberId: record.houseNumberId
-                                   }))
-                               }, // click row
-                               onDoubleClick: (event) => {}, // double click row
-                               onContextMenu: (event) => {}, // right button click row
-                               onMouseEnter: (event) => {}, // mouse enter row
-                               onMouseLeave: (event) => {}, // mouse leave row
-                           };
-                       }}*/
-                       components={{
-                           body: {
-                               cell: EditableCell,
-                           },
-                       }}
-                />
-            </Form>}
-        </div>
-    );
+        <>
+            { isLoading &&
+                <div className={ styles.table__screen }>
+                    <Spin className={ styles.contentSpinner } size="large"/>
+                </div> }
+            {
+                !isLoading &&
+                <Form className={ 'flex flex-col min-h-[100%]' } form={ form } component={ false }>
+                    <h1 className={ 'text-xl py-5 px-10' }>Жильцы дома</h1>
+                    <Table columns={ mergedColumns }
+                           dataSource={ data }
+                           bordered
+                           onChange={ onChange }
+                           rowClassName="editable-row"
+                           pagination={ {
+                               hideOnSinglePage: true,
+                               onChange: cancel,
+                               // pageSize,
+                               // total: totalPages,
+                               // onChange: onPageChange
+                               // showSizeChanger: true,
+                           } }
+                        /*                       onRow={(record, rowIndex) => {
+                                                   return {
+                                                       onClick: (event) => {
+                                                           console.log(record)
+                                                           dispatch(setSelectedAddress({
+                                                               streetName: record.streetName,
+                                                               houseNumber: record.houseNumber,
+                                                               streetId: record.streetId,
+                                                               houseNumberId: record.houseNumberId
+                                                           }))
+                                                       }, // click row
+                                                       onDoubleClick: (event) => {}, // double click row
+                                                       onContextMenu: (event) => {}, // right button click row
+                                                       onMouseEnter: (event) => {}, // mouse enter row
+                                                       onMouseLeave: (event) => {}, // mouse leave row
+                                                   };
+                                               }}*/
+                           components={ {
+                               body: {
+                                   cell: EditableCell,
+                               },
+                           } }
+                    />
+                </Form>
+            }
+        </>
+    )
+        ;
 }
 
