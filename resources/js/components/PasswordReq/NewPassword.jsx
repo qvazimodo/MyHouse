@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Form, Input} from "antd";
 import FormItem from "antd/es/form/FormItem";
-import {PASSWORD_CHECK_EMAIL_API_URL, PASSWORD_RESET_EMAIL_API_URL} from "../../helpers/API";
-import passwordReq from "./PasswordReq";
+import {PASSWORD_RESET_EMAIL_API_URL} from "../../helpers/API";
 import {useLocation} from "react-router-dom";
 
 const NewPassword = () => {
@@ -41,7 +40,6 @@ const NewPassword = () => {
             })
 
     }
-
 
     return (
         <div className="change-email-mar">

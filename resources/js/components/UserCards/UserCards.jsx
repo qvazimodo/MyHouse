@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card, ConfigProvider, Form, Image, Input, List, Switch, theme, Typography, Upload} from "antd";
-import {AUTH_USER_API_URL, CARDS_API_URL, CLIENT_CARDS_API_URL, PHOTO_PATH} from "../../helpers/API";
+import {CARDS_API_URL, CLIENT_CARDS_API_URL, PHOTO_PATH} from "../../helpers/API";
 import s from './UserCards.module.css';
-import {red} from "@ant-design/colors";
 import {UploadOutlined} from "@ant-design/icons";
 import "./UserCards.css";
 
@@ -28,7 +27,6 @@ const UserCards = () => {
     const [fileList, setFileList] = useState([]);
 
 
-    //---------------------- Для Кости (НЕ форма)
     //---------------------- Вывод карточек пользователя
 
     const onPageChange = (page) => {
@@ -213,9 +211,10 @@ const UserCards = () => {
                     dataSource={data}
                     renderItem={(item) => (
                         <List.Item>
-                            <Card title={`Заголовок: ${item.title} client_id: ${item.client_id}`}>
+                            <Card title={`Номер объявления: ${item.id}`}>
                                 <div className="wrapperusercard">
                                     <Image.PreviewGroup>
+                                        <div>{console.log(item)}</div>
                                         <div>{item.img.map((photopath) => <Image
                                             src={`${PHOTO_PATH}` + `${photopath.path}`}
                                             width={200}
@@ -224,8 +223,8 @@ const UserCards = () => {
                                     </Image.PreviewGroup>
                                 </div>
                                 <br/>
-                                Номер объявления: {item.id}
-                                <br/><br/> Текст: {item.description}<br/><br/>Цена: {item.price}$
+                                Заголовок: {item.title}
+                                <br/><br/> Описание: {item.description}<br/><br/>Цена: {item.price}$
                             </Card>
                         </List.Item>
                     )}

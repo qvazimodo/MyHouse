@@ -32,11 +32,8 @@ const CodePassword = () => {
                 } else {
                     alert("Неверный код")
                 }
-
             })
-
     }
-
 
     return (
         <div className="change-email-mar">
@@ -73,7 +70,6 @@ const CodePassword = () => {
                     </FormItem>
                 </FormItem>
             </Form>
-
 
         </div>
     );

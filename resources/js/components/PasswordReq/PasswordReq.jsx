@@ -10,7 +10,7 @@ const PasswordReq = () => {
     const [disableCode, setDisableCode] = useState(true);
     const [textMessageEmail, setTextMessageEmail] = useState('');
 
-    const sendForm = (e) => {
+    const sendForm = () => {
         fetch(PASSWORD_EMAIL_API_URL, {
             method: 'POST',
             headers: {
@@ -32,11 +32,8 @@ const PasswordReq = () => {
                     setTextMessageEmail('Сообщение отправлено на email. Нажмите на далее')
                     setDisableCode(false);
                 }
-
             })
-
     }
-
 
     return (
         <div className="change-email-mar">

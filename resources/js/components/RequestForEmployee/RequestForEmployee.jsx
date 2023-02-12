@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
-import {Alert, Button, Calendar, Collapse, Select, theme} from 'antd';
+import {Button, Calendar, Collapse, Select, theme} from 'antd';
 import {CHECK_TIMETABLE_API_URL} from "../../helpers/API";
-import './RequestForEmployee.css'
+import './RequestForEmployee.css';
 import { useNavigate} from "react-router-dom";
 
 
 const OPTIONS = ['дворник', 'сантехник', 'электрик'];
 
-function RequestForEmployee() {
-
+const RequestForEmployee = () => {
 
     const navigate = useNavigate();
 
@@ -59,12 +58,7 @@ function RequestForEmployee() {
                     alert('Выходной день')
                 } else if(result.length >= 0) {
                     alert(`На этот дом не назначен ${selectedItems}`)
-                }
-                // else if (Object.keys(result.result[key][1]).length === 0){
-                //     alert(`Все записи ${selectedItems} на этот день заняты`)
-                // }
-
-                else{
+                } else{
                     navigate("/foremployee", {state: {result,dateCall}});
                 }
 
@@ -72,7 +66,6 @@ function RequestForEmployee() {
             )
 
     }
-
 
     return (
         <div className="container cabinet">
