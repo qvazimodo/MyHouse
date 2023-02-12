@@ -188,6 +188,7 @@ export const EmployeesList = (props) => {
                     ...row,
                 }
                 dispatch(putEmployeeById({...newEmployeeData, ...selectedAddress}))
+                    .then(setEmployeeIsUpdated(true))
                 setEditingKey('');
             } else {
                 newData.push(row);
@@ -407,7 +408,10 @@ export const EmployeesList = (props) => {
                     body: JSON.stringify(registrationFormData)
                 }).then((response) => response.json())
                     .catch((error) => console.log(error))
-                    .then(data => setResponse(data)))
+                    .then(data => {
+                        setResponse(data)
+                        setEmployeeIsUpdated(true)
+                    }))
         }
     }
 

@@ -17,7 +17,6 @@ import {createRoot} from 'react-dom/client';
 import RequestForEmployee from './components/RequestForEmployee/RequestForEmployee';
 import MetersForm from "./components/MetersForm";
 import ListCards from "./components/ListCards/ListCards";
-import {Employees} from "./components/admin/Employees";
 import UserCards from "./components/UserCards/UserCards";
 import HousesList from "./components/HousesList";
 import Contacts from "./components/Contacts";

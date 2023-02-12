@@ -1,6 +1,7 @@
-import { Button, DatePicker, Form, Input, } from 'antd';
+import { Button, DatePicker, Form, Input, Select, } from 'antd';
 import styles from "./EmployeeRegisterForm.module.css";
 import dayjs from 'dayjs';
+import { Option } from "antd/es/mentions";
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 
@@ -93,9 +94,16 @@ export const EmployeeRegisterForm = ( { onChange, fields, sendForm } ) => {
                                message: 'Должность работника заполняется обязательно!',
                            },
                        ] }>
-                <Input/>
+                <Select placeholder="Выберите должность">
+                    <Option value="директор">директор</Option>
+                    <Option value="бухгалтер">бухгалтер</Option>
+                    <Option value="мастер">мастер</Option>
+                    <Option value="электрик">электрик</Option>
+                    <Option value="сантехник">сантехник</Option>
+                    <Option value="дворник">дворник</Option>
+                    <Option value="уборщица">уборщица</Option>
+                </Select>
             </Form.Item>
-            {/*<Button onClick={ (e) => sendForm(e) }>Зарегистрировать сотрудника</Button>*/}
         </Form>
     );
 };
