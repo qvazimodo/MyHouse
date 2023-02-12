@@ -188,7 +188,7 @@ const UserCards = () => {
                     </Form.Item>
                 </Form>
 
-                <h2 className={s.mycards}>Ваши карточки</h2>
+                <h2 className={s.mycards}>Ваши объявления</h2>
                 <List
                     grid={{
                         gutter: 16,
