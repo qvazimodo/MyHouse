@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector, } from "react-redux";
-import { Card, Col, Divider, Row, Spin, Tag } from "antd";
+import { Button, Card, Col, Divider, Row, Spin, Tag } from "antd";
 import { fetchMeterValues } from "../../features/meter/meterSlice";
 import { MetersChart } from "./MetersChart";
 
 export const MeterValuesTable = () => {
+    const [ showChart, setShowChart ] = useState( false );
     let { meterId } = useParams()
     // const houseAddress = useSelector( state => state.house.addresses[houseAddressId] )
     const isLoading = useSelector( state => state.meter.loading )
@@ -87,6 +88,9 @@ export const MeterValuesTable = () => {
                     <span> { currentMeter.number }</span>
                 </Col>
             </Row>
+            <Button onClick={ () => setShowChart( !showChart ) }>{ showChart ? "Скрыть" : "Показать" } диаграммы расхода ресурсов</Button>
+
+            { showChart && <MetersChart/> }
 
             { isLoading &&
                 <div className={ 'min-h-[50vh] w-full flex justify-center items-center' }>
@@ -94,7 +98,7 @@ export const MeterValuesTable = () => {
                 </div>
             }
             { !isLoading &&
-                <Row span={ 24 }>
+                <Row span={ 24 } className={ 'mt-10' }>
                     <Card
                         className={ 'w-full' }
                     >
@@ -144,7 +148,6 @@ export const MeterValuesTable = () => {
                         } ) }
                     </Card>
                 </Row> }
-            <MetersChart/>
         </div>
     )
 }
