@@ -47,33 +47,14 @@ export const MeterValuesTable = () => {
     console.log( contentList )
 
     const getClassNameByMonth = ( monthId ) => {
-        console.log( monthId )
-        switch ( monthId ) {
-            case  12:
-            case  1:
-            case  2:
-                return 'bg-blue-500'
-            case  3:
-            case  4:
-            case  5:
-                return 'bg-green-500'
-            case  6:
-            case  7:
-            case  8:
-                return 'bg-red-500'
-            case  9:
-            case  10:
-            case  11:
-                return 'bg-yellow-500'
-
-        }
-
+        if ( [12, 1,2].includes(monthId)  ){return'bg-blue-500' }
+        if ( [3, 4,5].includes(monthId)  ){return'bg-green-500' }
+        if ( [6, 7,8].includes(monthId)  ){return'bg-red-500' }
+        if ( [9, 10,11].includes(monthId)  ){return'bg-yellow-500' }
     }
 
-    const getConsumption =
-        async ( month ) => {
-            // return month.value - await getPreviousReadings( month )
-        }
+    const getConsumption = ( month ) => month['value'] - month['parent_value']
+
 
     const getPreviousReadings = async ( month ) => {
         if ( isNull( month['parent_id'] ) ) {
@@ -87,10 +68,6 @@ export const MeterValuesTable = () => {
     }
     return (
         <div className={ 'w-full ' }>
-
-            {/*            <Row className={ 'bg-neutral-400 text-white p-10 w-full text-xl rounded-t-xl' }>
-                { 'Улица ' + houseAddress['streetName'] + ', дом №' + houseAddress['houseNumber'] }
-            </Row>*/ }
             <Row className={ 'flex py-10' }>
                 <Col span={ 4 } offset={ 1 } className={ 'flex justify-between items-center' }>
                     <Tag className={ 'p-3' } color="#3b5999">Вид энергоресурса:</Tag>
@@ -102,17 +79,6 @@ export const MeterValuesTable = () => {
                 </Col>
             </Row>
             <Row>
-
-{/*                <Card
-                    style={ {
-                        width: '100%',
-                    } }
-                    tabList={ tablist }
-                    activeTabKey={ activeTabKey }
-                    onTabChange={ onTabChange }
-                >
-                    { contentList[activeTabKey] }
-                </Card>*/}
                 <Card
                     style={{
                         width: '100%',
@@ -151,7 +117,7 @@ export const MeterValuesTable = () => {
                                                         'text-lg text-center' }>{ month.value }
                                                     </div>
                                                     <div className={
-                                                        'text-lg text-center' }>{  }
+                                                        'text-lg text-center' }>{ getConsumption( month ) }
                                                     </div>
                                                     <Divider/>
                                                 </Col>

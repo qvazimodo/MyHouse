@@ -48,11 +48,11 @@ class MeterController extends Controller
         }
         $readingsWithParentValues = array_map(function ($year) {
             return array_map(function ($month) {
-                dump($month);
+//                dump($month);
                 if ($month['parent_id'] !== null) {
                     $parentValue = MeterMonthYear::where('id', '=', $month['parent_id'])
                         ->first('value')['value'];
-                    dump($parentValue);
+//                    dump($parentValue);
                 } else {
                     $parentValue = 0;
                 }
@@ -60,9 +60,7 @@ class MeterController extends Controller
             }, $year);
 
         }, $meterValues);
-
-
-        dump($meterValues);
+//        dump($meterValues);
         return response()->json([
             'data' => $readingsWithParentValues,
         ], 200);
