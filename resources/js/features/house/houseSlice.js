@@ -3,7 +3,7 @@ import {
     ADMIN_ADDRESSES_API_URL,
     ADMIN_HOUSE_DESCRIPTION_API_URL,
     ADMIN_HOUSES_API_URL,
-    METERS_VALUES_API_URL
+    ADMIN_METER_BY_ID_VALUES_API_URL
 } from '../../helpers/API'
 
 const initialState = {
@@ -56,7 +56,7 @@ const initialState = {
             houseNumber: "",
         }
     },
-    meters: {
+/*    meters: {
         client_id:
             [ {
                 id: null,
@@ -70,7 +70,7 @@ const initialState = {
                 updated_at: "",
                 house_id: null
             } ],
-    },
+    },*/
     descriptions: {
         client_id: {
             id: null,
@@ -134,11 +134,11 @@ export const fetchDescription = createAsyncThunk( 'house/fetchDescription', ( ad
     return fetch( url ).then( response => response.json() ).then( result => result.data[0]['house_description'] )
 } )
 
-export const fetchMeterValues = createAsyncThunk( 'house/fetchMeterValues', ( meterId ) => {
-    let url = METERS_VALUES_API_URL + "/" + `${ meterId }`
+/*export const fetchMeterValues = createAsyncThunk( 'house/fetchMeterValues', ( meterId ) => {
+    let url = ADMIN_METER_BY_ID_VALUES_API_URL + "/" + `${ meterId }`
     console.log( url )
     return fetch( url ).then( response => response.json() ).then( result => result.data )
-} )
+} )*/
 
 const houseSlice = createSlice( {
     name: 'house',
@@ -188,12 +188,11 @@ const houseSlice = createSlice( {
             state.meters = {}
             state.addresses = {}
 
-
             action.payload.forEach( item => {
-                state.descriptions[item.id] = item[`house_description`]
-                state.meters[item.id] = item[`meters`]
-                state.addresses[item.id] = {
-                    id: item['id'],
+                state.descriptions[item.house_id] = item[`house_description`]
+                state.meters[item.house_id] = item[`meters`]
+                state.addresses[item.house_id] = {
+                    id: item['house_id'],
                     houseNumberStreetId: item[`house_number_street_id`],
                     houseDescriptionsId: item[`house_descriptions_id`],
                     streetId: item[`street_id`],
@@ -221,7 +220,7 @@ const houseSlice = createSlice( {
             state.loading = false
         } )
 
-        builder.addCase( fetchMeterValues.pending, ( state ) => {
+       /* builder.addCase( fetchMeterValues.pending, ( state ) => {
             state.loading = true
         } )
         builder.addCase( fetchMeterValues.fulfilled, ( state, action ) => {
@@ -231,7 +230,7 @@ const houseSlice = createSlice( {
         builder.addCase( fetchMeterValues.rejected, ( state, action ) => {
             state.error = action.payload
             state.loading = false
-        } )
+        } )*/
     },
 })
 

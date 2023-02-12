@@ -5,6 +5,7 @@ import houseReducer from './features/house/houseSlice'
 import clientReducer from './features/client/clientSlice'
 import employeeReducer from './features/employee/employeeSlice'
 import passwordReset from "./features/passwordReset/passwordReset";
+import meterReducer from './features/meter/meterSlice'
 
 const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
         employee: employeeReducer,
         client:clientReducer,
         passwordReset: passwordReset,
+        meter:meterReducer,
     }
 })
 

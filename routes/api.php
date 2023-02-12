@@ -77,11 +77,6 @@ Route::prefix('admin')->group(function () {
     //api вывода информации обо всех счетчиках всех пользователей
     Route::get('/meters', [AdminMeterController::class, 'index']);
 
-    //api вывода показаний выбранного счётчика
-    Route::get('/meters/values/{id}', [AdminMeterController::class, 'selectedMeterValues']);
-
-    Route::get('/meters/values', [AdminMeterController::class, 'allMetersValues']);
-
     //список технических характеристик и счётчиков всех домов, обслуживаемых компанией
     Route::get('/houses', [HouseController::class, 'index']);
 
@@ -95,9 +90,24 @@ Route::prefix('admin')->group(function () {
     Route::get('/houses/descriptions/{street_id}/{house_id}', [HouseController::class, 'show']);
 
     //общедомовые счётчики
-//    Route::get('/houses/meters', [HouseController::class, 'meters']);
+    Route::get('/collective_meters', [AdminMeterController::class, 'collectiveMeters']);
 
+    //общедомовые счётчики по заданному адресу
+    Route::get('/collective_meters/by_address/{street_id}/{house_number_id}',
+        [AdminMeterController::class, 'collectiveMetersByAddress']);
 
+    //счётчики клиентов по заданному адресу
+    Route::get('/clients_meters/by_address/{street_id}/{house_number_id}',
+        [AdminMeterController::class, 'clientMetersByAddress']);
+
+    //показания выбранного счётчика по ID
+    Route::get('/meters/values/{id}', [AdminMeterController::class, 'selectedMeterValues']);
+
+    Route::get('/meters/values', [AdminMeterController::class, 'allMetersValues']);
+
+    //показания счётчика по id показаний (для получения предыдущих показаний счётчика)
+    Route::get('meters/parent/{meterReadingsId}',
+        [AdminMeterController::class, 'meterReadingsById']);
 
     //Сотрудники
     Route::get('/employees', [EmployeeAPIController::class, 'index']);
@@ -116,7 +126,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/clients/by_address/{street_id}/{house_id}',
         [AdminClientController::class, 'getClientsByAddress']);
 
-    Route::put('/clients/advanced/',
+    Route::put('/clients',
         [AdminClientController::class, 'update']);
 
     Route::delete('/clients/{client}',
@@ -133,8 +143,6 @@ Route::prefix('')->group(function () {
 //api вывода всех новостей
     Route::get('/news', [NewsController::class, 'index']);
 });
-
-
 
 
 // Password reset routes

@@ -1,10 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import {
-    deleteEmployee,
-    fetchEmployeesByAddress,
-    putEmployeeById
-} from "../../features/employee/employeeSlice";
+import { deleteEmployee, fetchEmployeesByAddress, putEmployeeById } from "../../features/employee/employeeSlice";
 import { Button, Form, Input, message, Popconfirm, Space, Spin, Table, Typography } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
@@ -149,30 +145,6 @@ export const EmployeesListForSelectedAddress = ( props ) => {
                 text
             ),
     });
-
-
-
-
-    /*    useEffect(() => {
-            if (isNull(selectedAddress.streetId)) {
-                console.log(selectedAddress)
-                dispatch(fetchAllEmployees()).then(() => setIsFullList(true))
-            }
-            return () => dispatch(fetchAllEmployees())
-        }, [selectedAddress]);*/
-
-    /*    useEffect(() => {
-            if (!isNull(selectedAddress.houseNumberId)) {
-                console.log(selectedAddress)
-                console.log(location)
-                dispatch(fetchEmployeesByAddress(selectedAddress)).then(() => {
-                    setEmployeeIsUpdated(false)
-                    setIsFullList(false)
-                })
-            }
-            return () => dispatch(fetchEmployeesByAddress(selectedAddress))
-        }, [selectedAddress, employeeIsUpdated]);*/
-
 
     let data = employeesArray.map(item => {
         return {
@@ -468,35 +440,25 @@ export const EmployeesListForSelectedAddress = ( props ) => {
     const isLoading = useSelector(state => state.employee.loading)
 
     return (
-        <div>
-            <h1>Selected</h1>
-            {/*           <div className="add">
-                <div>
-                    {!isFullList &&
-                        <Button className="add__button" type="primary"
-                                onClick={() => dispatch(clearSelectedAddress())}>
-                            Отобразить полный список сотрудников
-                        </Button>}
-                </div>
-                <Button className="add__button" type="primary" onClick={showModal}>
-                    Зарегистрировать нового сотрудника
-                </Button>
-            </div>*/ }
-
-            <div className={styles.table__screen}>
-                {isLoading && <Spin size="large"/>}
-                {!isLoading &&
-                    <Form form={form} component={false}>
-                        <Table columns={mergedColumns}
-                               dataSource={data}
-                               bordered
-                               onChange={onChange}
-                               rowClassName="editable-row"
-                               pagination={{
-                                   hideOnSinglePage: true,
-                                   onChange: cancel,
-                                   // pageSize,
-                                   // total: totalPages,
+        <>
+            { isLoading &&
+                <div className={ styles.table__screen }>
+                    <Spin className={ styles.contentSpinner } size="large"/>
+                </div> }
+            {
+                !isLoading &&
+                <Form className={ 'flex flex-col min-h-[80vh]' } form={ form } component={ false }>
+                    <h1 className={ 'text-xl py-5 px-10' }>Сотрудники компании</h1>
+                    <Table columns={ mergedColumns }
+                           dataSource={ data }
+                           bordered
+                           onChange={ onChange }
+                           rowClassName="editable-row"
+                           pagination={ {
+                               hideOnSinglePage: true,
+                               onChange: cancel,
+                               // pageSize,
+                               // total: totalPages,
                                    // onChange: onPageChange
                                    // showSizeChanger: true,
                                }}
@@ -507,8 +469,7 @@ export const EmployeesListForSelectedAddress = ( props ) => {
                                }}
                         />
                     </Form>}
-            </div>
-        </div>
+        </>
     );
 }
 

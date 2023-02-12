@@ -1,27 +1,19 @@
-import React, {useEffect, useRef, useState} from "react"
-import {useDispatch, useSelector} from "react-redux"
-import { Outlet, useNavigate, redirect, useLocation } from "react-router-dom"
-import {Layout, Menu, theme} from 'antd';
-import {adminHeaderMenuItems} from "./helpers/adminHeaderMenuItems"
-import {
-    clearDescription,
-    clearSelectedAddress,
-    fetchAddresses,
-    fetchHouses,
-    setSelectedAddress
-} from "../../features/house/houseSlice";
-import {isNull} from "lodash";
-import {useBasePath} from "../../hooks/useBasePath";
-import {clearClientsArray} from "../../features/client/clientSlice";
+import React, { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { Outlet, useLocation, useNavigate } from "react-router-dom"
+import { Layout, Menu, theme } from 'antd';
+import { adminHeaderMenuItems } from "./helpers/adminHeaderMenuItems"
+import { fetchAddresses, fetchHouses, setSelectedAddress } from "../../features/house/houseSlice";
+import { useBasePath } from "../../hooks/useBasePath";
 
 
-const {Header, Content, Footer, Sider} = Layout;
+const { Header, Content, Footer, Sider } = Layout;
 
 export const MainPage = () => {
-    const [selectedMenuItem, setSelectedMenuItem] = useState({})
-    const [collapsed, setCollapsed] = useState(false);
+    const [ selectedMenuItem, setSelectedMenuItem ] = useState( {} )
+    const [ collapsed, setCollapsed ] = useState( false );
     const {
-        token: {colorBgContainer},
+        token: { colorBgContainer },
     } = theme.useToken();
 
     const navigate = useNavigate()
@@ -29,7 +21,7 @@ export const MainPage = () => {
     const basePath = useBasePath()
 
     const dispatch = useDispatch()
-    const clickOnHeaderMenu = ({key}) => {
+    const clickOnHeaderMenu = ( { key } ) => {
         setOpenKeys([])
         navigate(key)
     }
@@ -91,54 +83,57 @@ export const MainPage = () => {
             houseNumberId: selectedHouse.id
         }
         // console.log( selectedAddress )
-        dispatch(setSelectedAddress(selectedAddress))
+        dispatch( setSelectedAddress( selectedAddress ) )
         return selectedAddress
     }
 
 
     const defaultSelectedMenuItem = '/addresses'
 
-    useEffect(() => {
-        navigate(defaultSelectedMenuItem)
+    useEffect( () => {
+        navigate( defaultSelectedMenuItem )
         return () => {
-            navigate(defaultSelectedMenuItem)
+            navigate( defaultSelectedMenuItem )
         };
-    }, []);
+    }, [] );
+
+
+    console.log( basePath )
 
     return (
-        <Layout style={{
+        <Layout style={ {
             minHeight: '100vh',
-        }}
+        } }
         >
-            <Sider collapsible
-                   collapsed={collapsed}
-                   onCollapse={(value) => setCollapsed(value)
-                   }>
+            { (basePath !== '/meters/values') && <Sider collapsible
+                                                        collapsed={ collapsed }
+                                                        onCollapse={ ( value ) => setCollapsed( value )
+                                                        }>
                 <div
-                    style={{
+                    style={ {
                         height: 32,
                         margin: 16,
                         // background: 'rgba(255, 255, 255, 0.2)',
-                    }}
-                    className={'text-blue-500 text-base text-white text-center'}
+                    } }
+                    className={ 'text-blue-500 text-base text-white text-center' }
                 >Адреса
                 </div>
                 <Menu
-                    onClick={({item, key, keyPath, domEvent}) => {
-                        console.log(keyPath)
-                        setSelectedMenuItem(getAddress(keyPath))
-                        const address = getAddress(keyPath)
-                        console.log(basePath)
-                        const path = basePath + `/${address.streetId}/${address.houseNumberId}`
-                        console.log(path)
-                        navigate(path)
-                    }}
-                    openKeys={openKeys}
-                    onOpenChange={onOpenChange}
-                    theme="dark" defaultSelectedKeys={['1']}
-                    mode="inline" items={sideMenuItems}
+                    onClick={ ( { item, key, keyPath, domEvent } ) => {
+                        console.log( keyPath )
+                        setSelectedMenuItem( getAddress( keyPath ) )
+                        const address = getAddress( keyPath )
+                        console.log( basePath )
+                        const path = basePath + `/${ address.streetId }/${ address.houseNumberId }`
+                        console.log( path )
+                        navigate( path )
+                    } }
+                    openKeys={ openKeys }
+                    onOpenChange={ onOpenChange }
+                    theme="dark" defaultSelectedKeys={ [ '1' ] }
+                    mode="inline" items={ sideMenuItems }
                 />
-            </Sider>
+            </Sider> }
             <Layout className="site-layout">
                 <Header
                     style={{

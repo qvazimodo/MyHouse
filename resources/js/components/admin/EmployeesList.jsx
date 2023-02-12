@@ -1,38 +1,39 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { deleteEmployee, fetchAllEmployees, putEmployeeById } from "../../features/employee/employeeSlice";
-import { Button, Form, Input, message, Popconfirm, Space, Spin, Table, Typography } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
+import React, {useEffect, useRef, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {deleteEmployee, fetchAllEmployees, putEmployeeById} from "../../features/employee/employeeSlice";
+import {Button, Form, Input, message, Popconfirm, Space, Spin, Table, Typography} from 'antd';
+import {SearchOutlined} from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import { EditableCell } from '../Editable/EditableCell';
+import {EditableCell} from '../Editable/EditableCell';
 import './styles/EmployeesList.css';
-import { CSRF_URL, EMPLOYEES_API_URL } from "../../helpers/API";
-import { initialRegistrationFormFields } from "./helpers/initialRegistrationFormFields";
-import { useLocation } from "react-router-dom";
+import {CSRF_URL, EMPLOYEES_API_URL} from "../../helpers/API";
+import {initialRegistrationFormFields} from "./helpers/initialRegistrationFormFields";
+import {useLocation} from "react-router-dom";
 import styles from "./styles/EmployeesList.module.scss";
+import {EmployeeAddPopup} from "./EmployeeAddPopup";
+import {EmployeeRegisterForm} from "./EmployeeRegisterForm";
 
-const onChange = ( pagination, filters, sorter, extra ) => {
-    console.log( 'params', pagination, filters, sorter, extra );
+const onChange = (pagination, filters, sorter, extra) => {
+    // console.log( 'params', pagination, filters, sorter, extra );
 };
-export const EmployeesList = ( props ) => {
-    const [ form ] = Form.useForm();
-    const [ employeeIsUpdated, setEmployeeIsUpdated ] = useState( false );
-    const [ editingKey, setEditingKey ] = useState( '' );
+export const EmployeesList = (props) => {
+    const [form] = Form.useForm();
+    const [employeeIsUpdated, setEmployeeIsUpdated] = useState(false);
+    const [editingKey, setEditingKey] = useState('');
 
     const isEditing = (record) => record.key === editingKey;
     const dispatch = useDispatch()
-    const selectedAddress = useSelector( (state => state.house.selectedAddress) )
-    const employeesArray = useSelector( state => state.employee.array )
+    const selectedAddress = useSelector((state => state.house.selectedAddress))
+    const employeesArray = useSelector(state => state.employee.array)
     const location = useLocation()
 //Получение списка сотрудников при изменении данных и при первоначальной загрузке страницы
-    useEffect( () => {
-        dispatch( fetchAllEmployees() )
+    useEffect(() => {
+        dispatch(fetchAllEmployees())
         setEmployeeIsUpdated(false)
         return () => {
-            dispatch( fetchAllEmployees() )
+            dispatch(fetchAllEmployees())
         };
-    }, [ employeeIsUpdated ] );
-
+    }, [employeeIsUpdated]);
 
 
     //функционал поиска по значениям в столбцах
@@ -270,15 +271,15 @@ export const EmployeesList = ( props ) => {
             dataIndex: 'email',
             editable: true,
         },
-               {
-                   title: 'Доступные действия',
-                   children: [
-                       {
-                           dataIndex: 'edit',
-                           render: (_, record) => {
-                               const editable = isEditing(record);
-                               return editable ? (
-                                   <span className="flex">
+        {
+            title: 'Доступные действия',
+            children: [
+                {
+                    dataIndex: 'edit',
+                    render: (_, record) => {
+                        const editable = isEditing(record);
+                        return editable ? (
+                            <span className="flex">
                    <Typography.Link
                        onClick={() => save(record.key)}
                        style={{
@@ -291,26 +292,26 @@ export const EmployeesList = ( props ) => {
                        <Button>Отмена</Button>
                    </Popconfirm>
                  </span>
-                               ) : (
-                                   <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
-                                       <Button type="primary">Редактировать</Button>
-                                   </Typography.Link>
-                               );
-                           },
-                       },
-                       {
+                        ) : (
+                            <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
+                                <Button type="primary">Редактировать</Button>
+                            </Typography.Link>
+                        );
+                    },
+                },
+                {
 
-                           dataIndex: 'delete',
-                           render: (_, record) =>
-                               data.length >= 1 ? (
-                                   <Popconfirm title="Вы уверены, что хотите удалить учётную запись данного сотрудника?"
-                                               onConfirm={() => handleDelete(record.key)}>
-                                       <Button type="primary" danger>Удалить</Button>
-                                   </Popconfirm>
-                               ) : null,
-                       },
-                   ]
-               }
+                    dataIndex: 'delete',
+                    render: (_, record) =>
+                        data.length >= 1 ? (
+                            <Popconfirm title="Вы уверены, что хотите удалить учётную запись данного сотрудника?"
+                                        onConfirm={() => handleDelete(record.key)}>
+                                <Button type="primary" danger>Удалить</Button>
+                            </Popconfirm>
+                        ) : null,
+                },
+            ]
+        }
     ];
 
     const handleDelete = (key) => {
@@ -345,6 +346,7 @@ export const EmployeesList = ( props ) => {
     const showModal = () => {
         setOpen(true);
     };
+
     const handleOk = (e) => {
         sendForm(e)
         setModalText('The modal will be closed after two seconds');
@@ -354,12 +356,14 @@ export const EmployeesList = ( props ) => {
             setConfirmLoading(false);
         }, 2000);
     };
+
     const handleCancel = () => {
         console.log('Clicked cancel button');
         setOpen(false);
     };
 
 
+    ///////////////////////////////////////////////
     //логика формы добавления сотрудника
     const [messageApi, contextHolder] = message.useMessage();
     const [fields, setFields] = useState(initialRegistrationFormFields);
@@ -372,6 +376,7 @@ export const EmployeesList = ( props ) => {
             .catch((error) => console.log(error))
             .then((data) => data)
     }
+
 
     const sendForm = (e) => {
         e.preventDefault()
@@ -421,50 +426,66 @@ export const EmployeesList = ( props ) => {
             });
         }, 1000);
     };
+    ///////////////////////////////////////////////
+
 
     const isLoading = useSelector(state => state.employee.loading)
 
     return (
-        <div>
-            {/*           <div className="add">
-                <div>
-                    {!isFullList &&
-                        <Button className="add__button" type="primary"
-                                onClick={() => dispatch(clearSelectedAddress())}>
-                            Отобразить полный список сотрудников
-                        </Button>}
-                </div>
-                <Button className="add__button" type="primary" onClick={showModal}>
-                    Зарегистрировать нового сотрудника
-                </Button>
-            </div>*/ }
+        <>
+            <EmployeeAddPopup
+                open={open}
+                handleOk={handleOk}
+                handleCancel={handleCancel}
+                confirmLoading={confirmLoading}
+            >
+                <EmployeeRegisterForm
+                    fields={fields}
+                    onChange={(newFields) => {
+                        setFields(newFields);
+                    }}
+                    sendForm={sendForm}
+                />
+            </EmployeeAddPopup>
 
             <div className={styles.table__screen}>
                 {isLoading && <Spin size="large"/>}
                 {!isLoading &&
-                    <Form form={form} component={false}>
-                        <Table columns={mergedColumns}
-                               dataSource={data}
-                               bordered
-                               onChange={onChange}
-                               rowClassName="editable-row"
-                               pagination={{
-                                   hideOnSinglePage: true,
-                                   onChange: cancel,
-                                   // pageSize,
-                                   // total: totalPages,
-                                   // onChange: onPageChange
-                                   // showSizeChanger: true,
-                               }}
-                               components={{
-                                   body: {
-                                       cell: EditableCell,
-                                   },
-                               }}
-                        />
-                    </Form>}
+                    <div className={'flex flex-col'}>
+                        <div className={'flex justify-start'}>
+                            <Button className={'my-6 text-green-600'}
+                                    onClick={showModal}
+                                    size='large'
+                            >
+                                Зарегистрировать нового сотрудника
+                            </Button>
+                        </div>
+                        <Form form={form} component={false}>
+
+                            <Table columns={mergedColumns}
+                                   dataSource={data}
+                                   bordered
+                                   onChange={onChange}
+                                   rowClassName="editable-row"
+                                   pagination={{
+                                       hideOnSinglePage: true,
+                                       onChange: cancel,
+                                       // pageSize,
+                                       // total: totalPages,
+                                       // onChange: onPageChange
+                                       // showSizeChanger: true,
+                                   }}
+                                   components={{
+                                       body: {
+                                           cell: EditableCell,
+                                       },
+                                   }}
+                            />
+                        </Form>
+                    </div>
+                }
             </div>
-        </div>
+        </>
     );
 }
 

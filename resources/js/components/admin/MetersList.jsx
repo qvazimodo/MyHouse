@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Card, Col, Layout, Row } from 'antd';
+import { Button, Card, Col, Layout, Row, Typography } from 'antd';
 import "./styles/MeterList.css";
 import { NavLink } from "react-router-dom";
-import {setCurrentMeter} from '../../features/house/houseSlice'
+import { setCurrentMeter } from '../../features/house/houseSlice'
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -14,6 +14,11 @@ export const MetersList = () => {
 
     return (
         <>
+            <Typography.Title
+                level={ 2 }
+                className={ 'pt-8 pb-5 text-center' }
+            >Полный перечень коллективных приборов учёта
+            </Typography.Title>
             <Row gutter={ [ 16, 32 ] }>
                 { Object.keys( meters ).map( key => {
                     return (
@@ -22,20 +27,20 @@ export const MetersList = () => {
                             className={ 'bg-neutral-200' }
                         >
                             <Row key={ key }>
-                                { console.log( key, addresses[key] ) }
+                                {/*{ console.log( key, addresses[key] ) }*/}
                                 <Row gutter={ [ 16, 16 ] }>
                                     { meters[key].map( meter => {
                                         return (<Col>
-                                            { console.log( key, meter ) }
+                                            {/*{ console.log( key, meter ) }*/}
                                             <div className={'inner__card'}>
                                                 <Card
                                                     type="inner"
                                                     hoverable
                                                     title={ meter.type }
                                                     extra={
-                                                    <Button onClick={()=>dispatch(setCurrentMeter(meter))}>
-                                                        <NavLink to={`/meters/${key}/${meter.id}`}>Показания</NavLink>
-                                                    </Button>
+                                                        <Button onClick={()=>dispatch(setCurrentMeter(meter))}>
+                                                            <NavLink to={`/meters/values/${meter.id}`}>Показания</NavLink>
+                                                        </Button>
                                                     }
                                                     style={ {
                                                         width: 400,
