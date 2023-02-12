@@ -50,7 +50,6 @@ const ListCards = () => {
             .then(response => response.json())
             .catch(err => console.log(err))
             .then(result => {
-                console.log(result)
                 setEmployeesList(result.data)
                 setTotalPages(result.meta.total)
                 setPageSize(result.meta.per_page)

@@ -4,11 +4,14 @@ import FormItem from "antd/es/form/FormItem";
 import "./PasswordReq.css";
 import {PASSWORD_CHECK_EMAIL_API_URL, PASSWORD_EMAIL_API_URL} from "../../helpers/API";
 import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {addPassword} from "../../features/passwordReset/passwordReset";
 
 const CodePassword = () => {
     const [code, setCode] = useState('');
     const [disableCode, setDisableCode] = useState(true);
     const [textMessageEmail, setTextMessageEmail] = useState('');
+    const dispatch = useDispatch();
 
     const sendForm = (e) => {
         fetch(PASSWORD_CHECK_EMAIL_API_URL, {
@@ -27,6 +30,7 @@ const CodePassword = () => {
             .catch(e => console.log('Request failed', e))
             .then(result => {
                 if (result.message === "passwords.code_is_valid") {
+                    dispatch(addPassword({code}));
                     setTextMessageEmail('Код подтверждения принят. Нажмите на далее')
                     setDisableCode(false);
                 } else {
@@ -66,7 +70,7 @@ const CodePassword = () => {
                 <h2 className="text-accept-code">{textMessageEmail}</h2>
                 <FormItem>
                     <FormItem hidden={disableCode}>
-                        <Link to="/passwordnew" state={{code:code}} className="link-password">Далее</Link>
+                        <Link to="/passwordnew" className="link-password">Далее</Link>
                     </FormItem>
                 </FormItem>
             </Form>

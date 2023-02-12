@@ -214,7 +214,6 @@ const UserCards = () => {
                             <Card title={`Номер объявления: ${item.id}`}>
                                 <div className="wrapperusercard">
                                     <Image.PreviewGroup>
-                                        <div>{console.log(item)}</div>
                                         <div>{item.img.map((photopath) => <Image
                                             src={`${PHOTO_PATH}` + `${photopath.path}`}
                                             width={200}

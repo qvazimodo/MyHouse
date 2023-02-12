@@ -3,6 +3,7 @@ import {Button, Form, Input} from "antd";
 import FormItem from "antd/es/form/FormItem";
 import {PASSWORD_RESET_EMAIL_API_URL} from "../../helpers/API";
 import {useLocation} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const NewPassword = () => {
 
@@ -11,9 +12,9 @@ const NewPassword = () => {
     const [disableCode, setDisableCode] = useState(true);
     const [textMessageEmail, setTextMessageEmail] = useState('');
 
-    let emailCode = useLocation();
+    const code = useSelector(state => state.passwordReset.code);
 
-    const sendForm = (e) => {
+    const sendForm = () => {
         fetch(PASSWORD_RESET_EMAIL_API_URL, {
             method: 'POST',
             headers: {
@@ -23,7 +24,7 @@ const NewPassword = () => {
                     .getAttribute('content'),
             },
             body: JSON.stringify({
-                code: emailCode.state.code,
+                code: code,
                 password: password,
             })
         })

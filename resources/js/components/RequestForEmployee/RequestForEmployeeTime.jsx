@@ -42,8 +42,6 @@ const RequestForEmployeeTime = () => {
                     arraychildren = [];
                     objkeys = {};
                     navigate("/");
-                    console.log('result', result);
-                    console.log('profTime.state', profTime.state)
                 }
             )
 
@@ -51,7 +49,6 @@ const RequestForEmployeeTime = () => {
 
     const onChange = (value) => {
         setValueProfTime(value);
-        console.log(value);
     };
 
     const checkTimes = (e) => {
