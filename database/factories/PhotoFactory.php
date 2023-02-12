@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Card;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,8 +21,8 @@ class PhotoFactory extends Factory
         return [
             'card_id' => null,
             'name' => $faker->title,
-            'path' => $faker->filePath(),
-            'thumbnail_path' => $faker->filePath(),
+            'path' => 'public/ads-images/' . rand(1,2) . '.jpg',
+            //'thumbnail_path' => $faker->filePath(),
             'width' => 400,
             'height' => 300,
             'created_at' => now(),
