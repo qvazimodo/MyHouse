@@ -44,20 +44,27 @@ class MeterController extends Controller
                 ->join('years', 'month_year.year_id', '=', 'years.id')
                 ->where('meters.id', $id)
                 ->where('years.id', $year['id'])
-                ->get();
+                ->get()->toArray();
         }
+        $readingsWithParentValues = array_map(function ($year) {
+            return array_map(function ($month) {
+                dump($month);
+                if ($month['parent_id'] !== null) {
+                    $parentValue = MeterMonthYear::where('id', '=', $month['parent_id'])
+                        ->first('value')['value'];
+                    dump($parentValue);
+                } else {
+                    $parentValue = 0;
+                }
+                return [...$month, 'parent_value' => $parentValue];
+            }, $year);
 
-/*        $meterValues = Meter::where('meters.id', $id)
-            ->join('meter_month_year', 'meters.id', '=', 'meter_month_year.meter_id')
-            ->join('month_year', 'meter_month_year.month_year_id', '=', 'month_year.id')
-            ->select('meter_month_year.value',
-                'meter_month_year.parent_id',
-                'month_year.year_id',
-                'month_year.month_id')
-            ->get();*/
+        }, $meterValues);
 
+
+        dump($meterValues);
         return response()->json([
-            'data' => $meterValues,
+            'data' => $readingsWithParentValues,
         ], 200);
     }
 
