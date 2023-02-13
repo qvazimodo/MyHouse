@@ -1,0 +1,11 @@
+.wrapperusercard{
+    text-align: center;
+    flex: 1 1 auto;
+}
+
+.wrapperusercard div div{
+    display: none;
+}
+.wrapperusercard div div:first-child{
+    display: inline-block;
+}

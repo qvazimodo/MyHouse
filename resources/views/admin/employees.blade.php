@@ -1,16 +1,17 @@
 @extends('layouts.landing_layout')
 
-@section('header')
-    @include('header')
+@section('title', 'My House Управляющая компания')
+
+@section('menu')
+    @include('Identically.menu')
 @endsection
 
 @section('content')
     <div class="container">
-        <h2 class="title-2">Список сотрудников</h2>
-        <div id="employees-list"></div>
+        <div id="employees"></div>
     </div>
 @endsection
 
 @section('footer')
-    @include('footer')
+    @include('Identically.footer')
 @endsection

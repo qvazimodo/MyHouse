@@ -1,0 +1,18 @@
+.editable-row .ant-form-item-explain {
+    position: absolute;
+    top: 100%;
+    font-size: 12px;
+}
+
+
+.operation__button .ant-btn-primary{
+    background-color: #1677ff;
+}
+
+button[type="button"].ant-btn-primary{
+    background-color: #1677ff;
+}
+
+button[type="button"].ant-btn-primary.ant-btn-dangerous{
+    background-color: #ff4d4f;
+}

@@ -2,14 +2,17 @@
 
 namespace Database\Factories;
 
-use Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Carbon;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Meter>
  */
 class MeterFactory extends Factory
 {
+    private array $accuracyClasses = [1.5, 1, 0.6, 0.4, 0.25, 0.15];
+
+
     /**
      * Define the model's default state.
      *
@@ -17,21 +20,15 @@ class MeterFactory extends Factory
      */
     public function definition()
     {
-        $faker = Faker\Factory::create('ru_Ru');
-        $type = [
-            'hot_water', 'cold_water', 'electricity', 'heat'
-        ];
-        $month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-
+        $faker = \Faker\Factory::create();
+        $startDate = now();
         return [
-            'user_id' => $faker->numberBetween(1, 100),
-            'meter_id' => $faker->numberBetween(1, 100),
-            'type' => $type[array_rand($type)],
-            'number' => $faker->numberBetween(1000, 9000),
-            'month' => $month[array_rand($month)],
-            'value' => $faker->numberBetween(100, 900),
-            'created_at' => now(),
-            'updated_at' => now(),
+            'number' => rand(102030405060, 304050607080),
+            'created_at' => $startDate,
+            'updated_at' => $startDate,
+            'accuracy_class' => $this->accuracyClasses[array_rand($this->accuracyClasses)],
+            'manufacturing_date' => $faker->dateTimeBetween('-12 years', '-2 years'),
+            'next_verification_date' => $faker->dateTimeBetween('+1 years', '+3 years'),
         ];
     }
 }

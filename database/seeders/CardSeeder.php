@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Card;
+use App\Models\Category;
+use App\Models\Client;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Faker;
+
 
 class CardSeeder extends Seeder
 {
@@ -15,23 +17,13 @@ class CardSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('cards')->insert($this->getData());
-    }
 
-    private function getData()
-    {
-        $faker = Faker\Factory::create('ru_Ru');
-        $data = [];
+        $clients = Client::all();
 
 
-        for ($i = 0; $i < 100; $i++) {
-            $data[] = [
-                'title' => $faker->sentence(),
-                'price' => $faker->numberBetween(10000, 5000000),
-                'description' => $faker->paragraph(3),
-                'user_id' => $faker->numberBetween(1, 100),
-            ];
-        }
-        return $data;
+        $clients->each(function ($client) {
+            $cards = Card::factory(rand(0, 4))->make(['client_id' => $client->get('id')]);
+            $client->cards()->saveMany($cards);
+        });
     }
 }

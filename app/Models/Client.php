@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -19,12 +21,7 @@ class Client extends Authenticatable
      */
     protected $fillable = [
         'user_id',
-        'street',
-        'house_number',
-        'entrance',
-        'floor',
-        'apartment_number',
-        'residents_number',
+        'apartment_id',
     ];
 
     /**
@@ -45,8 +42,29 @@ class Client extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
+
+    public function cards(): HasMany
+    {
+        return $this->hasMany(Card::class);
+    }
+
+    public function meters(): HasMany
+    {
+        return $this->hasMany(Meter::class);
+    }
+
+    public function apartment(): BelongsTo
+    {
+        return $this->belongsTo(Apartment::class);
+    }
+
+    public function timetable(): belongsTo
+    {
+        return $this->belongsTo(Timetable::class);
+    }
+
 }

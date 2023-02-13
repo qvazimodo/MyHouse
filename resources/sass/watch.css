@@ -1,0 +1,50 @@
+.section {
+    padding: 150px 0;
+}
+.input-table {
+    display: flex;
+    justify-content: space-evenly;
+   align-items: center;
+    text-align: left;
+    margin: 0 200px;
+}
+.section_text {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #FFFFFF;
+    text-align: left;
+    margin-bottom: 10px;
+}
+.bottom_text {
+    color: #FFFFFF;
+    font-size: 12px;
+}
+.input-name{
+    padding: 5px 0 5px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.input_button {
+    border: 1px solid #FFFFFF;
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-size: 14px;
+    width: 100%;
+    padding: 5px 0;
+}
+
+@media (max-width:768px) {
+    .input-table{
+        display: block;
+        margin: 0 20px;
+    }
+    .input-group{
+        text-align: center;
+    }
+    .input-name,
+    .input_button{
+        width: 50%;
+    }
+}
+

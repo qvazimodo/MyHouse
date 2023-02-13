@@ -1,0 +1,71 @@
+.cabinet .ant-collapse-header-text{
+    color: #FFFFFF;
+}
+.cabinet-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.33;
+    color: #D4C17F;
+    margin-bottom: 50px;
+}
+
+.cabinet .ant-collapse-header-text{
+    color: #FFFFFF;
+}
+
+button[type="button"].addValue-btn.ant-btn-primary {
+    background-color: #ffe58f;
+    color: #000000;
+}
+.addValue-btn.ant-btn-primary:not(:disabled):hover {
+    background-color: #fff;
+    color: #000000;
+}
+.cabinet-color-txt {
+    font-size: 19px;
+}
+
+.addMeter-btn.ant-btn-default:not(:disabled):hover {
+    color: #D4C17F;
+    border-color: #D4C17F;
+}
+
+.meter-table .ant-pagination .ant-pagination-item-active {
+    border-color: #D4C17F;
+}
+
+.meter-input .ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover .ant-select-selector {
+    border-color: #D4C17F;
+}
+.meter-input .ant-input:hover {
+    border-color: #D4C17F;
+}
+
+body > div:nth-child(2) > div > div.ant-modal-wrap > div > div.ant-modal-content > div.ant-modal-footer > button.ant-btn.css-dev-only-do-not-override-sk7ap8.ant-btn-primary {
+    color: #000000;
+    border-color: #000000;
+}
+body > div:nth-child(2) > div > div.ant-modal-wrap > div > div.ant-modal-content > div.ant-modal-footer > button.ant-btn.css-dev-only-do-not-override-sk7ap8.ant-btn-primary:hover {
+    background-color: #ffe58f;
+    color: #000000;
+    border-color: #ffe58f;
+}
+body > div:nth-child(2) > div > div.ant-modal-wrap > div > div.ant-modal-content > div.ant-modal-footer > button.ant-btn.css-dev-only-do-not-override-sk7ap8.ant-btn-default:hover {
+    color: #D4C17F;
+    border-color: #D4C17F;
+}
+.meter-input {
+    text-align: left;
+}
+.meter-modal {
+    text-align: left;
+}
+
+.ant-modal .ant-modal-footer button[type="button"].ant-btn-primary {
+    background-color: #ffe58f;
+    color: #000000;
+}
+.ant-collapse>.ant-collapse-item >.ant-collapse-header {
+    color: #FFFFFF;
+}

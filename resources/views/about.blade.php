@@ -2,14 +2,14 @@
 
 @section('title', 'My House Управляющая компания')
 
-@section('header')
-    @include('header')
+@section('menu')
+        @include('Identically.menu')
 @endsection
 
 @section('content')
-    <div id="about"></div>>
+        @include('Content.about')
 @endsection
 
 @section('footer')
-    @include('footer')
+        @include('Identically.footer')
 @endsection

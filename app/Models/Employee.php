@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -18,8 +20,7 @@ class Employee extends Model
      */
     protected $fillable = [
         'user_id',
-        'profession',
-
+        'held_position',
     ];
 
     /**
@@ -40,8 +41,17 @@ class Employee extends Model
         'email_verified_at' => 'datetime',
     ];
 
-    public function user()
+    public function user():BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function servicedAddresses():BelongsToMany{
+        return $this->belongsToMany(HouseNumberStreet::class, 'employee_serviced_address', 'employee_id', 'house_number_street_id', 'id');
+    }
+
+    public function timetable():BelongsTo
+    {
+        return $this->belongsTo(Timetable::class);
     }
 }

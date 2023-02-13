@@ -1,7 +1,6 @@
 .login-form {
-    height: 80vh;
-    background: #242B33;
-    padding-top: 100px;
+    padding: 40px;
+    margin: 175px 0;
 }
 .login-element {
     display: flex;
@@ -9,7 +8,6 @@
     margin-bottom: 20px;
 }
 .login-txt {
-    font-family: "Raleway", sans-serif;
     font-weight: 400;
     font-size: 18px;
     line-height: 1.5;
@@ -18,7 +16,6 @@
 }
 
 .login-input {
-    font-family: 'Raleway', sans-serif;
     border-radius: 10px;
     height: 50px;
     font-weight: 400;
@@ -31,10 +28,10 @@
     outline: none;
     width: 50%;
     margin-left: 20px;
+    padding-left: 10px;
 }
 .remember-txt {
     color: #D4C17F;
-    font-family: 'Raleway', sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 1.5;
@@ -44,7 +41,6 @@
 .login-btn {
     border: none;
     border-radius: 10px;
-    font-family: 'Raleway', sans-serif;
     font-weight: 700;
     font-size: 16px;
     line-height: 1.6;
@@ -55,7 +51,6 @@
     cursor: pointer;
 }
 .password-txt {
-    font-family: 'Raleway', sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 1.5;
@@ -69,4 +64,22 @@
 
 .reset-btn {
     margin-top: 50px;
+}
+
+// New style
+
+.login-form-container {
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-end-form {
+    margin-bottom: 200px;
+}
+
+.login-title {
+    margin-left: 50px;
 }

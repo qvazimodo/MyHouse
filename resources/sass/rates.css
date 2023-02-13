@@ -1,0 +1,12 @@
+.rates {
+    padding: 0 10px 10px 10px;
+}
+
+
+@media (max-width:1250px) {
+    .rates-name {
+        text-align: left;
+        font-size: 14px;
+    }
+
+}

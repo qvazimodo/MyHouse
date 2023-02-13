@@ -1,17 +1,32 @@
-
-.client{
-    background-color: #242B33;
+.client {
+    margin: 15px 0;
+    border: 2px solid #FFFFFF;
+    border-radius: 20px;
 }
 
-.client-content{
-    background-color: #242B33;
+.client-name {
+    color: #FFFFFF;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 15px;
 }
 
-.title-3 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 1.33;
+.client-data {
+    color: #FFFFFF;
+    font-size: 14px;
+    text-align: center;
+    padding-left: 10px;
+}
+
+a.client-name_link:hover {
+    font-size: 28px;
     color: #D4C17F;
-    margin-bottom: 50px;
+    font-family: 'Playfair Display', sans-serif;
 }
+
+a.client-data_link:hover {
+    font-size: 28px;
+    color: #D4C17F;
+    font-family: 'Playfair Display', sans-serif;
+}
+

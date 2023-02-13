@@ -2,127 +2,122 @@
 
 @section('title', 'My House Управляющая компания')
 
-@section('header')
-    @include('header')
+@section('menu')
+    @include('Identically.menu')
 @endsection
 
 @section('content')
-   <div class="register-form">
-       <div class="container">
-           <h2 class="title-2">{{ __('Регистрация') }}</h2>
-           <form method="POST" action="{{ route('register') }}">
-               @csrf
+    <div class="main">
+        <div class="register-form-container">
+            <h2 class="title_name">{{ __('Регистрация') }}</h2>
 
-               <div class=" register-element">
-                   <label for="name" class="register-txt">{{ __('Имя') }}</label>
-                   <input id="name" type="text" class="register-input @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                   @error('name')
-                   <span class="invalid-feedback" role="alert">
+            <form class="w-full max-w-xl" method="POST" action="{{ route('register') }}">
+                @csrf
+                <div class="flex flex-wrap -mx-3 mb-10">
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="name">
+                            Имя
+                        </label>
+                        <input class="bg-transparent appearance-none border-b border-yellow-600 w-full py-2 px-4 text-stone-200 leading-tight focus:outline-none @error('name') is-invalid @enderror"
+                               id="name" type="text" name="name"
+                               value="{{ old('name') }}" required autocomplete="name" autofocus>
+                        @error('name')
+                        <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
-                   @enderror
-                   <div class="col-md-6">
+                        @enderror
+                    </div>
 
-                   </div>
-               </div>
-
-               <div class="register-element">
-                   <label for="patronymic" class="register-txt">{{ __('Отчество') }}</label>
-                   <input id="patronymic" type="text" class="register-input @error('patronymic') is-invalid @enderror" name="patronymic" value="{{ old('patronymic') }}" >
-
-                   @error('name')
-                   <span class="invalid-feedback" role="alert">
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="last_name">
+                            Фамилия
+                        </label>
+                        <input class="bg-transparent appearance-none border-b border-yellow-600 w-full py-2 px-4 text-stone-200 leading-tight focus:outline-none @error('last_name') is-invalid @enderror"
+                               id="last_name" type="text" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
+                        @error('name')
+                        <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
-                   @enderror
-                   <div class="col-md-6">
+                        @enderror
+                    </div>
 
-                   </div>
-               </div>
-
-               <div class="register-element">
-                   <label for="last_name" class="register-txt">{{ __('Фамилия') }}</label>
-                   <input id="last_name" type="text" class="register-input @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
-
-                   @error('name')
-                   <span class="invalid-feedback" role="alert">
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="patronymic">
+                            Отчество
+                        </label>
+                        <input class="bg-transparent appearance-none border-b border-yellow-600 w-full py-2 px-4 text-stone-200 leading-tight focus:outline-none @error('patronymic') is-invalid @enderror"
+                               id="patronymic" type="text" name="patronymic" value="{{ old('patronymic') }}">
+                        @error('name')
+                        <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
-                   @enderror
-                   <div class="col-md-6">
+                        @enderror
+                    </div>
+                </div>
 
-                   </div>
-               </div>
-
-               <div class="register-element">
-                   <label for="email" class="register-txt">{{ __('Email') }}</label>
-                   <input id="email" type="email" class="register-input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                   @error('email')
-                   <span class="invalid-feedback" role="alert">
+                <div class="flex flex-wrap -mx-3 mb-10">
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="email">
+                            Email
+                        </label>
+                        <input class="bg-transparent appearance-none border-b border-yellow-600 w-full py-2 px-4 text-stone-200 leading-tight focus:outline-none @error('email') is-invalid @enderror"
+                               id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email">
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
-                   @enderror
-                   <div class="col-md-6">
+                        @enderror
+                    </div>
 
-                   </div>
-               </div>
-
-               <div class="register-element">
-
-                   <div class="form-check ">
-                       <label for="isClient" class="register-txt ">{{ __('Клиент') }}</label>
-                       <input id="isClient" name="is_client"
-                              type="checkbox" value="1" class="form-check-input" checked>
-
-                   </div>
-
-                   <div class="form-check">
-                       <input id="isEmployee" name="is_employee"
-                              type="checkbox" value="1" class="form-check-input">
-                       <label for="isEmployee" class="register-txt">{{ __('Рабочий персонал') }}</label>
-                   </div>
-               </div>
-
-               <div class="register-element">
-                   <label for="password" class="register-txt">{{ __('Пароль') }}</label>
-
-                   <div class="col-md-6">
-                       <input id="password" type="password" class="register-input @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                       @error('password')
-                       <span class="invalid-feedback" role="alert">
+                    <div class="w-full md:w-1/2 px-3">
+                        <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="phone">
+                            Номер телефона
+                        </label>
+                        <input class="bg-transparent appearance-none border-b border-yellow-600 w-full py-2 px-4 text-stone-200 leading-tight focus:outline-none @error('phone') is-invalid @enderror"
+                               id="phone" type="phone" name="phone" value="{{ old('phone') }}" required autocomplete="email">
+                        @error('phone')
+                        <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
-                       @enderror
-                   </div>
-               </div>
+                        @enderror
+                    </div>
+                </div>
 
-               <div class="register-element">
-                   <label for="password-confirm" class="register-txt">{{ __('Повторите пароль') }}</label>
-                   <input id="password-confirm" type="password" class="register-input" name="password_confirmation" required autocomplete="new-password">
-                   <div class="col-md-6">
+                <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="password">
+                            Пароль
+                        </label>
+                        <input class="bg-transparent appearance-none border-b border-yellow-600 w-full py-2 px-4 text-stone-200 leading-tight focus:outline-none @error('password') is-invalid @enderror"
+                               id="password" type="password" name="password" required autocomplete="new-password">
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                        @enderror
+                    </div>
 
-                   </div>
-               </div>
+                    <div class="w-full md:w-1/2 px-3">
+                        <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="password-confirm">
+                            Повторите пароль
+                        </label>
+                        <input class="bg-transparent appearance-none border-b border-yellow-600 w-full py-2 px-4 text-stone-200 leading-tight focus:outline-none"
+                               id="password-confirm" type="password" name="password_confirmation" required autocomplete="new-password">
+                    </div>
+                </div>
 
-               <div class="register-element">
-                   <button type="submit" class="register-btn">
-                       {{ __('Зарегистрироваться') }}
-                   </button>
-                   <div class="col-md-6 offset-md-4">
-
-                   </div>
-               </div>
-           </form>
-
-       </div>
-
-   </div>
-
+                <div class="md:w-2/3">
+                    <button
+                        class="bg-yellow-800 hover:bg-yellow-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                        type="submit">
+                        Зарегистрироваться
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection
 
 @section('footer')
-    @include('footer')
+    @include('Identically.footer')
 @endsection

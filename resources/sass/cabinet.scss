@@ -1,21 +1,20 @@
-.cabinet-txt {
-    font-family: "Raleway", sans-serif;
+.cabinet-txt-title {
     font-weight: 400;
     font-size: 20px;
     line-height: 1.5;
     color: #FFFFFF;
+    text-align: center;
+    margin: 0 0 30px 0;
+}
+
+.cabinet-txt{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.5;
+    color: #FFFFFF;
+    text-align: left;
 }
 
 .end-cabinet {
     margin-bottom: 150px;
 }
-.ant-collapse>.ant-collapse-item >.ant-collapse-header {
-    color: #FFFFFF;
-}
-
-.ant-btn-primary {
-    background-color: #ffe58f;
-    color: #000000;
-}
-
-
